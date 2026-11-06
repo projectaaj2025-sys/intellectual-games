@@ -1424,6 +1424,32 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
 .hund-host{width:100%;text-align:left;color:#eee;font-size:12px}.hund-host summary{cursor:pointer;color:#f2c45a}.hund-host p{margin:8px 0}.hund-host .mi-btn{margin:3px}.chgk-fact{font-size:.8em;opacity:.8;margin:10px 0 0}
 .hund-demo-note{position:relative;z-index:2;color:#d7c999;font-size:11px;line-height:1.35;text-align:center;padding:4px 16px}.format-pick .fp-body span{line-height:1.45}
 .hund-row:not(.open) .hund-answer,.hund-row:not(.open) .hund-score{font-size:0;color:transparent;user-select:none}.hund-row:not(.open) .hund-answer::after{content:"••••••";font-size:clamp(13px,1.55vw,21px);color:rgba(180,198,236,.42);letter-spacing:.2em}.hund-row:not(.open) .hund-score::after{content:"—";font-size:clamp(14px,1.7vw,24px);color:rgba(242,196,90,.32)}
+/* ЧГК: настройки таймера в конструкторе и управление на сцене */
+.native-timer-settings{margin-top:16px;display:grid;gap:14px}
+.native-timer-settings p{margin:7px 0 0;color:var(--muted);font-size:12px;line-height:1.55}
+.native-timer-settings .switch{width:max-content;max-width:100%;font-size:13px;font-weight:700}
+.native-timer-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.chgk-wheel-clock{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;text-align:center}
+.chgk-wheel-clock span{color:rgba(246,236,210,.6);font-size:11px;letter-spacing:.04em}
+.chgk-clock-toggle,.chgk-clock-button{border:1px solid rgba(242,196,90,.4);background:rgba(242,196,90,.06);color:#f2c45a;border-radius:5px;font-family:var(--font-ui);font-weight:700;cursor:pointer;transition:background .2s,border-color .2s}
+.chgk-clock-toggle{padding:8px 13px;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.chgk-clock-toggle:hover,.chgk-clock-button:hover:not(:disabled){background:rgba(242,196,90,.18);border-color:#f2c45a}
+.chgk-clock-toggle:focus-visible,.chgk-clock-button:focus-visible{outline:2px solid #ffe9a6;outline-offset:2px}
+.chgk-question-stage{flex-direction:column;justify-content:flex-start;overflow-y:auto;gap:4px;padding-top:14px}
+.chgk-question-stage .chgk-card{max-height:none;flex:none;gap:clamp(9px,1.5vh,16px)}
+.chgk-question-stage .chgk-board.compact{flex:none;margin:8px auto 0}
+.chgk-clock-panel{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;max-width:100%;padding:10px 14px;border:1px solid rgba(242,196,90,.22);border-radius:8px;background:rgba(0,0,0,.28)}
+.chgk-clock-panel.off .dial{opacity:.45}
+.chgk-clock-copy{display:flex;flex-direction:column;gap:5px;text-align:left}
+.chgk-clock-status{color:#f6ecd2;font-size:12px;line-height:1.35}
+.chgk-clock.warn .chgk-clock-status{color:#ff8390}
+.chgk-clock-controls{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.chgk-clock-button{padding:8px 11px;font-size:11px;line-height:1.2}
+.chgk-clock-button.primary{background:rgba(242,196,90,.18);border-color:rgba(242,196,90,.7)}
+.chgk-clock-button:disabled{opacity:.38;cursor:not-allowed}
+@media(max-width:640px){.native-timer-grid{grid-template-columns:1fr 1fr}.chgk-wheel-clock{gap:5px}.chgk-wheel-clock span{width:100%}.chgk-clock-panel{gap:10px;padding:9px}.chgk-clock .dial{width:58px;height:58px}.chgk-clock .num{font-size:19px}.chgk-clock-controls{width:100%}.chgk-clock-button{font-size:10px;padding:8px}.chgk-question-stage .chgk-card{width:100%}.chgk-question-stage .q-text{font-size:clamp(18px,5vw,26px);max-height:29vh}}
+
+@media(max-width:640px){.chgk-head{width:100%;justify-content:flex-start;padding:16px 100px 8px 16px;gap:10px}.chgk-head .owl{width:50px;flex:none}.chgk-head h1{font-size:13px;letter-spacing:.15em;line-height:1.25}.chgk-head small{font-size:9px;letter-spacing:.12em;overflow-wrap:anywhere}}
 </style>
 </head>
 <body>
@@ -9809,12 +9835,22 @@ function subjectLabel(subject) {
   return t('subject.' + (subject === 'math' ? 'math' : subject === 'physics' ? 'physics' : subject === 'mixed' ? 'mixed' : 'other'));
 }
 
+/* Таймер ЧГК: старые и импортированные наборы получают безопасные значения. */
+function chgkTimerConfig(raw) {
+  const data = raw && typeof raw === 'object' ? raw : {};
+  const duration = (value, fallback) => {
+    const n = Number(value);
+    return Number.isFinite(n) && n >= 5 && n <= 600 ? Math.round(n) : fallback;
+  };
+  return { enabled: data.enabled !== false, standard: duration(data.standard, 60), blitz: duration(data.blitz, 20) };
+}
 /* Приведение любой игры к единой структуре (для импорта и ИИ) */
 function normalizeGame(raw) {
   const g = {
     id: raw.id || uid('game'),
     showFormat: ['chgk','million','hundred'].includes(raw.showFormat) ? raw.showFormat : null,
     showItems: Array.isArray(raw.showItems) ? JSON.parse(JSON.stringify(raw.showItems)) : [],
+    chgkTimer: raw.showFormat === 'chgk' ? chgkTimerConfig(raw.chgkTimer) : null,
     title: raw.title || { ru: 'Без названия', kk: 'Атауы жоқ', en: 'Untitled' },
     subject: raw.subject || 'mixed',
     grade: raw.grade || 7,
@@ -12547,9 +12583,9 @@ function initRulesButton() {
 
 /* Форматные наборы: варианты и результаты опроса задаются автором, а не угадываются из чужих ответов. */
 const NB_TEXT = {
- ru: {hostKey:'Ответы ведущего', hostWarning:'Открыв список, вы покажете ответы на общем экране.', choose:'Выберите формат', hint:'У каждого шоу — свои вопросы, правила и игровая сцена.', svoya:'Своя игра', million:'Кто хочет стать миллионером', chgk:'Что? Где? Когда?', hundred:'100 к 1', svoyaDesc:'Поле категорий, стоимость вопросов, спецвопросы и финал.', millionDesc:'15 вопросов по нарастающей сложности, четыре варианта и один правильный ответ.', chgkDesc:'13 секторов: логические вопросы, чёрный ящик и блиц по три вопроса.', hundredDesc:'6 вопросов опроса: для каждого — шесть ответов и их баллы.', edit:'Редактор формата', title:'Название набора', description:'Описание', titlePh:'Например: Интеллектуальный вечер', nameRequired:'Укажите название набора.', pptx:'Скачать PPTX', save:'Сохранить', play:'Сохранить и играть', export:'Экспорт JSON', question:'Вопрос', answer:'Правильный ответ', option:'Вариант', correct:'Правильный вариант', points:'Баллы', sector:'Сектор', normal:'Обычный', blackbox:'Чёрный ящик', blitz:'Блиц', superblitz:'Суперблиц', explain:'Комментарий к ответу', invalid:'Заполните все вопросы и ответы. Для «100 к 1» укажите шесть разных ответов с баллами по убыванию, сумма не более 100. Для «Миллионера» нужны четыре разных варианта.', saved:'Набор сохранён', sample:'Демонстрационный набор: данные опроса условные, не реальные результаты. Замените их результатами своего опроса.', demoLabel:'Демонстрационный набор · русский язык', missing:'Сначала заполните набор целиком.', import:'Импорт JSON', format:'Формат', source:'Источник / комментарий', empty:'Пока нет подходящих наборов.'},
- kk: {hostKey:'Жүргізуші жауаптары', hostWarning:'Тізімді ашқанда жауаптар ортақ экранда көрінеді.', choose:'Форматты таңдаңыз', hint:'Әр шоудың өз сұрақтары, ережелері және ойын сахнасы бар.', svoya:'Өз ойыны', million:'Миллионер болғым келеді', chgk:'Не? Қайда? Қашан?', hundred:'100-ге 1', svoyaDesc:'Санаттар алаңы, сұрақ құны, арнайы сұрақтар және финал.', millionDesc:'Күрделілігі артатын 15 сұрақ, төрт нұсқа және бір дұрыс жауап.', chgkDesc:'13 сектор: логикалық сұрақтар, қара жәшік және үш сұрақтық блиц.', hundredDesc:'6 сауалнама сұрағы: әрқайсысына алты жауап пен ұпай.', edit:'Формат редакторы', title:'Жинақ атауы', description:'Сипаттама', titlePh:'Мысалы: Зияткерлік кеш', nameRequired:'Жинақ атауын енгізіңіз.', pptx:'PPTX жүктеу', save:'Сақтау', play:'Сақтау және ойнау', export:'JSON экспорты', question:'Сұрақ', answer:'Дұрыс жауап', option:'Нұсқа', correct:'Дұрыс нұсқа', points:'Ұпай', sector:'Сектор', normal:'Қалыпты', blackbox:'Қара жәшік', blitz:'Блиц', superblitz:'Суперблиц', explain:'Жауапқа түсініктеме', invalid:'Барлық сұрақтар мен жауаптарды толтырыңыз. «100-ге 1»: алты түрлі жауап, ұпайлар кему ретімен, қосындысы 100-ден аспайды. «Миллионер»: төрт түрлі нұсқа.', saved:'Жинақ сақталды', sample:'Демонстрациялық жинақ: сауалнама деректері шартты, нақты нәтиже емес. Өз сауалнамаңыздың нәтижелерімен ауыстырыңыз.', demoLabel:'Демонстрациялық жинақ · орыс тілінде', missing:'Алдымен жинақты толық толтырыңыз.', import:'JSON импорттау', format:'Формат', source:'Дереккөз / түсініктеме', empty:'Сәйкес жинақтар әлі жоқ.'},
- en: {hostKey:'Host answer key', hostWarning:'Opening this will show answers on the shared screen.', choose:'Choose a format', hint:'Each show has its own questions, rules and stage.', svoya:'Quiz board', million:'Who Wants to Be a Millionaire?', chgk:'What? Where? When?', hundred:'100 to 1', svoyaDesc:'Categories, question values, special questions and a final.', millionDesc:'15 questions of increasing difficulty, four options and one correct answer.', chgkDesc:'13 sectors: logic questions, black box and a three-question blitz.', hundredDesc:'6 survey questions, each with six responses and scores.', edit:'Format editor', title:'Set title', description:'Description', titlePh:'For example: Quiz night', nameRequired:'Enter a set title.', pptx:'Download PPTX', save:'Save', play:'Save and play', export:'Export JSON', question:'Question', answer:'Correct answer', option:'Option', correct:'Correct option', points:'Points', sector:'Sector', normal:'Standard', blackbox:'Black box', blitz:'Blitz', superblitz:'Super blitz', explain:'Answer commentary', invalid:'Complete all questions and answers. For 100 to 1, enter six distinct responses with descending scores totalling no more than 100. Millionaire requires four distinct options.', saved:'Set saved', sample:'Demo set: survey scores are illustrative, not real survey results. Replace them with your own survey.', demoLabel:'Demo set · Russian content', missing:'Complete the whole set first.', import:'Import JSON', format:'Format', source:'Source / commentary', empty:'No suitable sets yet.'}
+ ru: {timerSettings:'Таймер ЧГК', timerEnable:'Добавить таймер', timerHelp:'По правилам: 60 секунд на обсуждение, по 20 секунд на каждый вопрос блица. Запуск вручную после прочтения вопроса.', timerStandard:'Обычный вопрос, сек.', timerBlitz:'Блиц, сек.', hostKey:'Ответы ведущего', hostWarning:'Открыв список, вы покажете ответы на общем экране.', choose:'Выберите формат', hint:'У каждого шоу — свои вопросы, правила и игровая сцена.', svoya:'Своя игра', million:'Кто хочет стать миллионером', chgk:'Что? Где? Когда?', hundred:'100 к 1', svoyaDesc:'Поле категорий, стоимость вопросов, спецвопросы и финал.', millionDesc:'15 вопросов по нарастающей сложности, четыре варианта и один правильный ответ.', chgkDesc:'13 секторов: логические вопросы, чёрный ящик и блиц по три вопроса.', hundredDesc:'6 вопросов опроса: для каждого — шесть ответов и их баллы.', edit:'Редактор формата', title:'Название набора', description:'Описание', titlePh:'Например: Интеллектуальный вечер', nameRequired:'Укажите название набора.', pptx:'Скачать PPTX', save:'Сохранить', play:'Сохранить и играть', export:'Экспорт JSON', question:'Вопрос', answer:'Правильный ответ', option:'Вариант', correct:'Правильный вариант', points:'Баллы', sector:'Сектор', normal:'Обычный', blackbox:'Чёрный ящик', blitz:'Блиц', superblitz:'Суперблиц', explain:'Комментарий к ответу', invalid:'Заполните все вопросы и ответы. Для «100 к 1» укажите шесть разных ответов с баллами по убыванию, сумма не более 100. Для «Миллионера» нужны четыре разных варианта.', saved:'Набор сохранён', sample:'Демонстрационный набор: данные опроса условные, не реальные результаты. Замените их результатами своего опроса.', demoLabel:'Демонстрационный набор · русский язык', missing:'Сначала заполните набор целиком.', import:'Импорт JSON', format:'Формат', source:'Источник / комментарий', empty:'Пока нет подходящих наборов.'},
+ kk: {timerSettings:'НҚҚ таймері', timerEnable:'Таймерді қосу', timerHelp:'Ереже бойынша: талқылауға 60 секунд, блицтің әр сұрағына 20 секунд. Сұрақ оқылғаннан кейін қолмен іске қосылады.', timerStandard:'Қалыпты сұрақ, сек.', timerBlitz:'Блиц, сек.', hostKey:'Жүргізуші жауаптары', hostWarning:'Тізімді ашқанда жауаптар ортақ экранда көрінеді.', choose:'Форматты таңдаңыз', hint:'Әр шоудың өз сұрақтары, ережелері және ойын сахнасы бар.', svoya:'Өз ойыны', million:'Миллионер болғым келеді', chgk:'Не? Қайда? Қашан?', hundred:'100-ге 1', svoyaDesc:'Санаттар алаңы, сұрақ құны, арнайы сұрақтар және финал.', millionDesc:'Күрделілігі артатын 15 сұрақ, төрт нұсқа және бір дұрыс жауап.', chgkDesc:'13 сектор: логикалық сұрақтар, қара жәшік және үш сұрақтық блиц.', hundredDesc:'6 сауалнама сұрағы: әрқайсысына алты жауап пен ұпай.', edit:'Формат редакторы', title:'Жинақ атауы', description:'Сипаттама', titlePh:'Мысалы: Зияткерлік кеш', nameRequired:'Жинақ атауын енгізіңіз.', pptx:'PPTX жүктеу', save:'Сақтау', play:'Сақтау және ойнау', export:'JSON экспорты', question:'Сұрақ', answer:'Дұрыс жауап', option:'Нұсқа', correct:'Дұрыс нұсқа', points:'Ұпай', sector:'Сектор', normal:'Қалыпты', blackbox:'Қара жәшік', blitz:'Блиц', superblitz:'Суперблиц', explain:'Жауапқа түсініктеме', invalid:'Барлық сұрақтар мен жауаптарды толтырыңыз. «100-ге 1»: алты түрлі жауап, ұпайлар кему ретімен, қосындысы 100-ден аспайды. «Миллионер»: төрт түрлі нұсқа.', saved:'Жинақ сақталды', sample:'Демонстрациялық жинақ: сауалнама деректері шартты, нақты нәтиже емес. Өз сауалнамаңыздың нәтижелерімен ауыстырыңыз.', demoLabel:'Демонстрациялық жинақ · орыс тілінде', missing:'Алдымен жинақты толық толтырыңыз.', import:'JSON импорттау', format:'Формат', source:'Дереккөз / түсініктеме', empty:'Сәйкес жинақтар әлі жоқ.'},
+ en: {timerSettings:'WWW timer', timerEnable:'Enable timer', timerHelp:'Standard rules: 60 seconds to discuss, 20 seconds for each blitz question. Start manually after reading the question.', timerStandard:'Standard question, sec', timerBlitz:'Blitz, sec', hostKey:'Host answer key', hostWarning:'Opening this will show answers on the shared screen.', choose:'Choose a format', hint:'Each show has its own questions, rules and stage.', svoya:'Quiz board', million:'Who Wants to Be a Millionaire?', chgk:'What? Where? When?', hundred:'100 to 1', svoyaDesc:'Categories, question values, special questions and a final.', millionDesc:'15 questions of increasing difficulty, four options and one correct answer.', chgkDesc:'13 sectors: logic questions, black box and a three-question blitz.', hundredDesc:'6 survey questions, each with six responses and scores.', edit:'Format editor', title:'Set title', description:'Description', titlePh:'For example: Quiz night', nameRequired:'Enter a set title.', pptx:'Download PPTX', save:'Save', play:'Save and play', export:'Export JSON', question:'Question', answer:'Correct answer', option:'Option', correct:'Correct option', points:'Points', sector:'Sector', normal:'Standard', blackbox:'Black box', blitz:'Blitz', superblitz:'Super blitz', explain:'Answer commentary', invalid:'Complete all questions and answers. For 100 to 1, enter six distinct responses with descending scores totalling no more than 100. Millionaire requires four distinct options.', saved:'Set saved', sample:'Demo set: survey scores are illustrative, not real survey results. Replace them with your own survey.', demoLabel:'Demo set · Russian content', missing:'Complete the whole set first.', import:'Import JSON', format:'Format', source:'Source / commentary', empty:'No suitable sets yet.'}
 };
 function nb(k) { return (NB_TEXT[S.lang] || NB_TEXT.ru)[k] || k; }
 function nativeFormatName(k) { return nb(k); }
@@ -12559,7 +12595,7 @@ function nativeEmpty(kind) {
  if (kind === 'chgk') return {kind:'normal', q:'', a:'', fact:'', blitz:[{q:'',a:''},{q:'',a:''},{q:'',a:''}]};
  return {q:'', answers:Array.from({length:6}, () => ({text:'',points:''}))};
 }
-function nativeNew(kind) { return {id:null, title:'', desc:'', subject:'other', grade:7, quarter:0, showFormat:kind, showItems:Array.from({length:NATIVE_DEFAULTS[kind]}, () => nativeEmpty(kind))}; }
+function nativeNew(kind) { return {id:null, title:'', desc:'', subject:'other', grade:7, quarter:0, showFormat:kind, chgkTimer:kind==='chgk' ? chgkTimerConfig() : null, showItems:Array.from({length:NATIVE_DEFAULTS[kind]}, () => nativeEmpty(kind))}; }
 function nativeDemo(kind, title, items, desc) { return {id:'show-demo-'+kind, builtin:true, showFormat:kind, showItems:items, title:title, desc:desc, emoji: kind==='million'?'◇':kind==='chgk'?'?':'100:1', accent:'#f2c45a', subject:'other', grade:'7', quarter:0, grades:[], tags:['demo'], rounds:[], final:{theme:'',q:'',a:''}}; }
 const demoMillionRows = [
  ['Сколько минут в одном часе?', ['30','60','90','100'],1],
@@ -12655,12 +12691,23 @@ function initNativeBuilder() {
 }
 function nativeGame() {
  const g=JSON.parse(JSON.stringify(NB.current));
+ if (g.showFormat === 'chgk') g.chgkTimer = chgkTimerConfig(g.chgkTimer);
  g.id=g.id || uid('custom'); g.builtin=false; g.rounds=[]; g.final={theme:'',q:'',a:''}; g.tags=[];
  return g;
 }
 function nativeInput(e) {
  const el=e.target, g=NB.current; if(!g) return;
  if(el.dataset.nativeMeta) { g[el.dataset.nativeMeta]=el.value; return; }
+ if(el.dataset.timerField && g.showFormat === 'chgk') {
+  if (!g.chgkTimer) g.chgkTimer = chgkTimerConfig();
+  const field = el.dataset.timerField;
+  if (field === 'enabled') g.chgkTimer.enabled = el.checked;
+  else if (field === 'standard' || field === 'blitz') {
+   g.chgkTimer[field] = el.value;
+   if (e.type === 'change') { g.chgkTimer = chgkTimerConfig(g.chgkTimer); el.value = g.chgkTimer[field]; }
+  }
+  return;
+ }
  const i=Number(el.dataset.item); if(!Number.isInteger(i)||!g.showItems[i]) return;
  const it=g.showItems[i], field=el.dataset.field;
  if(field==='kind') {it.kind=el.value; if (!Array.isArray(it.blitz) || it.blitz.length !== 3) it.blitz=[{q:'',a:''},{q:'',a:''},{q:'',a:''}]; renderNativeBuilder(); return;}
@@ -12679,6 +12726,8 @@ function renderNativeBuilder() {
  const native=NB.kind!=='svoya'; $('#builderMainSubtitle').textContent=native ? nb(NB.kind+'Desc') : t('builder.sub'); $('#svoyaBuilder').classList.toggle('hidden',native); $('#svoyaBuilderActions').classList.toggle('hidden',native); box.classList.toggle('hidden',!native);
  if(!native) return;
  const g=NB.current;
+ if (g.showFormat === 'chgk') g.chgkTimer = chgkTimerConfig(g.chgkTimer);
+ const timerEditor = g.showFormat === 'chgk' ? '<section class="panel native-timer-settings"><div><span class="native-kicker">'+esc(nb('timerSettings'))+'</span><p>'+esc(nb('timerHelp'))+'</p></div><label class="switch"><input type="checkbox" data-timer-field="enabled"'+(g.chgkTimer.enabled?' checked':'')+'><span class="track"></span><span>'+esc(nb('timerEnable'))+'</span></label><div class="native-timer-grid"><label class="field"><span class="label">'+esc(nb('timerStandard'))+'</span><input class="input" type="number" min="5" max="600" step="1" data-timer-field="standard" value="'+g.chgkTimer.standard+'"></label><label class="field"><span class="label">'+esc(nb('timerBlitz'))+'</span><input class="input" type="number" min="5" max="600" step="1" data-timer-field="blitz" value="'+g.chgkTimer.blitz+'"></label></div></section>' : '';
  const text=(label,value,field,i,sub,tag='input')=>'<label class="field"><span class="label">'+esc(label)+'</span>'+ (tag==='textarea'?'<textarea class="textarea"':'<input class="input"')+' data-item="'+i+'" data-field="'+field+'"'+(sub==null?'':' data-sub="'+sub+'"')+(tag==='textarea'? '>'+esc(value||'')+'</textarea>':' value="'+esc(value==null?'':String(value))+'">')+'</label>';
  const items=g.showItems.map((it,i)=>{
    let body='';
@@ -12694,7 +12743,7 @@ function renderNativeBuilder() {
    return '<details class="native-item"'+(i===0?' open':'')+'><summary><span class="native-index">'+String(i+1).padStart(2,'0')+'</span><b>'+esc(g.showFormat==='chgk'?nb('sector'):nb('question'))+' '+(i+1)+'</b><span class="native-chevron">⌄</span></summary><div class="native-fields">'+body+'</div></details>';
  }).join('');
  box.innerHTML='<div class="native-hero"><div><span class="native-kicker">'+esc(nb('edit'))+'</span><h2>'+esc(nb(g.showFormat))+'</h2><p>'+esc(nb(g.showFormat+'Desc'))+'</p></div><div class="native-hero-symbol">'+({million:'◇',chgk:'?',hundred:'100 : 1'})[g.showFormat]+'</div></div>'+
-  '<div class="native-layout"><main><section class="panel native-meta"><div class="panel-head"><h3>'+esc(nb('title'))+'</h3></div><label class="field"><span class="label">'+esc(nb('title'))+'</span><input class="input" data-native-meta="title" value="'+esc(g.title||'')+'" placeholder="'+esc(nb('titlePh'))+'"></label><label class="field"><span class="label">'+esc(nb('description'))+'</span><input class="input" data-native-meta="desc" value="'+esc(g.desc||'')+'"></label></section><div class="native-list">'+items+'</div></main><aside><div class="panel native-side"><span class="native-kicker">'+esc(nb('format'))+'</span><h3>'+esc(nb(g.showFormat))+'</h3><p>'+esc(nb(g.showFormat+'Desc'))+'</p>'+(g.showFormat==='hundred'?'<p class="survey-notice">'+esc(nb('sample'))+'</p>':'')+'<button class="btn btn-gold btn-block" data-native-action="play">▶ &nbsp;'+esc(nb('play'))+'</button><button class="btn btn-line btn-block" data-native-action="save">'+esc(nb('save'))+'</button><button class="btn btn-line btn-block" data-native-action="pptx">'+esc(nb('pptx'))+'</button><button class="btn btn-ghost btn-block" data-native-action="export">'+esc(nb('export'))+'</button><button class="btn btn-ghost btn-block" data-native-action="import">'+esc(nb('import'))+'</button></div></aside></div>';
+  '<div class="native-layout"><main><section class="panel native-meta"><div class="panel-head"><h3>'+esc(nb('title'))+'</h3></div><label class="field"><span class="label">'+esc(nb('title'))+'</span><input class="input" data-native-meta="title" value="'+esc(g.title||'')+'" placeholder="'+esc(nb('titlePh'))+'"></label><label class="field"><span class="label">'+esc(nb('description'))+'</span><input class="input" data-native-meta="desc" value="'+esc(g.desc||'')+'"></label></section>'+timerEditor+'<div class="native-list">'+items+'</div></main><aside><div class="panel native-side"><span class="native-kicker">'+esc(nb('format'))+'</span><h3>'+esc(nb(g.showFormat))+'</h3><p>'+esc(nb(g.showFormat+'Desc'))+'</p>'+(g.showFormat==='hundred'?'<p class="survey-notice">'+esc(nb('sample'))+'</p>':'')+'<button class="btn btn-gold btn-block" data-native-action="play">▶ &nbsp;'+esc(nb('play'))+'</button><button class="btn btn-line btn-block" data-native-action="save">'+esc(nb('save'))+'</button><button class="btn btn-line btn-block" data-native-action="pptx">'+esc(nb('pptx'))+'</button><button class="btn btn-ghost btn-block" data-native-action="export">'+esc(nb('export'))+'</button><button class="btn btn-ghost btn-block" data-native-action="import">'+esc(nb('import'))+'</button></div></aside></div>';
 }
 
 /* --- старт приложения --- */
@@ -12778,6 +12827,7 @@ const SHOWS = (() => {
     'show.spinning': 'Волчок крутится…',
     'show.sector': 'Сектор',
     'show.minute': 'Минута обсуждения',
+    'show.clockTitle': 'Время на обсуждение', 'show.clockBlitz': 'Время на ответ', 'show.clockReady': 'Готов к запуску', 'show.clockRunning': 'Идёт отсчёт', 'show.clockPaused': 'Пауза', 'show.clockLocked': 'Ответ открыт', 'show.clockExpired': 'Время вышло — команда отвечает', 'show.clockOff': 'Таймер выключен', 'show.clockStart': 'Запустить', 'show.clockPause': 'Пауза', 'show.clockResume': 'Продолжить', 'show.clockReset': 'Сбросить', 'show.clockEnable': 'Включить таймер', 'show.clockDisable': 'Выключить таймер', 'show.clockOnShort': 'Таймер включён', 'show.clockOffShort': 'Таймер выключен', 'show.clockRules': 'Запуск вручную после вопроса',
     'show.seconds': 'Секунд на ответ',
     'show.blitz': 'Блиц',
     'show.superblitz': 'Суперблиц',
@@ -12867,6 +12917,7 @@ const SHOWS = (() => {
     'show.spinning': 'Шыңғырлақ айналуда…',
     'show.sector': 'Сектор',
     'show.minute': 'Талқылау минуты',
+    'show.clockTitle': 'Талқылау уақыты', 'show.clockBlitz': 'Жауап уақыты', 'show.clockReady': 'Іске қосуға дайын', 'show.clockRunning': 'Уақыт жүріп жатыр', 'show.clockPaused': 'Үзіліс', 'show.clockLocked': 'Жауап ашылды', 'show.clockExpired': 'Уақыт бітті — команда жауап береді', 'show.clockOff': 'Таймер өшірулі', 'show.clockStart': 'Бастау', 'show.clockPause': 'Үзіліс', 'show.clockResume': 'Жалғастыру', 'show.clockReset': 'Қалпына келтіру', 'show.clockEnable': 'Таймерді қосу', 'show.clockDisable': 'Таймерді өшіру', 'show.clockOnShort': 'Таймер қосулы', 'show.clockOffShort': 'Таймер өшірулі', 'show.clockRules': 'Сұрақтан кейін қолмен қосылады',
     'show.seconds': 'Жауапқа берілген секунд',
     'show.blitz': 'Блиц',
     'show.superblitz': 'Суперблиц',
@@ -12956,6 +13007,7 @@ const SHOWS = (() => {
     'show.spinning': 'The top is spinning…',
     'show.sector': 'Sector',
     'show.minute': 'One minute to think',
+    'show.clockTitle': 'Discussion time', 'show.clockBlitz': 'Answer time', 'show.clockReady': 'Ready to start', 'show.clockRunning': 'Counting down', 'show.clockPaused': 'Paused', 'show.clockLocked': 'Answer revealed', 'show.clockExpired': 'Time is up — the team answers', 'show.clockOff': 'Timer off', 'show.clockStart': 'Start', 'show.clockPause': 'Pause', 'show.clockResume': 'Resume', 'show.clockReset': 'Reset', 'show.clockEnable': 'Enable timer', 'show.clockDisable': 'Disable timer', 'show.clockOnShort': 'Timer enabled', 'show.clockOffShort': 'Timer disabled', 'show.clockRules': 'Start manually after the question',
     'show.seconds': 'Seconds to answer',
     'show.blitz': 'Blitz',
     'show.superblitz': 'Super blitz',
@@ -13047,6 +13099,7 @@ const SHOWS = (() => {
   /** Закрыть сцену шоу и вернуться в библиотеку. */
   function closeShow() {
     chgkStopClock();
+    if (CHGK.spinTimer != null) { clearTimeout(CHGK.spinTimer); CHGK.spinTimer = null; }
     CHGK.active = false; MI.active = false; HUND.active = false;
     TTS.stop();
     const el = screen();
@@ -13078,7 +13131,14 @@ const SHOWS = (() => {
     sector: null,
     phase: 'wheel',
     timer: null,
+    spinTimer: null,
     left: 0,
+    clockEnabled: true,
+    clockState: 'ready',
+    clockTotal: 60,
+    clockRemainingMs: 60000,
+    clockDeadline: 0,
+    clockSettings: null,
     blitz: null
   };
 
@@ -13115,6 +13175,8 @@ const SHOWS = (() => {
   }
 
   function chgkOpen(game) {
+    chgkStopClock();
+    if (CHGK.spinTimer != null) { clearTimeout(CHGK.spinTimer); CHGK.spinTimer = null; }
     /* форматы взаимоисключающие: иначе экспорт и счётчики путают шоу */
     MI.active = false;
     CHGK.active = true;
@@ -13126,6 +13188,8 @@ const SHOWS = (() => {
     CHGK.used = new Set();
     CHGK.phase = 'wheel';
     CHGK.revealed = false;
+    CHGK.clockSettings = chgkTimerConfig(game.chgkTimer);
+    CHGK.clockEnabled = CHGK.clockSettings.enabled;
     const pool = shuffle(flattenQuestions(game));
     CHGK.pool = pool;
     CHGK.sectors = game.showFormat === 'chgk' ? game.showItems.map((item, i) => ({ n: i + 1, kind: item.kind || 'normal', item })) : buildSectors(pool);
@@ -13220,11 +13284,13 @@ const SHOWS = (() => {
     root.innerHTML = chgkHeader() + '<div class="chgk-stage" style="flex-direction:column;gap:18px">' +
       '<div class="chgk-wheel-wrap"><div class="chgk-wheel">' + chgkWheelSvg() + '</div></div>' +
       chgkScore() +
+      '<div class="chgk-wheel-clock"><button class="chgk-clock-toggle" id="chgkWheelTimer" aria-pressed="' + String(CHGK.clockEnabled) + '">◷ &nbsp;' + esc(t(CHGK.clockEnabled ? 'show.clockOnShort' : 'show.clockOffShort')) + '</button><span>' + esc(t('show.clockRules')) + ' · ' + CHGK.clockSettings.standard + 's / ' + CHGK.clockSettings.blitz + 's</span></div>' +
       '<div class="chgk-actions"><button class="chgk-btn solid" id="chgkSpin">' + esc(t('show.spin')) + '</button>' +
       '<span style="align-self:center;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(246,236,210,.45)">' +
       esc(t('show.round')) + ' ' + (CHGK.round + 1) + '</span></div>' +
       '</div>' + chgkSides();
     $('#chgkSpin').addEventListener('click', chgkSpin);
+    $('#chgkWheelTimer').addEventListener('click', () => { CHGK.clockEnabled = !CHGK.clockEnabled; chgkRenderWheel(); });
   }
 
   /** Вращение: считаем целевой угол так, чтобы стрелка встала на сектор. */
@@ -13242,7 +13308,8 @@ const SHOWS = (() => {
     const target = turns * 360 + (360 - center);
     const g = $('#wheelRot');
     if (g) { g.style.transition = 'none'; g.style.transform = 'rotate(0deg)'; void g.offsetWidth; g.style.transition = ''; g.style.transform = 'rotate(' + target + 'deg)'; }
-    setTimeout(() => {
+    CHGK.spinTimer = setTimeout(() => {
+      CHGK.spinTimer = null;
       if (!CHGK.active || !$('#chgkRoot')) return;
       CHGK.sector = CHGK.sectors[pick];
       chgkOpenSector();
@@ -13287,17 +13354,14 @@ const SHOWS = (() => {
     q.__used = true;
     CHGK.current = q;
     const root = $('#chgkRoot');
-    root.innerHTML = chgkHeader() + '<div class="chgk-stage"><div class="chgk-card">' +
+    root.innerHTML = chgkHeader() + '<div class="chgk-stage chgk-question-stage"><div class="chgk-card">' +
       '<div class="sector-chip">' + esc(t('show.sector')) + ' ' + s.n + (s.kind === 'photo' ? ' · ' + esc(t('q.photo')) : '') + '</div>' +
       (q.cat ? '<div class="q-cat">' + esc(q.cat) + '</div>' : '') +
       (q.visual ? '<div class="q-media" style="max-width:min(560px,70vw)"><img alt="" src="' + visualDataUrl(q.visual, S.lang) + '"></div>' : '') +
       (q.photo && isUrl(q.photo) ? '<div class="q-media" style="max-width:min(560px,70vw)"><img alt="" src="' + esc(q.photo) + '"></div>' : '') +
       '<div class="q-text">' + esc(q.q) + '</div>' +
       '<div class="q-rule"></div>' +
-      '<div class="chgk-clock" id="chgkClock"><div class="dial">' +
-        '<svg viewBox="0 0 36 36"><circle class="bgc" cx="18" cy="18" r="16"/><circle class="fgc" id="chgkArc" cx="18" cy="18" r="16" stroke-dasharray="100.5" stroke-dashoffset="0"/></svg>' +
-        '<span class="num" id="chgkNum">60</span></div>' +
-        '<span class="lbl">' + esc(t('show.minute')) + '</span></div>' +
+      chgkClockHtml(false) +
       '<div id="chgkAnswerSlot"></div>' +
       '<div class="chgk-actions" id="chgkActions">' +
         '<button class="chgk-btn" id="chgkReveal">' + esc(t('show.showAnswer')) + '</button>' +
@@ -13306,44 +13370,100 @@ const SHOWS = (() => {
       '</div>' + chgkScoreCompact() + '</div>' + chgkSides();
     AudioKit.reveal();
     say(q.q);
-    chgkStartClock(60);
+    chgkPrepareClock(CHGK.clockSettings.standard);
     $('#chgkReveal').addEventListener('click', chgkReveal);
     $('#chgkBack').addEventListener('click', () => { chgkStopClock(); closeShow(); });
   }
 
-  function chgkStartClock(seconds) {
+  function chgkClockHtml(isBlitz) {
+    return '<div class="chgk-clock-panel" id="chgkClockPanel">' +
+      '<div class="chgk-clock" id="chgkClock"><div class="dial">' +
+      '<svg viewBox="0 0 36 36" aria-hidden="true"><circle class="bgc" cx="18" cy="18" r="16"/><circle class="fgc" id="chgkArc" cx="18" cy="18" r="16" stroke-dasharray="100.5" stroke-dashoffset="0"/></svg>' +
+      '<span class="num" id="chgkNum">—</span></div><div class="chgk-clock-copy"><span class="lbl">' + esc(t(isBlitz ? 'show.clockBlitz' : 'show.clockTitle')) + '</span>' +
+      '<span class="chgk-clock-status" id="chgkClockStatus" aria-live="polite"></span></div></div>' +
+      '<div class="chgk-clock-controls"><button type="button" id="chgkClockStart" class="chgk-clock-button primary"></button><button type="button" id="chgkClockReset" class="chgk-clock-button">' + esc(t('show.clockReset')) + '</button><button type="button" id="chgkClockToggle" class="chgk-clock-button"></button></div></div>';
+  }
+
+  function chgkPaintClock() {
+    const num = $('#chgkNum'), arc = $('#chgkArc'), clock = $('#chgkClock'), panel = $('#chgkClockPanel');
+    if (!num || !arc || !clock || !panel) return;
+    const left = Math.max(0, Math.ceil(CHGK.clockRemainingMs / 1000));
+    CHGK.left = left;
+    num.textContent = Math.floor(left / 60) + ':' + String(left % 60).padStart(2, '0');
+    const circumference = 2 * Math.PI * 16;
+    arc.setAttribute('stroke-dasharray', circumference.toFixed(1));
+    arc.setAttribute('stroke-dashoffset', (circumference * (1 - CHGK.clockRemainingMs / (CHGK.clockTotal * 1000))).toFixed(1));
+    clock.classList.toggle('warn', CHGK.clockEnabled && left <= 10 && ['running','paused','expired'].includes(CHGK.clockState));
+    panel.classList.toggle('off', !CHGK.clockEnabled);
+    const status = $('#chgkClockStatus'), start = $('#chgkClockStart'), reset = $('#chgkClockReset'), toggle = $('#chgkClockToggle');
+    const labels = {ready:'show.clockReady', running:'show.clockRunning', paused:'show.clockPaused', expired:'show.clockExpired', locked:'show.clockLocked'};
+    status.textContent = t(!CHGK.clockEnabled ? 'show.clockOff' : labels[CHGK.clockState]);
+    start.textContent = t(CHGK.clockState === 'running' ? 'show.clockPause' : CHGK.clockState === 'paused' ? 'show.clockResume' : 'show.clockStart');
+    start.disabled = !CHGK.clockEnabled || CHGK.clockState === 'expired' || CHGK.clockState === 'locked';
+    reset.disabled = !CHGK.clockEnabled || CHGK.clockState === 'locked';
+    toggle.textContent = t(CHGK.clockEnabled ? 'show.clockDisable' : 'show.clockEnable');
+    toggle.setAttribute('aria-pressed', String(CHGK.clockEnabled));
+    toggle.disabled = CHGK.clockState === 'locked';
+  }
+
+  function chgkPrepareClock(seconds) {
     chgkStopClock();
-    CHGK.left = seconds;
-    const total = seconds;
-    const C = 2 * Math.PI * 16;
-    const paint = () => {
-      const num = $('#chgkNum'), arc = $('#chgkArc'), clock = $('#chgkClock');
-      if (!num || !arc) return;
-      num.textContent = String(CHGK.left);
-      arc.setAttribute('stroke-dasharray', C.toFixed(1));
-      arc.setAttribute('stroke-dashoffset', (C * (1 - CHGK.left / total)).toFixed(1));
-      if (clock) clock.classList.toggle('warn', CHGK.left <= 10);
-    };
-    paint();
+    CHGK.clockTotal = seconds;
+    CHGK.clockRemainingMs = seconds * 1000;
+    CHGK.clockState = 'ready';
+    CHGK.clockLastTick = seconds;
+    chgkPaintClock();
+    $('#chgkClockStart').addEventListener('click', () => {
+      if (CHGK.clockState === 'running') chgkStopClock();
+      else chgkStartClock();
+    });
+    $('#chgkClockReset').addEventListener('click', chgkResetClock);
+    $('#chgkClockToggle').addEventListener('click', () => {
+      chgkStopClock();
+      CHGK.clockEnabled = !CHGK.clockEnabled;
+      chgkResetClock();
+    });
+  }
+  function chgkStartClock() {
+    if (!CHGK.clockEnabled || CHGK.clockState === 'running' || CHGK.clockState === 'expired' || CHGK.clockState === 'locked') return;
+    CHGK.clockState = 'running';
+    CHGK.clockDeadline = Date.now() + CHGK.clockRemainingMs;
+    chgkPaintClock();
     CHGK.timer = setInterval(() => {
-      CHGK.left--;
-      paint();
-      if (CHGK.left <= 10 && CHGK.left > 0) AudioKit.tick();
-      if (CHGK.left <= 0) {
-        chgkStopClock();
-        AudioKit.timeUp();
-        if (CHGK.phase === 'blitz') { const b = $('#chgkBlitzReveal'); if (b) b.click(); }
-        else if ($('#chgkAnswerSlot') && !CHGK.revealed) chgkReveal();
+      const previous = CHGK.left;
+      CHGK.clockRemainingMs = Math.max(0, CHGK.clockDeadline - Date.now());
+      chgkPaintClock();
+      if (CHGK.left !== previous && CHGK.left <= 10 && CHGK.left > 0) AudioKit.tick();
+      if (CHGK.clockRemainingMs <= 0) {
+        clearInterval(CHGK.timer); CHGK.timer = null;
+        CHGK.clockState = 'expired'; chgkPaintClock(); AudioKit.timeUp();
+        /* Время закончилось: игроки отвечают. Правильный ответ открывает ведущий. */
       }
-    }, 1000);
+    }, 250);
   }
   function chgkStopClock() {
-    if (CHGK.timer) { clearInterval(CHGK.timer); CHGK.timer = null; }
+    if (CHGK.timer != null) {
+      CHGK.clockRemainingMs = Math.max(0, CHGK.clockDeadline - Date.now());
+      clearInterval(CHGK.timer); CHGK.timer = null;
+      if (CHGK.clockState === 'running') CHGK.clockState = CHGK.clockRemainingMs ? 'paused' : 'expired';
+      chgkPaintClock();
+    }
+  }
+  function chgkResetClock() {
+    chgkStopClock();
+    CHGK.clockRemainingMs = CHGK.clockTotal * 1000;
+    CHGK.clockState = 'ready';
+    chgkPaintClock();
+  }
+  function chgkLockClock() {
+    chgkStopClock();
+    CHGK.clockState = 'locked';
+    chgkPaintClock();
   }
 
   function chgkReveal() {
     CHGK.revealed = true;
-    chgkStopClock();
+    chgkLockClock();
     const slot = $('#chgkAnswerSlot');
     if (!slot) return;
     AudioKit.reveal();
@@ -13386,25 +13506,22 @@ const SHOWS = (() => {
     const q = b.questions[b.index];
     const root = $('#chgkRoot');
     if (!q) return chgkJudge(false);
-    root.innerHTML = chgkHeader() + '<div class="chgk-stage"><div class="chgk-card">' +
+    root.innerHTML = chgkHeader() + '<div class="chgk-stage chgk-question-stage"><div class="chgk-card">' +
       '<div class="sector-chip">' + esc(t('show.sector')) + ' ' + CHGK.sector.n + ' · ' + esc(t(b.kind === 'superblitz' ? 'show.superblitz' : 'show.blitz')) + '</div>' +
-      '<div class="q-cat">' + esc(b.kind === 'superblitz' ? t('show.superblitzNote') : t('show.blitzNote')) + '</div>' +
+      '<div class="q-cat">' + esc(b.kind === 'superblitz' ? t('show.superblitz') : t('show.blitz')) + ' · ' + CHGK.clockSettings.blitz + 's' + '</div>' +
       '<div class="q-text">' + esc(q.q) + '</div>' +
       '<div class="q-cat" style="color:#f2c45a">' + esc(t('show.questionN')) + ' ' + (b.index + 1) + ' / 3</div>' +
-      '<div class="chgk-clock" id="chgkClock"><div class="dial">' +
-        '<svg viewBox="0 0 36 36"><circle class="bgc" cx="18" cy="18" r="16"/><circle class="fgc" id="chgkArc" cx="18" cy="18" r="16" stroke-dasharray="100.5" stroke-dashoffset="0"/></svg>' +
-        '<span class="num" id="chgkNum">20</span></div>' +
-        '<span class="lbl">' + esc(t('show.seconds')) + '</span></div>' +
+      chgkClockHtml(true) +
       '<div id="chgkAnswerSlot"></div>' +
       '<div class="chgk-actions" id="chgkActions"><button class="chgk-btn" id="chgkBlitzReveal">' + esc(t('show.showAnswer')) + '</button></div>' +
       '</div>' + chgkScoreCompact() + '</div>' + chgkSides();
-    chgkStartClock(20);
+    chgkPrepareClock(CHGK.clockSettings.blitz);
     $('#chgkBlitzReveal').addEventListener('click', () => {
       const slot = $('#chgkAnswerSlot');
       slot.innerHTML = '<div class="chgk-answer"><span class="ic">✓</span><div>' + esc(q.a || '—') + '</div></div>';
       const acts = $('#chgkActions');
       if (!acts) return;
-      chgkStopClock();
+      chgkLockClock();
       acts.innerHTML = '<button class="chgk-btn solid" id="chgkBlitzNext">' + esc(t('show.right')) + '</button><button class="chgk-btn no" id="chgkBlitzWrong">' + esc(t('show.wrong')) + '</button>';
       $('#chgkBlitzWrong').addEventListener('click', () => chgkJudge(false));
       $('#chgkBlitzNext').addEventListener('click', () => {
