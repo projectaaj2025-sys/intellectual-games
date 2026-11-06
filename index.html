@@ -2496,6 +2496,7 @@ ru: {
   'ai.modelChecking': 'проверяем ключ и список моделей…',
   'ai.modelPicked': 'выбрана',
   'ai.modelFound': 'моделей доступно:',
+  'ai.modelUnverified': 'Не удалось подтвердить модель запросом; при генерации попробуем другие:',
   'ai.modelFallback': 'нет доступа к списку моделей — оставлена',
   'ai.keyOk': 'ключ работает',
   'ai.keyUnknown': 'ключ не распознан: ожидается sk-… (OpenAI) или AIza… (Gemini)',
@@ -2703,6 +2704,7 @@ kk: {
   'ai.modelChecking': 'кілт пен модельдер тізімі тексерілуде…',
   'ai.modelPicked': 'таңдалды',
   'ai.modelFound': 'модель қолжетімді:',
+  'ai.modelUnverified': 'Модельді сұраумен растау мүмкін болмады; генерация кезінде басқаларын көреміз:',
   'ai.modelFallback': 'модельдер тізіміне рұқсат жоқ — қалдырылды',
   'ai.keyOk': 'кілт жұмыс істейді',
   'ai.keyUnknown': 'кілт танылмады: sk-… (OpenAI) немесе AIza… (Gemini) күтіледі',
@@ -2910,6 +2912,7 @@ en: {
   'ai.modelChecking': 'checking key and available models…',
   'ai.modelPicked': 'selected',
   'ai.modelFound': 'models available:',
+  'ai.modelUnverified': 'Could not verify the model; generation will try other models:',
   'ai.modelFallback': 'model list unavailable — kept',
   'ai.keyOk': 'the key works',
   'ai.keyUnknown': 'key not recognised: expected sk-… (OpenAI) or AIza… (Gemini)',
@@ -11450,14 +11453,24 @@ async function listOpenAIModels(key) {
   return (data.data || []).map((m) => m.id).filter(modelIsUsable);
 }
 /** Список моделей у Gemini (метод list отдаёт только имена поддерживаемых). */
-async function listGeminiModels(key) {
-  const res = await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=100&key=' + encodeURIComponent(key));
-  if (!res.ok) throw new Error('Gemini models ' + res.status);
-  const data = await res.json();
-  return (data.models || [])
-    .filter((m) => (m.supportedGenerationMethods || []).includes('generateContent'))
-    .map((m) => String(m.name || '').replace(/^models\//, ''))
-    .filter(modelIsUsable);
+async function listGeminiModels(key, signal) {
+  const models = [];
+  let token = '';
+  const seenTokens = new Set();
+  do {
+    const url = 'https://generativelanguage.googleapis.com/v1beta/models?pageSize=100&key=' + encodeURIComponent(key) + (token ? '&pageToken=' + encodeURIComponent(token) : '');
+    const res = await fetch(url, { signal });
+    if (!res.ok) throw new Error('Gemini models ' + res.status);
+    const data = await res.json();
+    models.push(...(data.models || [])
+      .filter((m) => (m.supportedGenerationMethods || []).includes('generateContent'))
+      .map((m) => String(m.name || '').replace(/^models\//, ''))
+      .filter(modelIsUsable));
+    token = data.nextPageToken || '';
+    if (token && seenTokens.has(token)) break;
+    if (token) seenTokens.add(token);
+  } while (token && seenTokens.size < 10);
+  return [...new Set(models)];
 }
 /** Выбрать лучшую модель из списка. */
 function pickBestModel(provider, list) {
@@ -11536,8 +11549,14 @@ async function checkAiKey(silent) {
        ответивший становится рабочей моделью. */
     let best = pickBestModel(provider, list);
     if (provider === 'gemini') {
-      best = await probeGeminiModel(key, best, list) || best;
-      aiModelHint(t('ai.modelProbeOk') + ' ' + best, true);
+      const verified = await probeGeminiModel(key, best, list);
+      if (verified) best = verified;
+      if (!verified) {
+        setAiModel(best, t('ai.modelUnverified') + ' ' + best);
+        aiModelHint(t('ai.modelUnverified') + ' ' + best, false);
+        if (!silent) toast(t('ai.modelUnverified'), 'warn');
+        return best;
+      }
     }
     setAiModel(best, t('ai.modelPicked') + ' ' + best + ' · ' + t('ai.modelFound') + ' ' + list.length);
     if (!silent) toast(t('ai.keyOk') + ' · ' + best, 'ok');
@@ -11574,7 +11593,7 @@ async function probeGeminiModel(key, preferred, list) {
         body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: 'ping' }] }], generationConfig: { maxOutputTokens: 8 } })
       });
       if (res.ok) return m;
-      if (!geminiModelGone(res.status, await res.text().catch(() => ''))) return m; /* 429/400 — модель существует */
+      if (!geminiModelGone(res.status, await res.text().catch(() => ''))) return null; /* Ошибка ключа, лимита или сети не подтверждает модель. */
     } catch (e) { /* сеть — оставляем как есть */ }
   }
   return null;
@@ -11648,11 +11667,12 @@ async function callGemini(cfg, prompt, signal) {
   const key = (cfg.apiKey || '').trim();
   const list = geminiCandidates(cfg.model);
   let lastErr = null;
+  let discovered = false;
   for (let i = 0; i < list.length; i++) {
     const model = list[i];
     const { res, text } = await geminiRequest(key, model, prompt, signal);
     if (res.ok) {
-      /* запомним рабочую модель, чтобы не перебирать каждый раз */
+      /* Запомним рабочую модель, чтобы не перебирать каждый раз. */
       if (i > 0) {
         setAiModel(model, t('ai.modelSwitched') + ' ' + model);
         aiLog('! ' + t('ai.modelSwitched') + ' ' + model, 'warn');
@@ -11662,14 +11682,29 @@ async function callGemini(cfg, prompt, signal) {
       return parts ? parts.map((p) => p.text || '').join('') : '';
     }
     if (res.status === 429) throw new Error(t('ai.errQuota'));
+    /* Проверяем ошибку модели до общей обработки 400: Google может вернуть
+       «not supported for generateContent» с кодом 400 вместо 404. */
+    if ((res.status === 400 || res.status === 404) && geminiModelGone(res.status, text)) {
+      lastErr = new Error(t('ai.modelGone') + ' ' + model);
+      aiLog('! ' + model + ' → ' + res.status + ', ' + t('ai.modelTryNext'), 'warn');
+      if (i === list.length - 1 && !discovered) {
+        discovered = true;
+        try {
+          const available = await listGeminiModels(key, signal);
+          available.sort((a, b) => modelRank(a) - modelRank(b) || a.localeCompare(b));
+          for (const candidate of available) {
+            if (!list.includes(candidate)) list.push(candidate);
+          }
+        } catch (e) {
+          if ((signal && signal.aborted) || e.name === 'AbortError') throw e;
+          /* Список может быть недоступен — возвращаем последнюю ошибку модели. */
+        }
+      }
+      continue;
+    }
     if (res.status === 400 || res.status === 401 || res.status === 403) {
       if (/API key not valid|API_KEY_INVALID|permission/i.test(text)) throw new Error(t('ai.errKey'));
       throw new Error('Gemini ' + res.status + ': ' + text.slice(0, 300));
-    }
-    if (geminiModelGone(res.status, text)) {
-      lastErr = new Error(t('ai.modelGone') + ' ' + model);
-      aiLog('! ' + model + ' → 404, ' + t('ai.modelTryNext'), 'warn');
-      continue;
     }
     lastErr = new Error('Gemini ' + res.status + ': ' + text.slice(0, 300));
     break;
