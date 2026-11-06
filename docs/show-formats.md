@@ -16,3 +16,7 @@ The show pickers deliberately list only sets created for that format. They do no
 * [100 to 1 classroom game description](https://videouroki.net/razrabotki/prezentatsiya-igra-sto-k-odnomu.html) — common survey answers and scores.
 
 Run `node tests/show-formats.test.js` for sample-data and validation checks.
+
+### ЧГК: таймер
+
+В конструкторе набора можно включить или отключить таймер и указать время для обычного вопроса и блица (5–600 секунд). Стандартные значения — 60 и 20 секунд соответственно. Настройки сохраняются в JSON и локальной библиотеке. Для старых наборов применяются стандартные значения. Перед вращением волчка ведущий может включить или отключить таймер на текущую партию. На вопросе таймер запускается вручную после чтения; доступны пауза, продолжение и сброс. По истечении времени ответ не раскрывается автоматически — сначала отвечает команда, а ведущий открывает правильный ответ.
