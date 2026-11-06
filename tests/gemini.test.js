@@ -24,6 +24,7 @@ function sandbox(fetch) {
   const state = {selected: null};
   const context = vm.createContext({
     fetch, console, encodeURIComponent, Set,
+    setTimeout: (fn, ms) => setTimeout(fn, Math.min(ms, 5)), clearTimeout,
     t: (key) => key,
     setAiModel: (model) => { state.selected = model; },
     aiLog: () => {},
@@ -87,6 +88,27 @@ function modelFrom(url) { return decodeURIComponent(url).match(/models\/([^:]+):
       return response(404, {});
     });
     await assert.rejects(context.callGemini({apiKey:'test', model:'obsolete'}, 'prompt', controller.signal), e => e.name === 'AbortError');
+  }
+  {
+    const calls = [];
+    const {context, state} = sandbox(async url => {
+      calls.push(modelFrom(url));
+      return calls.length <= 3 ? response(503, {error:{message:'high demand'}}) : ok();
+    });
+    await context.callGemini({apiKey:'test', model:'busy-model'}, 'prompt');
+    assert.deepEqual(calls, ['busy-model','busy-model','busy-model','gemini-2.5-flash']);
+    assert.equal(state.selected, 'gemini-2.5-flash');
+  }
+  {
+    let calls = 0;
+    const {context} = sandbox(async () => { calls++; return response(503, {error:{message:'high demand'}}); });
+    await assert.rejects(context.callGemini({apiKey:'test', model:'busy-model'}, 'prompt'), e => e.message === 'ai.errBusy');
+    assert.equal(calls, 8); // one preferred + five fallbacks + two retries
+  }
+  {
+    const controller = new AbortController();
+    const {context} = sandbox(async () => { setTimeout(() => controller.abort(), 0); return response(503, {}); });
+    await assert.rejects(context.callGemini({apiKey:'test', model:'busy-model'}, 'prompt', controller.signal), e => e.name === 'AbortError');
   }
   console.log('Gemini fallback, discovery, errors, probe and cancellation: OK');
 })().catch(error => { console.error(error); process.exitCode = 1; });
