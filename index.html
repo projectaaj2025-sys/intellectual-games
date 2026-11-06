@@ -846,6 +846,36 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
 .lib-toolbar .input{max-width:280px}
 .lib-toolbar .select{width:auto;min-width:120px}
 .lib-count{margin-left:auto;font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.04em}
+.size-row{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;align-items:end;margin:0 0 14px}
+.size-hint{display:flex;flex-direction:column;justify-content:center;gap:2px;padding:9px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface-3)}
+.size-hint b{font-family:var(--font-display);font-size:17px;color:var(--gold);letter-spacing:.04em}
+.size-hint span{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+@media (max-width:640px){.size-row{grid-template-columns:1fr 1fr}.size-hint{grid-column:1/-1}}
+.theme-swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:8px;margin-top:2px}
+.theme-swatch{position:relative;display:flex;flex-direction:column;gap:6px;padding:8px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface-3);cursor:pointer;transition:.2s var(--ease);text-align:left}
+.theme-swatch:hover{border-color:var(--line-strong);transform:translateY(-2px)}
+.theme-swatch.active{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+.theme-swatch .ts-preview{height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;gap:4px;overflow:hidden}
+.theme-swatch .ts-dot{width:14px;height:14px;border-radius:50%}
+.theme-swatch .ts-bar{position:absolute;left:8px;right:8px;bottom:34px;height:3px;border-radius:2px}
+.theme-swatch .ts-name{font-size:10.5px;font-weight:750;color:var(--muted);letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.theme-swatch.active .ts-name{color:var(--text)}
+.play-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.play-card{display:flex;flex-direction:column;border-radius:var(--r-lg);border:1px solid var(--line);background:var(--surface);overflow:hidden;cursor:pointer;transition:.25s var(--ease);text-align:left}
+.play-card:hover{transform:translateY(-4px);border-color:rgba(242,196,90,.5);box-shadow:var(--shadow-md)}
+.play-card:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.play-cover{position:relative;display:flex;align-items:center;justify-content:center;min-height:104px;background:linear-gradient(135deg,#12224b,#0a1330)}
+:root[data-theme="light"] .play-cover{background:linear-gradient(135deg,#dfe8fb,#eef2fb)}
+.play-emoji{font-family:var(--font-display);font-size:30px;letter-spacing:.06em;color:var(--gold)}
+.play-chip{position:absolute;top:12px;right:12px;font-size:8.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(242,196,90,.4);border-radius:20px;padding:3px 8px;background:rgba(242,196,90,.1)}
+.play-body{display:flex;flex-direction:column;gap:8px;padding:16px;flex:1}
+.play-body h3{font-size:15px;font-weight:750}
+.play-body p{font-size:12.5px;color:var(--muted);line-height:1.55;flex:1}
+.play-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:10px;border-top:1px solid var(--line);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--faint)}
+.play-foot svg{width:16px;height:16px;color:var(--gold);flex:none}
+.play-note{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:18px;padding:14px 18px;border-radius:var(--r-md);border:1px solid var(--line);background:var(--surface-3);font-size:12.5px;color:var(--muted)}
+.play-note svg{width:18px;height:18px;color:var(--gold);flex:none}
+.play-note span{flex:1;min-width:200px}
 .lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
 .lib-card{
   border-radius:var(--r-md);border:1px solid var(--line);background:var(--surface);overflow:hidden;
@@ -1257,6 +1287,59 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
 .million-score{font-family:var(--font-display);font-size:clamp(15px,1.8vw,24px);color:#f2c45a;letter-spacing:.06em}
 .million-score small{display:block;font-family:var(--font-ui);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,240,255,.5)}
 .million-cta{display:flex;gap:10px;flex-wrap:wrap}
+/* ---------- кроссворд-разминка ---------- */
+.cross{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;padding:clamp(10px,2vh,24px) clamp(12px,2.6vw,40px);overflow:auto;
+  background:radial-gradient(120% 80% at 50% -10%,rgba(28,44,104,.9),rgba(6,10,24,.98) 70%)}
+.cross-head{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:clamp(8px,1.6vh,18px)}
+.cross-wrap{display:flex;gap:clamp(14px,2.4vw,34px);align-items:flex-start;justify-content:center;flex-wrap:wrap;width:100%;max-width:1180px}
+.cross-grid{display:grid;gap:2px;flex:none;--cell:clamp(15px,min(1.75vw,1.9vh),25px)}
+.cross-cell{position:relative;aspect-ratio:1;width:var(--cell);border:1px solid rgba(126,163,255,.34);border-radius:3px;
+  background:rgba(16,28,60,.85);display:grid;place-items:center;cursor:pointer;transition:.18s}
+.cross-cell.blank{border:0;background:transparent;cursor:default}
+.cross-cell.open{border-color:rgba(242,196,90,.85);background:rgba(242,196,90,.16)}
+.cross-letter{font-family:var(--font-ui);font-weight:800;font-size:clamp(9px,1.05vw,15px);color:#ffe9a6}
+.cross-num{position:absolute;top:1px;left:2px;font-size:clamp(6px,.72vw,9px);font-weight:800;color:rgba(242,196,90,.75);line-height:1}
+.cross-clues{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(12px,2vw,28px);flex:1;min-width:min(100%,280px);max-width:640px}
+.cross-col h4{font-family:var(--font-ui);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#f2c45a;margin-bottom:8px}
+.cross-col ol{list-style:none;display:flex;flex-direction:column;gap:5px}
+.cross-col li{font-size:clamp(10.5px,1vw,13px);line-height:1.45;color:rgba(224,234,255,.86)}
+.cross-col li b{color:#f2c45a;margin-right:3px}
+.cross-len{color:rgba(159,180,220,.6)}
+/* ---------- 100 к 1 ---------- */
+.hund{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;padding:clamp(12px,2.4vh,30px) clamp(14px,3vw,48px);overflow:auto;
+  background:radial-gradient(120% 80% at 50% -10%,rgba(30,52,120,.85),rgba(6,10,24,.98) 70%)}
+.hund-head{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:clamp(6px,1.4vh,16px);text-align:center}
+.hund-badge{font-family:var(--font-display);font-size:clamp(20px,2.6vw,34px);letter-spacing:.12em;color:#f2c45a;text-shadow:0 0 28px rgba(242,196,90,.4)}
+.hund-q{max-width:min(1000px,94vw);text-align:center;font-family:var(--font-ui);font-weight:800;
+  font-size:clamp(17px,2.2vw,29px);line-height:1.28;color:#f3f7ff;margin:0 0 clamp(8px,1.6vh,18px)}
+.hund-q.hidden-q{color:transparent;background:linear-gradient(90deg,#1d2b52,#28375f);border-radius:12px;-webkit-background-clip:text}
+.hund-board{width:min(1040px,96vw);display:flex;flex-direction:column;gap:clamp(4px,.8vh,9px)}
+.hund-row{display:grid;grid-template-columns:clamp(28px,3.2vw,48px) 1fr clamp(46px,6vw,86px);align-items:center;gap:clamp(6px,1vw,14px);
+  padding:clamp(7px,1.15vh,14px) clamp(10px,1.6vw,20px);border-radius:12px;border:1.5px solid rgba(126,163,255,.26);
+  background:linear-gradient(180deg,rgba(24,40,86,.92),rgba(13,22,48,.94));transition:.35s var(--ease);min-height:0}
+.hund-row.open{border-color:rgba(242,196,90,.75);background:linear-gradient(180deg,rgba(56,44,16,.95),rgba(28,24,12,.96));box-shadow:0 0 26px -8px rgba(242,196,90,.5)}
+.hund-row.strike{border-color:rgba(255,96,121,.5);background:linear-gradient(180deg,rgba(70,18,30,.9),rgba(38,12,20,.94))}
+.hund-num{display:grid;place-items:center;width:100%;aspect-ratio:1;border-radius:50%;border:1.5px solid rgba(242,196,90,.5);
+  font-weight:900;font-size:clamp(11px,1.3vw,16px);color:#f2c45a}
+.hund-answer{font-family:var(--font-ui);font-weight:750;font-size:clamp(13px,1.55vw,21px);letter-spacing:.02em;color:#eef4ff;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hund-row:not(.open) .hund-answer{color:rgba(180,198,236,.42);letter-spacing:.2em}
+.hund-score{text-align:right;font-weight:900;font-size:clamp(14px,1.7vw,24px);color:#f2c45a;font-variant-numeric:tabular-nums}
+.hund-row:not(.open) .hund-score{color:rgba(242,196,90,.32)}
+.hund-side{display:flex;align-items:center;justify-content:center;gap:clamp(10px,2vw,26px);flex-wrap:wrap;margin-top:clamp(8px,1.6vh,18px)}
+.hund-strikes{display:flex;gap:8px}
+.hund-strike{width:clamp(26px,3vw,40px);height:clamp(26px,3vw,40px);border-radius:50%;display:grid;place-items:center;
+  border:1.5px solid rgba(255,96,121,.35);color:rgba(255,96,121,.3);font-weight:900;font-size:clamp(13px,1.6vw,20px);transition:.25s}
+.hund-strike.on{border-color:#ff6079;color:#ff6079;background:rgba(255,96,121,.14);box-shadow:0 0 18px -4px rgba(255,96,121,.7)}
+.hund-pool{display:flex;align-items:center;gap:8px;font-size:clamp(11px,1.2vw,14px);color:rgba(198,213,242,.72);text-transform:uppercase;letter-spacing:.08em}
+.hund-pool b{color:#54e0ff;font-size:clamp(15px,1.8vw,22px);letter-spacing:0}
+.hund-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:clamp(8px,1.8vh,20px)}
+.hund-total{margin-top:6px;font-size:clamp(12px,1.4vw,17px);color:rgba(220,232,255,.8);text-align:center}
+.hund-total b{color:#f2c45a;font-size:1.25em}
+.hund-teamrow{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+.hund-team{padding:8px 16px;border-radius:999px;border:1.5px solid rgba(126,163,255,.3);background:rgba(18,30,62,.7);font-size:clamp(11px,1.25vw,15px);font-weight:750;color:#dce8ff}
+.hund-team.win{border-color:rgba(242,196,90,.85);background:rgba(242,196,90,.16);color:#ffe9a6}
+@media (max-width:640px){.hund-row{grid-template-columns:24px 1fr 40px;gap:6px}.hund-answer{font-size:12px}}
 .mi-btn{font-family:var(--font-ui);font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
   padding:12px 22px;border-radius:999px;border:1.5px solid #f2c45a;background:rgba(242,196,90,.12);color:#f2c45a;cursor:pointer;transition:.2s}
 .mi-btn:hover{background:#f2c45a;color:#0a1226}
@@ -1521,6 +1604,60 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
 </section>
 
 <!-- ======================= LIBRARY ======================= -->
+<section class="view" id="view-play">
+  <div class="container">
+    <div class="page-head">
+      <div>
+        <div class="eyebrow" data-i18n="play.eyebrow">играть</div>
+        <h1 data-i18n="play.title">Выберите формат шоу</h1>
+        <p class="section-sub" data-i18n="play.sub">Три телевизионных формата на одном банке вопросов. Выберите формат — дальше укажете набор и команды.</p>
+      </div>
+      <button class="btn btn-line" data-go="library"><svg><use href="#i-grid"/></svg><span data-i18n="play.toLibrary">База игр</span></button>
+    </div>
+    <div class="play-grid" id="playGrid">
+      <article class="play-card" data-format="svoya" role="button" tabindex="0">
+        <div class="play-cover"><span class="play-emoji">★</span><span class="play-chip" data-i18n="formats.live">доступно</span></div>
+        <div class="play-body">
+          <h3 data-i18n="formats.f1">Своя игра</h3>
+          <p data-i18n="play.svoyaDesc">Поле 5×5 или 4×4, два раунда, «Кот в мешке», аукцион и супер-игра со ставками.</p>
+          <div class="play-foot"><span data-i18n="play.svoyaMeta">от 2 до 4 команд · таймер · PPTX</span><svg><use href="#i-arrow-right"/></svg></div>
+        </div>
+      </article>
+      <article class="play-card" data-format="million" role="button" tabindex="0">
+        <div class="play-cover"><span class="play-emoji">КХСМ</span><span class="play-chip" data-i18n="formats.live">доступно</span></div>
+        <div class="play-body">
+          <h3 data-i18n="formats.f3">Кто хочет стать миллионером</h3>
+          <p data-i18n="play.millionDesc">15 вопросов с четырьмя вариантами, несгораемые суммы и четыре подсказки.</p>
+          <div class="play-foot"><span data-i18n="play.millionMeta">лестница до 1 000 000 · подсказки</span><svg><use href="#i-arrow-right"/></svg></div>
+        </div>
+      </article>
+      <article class="play-card" data-format="chgk" role="button" tabindex="0">
+        <div class="play-cover"><span class="play-emoji">?</span><span class="play-chip" data-i18n="formats.live">доступно</span></div>
+        <div class="play-body">
+          <h3 data-i18n="formats.f4">Что? Где? Когда?</h3>
+          <p data-i18n="play.chgkDesc">Волчок, 13 секторов, чёрный ящик, блиц и минута на размышление.</p>
+          <div class="play-foot"><span data-i18n="play.chgkMeta">13 секторов · волчок · блиц</span><svg><use href="#i-arrow-right"/></svg></div>
+        </div>
+      </article>
+      <article class="play-card" data-format="hundred" role="button" tabindex="0">
+        <div class="play-cover"><span class="play-emoji">100:1</span><span class="play-chip" data-i18n="formats.live">доступно</span></div>
+        <div class="play-body">
+          <h3 data-i18n="formats.f2">100 к 1</h3>
+          <p data-i18n="play.hundredDesc">Шесть ответов аудитории на табло, три промаха и супер-игра «наоборот».</p>
+          <div class="play-foot"><span data-i18n="play.hundredMeta">6 вопросов · 6 ответов · 3 промаха</span><svg><use href="#i-arrow-right"/></svg></div>
+        </div>
+      </article>
+    </div>
+    <div class="play-note">
+      <svg><use href="#i-spark"/></svg>
+      <span data-i18n="play.note">Вопросы берутся из банка физики и математики 5–11 класса. Свой набор можно собрать в конструкторе или сгенерировать ИИ.</span>
+      <button class="btn btn-line" id="crossBtn"><svg><use href="#i-grid"/></svg><span data-i18n="cross.btn">Кроссворд-разминка</span></button>
+      <button class="btn btn-ghost" data-go="ai" data-i18n="nav.ai">ИИ-генератор</button>
+    </div>
+    <div style="height:60px"></div>
+  </div>
+</section>
+
 <section class="view" id="view-library">
   <div class="container">
     <div class="page-head">
@@ -1598,6 +1735,15 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
             <span class="chip" data-i18n="builder.roundHint">стоимость зависит от раунда</span>
           </div>
           <div class="panel-sub" data-i18n="builder.roundSub">Раунд 1 — от 100 до 500, раунд 2 — от 200 до 600. Тип вопроса выбирается в каждой строке.</div>
+          <div class="size-row">
+            <label class="field"><span class="label" data-i18n="builder.catsCount">Категорий в раунде</span>
+              <select class="select" id="bCatCount"><option>3</option><option>4</option><option selected>5</option><option>6</option></select>
+            </label>
+            <label class="field"><span class="label" data-i18n="builder.qCount">Вопросов в категории</span>
+              <select class="select" id="bQCount"><option>3</option><option>4</option><option selected>5</option><option>6</option></select>
+            </label>
+            <div class="size-hint"><b id="bSizeNow">5 × 5</b><span data-i18n="builder.sizeHint">поле текущего раунда</span></div>
+          </div>
           <div class="round-tabs" id="bRoundTabs">
             <button class="active" data-round="1" data-i18n="builder.round1">Раунд 1</button>
             <button data-round="2" data-i18n="builder.round2">Раунд 2</button>
@@ -1683,7 +1829,7 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
             </select>
           </label>
           <label class="field"><span class="label" data-i18n="ai.grade">Класс</span>
-            <select class="select" id="aiGrade"><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option></select>
+            <select class="select" id="aiGrade"><option>5</option><option>6</option><option selected>7</option><option>8</option><option>9</option><option>10</option><option>11</option></select>
           </label>
           <label class="field"><span class="label" data-i18n="ai.quarter">Четверть</span>
             <select class="select" id="aiQuarter"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
@@ -2022,6 +2168,9 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
       <label class="field"><span class="label" data-i18n="export.quality">Оформление</span>
         <select class="select" id="pptxQuality"><option value="full" data-i18n="export.qFull">Полное: фон + бейджи</option><option value="light" data-i18n="export.qLight">Лёгкий файл</option></select>
       </label>
+      <div class="field span-2"><span class="label" data-i18n="export.theme">Цветовая схема</span>
+        <div class="theme-swatches" id="pptxThemes"></div>
+      </div>
       <label class="field span-2"><span class="label" data-i18n="export.name">Имя файла</span><input class="input" id="pptxName" value="svoya-igra"></label>
       <div class="field span-2">
         <div class="flex" style="flex-wrap:wrap;gap:16px">
@@ -2237,6 +2386,20 @@ const I18N = {
 ru: {
   'brand.sub': 'интеллектуальные игры',
   'nav.home': 'Главная', 'nav.play': 'Играть', 'nav.library': 'База игр', 'nav.builder': 'Конструктор', 'nav.ai': 'ИИ-генератор',
+  'play.eyebrow': 'играть',
+  'play.title': 'Выберите формат шоу',
+  'play.sub': 'Четыре телевизионных формата на одном банке вопросов. Выберите формат — дальше укажете набор и команды.',
+  'play.toLibrary': 'База игр',
+  'play.svoyaDesc': 'Поле 5×5 или 4×4, два раунда, «Кот в мешке», аукцион и супер-игра со ставками.',
+  'play.svoyaMeta': 'от 2 до 4 команд · таймер · PPTX',
+  'play.millionDesc': '15 вопросов с четырьмя вариантами, несгораемые суммы и четыре подсказки.',
+  'play.millionMeta': 'лестница до 1 000 000 · подсказки',
+  'play.chgkDesc': 'Волчок, 13 секторов, чёрный ящик, блиц и минута на размышление.',
+  'play.chgkMeta': '13 секторов · волчок · блиц',
+  'play.hundredDesc': 'Шесть ответов аудитории на табло, три промаха и супер-игра «наоборот».',
+  'play.hundredMeta': '6 вопросов · 6 ответов · 3 промаха',
+  'play.note': 'Вопросы берутся из банка физики и математики 5–11 класса. Свой набор можно собрать в конструкторе или сгенерировать ИИ.',
+  'cross.btn': 'Кроссворд-разминка',
   'top.theme': 'Сменить тему', 'top.settings': 'Настройки',
   'hero.kicker': 'телевизионная викторина · конструктор · экспорт',
   'hero.t1': 'Своя', 'hero.t2': 'игра',
@@ -2283,6 +2446,7 @@ ru: {
   'builder.subject': 'Предмет', 'builder.grade': 'Класс', 'builder.quarter': 'Четверть',
   'builder.desc': 'Описание', 'builder.descPh': 'Коротко: для какого урока и что проверяем',
   'builder.rounds': 'Раунды и вопросы', 'builder.roundHint': 'стоимость зависит от раунда',
+  'builder.catsCount': 'Категорий в раунде', 'builder.qCount': 'Вопросов в категории', 'builder.sizeHint': 'поле текущего раунда',
   'builder.roundSub': 'Раунд 1 — от 100 до 500, раунд 2 — от 200 до 600. Тип вопроса выбирается в каждой строке.',
   'builder.round1': 'Раунд 1', 'builder.round2': 'Раунд 2', 'builder.final': 'Супер-игра',
   'builder.finalTheme': 'Тема супер-игры', 'builder.finalQPh': 'Вопрос супер-игры', 'builder.finalAPh': 'Правильный ответ',
@@ -2309,6 +2473,7 @@ ru: {
   'ai.modelFallback': 'нет доступа к списку моделей — оставлена',
   'ai.keyOk': 'ключ работает',
   'ai.keyUnknown': 'ключ не распознан: ожидается sk-… (OpenAI) или AIza… (Gemini)',
+  'ai.keyUnknownTry': 'Формат ключа незнаком — пробуем',
   'ai.keyForget': 'забыть ключ',
   'ai.keyForgotten': 'ключ удалён с этого устройства',
   'ai.errKey': 'ключ неверный или без доступа. Откройте инструкцию «Как подключить ключ».',
@@ -2397,6 +2562,7 @@ ru: {
   'export.title': 'Экспорт PPTX', 'export.sub': 'Интерактивное поле с гиперссылками, вопросы и ответы',
   'export.layout': 'Ориентация', 'export.wide': '16:9 широкий', 'export.standard': '4:3 классика',
   'export.quality': 'Оформление', 'export.qFull': 'Полное: фон и бейджи', 'export.qLight': 'Лёгкий файл',
+  'export.theme': 'Цветовая схема',
   'export.name': 'Имя файла', 'export.answers': 'Слайды ответов', 'export.final': 'Слайды супер-игры', 'export.media': 'Вставлять графики',
   'export.tip': 'Как это работает:', 'export.tipText': 'каждая ячейка поля — гиперссылка на слайд вопроса, на слайде вопроса — кнопка «Назад к полю». Гиперссылки сохраняются при показе и не слетают после правки текста.',
   'export.cancel': 'Отмена', 'export.go': 'Скачать PPTX', 'export.busy': 'Собираю презентацию…', 'export.ok': 'PPTX готов',
@@ -2425,6 +2591,20 @@ ru: {
 kk: {
   'brand.sub': 'зияткерлік ойындар',
   'nav.home': 'Басты', 'nav.play': 'Ойнау', 'nav.library': 'Ойындар қоры', 'nav.builder': 'Құрастырушы', 'nav.ai': 'ИИ-генератор',
+  'play.eyebrow': 'ойнау',
+  'play.title': 'Шоу форматын таңдаңыз',
+  'play.sub': 'Бір сұрақ қорындағы төрт теледидар форматы. Форматты таңдаңыз — әрі қарай жинақ пен командаларды көрсетесіз.',
+  'play.toLibrary': 'Ойындар қоры',
+  'play.svoyaDesc': '5×5 немесе 4×4 өріс, екі раунд, «Қаптағы мысық», аукцион және ставкалармен супер-ойын.',
+  'play.svoyaMeta': '2–4 команда · таймер · PPTX',
+  'play.millionDesc': 'Төрт нұсқасы бар 15 сұрақ, кепілді сомалар және төрт көмекші құрал.',
+  'play.millionMeta': '1 000 000-ға дейінгі баспалдақ · көмек',
+  'play.chgkDesc': 'Зырылдауық, 13 сектор, қара жәшік, блиц және ойлануға бір минут.',
+  'play.chgkMeta': '13 сектор · зырылдауық · блиц',
+  'play.hundredDesc': 'Таблодағы аудиторияның алты жауабы, үш қате және «кері» супер-ойын.',
+  'play.hundredMeta': '6 сұрақ · 6 жауап · 3 қате',
+  'play.note': 'Сұрақтар 5–11 сынып физика және математика қорынан алынады. Өз жинағыңызды құрастырушыда жинауға немесе ИИ арқылы жасауға болады.',
+  'cross.btn': 'Кроссворд-қыздыру',
   'top.theme': 'Тақырыпты ауыстыру', 'top.settings': 'Баптаулар',
   'hero.kicker': 'теледидарлық викторина · құрастырушы · экспорт',
   'hero.t1': 'Өз', 'hero.t2': 'ойының',
@@ -2470,6 +2650,7 @@ kk: {
   'builder.subject': 'Пән', 'builder.grade': 'Сынып', 'builder.quarter': 'Тоқсан',
   'builder.desc': 'Сипаттама', 'builder.descPh': 'Қысқаша: қай сабаққа және нені тексереміз',
   'builder.rounds': 'Раундтар мен сұрақтар', 'builder.roundHint': 'құны раундқа байланысты',
+  'builder.catsCount': 'Раундтағы санаттар', 'builder.qCount': 'Санаттағы сұрақтар', 'builder.sizeHint': 'ағымдағы раунд өрісі',
   'builder.roundSub': '1-раунд — 100-ден 500-ге, 2-раунд — 200-нен 600-ге. Сұрақ түрі әр жолда таңдалады.',
   'builder.round1': '1-раунд', 'builder.round2': '2-раунд', 'builder.final': 'Супер-ойын',
   'builder.finalTheme': 'Супер-ойын тақырыбы', 'builder.finalQPh': 'Супер-ойын сұрағы', 'builder.finalAPh': 'Дұрыс жауап',
@@ -2496,6 +2677,7 @@ kk: {
   'ai.modelFallback': 'модельдер тізіміне рұқсат жоқ — қалдырылды',
   'ai.keyOk': 'кілт жұмыс істейді',
   'ai.keyUnknown': 'кілт танылмады: sk-… (OpenAI) немесе AIza… (Gemini) күтіледі',
+  'ai.keyUnknownTry': 'Кілт пішімі белгісіз — көріп көреміз',
   'ai.keyForget': 'кілтті ұмыту',
   'ai.keyForgotten': 'кілт осы құрылғыдан жойылды',
   'ai.errKey': 'кілт қате немесе рұқсат жоқ. «Кілтті қалай қосу» нұсқаулығын ашыңыз.',
@@ -2584,6 +2766,7 @@ kk: {
   'export.title': 'PPTX экспорты', 'export.sub': 'Гиперсілтемелері бар интерактивті тақта, сұрақтар мен жауаптар',
   'export.layout': 'Бағыт', 'export.wide': '16:9 кең', 'export.standard': '4:3 классика',
   'export.quality': 'Безендіру', 'export.qFull': 'Толық: фон мен белгілер', 'export.qLight': 'Жеңіл файл',
+  'export.theme': 'Түс схемасы',
   'export.name': 'Файл атауы', 'export.answers': 'Жауап слайдтары', 'export.final': 'Супер-ойын слайдтары', 'export.media': 'Графиктерді қою',
   'export.tip': 'Бұл қалай жұмыс істейді:', 'export.tipText': 'тақтадағы әр ұяшық — сұрақ слайдына гиперсілтеме, сұрақ слайдында «Тақтаға қайту» батырмасы бар. Гиперсілтемелер көрсету кезінде сақталады және мәтінді өңдегеннен кейін де жоғалмайды.',
   'export.cancel': 'Болдырмау', 'export.go': 'PPTX жүктеу', 'export.busy': 'Презентация жинап жатырмын…', 'export.ok': 'PPTX дайын',
@@ -2612,6 +2795,20 @@ kk: {
 en: {
   'brand.sub': 'intellectual games',
   'nav.home': 'Home', 'nav.play': 'Play', 'nav.library': 'Game library', 'nav.builder': 'Builder', 'nav.ai': 'AI generator',
+  'play.eyebrow': 'play',
+  'play.title': 'Pick a show format',
+  'play.sub': 'Four TV formats on one question bank. Pick a format, then choose a set and the teams.',
+  'play.toLibrary': 'Game library',
+  'play.svoyaDesc': 'A 5×5 or 4×4 board, two rounds, the Cat in a Bag, an auction and a wagering super game.',
+  'play.svoyaMeta': '2–4 teams · timer · PPTX',
+  'play.millionDesc': '15 four-option questions, guaranteed sums and four lifelines.',
+  'play.millionMeta': 'ladder up to 1,000,000 · lifelines',
+  'play.chgkDesc': 'A spinning top, 13 sectors, the black box, a blitz and a minute to think.',
+  'play.chgkMeta': '13 sectors · top · blitz',
+  'play.hundredDesc': 'Six audience answers on the board, three strikes and a reverse super round.',
+  'play.hundredMeta': '6 questions · 6 answers · 3 strikes',
+  'play.note': 'Questions come from the physics and maths bank for grades 5–11. Build your own set in the builder or generate one with AI.',
+  'cross.btn': 'Crossword warm-up',
   'top.theme': 'Switch theme', 'top.settings': 'Settings',
   'hero.kicker': 'tv quiz · game builder · pptx export',
   'hero.t1': 'Own', 'hero.t2': 'game',
@@ -2657,6 +2854,7 @@ en: {
   'builder.subject': 'Subject', 'builder.grade': 'Grade', 'builder.quarter': 'Quarter',
   'builder.desc': 'Description', 'builder.descPh': 'Briefly: which lesson and what it checks',
   'builder.rounds': 'Rounds and questions', 'builder.roundHint': 'value depends on the round',
+  'builder.catsCount': 'Categories per round', 'builder.qCount': 'Questions per category', 'builder.sizeHint': 'current round board',
   'builder.roundSub': 'Round 1 — 100 to 500, round 2 — 200 to 600. The question type is chosen per row.',
   'builder.round1': 'Round 1', 'builder.round2': 'Round 2', 'builder.final': 'Super-game',
   'builder.finalTheme': 'Super-game theme', 'builder.finalQPh': 'Super-game question', 'builder.finalAPh': 'Correct answer',
@@ -2683,6 +2881,7 @@ en: {
   'ai.modelFallback': 'model list unavailable — kept',
   'ai.keyOk': 'the key works',
   'ai.keyUnknown': 'key not recognised: expected sk-… (OpenAI) or AIza… (Gemini)',
+  'ai.keyUnknownTry': 'Unknown key format — trying',
   'ai.keyForget': 'forget key',
   'ai.keyForgotten': 'key removed from this device',
   'ai.errKey': 'the key is invalid or has no access. Open “How to connect a key”.',
@@ -2771,6 +2970,7 @@ en: {
   'export.title': 'PPTX export', 'export.sub': 'Interactive board with hyperlinks, questions and answers',
   'export.layout': 'Orientation', 'export.wide': '16:9 widescreen', 'export.standard': '4:3 classic',
   'export.quality': 'Styling', 'export.qFull': 'Full: background and badges', 'export.qLight': 'Light file',
+  'export.theme': 'Colour scheme',
   'export.name': 'File name', 'export.answers': 'Answer slides', 'export.final': 'Super-game slides', 'export.media': 'Insert charts',
   'export.tip': 'How it works:', 'export.tipText': 'every board cell is a hyperlink to a question slide, and each question slide carries a “Back to the board” button. Hyperlinks survive the slideshow and do not break after text edits.',
   'export.cancel': 'Cancel', 'export.go': 'Download PPTX', 'export.busy': 'Building the presentation…', 'export.ok': 'PPTX is ready',
@@ -8678,7 +8878,700 @@ const BANK_GAMES = [
     "en": "∫₀³ x² dx = x³/3 = 27/3 = 9."
    }
   }
+ },
+{
+ "id": "phys-7-quiz-kz",
+ "subject": "physics",
+ "grade": 7,
+ "grades": [
+  7,
+  7
+ ],
+ "quarter": 1,
+ "emoji": "🎬",
+ "title": {
+  "ru": "Физика 7: Своя игра (по сценарию)",
+  "kk": "Физика 7: Менің ойыным (сценарий бойынша)",
+  "en": "Physics 7: My Own Game (lesson script)"
+ },
+ "desc": {
+  "ru": "Готовый сценарий внеклассного мероприятия: «Механика и спорт», «Физика в игрушках», «Единицы и переводы», «Что такое физика?», «Физические явления», а во втором раунде — фильмы, шутки, лирика и задачи Григория Остера.",
+  "kk": "Сыныптан тыс іс-шараның дайын сценарийі: «Механика және спорт», «Ойыншықтардағы физика», «Өлшем бірліктері және аудару», «Физика дегеніміз не?», «Физикалық құбылыстар», ал екінші раундта — фильмдер, әзілдер, лирика және Григорий Остердің есептері.",
+  "en": "A ready-made lesson script: mechanics and sport, physics in toys, units and conversions, what physics is, physical phenomena — and in round two films, jokes, poetry and Grigory Oster's problems."
+ },
+ "accent": "#f2c45a",
+ "tags": [
+  "mechanics",
+  "phenomena",
+  "units",
+  "films"
+ ],
+ "builtin": true,
+ "rounds": [
+  {
+   "values": [
+    100,
+    200,
+    300,
+    400,
+    500
+   ],
+   "name": {
+    "ru": "Раунд 1 · Пять категорий",
+    "kk": "1-раунд · Бес санат",
+    "en": "Round 1 · Five categories"
+   },
+   "categories": [
+    {
+     "name": {
+      "ru": "Механика и спорт",
+      "kk": "Механика және спорт",
+      "en": "Mechanics and sport"
+     },
+     "questions": [
+      {
+       "q": {
+        "ru": "Как с помощью секундомера в телефоне и рулетки примерно определить скорость, с которой ты бегаешь стометровку?",
+        "kk": "Телефондағы секундомер мен рулетканың көмегімен жүз метрге жүгіретін жылдамдығыңды шамамен қалай анықтайсың?",
+        "en": "How can you roughly measure your 100 m sprint speed with a phone stopwatch and a tape measure?"
+       },
+       "a": {
+        "ru": "Измерить дистанцию (100 м) и засечь время забега, затем разделить путь на время: v = s/t.",
+        "kk": "Қашықтықты (100 м) өлшеп, жүгіру уақытын белгілеу керек, содан кейін жолды уақытқа бөлу: v = s/t.",
+        "en": "Measure the distance (100 m) and time the run, then divide the distance by the time: v = s/t."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Велосипедист за 10 секунд проехал 100 метров. Успеет ли он проехать перекрёсток длиной 150 метров за 15 секунд, если будет двигаться так же?",
+        "kk": "Велосипедші 10 секундта 100 метр жүрді. Сол қозғалыспен 150 метрлік қиылыстан 15 секундта өтіп үлгере ме?",
+        "en": "A cyclist covers 100 m in 10 s. Can he cross a 150 m intersection in 15 s at the same speed?"
+       },
+       "a": {
+        "ru": "Да: скорость 100 : 10 = 10 м/с, за 15 с он проедет 10 · 15 = 150 м.",
+        "kk": "Иә: жылдамдығы 100 : 10 = 10 м/с, 15 секундта 10 · 15 = 150 м жүреді.",
+        "en": "Yes: the speed is 100 ÷ 10 = 10 m/s, so in 15 s he covers 10 × 15 = 150 m."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Лётчик-спортсмен сумел посадить самолёт на крышу движущегося легкового автомобиля. При каком физическом условии это возможно?",
+        "kk": "Ұшқыш-спортшы ұшақты қозғалып келе жатқан жеңіл көліктің төбесіне қондырды. Бұл қандай физикалық шарттарда мүмкін?",
+        "en": "A stunt pilot managed to land a plane on the roof of a moving car. What physical condition makes this possible?"
+       },
+       "a": {
+        "ru": "Если скорости автомобиля и самолёта равны или почти равны в момент касания и самолёт движется в том же направлении: относительно автомобиля он покоится.",
+        "kk": "Егер көлік пен ұшақтың жылдамдықтары тиген сәтте тең не шамамен тең болса және ұшақ сол бағытта ұшса: көлікке қатысты ұшақ тыныштықта болады.",
+        "en": "The speeds of the car and the plane must be equal (or almost equal) at touchdown, moving in the same direction, so the plane is at rest relative to the car."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Спортсмен пробежал один круг по стадиону (400 м) за 50 секунд. Чему равна его средняя скорость перемещения? А средняя путевая скорость?",
+        "kk": "Спортшы стадионның бір айналымын (400 м) 50 секундта жүгіріп өтті. Орын ауыстырудың орташа жылдамдығы қандай? Ал орташа жолдық жылдамдық?",
+        "en": "An athlete runs one lap of a 400 m stadium in 50 s. What is the average velocity? What is the average speed along the path?"
+       },
+       "a": {
+        "ru": "Перемещение за полный круг равно нулю, поэтому средняя скорость перемещения — 0. Средняя путевая скорость: 400 : 50 = 8 м/с.",
+        "kk": "Толық айналымда орын ауыстыру нөлге тең, сондықтан орташа жылдамдық — 0. Орташа жолдық жылдамдық: 400 : 50 = 8 м/с.",
+        "en": "Displacement over a full lap is zero, so average velocity is 0. Average path speed is 400 ÷ 50 = 8 m/s."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Почему взмах руками, сделанный спортсменом в момент прыжка, увеличивает высоту и длину прыжка?",
+        "kk": "Неліктен спортшының секіру сәтінде қол сермеуі секіру биіктігі мен ұзындығын арттырады?",
+        "en": "Why does swinging the arms during a jump increase its height and length?"
+       },
+       "a": {
+        "ru": "Взмах руками сообщает телу дополнительную скорость и помогает перевести энергию мышц в движение, увеличивая общую скорость спортсмена.",
+        "kk": "Қол сермеу денеге қосымша жылдамдық береді және бұлшықет энергиясын қозғалысқа айналдыруға көмектеседі, спортшының жалпы жылдамдығын арттырады.",
+        "en": "The swing gives the body extra speed and helps convert muscle energy into motion, increasing the athlete's overall speed."
+       },
+       "type": "normal"
+      }
+     ]
+    },
+    {
+     "name": {
+      "ru": "Физика в игрушках",
+      "kk": "Ойыншықтардағы физика",
+      "en": "Physics in toys"
+     },
+     "questions": [
+      {
+       "q": {
+        "ru": "Два самолёта-игрушки летят навстречу друг другу: один со скоростью 10 м/с, другой — 15 м/с. Чему равна скорость их сближения?",
+        "kk": "Екі ойыншық ұшақ бір-біріне қарсы ұшады: бірі 10 м/с, екіншісі 15 м/с. Олардың жақындау жылдамдығы қандай?",
+        "en": "Two toy planes fly towards each other at 10 m/s and 15 m/s. What is their approach speed?"
+       },
+       "a": {
+        "ru": "25 м/с: при движении навстречу скорости складываются, 10 + 15 = 25 м/с.",
+        "kk": "25 м/с: қарсы қозғалыста жылдамдықтар қосылады, 10 + 15 = 25 м/с.",
+        "en": "25 m/s: for oncoming motion the speeds add up, 10 + 15 = 25 m/s."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Почему, чтобы описать движение машинки на радиоуправлении, нужно указать тело отсчёта?",
+        "kk": "Неліктен радио басқарылатын көлікше қозғалысын сипаттау үшін санақ денесін көрсету керек?",
+        "en": "Why must you specify a reference body to describe the motion of a radio-controlled car?"
+       },
+       "a": {
+        "ru": "Потому что движение относительно: относительно пола машинка едет, а относительно пульта может покоиться, если движется прямо на него.",
+        "kk": "Өйткені қозғалыс салыстырмалы: еденге қатысты көлікше жүреді, пультке қатысты оған қарай тіке жүрсе, тыныштықта болуы мүмкін.",
+        "en": "Because motion is relative: relative to the floor the car moves, while relative to the remote it may be at rest if it drives straight at it."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "На графике зависимости пути от времени для двух тел прямая одного идёт круче, чем другого. Какое тело движется быстрее и чему равны их скорости?",
+        "kk": "Екі дененің жолдың уақытқа тәуелділік графигінде бір дененің түзуі тіктеу. Қай дене жылдамырақ және жылдамдықтары қандай?",
+        "en": "On a distance-versus-time graph one body's line is steeper than the other's. Which body is faster and what are their speeds?"
+       },
+       "a": {
+        "ru": "Быстрее то тело, у которого график круче: его скорость больше. Скорость — это наклон прямой s(t), то есть s/t.",
+        "kk": "Түзуі тіктеу дене жылдамырақ: оның жылдамдығы артық. Жылдамдық — s(t) түзуінің көлбеуі, яғни s/t.",
+        "en": "The body with the steeper line is faster: its speed is greater. Speed is the slope of the s(t) line, that is s/t."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Две игрушечные машинки стартуют одновременно из одного пункта в одном направлении. Скорость первой 0,5 м/с, второй — 0,3 м/с. На каком расстоянии друг от друга они окажутся через 10 секунд?",
+        "kk": "Екі ойыншық көлікше бір нүктеден бір бағытта бір уақытта старт алады. Біріншісінің жылдамдығы 0,5 м/с, екіншісінікі 0,3 м/с. 10 секундтан кейін олар қандай қашықтықта болады?",
+        "en": "Two toy cars start together from one point in the same direction at 0.5 m/s and 0.3 m/s. How far apart are they after 10 seconds?"
+       },
+       "a": {
+        "ru": "Скорость удаления 0,5 − 0,3 = 0,2 м/с, расстояние s = 0,2 · 10 = 2 м.",
+        "kk": "Алыстау жылдамдығы 0,5 − 0,3 = 0,2 м/с, қашықтық s = 0,2 · 10 = 2 м.",
+        "en": "The separation speed is 0.5 − 0.3 = 0.2 m/s, so s = 0.2 × 10 = 2 m."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Мяч скатывается с горки. Какой участок его траектории можно приближённо считать прямолинейным, а какой — криволинейным?",
+        "kk": "Доп төбешіктен домалап түседі. Оның траекториясының қай бөлігін түзу, қайсысын қисық деп есептеуге болады?",
+        "en": "A ball rolls down a slide. Which part of its trajectory is roughly straight and which is curved?"
+       },
+       "a": {
+        "ru": "Прямолинейный — участок на ровном полу после горки, криволинейный — сама горка.",
+        "kk": "Түзу — төбешіктен кейінгі тегіс еден, қисық — төбешіктің өзі.",
+        "en": "The straight part is the level floor after the slide; the curved part is the slide itself."
+       },
+       "type": "normal"
+      }
+     ]
+    },
+    {
+     "name": {
+      "ru": "Единицы и переводы",
+      "kk": "Өлшем бірліктері және аудару",
+      "en": "Units and conversions"
+     },
+     "questions": [
+      {
+       "q": {
+        "ru": "Площадь квартиры 75 м². Выразите эту площадь в см² и в мм².",
+        "kk": "Пәтердің ауданы 75 м². Бұл ауданды см² және мм²-пен өрнектеңіз.",
+        "en": "An apartment has an area of 75 m². Express it in cm² and mm²."
+       },
+       "a": {
+        "ru": "75 м² = 75 · 10 000 = 750 000 см² = 75 · 1 000 000 = 75 000 000 мм².",
+        "kk": "75 м² = 75 · 10 000 = 750 000 см² = 75 · 1 000 000 = 75 000 000 мм².",
+        "en": "75 m² = 75 × 10 000 = 750 000 cm² = 75 × 1 000 000 = 75 000 000 mm²."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Запишите в стандартном виде: а) диаметр эритроцита — 0,0000075 м; б) расстояние до Солнца — 150 000 000 км.",
+        "kk": "Стандарт түрде жазыңыз: а) эритроцит диаметрі — 0,0000075 м; ә) Күнге дейінгі қашықтық — 150 000 000 км.",
+        "en": "Write in standard form: (a) a red blood cell's diameter, 0.0000075 m; (b) the distance to the Sun, 150 000 000 km."
+       },
+       "a": {
+        "ru": "а) 7,5 · 10⁻⁶ м; б) 1,5 · 10⁸ км.",
+        "kk": "а) 7,5 · 10⁻⁶ м; ә) 1,5 · 10⁸ км.",
+        "en": "(a) 7.5 × 10⁻⁶ m; (b) 1.5 × 10⁸ km."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Старинная русская единица длины «аршин» примерно равна 71 см. Рост былинного богатыря составлял 3 аршина. Какой это рост в метрах?",
+        "kk": "Ежелгі орыс ұзындық бірлігі «аршын» шамамен 71 см. Эпостық батырдың бойы 3 аршын болған. Бұл метрмен қандай бой?",
+        "en": "The old Russian unit of length, the arshin, is about 71 cm. A legendary giant was 3 arshins tall. How many metres is that?"
+       },
+       "a": {
+        "ru": "3 · 0,71 ≈ 2,13 м.",
+        "kk": "3 · 0,71 ≈ 2,13 м.",
+        "en": "3 × 0.71 ≈ 2.13 m."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Английский фут равен примерно 30,5 см. Скорость ветра 100 футов в секунду. Выразите эту скорость в м/с и сравните со скоростью жёсткого шторма (28,5–32,6 м/с).",
+        "kk": "Ағылшын футы шамамен 30,5 см. Жел жылдамдығы секундына 100 фут. Осы жылдамдықты м/с-пен өрнектеп, қатты дауыл жылдамдығымен (28,5–32,6 м/с) салыстырыңыз.",
+        "en": "An English foot is about 30.5 cm. Wind blows at 100 ft/s. Express this speed in m/s and compare it with a severe storm (28.5–32.6 m/s)."
+       },
+       "a": {
+        "ru": "100 · 0,305 = 30,5 м/с — это как раз скорость жёсткого шторма.",
+        "kk": "100 · 0,305 = 30,5 м/с — дәл қатты дауыл жылдамдығы.",
+        "en": "100 × 0.305 = 30.5 m/s, exactly the speed of a severe storm."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Древняя мера веса «золотник» равна примерно 4,26 г. Сказочная Золотая рыбка весила 250 золотников. Какова её масса в килограммах? Дайте ответ в стандартном виде.",
+        "kk": "Ежелгі салмақ өлшемі «золотник» шамамен 4,26 г. Ертегідегі Алтын балық 250 золотник болған. Оның килограмммен массасы қандай? Жауапты стандарт түрде беріңіз.",
+        "en": "The old weight unit, the zolotnik, is about 4.26 g. A fairy-tale goldfish weighed 250 zolotniks. What is its mass in kilograms? Give the answer in standard form."
+       },
+       "a": {
+        "ru": "250 · 4,26 = 1065 г = 1,065 кг ≈ 1,07 · 10⁰ кг.",
+        "kk": "250 · 4,26 = 1065 г = 1,065 кг ≈ 1,07 · 10⁰ кг.",
+        "en": "250 × 4.26 = 1065 g = 1.065 kg ≈ 1.07 × 10⁰ kg."
+       },
+       "type": "normal"
+      }
+     ]
+    },
+    {
+     "name": {
+      "ru": "Что такое физика?",
+      "kk": "Физика дегеніміз не?",
+      "en": "What is physics?"
+     },
+     "questions": [
+      {
+       "q": {
+        "ru": "Чем научное наблюдение за падением листа отличается от простого взгляда на него?",
+        "kk": "Жапырақтың түсуін ғылыми бақылау оған жай қараудан несімен ерекшеленеді?",
+        "en": "How does scientific observation of a falling leaf differ from simply looking at it?"
+       },
+       "a": {
+        "ru": "Наблюдение целенаправленное: мы замечаем закономерность (например, скорость падения) и описываем её.",
+        "kk": "Бақылау мақсатты: біз заңдылықты (мысалы, түсу жылдамдығын) байқап, оны сипаттаймыз.",
+        "en": "Observation is purposeful: you notice a pattern (for example the falling speed) and describe it."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Ты видишь, что лужа после дождя постепенно уменьшается. Это наблюдение или опыт? А если ты часть лужи накроешь ведром, чтобы проверить, испарится ли вода?",
+        "kk": "Жаңбырдан кейінгі шалшық бірте-бірте азайып жатқанын көріп тұрсың. Бұл бақылау ма, әлде тәжірибе ме? Ал шалшықтың бір бөлігін шелекпен жауып, су булана ма, соны тексерсең ше?",
+        "en": "You see a puddle slowly shrinking after rain. Is that observation or experiment? What if you cover part of it with a bucket to check whether the water evaporates?"
+       },
+       "a": {
+        "ru": "Первое — наблюдение, второе — опыт: мы сами создаём условия для проверки.",
+        "kk": "Біріншісі — бақылау, екіншісі — тәжірибе: біз шартты өзіміз жасаймыз.",
+        "en": "The first is observation, the second is experiment: you create the conditions yourself."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Явление — это изменение в природе. Падение мяча — явление. А его отскок от пола — это то же явление или новое?",
+        "kk": "Құбылыс — табиғаттағы өзгеріс. Доптың құлауы — құбылыс. Ал оның еденнен секіруі — сол құбылыс па, әлде жаңасы ма?",
+        "en": "A phenomenon is a change in nature. A ball falling is a phenomenon. Is its bounce off the floor the same phenomenon or a new one?"
+       },
+       "a": {
+        "ru": "Новое: характер движения изменился — падение стало подъёмом.",
+        "kk": "Жаңа: қозғалыс сипаты өзгерді — құлау көтерілуге айналды.",
+        "en": "A new one: the character of motion changed — falling turned into rising."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Считается ли математика естественной наукой, как физика, химия или биология? Почему?",
+        "kk": "Математика физика, химия немесе биология сияқты жаратылыстану ғылымы болып санала ма? Неліктен?",
+        "en": "Is mathematics a natural science like physics, chemistry or biology? Why?"
+       },
+       "a": {
+        "ru": "Нет. Математика — формальная наука: она изучает абстрактные структуры и логические отношения, а не конкретные явления природы.",
+        "kk": "Жоқ. Математика — формалды ғылым: ол нақты табиғат құбылыстарын емес, абстрактілі құрылымдар мен логикалық қатынастарды зерттейді.",
+        "en": "No. Mathematics is a formal science: it studies abstract structures and logical relations, not concrete natural phenomena."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "В чём фундаментальное методологическое отличие физики от химии, если обе изучают вещество? Приведите примеры явлений.",
+        "kk": "Екеуі де затты зерттесе, физиканың химиядан іргелі әдіснамалық айырмашылығы неде? Құбылыстарға мысал келтіріңіз.",
+        "en": "What is the fundamental methodological difference between physics and chemistry if both study matter? Give examples of phenomena."
+       },
+       "a": {
+        "ru": "Химия изучает превращения веществ с изменением состава и структуры. Физика изучает изменения состояний, свойств и формы вещества без изменения его химической природы.",
+        "kk": "Химия заттардың құрамы мен құрылысы өзгеретін айналуларын зерттейді. Физика заттың химиялық табиғатын өзгертпей, күйін, қасиеттерін және пішінін зерттейді.",
+        "en": "Chemistry studies transformations of substances with changes in composition and structure. Physics studies changes of state, properties and shape without changing the chemical nature of matter."
+       },
+       "type": "normal"
+      }
+     ]
+    },
+    {
+     "name": {
+      "ru": "Физические явления",
+      "kk": "Физикалық құбылыстар",
+      "en": "Physical phenomena"
+     },
+     "questions": [
+      {
+       "q": {
+        "ru": "Таяние льда — это физическое или химическое явление?",
+        "kk": "Мұздың еруі — физикалық па, әлде химиялық құбылыс па?",
+        "en": "Is melting ice a physical or a chemical phenomenon?"
+       },
+       "a": {
+        "ru": "Физическое: меняется агрегатное состояние, а состав вещества остаётся прежним.",
+        "kk": "Физикалық: агрегаттық күй өзгереді, ал заттың құрамы бұрынғыша қалады.",
+        "en": "Physical: the state of matter changes while the composition stays the same."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Почему грозу мы сначала видим, а потом слышим?",
+        "kk": "Неліктен найзағайды алдымен көреміз, содан кейін естиміз?",
+        "en": "Why do we see lightning before we hear thunder?"
+       },
+       "a": {
+        "ru": "Скорость света около 300 000 000 м/с, а звука — около 340 м/с, поэтому свет приходит намного раньше.",
+        "kk": "Жарық жылдамдығы шамамен 300 000 000 м/с, ал дыбыс жылдамдығы шамамен 340 м/с, сондықтан жарық әлдеқайда ерте келеді.",
+        "en": "Light travels at about 300 000 000 m/s and sound at about 340 m/s, so light arrives much earlier."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Почему для определения точного местоположения самолёта диспетчеру недостаточно знать только его скорость?",
+        "kk": "Неліктен ұшақтың нақты орнын анықтау үшін диспетчерге тек жылдамдығын білу жеткіліксіз?",
+        "en": "Why is the plane's speed alone not enough for a controller to locate it precisely?"
+       },
+       "a": {
+        "ru": "Скорость — векторная величина: нужно знать ещё направление движения и начальную точку.",
+        "kk": "Жылдамдық — векторлық шама: қозғалыс бағыты мен бастапқы нүктені де білу керек.",
+        "en": "Velocity is a vector: you also need the direction of motion and the starting point."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Астрономы древности, наблюдая за небом, считали, что Солнце вращается вокруг Земли. Какое ключевое понятие они не учитывали?",
+        "kk": "Ежелгі астрономдар аспанды бақылап, Күн Жерді айналады деп есептеді. Олар қандай негізгі ұғымды ескермеді?",
+        "en": "Ancient astronomers watched the sky and believed the Sun revolves around the Earth. Which key concept did they miss?"
+       },
+       "a": {
+        "ru": "Относительность механического движения: одно и то же перемещение можно объяснить и вращением Солнца вокруг Земли, и вращением Земли вокруг оси. Они неверно выбрали тело отсчёта.",
+        "kk": "Механикалық қозғалыстың салыстырмалылығын: бір қозғалысты Күннің Жерді айналуымен де, Жердің өз осінде айналуымен де түсіндіруге болады. Олар санақ денесін дұрыс таңдамады.",
+        "en": "The relativity of motion: the same movement can be explained either by the Sun orbiting the Earth or by the Earth rotating on its axis. They chose the wrong reference body."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "К какому виду физических явлений относится полёт мяча, катящегося по полю? Приведите примеры к каждому виду явлений.",
+        "kk": "Далада домалап бара жатқан доптың ұшуы физикалық құбылыстардың қай түріне жатады? Әр түрге мысал келтіріңіз.",
+        "en": "Which kind of physical phenomenon is a ball flying and rolling across a field? Give examples of every kind."
+       },
+       "a": {
+        "ru": "Полёт мяча — механическое явление. Тепловое — таяние снега, световое — образование тени, звуковое — раскат грома, электрическое — молния, магнитное — магнит притягивает скрепки.",
+        "kk": "Доптың ұшуы — механикалық құбылыс. Жылулық — қардың еруі, жарық — көлеңкенің пайда болуы, дыбыс — күннің күркіреуі, электр — найзағай, магнит — магниттің қыстырғыштарды тартуы.",
+        "en": "The ball's flight is mechanical. Thermal — snow melting, light — a shadow forming, sound — thunder, electric — lightning, magnetic — a magnet attracting paper clips."
+       },
+       "type": "normal"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "values": [
+    100,
+    200,
+    300,
+    400
+   ],
+   "name": {
+    "ru": "Раунд 2 · Смешной и киношный",
+    "kk": "2-раунд · Күлкілі және кино",
+    "en": "Round 2 · Films and fun"
+   },
+   "categories": [
+    {
+     "name": {
+      "ru": "Фильм! Фильм! Фильм!",
+      "kk": "Фильм! Фильм! Фильм!",
+      "en": "Film! Film! Film!"
+     },
+     "questions": [
+      {
+       "q": {
+        "ru": "Маша оббежала дом 5 раз и вернулась к подъезду. Мишка говорит, что её перемещение равно нулю, а путь — нет. Кто прав и почему?",
+        "kk": "Маша үйді 5 рет айналып, подъезге қайта оралды. Мишка оның орын ауыстыруы нөлге тең, ал жолы олай емес дейді. Кім дұрыс және неліктен?",
+        "en": "Masha ran around the house 5 times and returned to the entrance. Mishka says her displacement is zero while the path is not. Who is right and why?"
+       },
+       "a": {
+        "ru": "Мишка прав. Путь — это длина всей дистанции (5 кругов вокруг дома). Перемещение — вектор от старта до финиша. Маша начала и закончила в одной точке, поэтому её перемещение равно нулю.",
+        "kk": "Мишка дұрыс. Жол — бүкіл қашықтықтың ұзындығы (үйді айнала 5 айналым). Орын ауыстыру — старттан финишке дейінгі вектор. Маша бір нүктеден бастап, сол нүктеде аяқтады, сондықтан орын ауыстыруы нөлге тең.",
+        "en": "Mishka is right. The path is the whole distance (5 laps around the house). Displacement is the vector from start to finish. Masha started and finished at the same point, so her displacement is zero."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Ариэль плывёт с той же скоростью, что и корабль, на мачте которого стоит тело отсчёта. Что скажет наблюдатель на корабле о её движении?",
+        "kk": "Ариэль санақ денесі орналасқан діңгектегі кемемен бірдей жылдамдықпен жүзеді. Кемедегі бақылаушы оның қозғалысы туралы не дейді?",
+        "en": "Ariel swims at the same speed as the ship whose mast is the reference body. What will an observer on the ship say about her motion?"
+       },
+       "a": {
+        "ru": "Движение относительно. Относительно воды (волна) Ариэль движется, относительно корабля (мачта) покоится, если плывёт с той же скоростью.",
+        "kk": "Қозғалыс салыстырмалы. Суға (толқынға) қатысты Ариэль қозғалады, кемеге (діңгекке) қатысты сол жылдамдықпен жүзсе, тыныштықта болады.",
+        "en": "Motion is relative. Relative to the water (the wave) Ariel moves; relative to the ship (the mast) she is at rest if she swims at the same speed."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "В мультфильме «Тачки» есть режимы «крейсерский» и «экстрим». Какие виды движения они иллюстрируют?",
+        "kk": "«Көліктер» мультфильмінде «круиздік» және «экстрим» режимдері бар. Олар қозғалыстың қандай түрлерін көрсетеді?",
+        "en": "In the cartoon Cars there are cruise and extreme modes. Which types of motion do they illustrate?"
+       },
+       "a": {
+        "ru": "«Крейсерский» — равномерное движение: скорость постоянна по модулю и направлению. «Экстрим» — неравномерное: скорость меняется по модулю (ускорение, торможение) или по направлению (виражи).",
+        "kk": "«Круиздік» — бірқалыпты қозғалыс: жылдамдық модулі мен бағыты бойынша тұрақты. «Экстрим» — бірқалыпты емес: жылдамдық модулі (үдеу, тежелу) немесе бағыты (бұрылыстар) бойынша өзгереді.",
+        "en": "Cruise is uniform motion: speed is constant in magnitude and direction. Extreme is non-uniform: speed changes in magnitude (acceleration, braking) or in direction (turns)."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Вуди и Базз стартовали с кровати и финишировали у двери, но Базз летел по сложной траектории. Чей путь длиннее и чьё перемещение больше?",
+        "kk": "Вуди мен Базз төсектен старт алып, есік жанында финишке жетті, бірақ Базз күрделі траекториямен ұшты. Кімнің жолы ұзын және кімнің орын ауыстыруы артық?",
+        "en": "Woody and Buzz started at the bed and finished at the door, but Buzz flew a complicated trajectory. Whose path is longer and whose displacement is greater?"
+       },
+       "a": {
+        "ru": "Путь Базза длиннее — траектория сложнее и протяжённее. Перемещения одинаковы: старт и финиш у обоих совпадают, а перемещение — прямая от начальной точки до конечной.",
+        "kk": "Базздың жолы ұзын — траекториясы күрделі әрі ұзақ. Орын ауыстырулары бірдей: екеуінің де старты мен финиші сәйкеседі, ал орын ауыстыру — бастапқы нүктеден соңғы нүктеге дейінгі түзу.",
+        "en": "Buzz's path is longer because his trajectory is more complex. Their displacements are equal: both started and finished at the same points, and displacement is the straight line between them."
+       },
+       "type": "normal"
+      }
+     ]
+    },
+    {
+     "name": {
+      "ru": "Посмейся и сообрази!",
+      "kk": "Күл де, ойлан!",
+      "en": "Laugh and think!"
+     },
+     "questions": [
+      {
+       "q": {
+        "ru": "По каким признакам охотник, страдающий насморком, может сам, без собаки, определить траекторию движения зайца в зимнем лесу?",
+        "kk": "Мұрны бітелген аңшы итсіз-ақ қысқы орманда қоянның қозғалыс траекториясын қандай белгілер арқылы анықтай алады?",
+        "en": "How can a hunter with a runny nose track a hare's trajectory in a winter forest without a dog?"
+       },
+       "a": {
+        "ru": "По следам: двигаясь от куста к кусту, заяц оставляет на снегу цепочку отпечатков — это и есть его траектория.",
+        "kk": "Іздері бойынша: бұтадан бұтаға ауысқанда қоян қарда табан іздерін қалдырады — бұл оның траекториясы.",
+        "en": "By its tracks: hopping from bush to bush, the hare leaves a chain of footprints in the snow — that is its trajectory."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Что узнает полководец, если путь, пройденный им от солдата до маршала, разделит на время своей безупречной службы?",
+        "kk": "Қолбасшы сарбаздан маршалға дейінгі жолын адал қызмет еткен уақытына бөлсе, нені біледі?",
+        "en": "What will a general learn if he divides his path from private to marshal by the time of his flawless service?"
+       },
+       "a": {
+        "ru": "Среднюю скорость своего повышения в звании: всякий путь, делённый на время, даёт скорость.",
+        "kk": "Шеніндегі өсуінің орташа жылдамдығын: уақытқа бөлінген кез келген жол жылдамдықты береді.",
+        "en": "His average speed of promotion: any path divided by time gives a speed."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Какую единицу скорости выбрать для своей скорости, если придётся уносить ноги от трёх разъярённых десятиклассников: см/ч, м/ч, м/с или км/с?",
+        "kk": "Үш ашуланған оныншы сынып оқушысынан қашқанда өз жылдамдығыңды өлшеуге қай бірлікті таңдар едің: см/сағ, м/сағ, м/с немесе км/с?",
+        "en": "Which speed unit would you choose for yourself if you had to run from three furious seniors: cm/h, m/h, m/s or km/s?"
+       },
+       "a": {
+        "ru": "Числовое значение зависит от единицы: 100 км/ч — примерно то же, что 28 м/с. Главное не единица, а результат — не попадаться.",
+        "kk": "Сандық мәні бірлікке тәуелді: 100 км/сағ шамамен 28 м/с. Бірлік маңызды емес, нәтиже маңызды — ұсталмау керек.",
+        "en": "The number depends on the unit: 100 km/h is about 28 m/s. The unit does not matter — not getting caught does."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Мимо физика, изучающего законы движения, трижды пролетело что-то большое и квадратное, а потом долго кружилось круглое и маленькое. Важно ли физику знать, что это было?",
+        "kk": "Қозғалыс заңдарын зерттеп жатқан физиктің жанынан үш рет үлкен әрі шаршы нәрсе ұшып өтті, содан кейін кішкентай дөңгелек нәрсе ұзақ айналды. Физикке оның не екенін білу маңызды ма?",
+        "en": "Something big and square flew past a physicist studying the laws of motion three times, then something small and round circled for a long while. Does the physicist need to know what it was?"
+       },
+       "a": {
+        "ru": "Нет. Для изучения законов движения важно не что летает, а то, что это физическое тело с массой и траекторией.",
+        "kk": "Жоқ. Қозғалыс заңдарын зерттеу үшін ненің ұшатыны емес, оның массасы мен траекториясы бар физикалық дене екені маңызды.",
+        "en": "No. To study the laws of motion what matters is not what flies but that it is a physical body with mass and a trajectory."
+       },
+       "type": "normal"
+      }
+     ]
+    },
+    {
+     "name": {
+      "ru": "Физики-лирики",
+      "kk": "Физиктер-лириктер",
+      "en": "Physicists and lyricists"
+     },
+     "questions": [
+      {
+       "q": {
+        "ru": "Послушайте отрывок и назовите тело и вещество. «Невыразимая печаль открыла два огромных глаза, цветочная проснулась ваза и выплеснула свой хрусталь» (О. Мандельштам).",
+        "kk": "Үзінді тыңдап, дене мен затты атаңыз. «Невыразимая печаль открыла два огромных глаза, цветочная проснулась ваза и выплеснула свой хрусталь» (О. Мандельштам).",
+        "en": "Listen to the excerpt and name the body and the substance: “Inexpressible sadness opened two enormous eyes, the flower vase awoke and spilled its crystal” (O. Mandelstam)."
+       },
+       "a": {
+        "ru": "Тело — ваза, вещество — хрусталь.",
+        "kk": "Дене — ваза, зат — хрусталь.",
+        "en": "Body — the vase; substance — crystal."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Название этого стихотворения В. А. Жуковского совпадает с названием описываемого в нём явления. Как оно называется?",
+        "kk": "В. А. Жуковскийдің осы өлеңінің атауы ондағы суреттелген құбылыстың атауымен сәйкеседі. Ол қалай аталады?",
+        "en": "The title of this poem by V. A. Zhukovsky matches the phenomenon it describes. What is it called?"
+       },
+       "a": {
+        "ru": "«Море»: в стихотворении описано волнение воды — механическое движение частиц жидкости.",
+        "kk": "«Теңіз»: өлеңде судың толқуы — сұйықтық бөлшектерінің механикалық қозғалысы суреттелген.",
+        "en": "“The Sea”: the poem describes the surge of water — the mechanical motion of liquid particles."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "В отрывке из стихотворения описаны туман, эхо, роса и восход Солнца. Какие физические явления здесь названы?",
+        "kk": "Өлең үзіндісінде тұман, жаңғырық, шық және Күннің шығуы суреттелген. Мұнда қандай физикалық құбылыстар аталған?",
+        "en": "The excerpt describes fog, an echo, dew and sunrise. Which physical phenomena are named?"
+       },
+       "a": {
+        "ru": "Образование тумана, отражение звука (эхо), выпадение росы (конденсация) и восход Солнца.",
+        "kk": "Тұманның пайда болуы, дыбыстың шағылысуы (жаңғырық), шықтың түсуі (конденсация) және Күннің шығуы.",
+        "en": "Formation of fog, reflection of sound (echo), condensation of dew and sunrise."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "По какой траектории движется минутная стрелка часов? Можно ли утверждать, что часы стоят на месте?",
+        "kk": "Сағаттың минут тілі қандай траекториямен қозғалады? Сағат орнында тұр деп айтуға бола ма?",
+        "en": "Along what trajectory does a clock's minute hand move? Can we say the clock stands still?"
+       },
+       "a": {
+        "ru": "Конец стрелки описывает окружность. Одно и то же тело (часы) одновременно покоится (корпус) и движется (стрелки) — всё зависит от выбора тела отсчёта.",
+        "kk": "Тілдің ұшы шеңбер сызады. Бір дене (сағат) бір уақытта тыныштықта да (корпус), қозғалыста да (тілдер) бола алады — бәрі санақ денесін таңдауға байланысты.",
+        "en": "The tip of the hand traces a circle. One body (the clock) is at once at rest (the case) and in motion (the hands) — it all depends on the reference body."
+       },
+       "type": "normal"
+      }
+     ]
+    },
+    {
+     "name": {
+      "ru": "Задачи от Григория Остера",
+      "kk": "Григорий Остердің есептері",
+      "en": "Problems by Grigory Oster"
+     },
+     "questions": [
+      {
+       "q": {
+        "ru": "Какое физическое тело не имеет ни формы, ни объёма?",
+        "kk": "Қандай физикалық дененің пішіні де, көлемі де жоқ?",
+        "en": "Which physical body has neither shape nor volume?"
+       },
+       "a": {
+        "ru": "Никакое. Воздух — вещество, а не тело. Физических тел без формы и объёма не бывает.",
+        "kk": "Ешқандай. Ауа — зат, дене емес. Пішіні мен көлемі жоқ физикалық дене болмайды.",
+        "en": "None. Air is a substance, not a body. Physical bodies without shape and volume do not exist."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Гриша положил мороженое в карман. Оно там растаяло и утекло в штаны. Можно ли назвать случившееся физическим явлением?",
+        "kk": "Гриша балмұздақты қалтасына салды. Ол сонда еріп, шалбарына ағып кетті. Болған жағдайды физикалық құбылыс деп атауға бола ма?",
+        "en": "Grisha put ice cream in his pocket. It melted and ran down his trousers. Can this be called a physical phenomenon?"
+       },
+       "a": {
+        "ru": "Можно. Мороженое было твёрдое и холодное, стало жидкое и тёплое — изменилось агрегатное состояние, а состав остался прежним.",
+        "kk": "Болады. Балмұздақ қатты әрі суық болатын, сұйық әрі жылы болды — агрегаттық күйі өзгерді, құрамы бұрынғыша қалды.",
+        "en": "Yes. The ice cream was solid and cold, then became liquid and warm — its state changed while its composition stayed the same."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Коля окунал девчонок в лужу и измерял глубину погружения, а Толя стоял рядом и смотрел. Чем отличаются их действия и как это называют физики?",
+        "kk": "Коля қыздарды шалшыққа малып, бату тереңдігін өлшеді, ал Толя жанында тұрып қарады. Олардың әрекеттері несімен ерекшеленеді және физиктер мұны қалай атайды?",
+        "en": "Kolya dunked girls into a puddle and measured how deep each went, while Tolya just stood by and watched. How do their actions differ and what do physicists call them?"
+       },
+       "a": {
+        "ru": "Толя производил наблюдения, а Коля ставил опыты: он сам создавал условия и измерял.",
+        "kk": "Толя бақылау жүргізді, ал Коля тәжірибе қойды: ол шартты өзі жасап, өлшеу жүргізді.",
+        "en": "Tolya was making observations, Kolya was performing experiments: he created the conditions and measured."
+       },
+       "type": "normal"
+      },
+      {
+       "q": {
+        "ru": "Чем можно убедить учёного с мировым именем Иннокентия в достоверности выдвинутой гипотезы?",
+        "kk": "Әлемге әйгілі Иннокентий ғалымды ұсынылған болжамның дұрыстығына немен сендіруге болады?",
+        "en": "What can convince a world-famous scientist, Innokenty, that a hypothesis is valid?"
+       },
+       "a": {
+        "ru": "Только опытами. Достоверность гипотезы проверяется и доказывается экспериментом.",
+        "kk": "Тек тәжірибелермен. Болжамның дұрыстығы эксперимент арқылы тексеріледі және дәлелденеді.",
+        "en": "Only experiments. A hypothesis is tested and proven by experiment."
+       },
+       "type": "normal"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "final": {
+  "theme": {
+   "ru": "Физика вокруг нас",
+   "kk": "Айналамыздағы физика",
+   "en": "Physics around us"
+  },
+  "q": {
+   "ru": "Просыпаясь утром, мы видим восход Солнца, полёт птиц, капельки росы и слышим пение птиц. Назовите не меньше четырёх физических явлений из этого утра и укажите их вид.",
+   "kk": "Таңертең оянғанда Күннің шығуын, құстардың ұшуын, шық тамшыларын көреміз және құстардың сайрауын естиміз. Осы таңнан кемінде төрт физикалық құбылысты атап, түрін көрсетіңіз.",
+   "en": "Waking up in the morning we see the sunrise, birds flying, dewdrops, and hear birdsong. Name at least four physical phenomena from that morning and state their kind."
+  },
+  "a": {
+   "ru": "Восход Солнца — световое и механическое (движение Земли), полёт птиц — механическое, роса — тепловое (конденсация), пение птиц — звуковое. Подойдут и другие верные примеры.",
+   "kk": "Күннің шығуы — жарық және механикалық (Жердің қозғалысы), құстардың ұшуы — механикалық, шық — жылулық (конденсация), құстардың сайрауы — дыбыс. Басқа дұрыс мысалдар да қабылданады.",
+   "en": "Sunrise is light and mechanical (Earth's motion), birds flying is mechanical, dew is thermal (condensation), birdsong is sound. Other correct examples are accepted."
+  }
  }
+}
 ];
 
 /* 6. АУДИО: синтезированные сигналы в стиле телевикторины ==================
@@ -8867,8 +9760,8 @@ function normalizeGame(raw) {
   const rounds = Array.isArray(raw.rounds) ? raw.rounds : [];
   rounds.slice(0, 3).forEach((r) => {
     const cats = Array.isArray(r.categories) ? r.categories : Array.isArray(r) ? r : [];
-    const norm = cats.slice(0, 5).map((c) => {
-      const qs = (c.questions || c.qs || []).slice(0, 5).map((q) => ({
+    const norm = cats.slice(0, 6).map((c) => {
+      const qs = (c.questions || c.qs || []).slice(0, 6).map((q) => ({
         q: q.q != null ? q.q : q.question || '',
         a: q.a != null ? q.a : q.answer || '',
         type: ['normal', 'cat', 'auction', 'bonus', 'fail'].includes(q.type) ? q.type : 'normal',
@@ -8877,11 +9770,16 @@ function normalizeGame(raw) {
       }));
       return { name: c.name || c.category || '—', questions: qs };
     });
-    g.rounds.push({ name: r.name || '', categories: norm });
+    g.rounds.push({
+      name: r.name || '',
+      categories: norm,
+      /* необязательная своя шкала очков раунда, например [100,200,300,400] */
+      values: Array.isArray(r.values) && r.values.length ? r.values.slice(0, 6).map(Number) : null
+    });
   });
   /* когда у игры только категории (ответ ИИ без разбивки) */
   if (!g.rounds.length && Array.isArray(raw.categories)) {
-    g.rounds.push({ name: '', categories: raw.categories.slice(0, 5) });
+    g.rounds.push({ name: '', categories: raw.categories.slice(0, 6) });
   }
   return g;
 }
@@ -9091,13 +9989,14 @@ function renderBuilder() {
   $('#bFinalQ').value = b.final.q || '';
   $('#bFinalA').value = b.final.a || '';
   $$('#bRoundTabs button').forEach((btn) => btn.classList.toggle('active', btn.dataset.round === b.tab));
+  syncSizeControls();
   const wrap = $('#bCatEditors');
   const isFinal = b.tab === 'final';
   $('#bFinalEditor').classList.toggle('hidden', !isFinal);
   wrap.classList.toggle('hidden', isFinal);
   if (!isFinal) {
     const cats = b.rounds[b.tab] || blankCats();
-    const vals = VALUES[Number(b.tab)] || VALUES[1];
+    const vals = valuesForRound(Number(b.tab), Math.max.apply(null, cats.map((c) => c.questions.length)));
     wrap.innerHTML = cats.map((c, ci) => {
       const rows = c.questions.map((q, qi) => (
         '<div class="q-row" data-ci="' + ci + '" data-qi="' + qi + '">' +
@@ -9119,6 +10018,57 @@ function renderBuilder() {
     }).join('');
   }
   renderBuilderMeta();
+}
+function blankBuilder() {
+  return {
+    id: null,
+    title: '',
+    desc: '',
+    subject: 'physics',
+    grade: 7,
+    quarter: 1,
+    emoji: '★',
+    rounds: { 1: blankCats(), 2: blankCats() },
+    final: { theme: '', q: '', a: '' },
+    tab: '1'
+  };
+}
+/** Подогнать раунд под размер поля: категории и вопросы растут/обрезаются,
+ *  при увеличении поля новые ячейки остаются пустыми. */
+function resizeRound(round, catsN, qsN) {
+  const list = Array.isArray(round) ? round : [];
+  const out = [];
+  for (let ci = 0; ci < catsN; ci++) {
+    const src = list[ci] || { name: '', questions: [] };
+    const qs = Array.isArray(src.questions) ? src.questions.slice(0, qsN) : [];
+    while (qs.length < qsN) qs.push(blankQuestion());
+    out.push({ name: src.name || '', questions: qs });
+  }
+  return out;
+}
+/** Показать текущий размер поля выбранного раунда. */
+function syncSizeControls() {
+  const b = S.builder;
+  if (!b) return;
+  const catSel = $('#bCatCount'), qSel = $('#bQCount'), now = $('#bSizeNow');
+  const isFinal = b.tab === 'final';
+  if (catSel) catSel.disabled = isFinal;
+  if (qSel) qSel.disabled = isFinal;
+  if (isFinal) { if (now) now.textContent = '★'; return; }
+  const round = b.rounds[b.tab] || [];
+  const cats = round.length || 0;
+  const qs = cats ? Math.max.apply(null, round.map((c) => (c.questions || []).length)) : 0;
+  if (catSel && cats) catSel.value = String(cats);
+  if (qSel && qs) qSel.value = String(qs);
+  if (now) now.textContent = cats + ' × ' + qs;
+}
+/** Применить новый размер ко ВСЕМ раундам и перерисовать редактор. */
+function applyBoardSize(catsN, qsN) {
+  const b = S.builder;
+  if (!b) return;
+  b.rounds[1] = resizeRound(b.rounds[1], catsN, qsN);
+  b.rounds[2] = resizeRound(b.rounds[2], catsN, qsN);
+  renderBuilder();
 }
 function collectBuilder() {
   const b = S.builder;
@@ -9168,10 +10118,18 @@ function renderBuilderMeta() {
     '<div class="row"><span>' + esc(t('builder.grade')) + '</span><b>' + b.grade + ' · ' + b.quarter + ' ' + esc(t('quarterShort')) + '</b></div>';
   $('#builderDraftState').textContent = filled === total ? t('builder.valid') : t('builder.draft');
 }
+/** Номиналы раунда под фактическое число вопросов: 100…500, дальше +100. */
+function valuesForRound(ri, depth) {
+  const base = (VALUES[ri] || VALUES[1]).slice();
+  const step = (base[1] || 200) - (base[0] || 100);
+  while (base.length < depth) base.push((base[base.length - 1] || 0) + step);
+  return base.slice(0, Math.max(depth, 1));
+}
 function builderToGame() {
   const b = collectBuilder();
   const mk = (ri) => ({
     name: b.rounds[ri] && b.rounds[ri][0] ? b.rounds[ri][0].name : '',
+    values: valuesForRound(ri, Math.max.apply(null, b.rounds[ri].map((c) => c.questions.length))),
     categories: b.rounds[ri].map((c) => ({
       name: c.name || t('builder.catName'),
       questions: c.questions.map((q) => ({
@@ -9277,19 +10235,45 @@ function exitGame(silent) {
 function closeSheets() {
   ['#presenterSheet', '#helpSheet', '#statsSheet'].forEach((s) => $(s).classList.remove('open'));
 }
-function roundValues() { return G.round === 1 ? ROUND_META[1].values : ROUND_META[0].values; }
+/**
+ * Номиналы клеток текущего раунда.
+ * Раунд может быть любой формы (5×5, 4×4 и т. п.), поэтому берём столько
+ * номиналов, сколько вопросов в самой полной категории. Базовый набор — из
+ * ROUND_META, при нехватке добираем шагом в 100.
+ */
+function roundValues() {
+  const rnd = (G.loc && G.loc.rounds && G.loc.rounds[G.round]) || null;
+  const own = rnd && Array.isArray(rnd.values) && rnd.values.length ? rnd.values.slice() : null;
+  const base = (G.round === 1 ? ROUND_META[1].values : ROUND_META[0].values).slice();
+  if (own) {
+    let d = 0;
+    ((rnd.categories) || []).forEach((c) => { d = Math.max(d, (c.questions || []).length); });
+    const step = (own[1] || 200) - (own[0] || 100);
+    while (own.length < d) own.push((own[own.length - 1] || 0) + step);
+    return own;
+  }
+  let depth = 0;
+  ((rnd && rnd.categories) || []).forEach((c) => { depth = Math.max(depth, (c.questions || []).length); });
+  if (!depth) return base;
+  const out = base.slice(0, depth);
+  const step = (base[1] || 200) - (base[0] || 100);
+  while (out.length < depth) out.push((out[out.length - 1] || 0) + step);
+  return out;
+}
 function currentRound() { return G.loc.rounds[G.round] || { categories: [] }; }
 function boardKey(ci, qi) { return G.round + ':' + ci + ':' + qi; }
 function updateStageChrome() {
   const isFinalPhase = G.round >= 2;
   const values = roundValues();
   $('#roundBadgeText').textContent = isFinalPhase ? t('presets.final') : t('game.roundIntro') + ' ' + (G.round + 1);
-  $('#roundBadgeVal').textContent = isFinalPhase ? '★' : values[0] + '–' + values[4];
+  $('#roundBadgeVal').textContent = isFinalPhase ? '★' : values[0] + '–' + values[values.length - 1];
   $('#roundLabel').textContent = isFinalPhase ? t('presets.final') : t('game.roundIntro') + ' ' + (G.round + 1);
   const pips = $$('#roundPips i');
   pips.forEach((p, i) => { p.classList.toggle('cur', i === G.round); p.classList.toggle('done', i < G.round); });
-  const left = G.round < 2 ? (25 - G.used.size) : 1;
-  $('#roundLeft').textContent = G.round < 2 ? left + ' / 25' : '★';
+  /* клеток в раунде столько, сколько их реально на доске (5×5, 4×4 и т. п.) */
+  const roundCells = ((currentRound().categories) || []).reduce((n, c) => n + ((c.questions || []).length), 0) || 25;
+  const left = G.round < 2 ? Math.max(0, roundCells - G.used.size) : 1;
+  $('#roundLeft').textContent = G.round < 2 ? left + ' / ' + roundCells : '★';
   $('#sbRound').textContent = G.round < 2 ? 'R' + (G.round + 1) : 'FINAL';
   const team = G.teams[G.turn] || G.teams[0];
   if (team) {
@@ -9328,6 +10312,11 @@ function renderBoard() {
     });
   });
   board.innerHTML = html;
+  /* число столбцов и строк — по фактическому размеру раунда */
+  const cols = Math.max(1, (rnd.categories || []).length);
+  const rows = Math.max(1, values.length);
+  board.style.gridTemplateColumns = 'repeat(' + cols + ', minmax(0, 1fr))';
+  board.style.gridTemplateRows = 'auto repeat(' + rows + ', minmax(0, 1fr))';
   $$('#board .tile').forEach((tile) => {
     if (tile.disabled) return;
     tile.addEventListener('click', () => pickCell(tile));
@@ -9874,8 +10863,50 @@ function toggleFullscreen() {
 const PPTX_COLORS = {
   bg: '070C1A', bg2: '0C1730', panel: '122042', gold: 'F2C45A', goldSoft: 'FFE9A8',
   cyan: '54E0FF', violet: '9A7BFF', ok: '39E29A', bad: 'FF6079', ink: 'EAF1FF',
-  muted: '9DB2DA', line: '2A3E6B', tile: '16294F'
+  muted: '9DB2DA', line: '2A3E6B', tile: '16294F',
+  glow1: '132A5C', glow2: '241A56'
 };
+/* Цветовые схемы презентации: пользователь выбирает в диалоге экспорта.
+   Меняем только значения ключей — весь buildPptx читает их через PPTX_COLORS. */
+const PPTX_THEMES = {
+  midnight: { name: 'Midnight', nameRu: 'Полночь', dark: true, c: {
+    bg: '070C1A', bg2: '0C1730', panel: '122042', gold: 'F2C45A', goldSoft: 'FFE9A8',
+    cyan: '54E0FF', violet: '9A7BFF', ok: '39E29A', bad: 'FF6079', ink: 'EAF1FF',
+    muted: '9DB2DA', line: '2A3E6B', tile: '16294F', glow1: '132A5C', glow2: '241A56' } },
+  emerald: { name: 'Emerald', nameRu: 'Изумруд', dark: true, c: {
+    bg: '04140F', bg2: '08251B', panel: '0E3527', gold: '6EE7B7', goldSoft: 'C9F7E4',
+    cyan: '7DD3FC', violet: 'A7F3D0', ok: '6EE7B7', bad: 'FB7185', ink: 'EAFBF3',
+    muted: '93BCA9', line: '1E5540', tile: '10402F', glow1: '0B3A29', glow2: '0F2C46' } },
+  sunset: { name: 'Sunset', nameRu: 'Закат', dark: true, c: {
+    bg: '1A0A10', bg2: '2A1018', panel: '3A1622', gold: 'FFB56B', goldSoft: 'FFD9A8',
+    cyan: '7FD8FF', violet: 'F59AB6', ok: '7CE3A8', bad: 'FF6B6B', ink: 'FFF1E8',
+    muted: 'D8A99C', line: '5A2634', tile: '401A26', glow1: '4A1522', glow2: '2E1038' } },
+  ice: { name: 'Ice', nameRu: 'Лёд', dark: false, c: {
+    bg: 'F7FAFF', bg2: 'EAF2FF', panel: 'FFFFFF', gold: '1D4ED8', goldSoft: '1E3A8A',
+    cyan: '0369A1', violet: '6D28D9', ok: '047857', bad: 'DC2626', ink: '0B1526',
+    muted: '5B6B87', line: 'C9D8F0', tile: 'DCE8FA', glow1: 'DCE9FF', glow2: 'E6E1FF' } },
+  paper: { name: 'Paper', nameRu: 'Бумага', dark: false, c: {
+    bg: 'FBF8F1', bg2: 'F3EDE0', panel: 'FFFFFF', gold: '9A6B18', goldSoft: '7A5310',
+    cyan: '0F766E', violet: '7C3AED', ok: '15803D', bad: 'B91C1C', ink: '1E1A14',
+    muted: '6B6155', line: 'DCD3C2', tile: 'EFE7D6', glow1: 'EFE6D3', glow2: 'E9E2F3' } },
+  contrast: { name: 'Contrast', nameRu: 'Контраст', dark: true, c: {
+    bg: '000000', bg2: '0A0A0A', panel: '161616', gold: 'FFD400', goldSoft: 'FFF08A',
+    cyan: '00E5FF', violet: 'FF7AFF', ok: '00FF9C', bad: 'FF3B3B', ink: 'FFFFFF',
+    muted: 'B4B4B4', line: '3A3A3A', tile: '1C1C1C', glow1: '101010', glow2: '141414' } }
+};
+let pptxThemeKey = 'midnight';
+function pptxApplyTheme(key) {
+  if (!PPTX_THEMES[key]) key = 'midnight';
+  pptxThemeKey = key;
+  Object.assign(PPTX_COLORS, PPTX_THEMES[key].c);
+}
+/** Палитра по-прежнему нужна светлой, даже если схема тёмная:
+ *  для «Лёд» и «Бумага» фон слайдов светлый, текст — ink. */
+function pptxIsLight() { return !(PPTX_THEMES[pptxThemeKey] || {}).dark; }
+/** Цвет текста поверх акцентной плашки и фон панели категорий:
+ *  на светлых схемах берём тёмный текст и светлую панель. */
+function pptxOnAccent() { return pptxIsLight() ? PPTX_COLORS.ink : PPTX_COLORS.bg; }
+function pptxCatPanel() { return pptxIsLight() ? PPTX_COLORS.panel : '231B45'; }
 function pptxLib() {
   if (window.PptxGenJS) return window.PptxGenJS;
   if (window.pptxgen) return window.pptxgen;
@@ -9884,11 +10915,13 @@ function pptxLib() {
 function pptxFmtScore(n) { return new Intl.NumberFormat('ru-RU').format(Math.round(n)); }
 function pptxAddBg(slide, pptx, W, H, variant) {
   slide.background = { color: PPTX_COLORS.bg };
-  if (variant === 'light') { slide.background = { color: 'F4F7FF' }; return; }
+  if (variant === 'light') { slide.background = { color: PPTX_COLORS.bg2 }; return; }
   slide.addShape(pptx.ShapeType.rect, { x: 0, y: 0, w: W, h: H, fill: { color: PPTX_COLORS.bg2 }, line: { color: PPTX_COLORS.bg2, width: 0 } });
-  slide.addShape(pptx.ShapeType.ellipse, { x: -W * .18, y: -H * .45, w: W * .85, h: H * 1.2, fill: { color: '132A5C', transparency: 45 }, line: { width: 0 } });
-  slide.addShape(pptx.ShapeType.ellipse, { x: W * .52, y: -H * .35, w: W * .75, h: H * .95, fill: { color: '241A56', transparency: 55 }, line: { width: 0 } });
-  slide.addShape(pptx.ShapeType.ellipse, { x: W * .18, y: H * .55, w: W * .9, h: H * .8, fill: { color: '3B2A10', transparency: 78 }, line: { width: 0 } });
+  /* свечения берём из схемы: на светлых схемах они почти прозрачные */
+  const soft = pptxIsLight() ? 82 : 45;
+  slide.addShape(pptx.ShapeType.ellipse, { x: -W * .18, y: -H * .45, w: W * .85, h: H * 1.2, fill: { color: PPTX_COLORS.glow1, transparency: soft }, line: { width: 0 } });
+  slide.addShape(pptx.ShapeType.ellipse, { x: W * .52, y: -H * .35, w: W * .75, h: H * .95, fill: { color: PPTX_COLORS.glow2, transparency: soft + 10 }, line: { width: 0 } });
+  if (!pptxIsLight()) slide.addShape(pptx.ShapeType.ellipse, { x: W * .18, y: H * .55, w: W * .9, h: H * .8, fill: { color: '3B2A10', transparency: 78 }, line: { width: 0 } });
   slide.addShape(pptx.ShapeType.rect, { x: 0, y: H - 0.05, w: W, h: .05, fill: { color: PPTX_COLORS.gold, transparency: 35 }, line: { width: 0 } });
 }
 function pptxAddFooter(slide, pptx, W, H, text) {
@@ -9896,8 +10929,8 @@ function pptxAddFooter(slide, pptx, W, H, text) {
 }
 /* Бейдж «← к полю» на слайде вопроса */
 function pptxBackBadge(slide, pptx, x, y, label) {
-  slide.addShape(pptx.ShapeType.roundRect, { x, y, w: 1.55, h: .38, rectRadius: .19, fill: { color: PPTX_COLORS.gold }, line: { color: 'FFE9A8', width: 1 } });
-  slide.addText('◀ ' + label, { x, y, w: 1.55, h: .38, fontSize: 11, bold: true, color: '0B1326', align: 'center', valign: 'middle', fontFace: 'Arial' });
+  slide.addShape(pptx.ShapeType.roundRect, { x, y, w: 1.55, h: .38, rectRadius: .19, fill: { color: PPTX_COLORS.gold }, line: { color: PPTX_COLORS.goldSoft, width: 1 } });
+  slide.addText('◀ ' + label, { x, y, w: 1.55, h: .38, fontSize: 11, bold: true, color: PPTX_COLORS.bg, align: 'center', valign: 'middle', fontFace: 'Arial' });
 }
 /* Тайл поля */
 function pptxTile(slide, pptx, x, y, w, h, value, color, dim) {
@@ -9918,6 +10951,7 @@ async function buildPptx(game, opts = {}) {
   const layout = opts.layout || '16x9';
   const isWide = layout === '16x9';
   const W = isWide ? 13.333 : 10, H = isWide ? 7.5 : 7.5;
+  pptxApplyTheme(opts.theme || 'midnight');
   const pptx = new PptxGenJS();
   pptx.defineLayout({ name: 'QS_WIDE', width: W, height: H });
   pptx.layout = 'QS_WIDE';
@@ -9942,8 +10976,8 @@ async function buildPptx(game, opts = {}) {
   sTitle.addText(loc.desc || '', { x: .7, y: 4.4, w: W * .62, h: 1.0, fontSize: 11.5, color: PPTX_COLORS.muted, fontFace: 'Arial', lineSpacingMultiple: 1.25 });
   const round1BtnY = H - 1.55;
   sTitle.addShape(pptx.ShapeType.roundRect, { x: .7, y: round1BtnY, w: 2.55, h: .5, rectRadius: .25, fill: { color: PPTX_COLORS.gold }, line: { color: PPTX_COLORS.goldSoft, width: 1 } });
-  sTitle.addText('РАУНД 1 ▶', { x: .7, y: round1BtnY, w: 2.55, h: .5, fontSize: 13, bold: true, color: '0B1326', align: 'center', valign: 'middle', fontFace: 'Arial' });
-  sTitle.addShape(pptx.ShapeType.roundRect, { x: 3.4, y: round1BtnY, w: 2.55, h: .5, rectRadius: .25, fill: { color: '0F1C3A' }, line: { color: PPTX_COLORS.cyan, width: 1 } });
+  sTitle.addText('РАУНД 1 ▶', { x: .7, y: round1BtnY, w: 2.55, h: .5, fontSize: 13, bold: true, color: pptxOnAccent(), align: 'center', valign: 'middle', fontFace: 'Arial' });
+  sTitle.addShape(pptx.ShapeType.roundRect, { x: 3.4, y: round1BtnY, w: 2.55, h: .5, rectRadius: .25, fill: { color: pptxOnAccent() }, line: { color: PPTX_COLORS.cyan, width: 1 } });
   sTitle.addText('РАУНД 2 ▶', { x: 3.4, y: round1BtnY, w: 2.55, h: .5, fontSize: 13, bold: true, color: PPTX_COLORS.cyan, align: 'center', valign: 'middle', fontFace: 'Arial' });
   sTitle.addText('Управление: на игровом поле нажмите на стоимость вопроса.\nНа слайде вопроса кнопка «К полю» возвращает к таблице.\nКлавиша Esc / переход по гиперссылке — назад к полю.',
     { x: W - 4.1, y: H - 2.35, w: 3.4, h: 1.0, fontSize: 8.5, color: PPTX_COLORS.muted, fontFace: 'Arial', lineSpacingMultiple: 1.3 });
@@ -9953,30 +10987,40 @@ async function buildPptx(game, opts = {}) {
   const boardRefs = [];   /* [{slideIdx, tiles:[{x,y,w,h,ci,qi}]}] */
   const questionSlides = []; /* номера слайдов вопросов для каждого раунда */
   const answerSlides = [];
-  const valuesList = [[100, 200, 300, 400, 500], [200, 300, 400, 500, 600]];
+  /* Номиналы берём из самой игры (свой набор на раунд), иначе — базовые */
+  const valuesList = rounds.map((rnd, ri) => {
+    let rows = 0;
+    (rnd.categories || []).forEach((c) => { rows = Math.max(rows, (c.questions || []).length); });
+    const own = Array.isArray(rnd.values) && rnd.values.length ? rnd.values.slice() : null;
+    const base = (own || (ri === 1 ? [200, 300, 400, 500, 600] : [100, 200, 300, 400, 500])).slice();
+    const step = (base[1] || 200) - (base[0] || 100);
+    while (base.length < Math.max(rows, 1)) base.push((base[base.length - 1] || 0) + step);
+    return base.slice(0, Math.max(rows, 1));
+  });
 
   rounds.forEach((rnd, ri) => {
     const slide = pptx.addSlide();
     pptxAddBg(slide, pptx, W, H);
     slide.addText('РАУНД ' + (ri + 1), { x: .55, y: .32, w: 3, h: .42, fontSize: 20, bold: true, color: PPTX_COLORS.gold, fontFace: 'Arial', charSpacing: 2 });
     slide.addText(rnd.name || '', { x: .55, y: .74, w: W - 4.9, h: .3, fontSize: 11, color: PPTX_COLORS.muted, valign: 'middle', fontFace: 'Arial' });
-    slide.addText('5 × 5 · ' + valuesList[ri][0] + '–' + valuesList[ri][4], { x: W - 3.6, y: .4, w: 3.0, h: .3, fontSize: 10, color: PPTX_COLORS.cyan, align: 'right', fontFace: 'Arial' });
+    const cats = rnd.categories || [];
+    const values = valuesList[ri];
+    slide.addText(cats.length + ' × ' + values.length + ' · ' + values[0] + '–' + values[values.length - 1], { x: W - 3.6, y: .4, w: 3.0, h: .3, fontSize: 10, color: PPTX_COLORS.cyan, align: 'right', fontFace: 'Arial' });
 
     const marginX = .55, marginTop = 1.22, topForCats = marginTop;
-    const cats = rnd.categories || [];
     const colGap = .14;
     const gridW = W - marginX * 2;
-    const colW = (gridW - colGap * 4) / 5;
+    const colW = (gridW - colGap * Math.max(0, cats.length - 1)) / Math.max(1, cats.length);
     const catH = .82;
     const tileH = .80;
     const rowGap = .09;
-    const values = valuesList[ri];
     const tiles = [];
     cats.forEach((c, ci) => {
       const x = marginX + ci * (colW + colGap);
-      slide.addShape(pptx.ShapeType.roundRect, { x, y: topForCats, w: colW, h: catH, rectRadius: .08, fill: { color: '231B45' }, line: { color: PPTX_COLORS.gold, width: 1.2, transparency: 20 } });
+      slide.addShape(pptx.ShapeType.roundRect, { x, y: topForCats, w: colW, h: catH, rectRadius: .08, fill: { color: pptxCatPanel() }, line: { color: PPTX_COLORS.gold, width: 1.2, transparency: 20 } });
       slide.addText(String(c.name || '').toUpperCase(), { x: x + .04, y: topForCats, w: colW - .08, h: catH, fontSize: cats.length > 4 ? 9 : 10, bold: true, color: PPTX_COLORS.goldSoft, align: 'center', valign: 'middle', fontFace: 'Arial' });
       values.forEach((val, qi) => {
+        if (!(c.questions || [])[qi]) return;   /* в этом раунде может быть меньше вопросов */
         const y = topForCats + catH + .16 + qi * (tileH + rowGap);
         const special = (c.questions[qi] && c.questions[qi].type) || 'normal';
         const bc = special === 'cat' ? PPTX_COLORS.violet : special === 'auction' ? PPTX_COLORS.cyan : special === 'bonus' ? PPTX_COLORS.ok : special === 'fail' ? PPTX_COLORS.bad : PPTX_COLORS.gold;
@@ -9997,7 +11041,7 @@ async function buildPptx(game, opts = {}) {
     const catsList = rnd.categories || [];
     for (let ci = 0; ci < catsList.length; ci++) {
       const cat = catsList[ci];
-      for (let qi = 0; qi < values.length; qi++) {
+      for (let qi = 0; qi < Math.min((cat.questions || []).length, values.length); qi++) {
         const val = values[qi];
         const q = cat.questions[qi] || {};
         const qs = pptx.addSlide();
@@ -10038,8 +11082,8 @@ async function buildPptx(game, opts = {}) {
           pptxAddBg(as, pptx, W, H);
           as.addText('ОТВЕТ', { x: .85, y: .55, w: 4, h: .35, fontSize: 11, bold: true, color: PPTX_COLORS.ok, charSpacing: 3, fontFace: 'Arial' });
           as.addText((cat.name || '') + ' · ' + val, { x: .85, y: .9, w: W - 1.7, h: .32, fontSize: 11, color: PPTX_COLORS.muted, fontFace: 'Arial' });
-          as.addShape(pptx.ShapeType.roundRect, { x: .85, y: 1.55, w: W - 1.7, h: H - 3.4, rectRadius: .12, fill: { color: '0E2A25' }, line: { color: PPTX_COLORS.ok, width: 1.2 } });
-          as.addText(q.a || '', { x: 1.15, y: 1.8, w: W - 2.3, h: H - 3.9, fontSize: isWide ? 22 : 18, bold: true, color: 'D7FFEE', valign: 'middle', fontFace: 'Arial', lineSpacingMultiple: 1.2 });
+          as.addShape(pptx.ShapeType.roundRect, { x: .85, y: 1.55, w: W - 1.7, h: H - 3.4, rectRadius: .12, fill: { color: pptxIsLight() ? PPTX_COLORS.panel : '0E2A25' }, line: { color: PPTX_COLORS.ok, width: 1.2 } });
+          as.addText(q.a || '', { x: 1.15, y: 1.8, w: W - 2.3, h: H - 3.9, fontSize: isWide ? 22 : 18, bold: true, color: pptxIsLight() ? PPTX_COLORS.ink : 'D7FFEE', valign: 'middle', fontFace: 'Arial', lineSpacingMultiple: 1.2 });
           pptxBackBadge(as, pptx, .85, H - 1.05, 'К ПОЛЮ');
           as.addText('Вопрос: ' + String(q.q || '').slice(0, 120) + (String(q.q || '').length > 120 ? '…' : ''), { x: W - 5.8, y: H - 1.15, w: 5.0, h: .6, fontSize: 8.5, color: PPTX_COLORS.muted, align: 'right', fontFace: 'Arial' });
           answerSlides[ri][ci] = answerSlides[ri][ci] || [];
@@ -10125,6 +11169,7 @@ async function buildPptx(game, opts = {}) {
     (rnd.categories || []).forEach((cat, ci) => {
       valuesList[ri].forEach((val, qi) => {
         const target = boardRefs[ri].slide;
+        if (!(cat.questions || [])[qi]) return;
         const qIdx = questionSlides[ri][ci] && questionSlides[ri][ci][qi];
         if (!qIdx) return;
         const qSlide = pptx._slides[qIdx - 1];
@@ -10273,7 +11318,10 @@ function aiSetState(state) {
    Затем берём список моделей у самого сервиса и выбираем свежую быструю.
    ---------------------------------------------------------------------- */
 const KEY_PREFIXES = [
-  { provider: 'gemini', re: /^AIza[0-9A-Za-z_\-]{20,}$/, label: 'AIza…' },
+  /* старый формат Google AI Studio */
+  { provider: 'gemini', re: /^AIza[0-9A-Za-z_\-]{16,}$/, label: 'AIza…' },
+  /* новый формат (2025): AQ.Ab8… — тоже Gemini */
+  { provider: 'gemini', re: /^AQ\.[0-9A-Za-z_\-]{16,}$/, label: 'AQ.…' },
   { provider: 'openai', re: /^sk-(proj-|svcacct-|admin-)?[A-Za-z0-9_\-]{16,}$/, label: 'sk-…' }
 ];
 /** Сервис по виду ключа. null — не распознан. */
@@ -10386,11 +11434,11 @@ async function checkAiKey(silent) {
     toast(t('ai.noKey'), 'err');
     return null;
   }
-  const provider = providerFromKey(key);
-  if (!provider) {
-    toast(t('ai.keyUnknown'), 'err');
-    return null;
-  }
+  /* ключ незнакомого вида (новый формат Google, корпоративный шлюз) —
+     не блокируем: пробуем сервис, выбранный на вкладке */
+  const detected = providerFromKey(key);
+  const provider = detected || AI.provider || 'gemini';
+  if (!detected) toast(t('ai.keyUnknownTry') + ' ' + (provider === 'openai' ? 'OpenAI' : 'Gemini'), 'info');
   /* сервис определился по префиксу — сразу переключаем вкладку */
   AI.provider = provider;
   S.settings.provider = provider;
@@ -10409,10 +11457,16 @@ async function checkAiKey(silent) {
     if (!silent) toast(t('ai.keyOk') + ' · ' + best, 'ok');
     return best;
   } catch (e) {
-    /* список закрыт политикой ключа — оставляем проверенную модель по умолчанию */
+    /* Список моделей может быть закрыт политикой ключа или CORS.
+       Не считаем ключ битым: подставляем рабочую модель по умолчанию
+       и подсказываем, что делать, если ошибка повторится при генерации. */
     const fallback = provider === 'gemini' ? 'gemini-2.5-flash' : 'gpt-4o-mini';
+    const msg = String(e.message || e);
+    const hint = /401|403|API_KEY_INVALID|API key not valid|permission/i.test(msg)
+      ? t('ai.errKey')
+      : /429|quota|RESOURCE_EXHAUSTED/i.test(msg) ? t('ai.errQuota') : '';
     setAiModel(fallback, t('ai.modelFallback') + ' ' + fallback);
-    if (!silent) toast(t('ai.modelFallback') + ': ' + String(e.message || e).slice(0, 80), 'warn');
+    if (!silent) toast(t('ai.modelFallback') + ': ' + fallback + (hint ? ' · ' + hint : ''), hint ? 'err' : 'warn');
     return fallback;
   }
 }
@@ -10538,7 +11592,7 @@ async function runAiGeneration() {
   const key = ($('#aiKey').value || '').trim();
   if (!key) { toast(t('ai.noKeyDesc'), 'err', t('ai.noKey')); $('#aiKey').focus(); return; }
   /* сервис по ключу: пользователь мог вставить ключ и сразу нажать «Сгенерировать» */
-  const detected = providerFromKey(key);
+  const detected = providerFromKey(key) || AI.provider;
   if (detected && detected !== AI.provider) {
     AI.provider = detected;
     S.settings.provider = detected;
@@ -10821,7 +11875,7 @@ function bindGlobal() {
     const pp = e.target.closest('[data-pptx]');
     if (pp) {
       const g = findGame(pp.dataset.pptx);
-      if (g) { $('#pptxName').value = slug(gameTitle(g)); openModal('exportModal'); $('#exportGo').onclick = () => exportPptxFor(g, readPptxOpts()); $('#exportModal').dataset.game = g.id; }
+      if (g) { $('#pptxName').value = slug(gameTitle(g)); renderPptxThemes(); openModal('exportModal'); $('#exportGo').onclick = () => exportPptxFor(g, readPptxOpts()); $('#exportModal').dataset.game = g.id; }
       return;
     }
     const del = e.target.closest('[data-del]');
@@ -10936,6 +11990,15 @@ function bindGlobal() {
     if (el) el.addEventListener('input', () => { collectBuilder(); renderBuilderMeta(); });
     if (el) el.addEventListener('change', () => { collectBuilder(); renderBuilderMeta(); });
   });
+  const sizeChange = () => {
+    collectBuilder();
+    const c = Number(($('#bCatCount') || {}).value) || 5;
+    const q = Number(($('#bQCount') || {}).value) || 5;
+    applyBoardSize(c, q);
+  };
+  if ($('#crossBtn')) $('#crossBtn').addEventListener('click', openCrossword);
+  if ($('#bCatCount')) $('#bCatCount').addEventListener('change', sizeChange);
+  if ($('#bQCount')) $('#bQCount').addEventListener('change', sizeChange);
   $('#bCatEditors').addEventListener('input', () => { collectBuilder(); renderBuilderMeta(); });
   $('#bCatEditors').addEventListener('change', () => { collectBuilder(); renderBuilderMeta(); });
   $('#bCatEditors').addEventListener('click', (e) => {
@@ -10971,6 +12034,7 @@ function bindGlobal() {
   $('#builderPptx').addEventListener('click', () => {
     const game = builderToGame();
     $('#pptxName').value = slug(gameTitle(game));
+    renderPptxThemes();
     openModal('exportModal');
     $('#exportGo').onclick = () => exportPptxFor(game, readPptxOpts());
   });
@@ -11179,12 +12243,38 @@ function bindGlobal() {
   /* контекст аудио — после первого жеста */
   ['pointerdown', 'keydown'].forEach((ev) => document.addEventListener(ev, () => AudioKit.resume(), { once: true, passive: true }));
 }
+/** Нарисовать палитру схем и запомнить выбор. */
+function renderPptxThemes() {
+  const box = $('#pptxThemes');
+  if (!box) return;
+  const cur = $('#pptxTheme') && $('#pptxTheme').value || 'midnight';
+  box.innerHTML = Object.keys(PPTX_THEMES).map((key) => {
+    const th = PPTX_THEMES[key];
+    const c = th.c;
+    return '<button type="button" class="theme-swatch' + (key === cur ? ' active' : '') + '" data-theme="' + key + '">' +
+      '<span class="ts-preview" style="background:#' + c.bg + '">' +
+        '<i class="ts-dot" style="background:#' + c.gold + '"></i>' +
+        '<i class="ts-dot" style="background:#' + c.cyan + '"></i>' +
+        '<i class="ts-dot" style="background:#' + c.violet + '"></i>' +
+        '<i class="ts-dot" style="background:#' + c.ink + '"></i>' +
+      '</span>' +
+      '<span class="ts-name">' + esc(S.lang === 'ru' ? th.nameRu : th.name) + '</span></button>';
+  }).join('') +
+  '<input type="hidden" id="pptxTheme" value="' + esc(cur) + '">';
+  $$('[data-theme]', box).forEach((b) => b.addEventListener('click', () => {
+    const inp = $('#pptxTheme');
+    if (inp) inp.value = b.dataset.theme;
+    $$('[data-theme]', box).forEach((x) => x.classList.toggle('active', x === b));
+    pptxApplyTheme(b.dataset.theme);
+  }));
+}
 function readPptxOpts() {
   return {
     layout: $('#pptxLayout').value,
     answers: $('#pptxWithAnswers').checked,
     final: $('#pptxWithFinal').checked,
     media: $('#pptxWithMedia').checked,
+    theme: ($('#pptxTheme') && $('#pptxTheme').value) || 'midnight',
     name: ($('#pptxName').value || 'svoya-igra').trim()
   };
 }
@@ -11349,6 +12439,24 @@ const SHOWS = (() => {
     'show.pptx': 'Скачать PPTX',
     'show.voice': 'Голос ведущего',
     'show.ready': 'Начать',
+    'show.hundred': 'Сто к одному',
+    'show.hundredSub': 'Шесть ответов аудитории, три промаха и супер-игра',
+    'show.hundQuestion': 'Вопрос',
+    'show.hundOf': 'из',
+    'show.hundGuesses': 'Попытки',
+    'show.hundBank': 'Банк',
+    'show.hundTeam': 'Команда',
+    'show.hundNext': 'Следующий вопрос',
+    'show.hundRevealAll': 'Открыть все ответы',
+    'show.hundStrikeBtn': 'Промах',
+  'show.hundGuessHint': 'Нажмите на ответ, который угадала команда',
+    'show.hundRoundPoints': 'Очки раунда',
+    'show.hundTotal': 'Всего в банке',
+    'show.hundWin': 'Победа!',
+    'show.hundSuperTitle': 'Супер-игра',
+    'show.hundSuperHint': 'Назовите ответ, которого нет на табло',
+    'show.hundSuperOk': 'Ответ принят — банк удвоен!',
+    'show.hundSuperFail': 'Увы, такой ответ был на табло',
     'show.quitConfirm': 'Забрать выигрыш и выйти?',
   });
   Object.assign(I18N.kk, {
@@ -11420,6 +12528,24 @@ const SHOWS = (() => {
     'show.pptx': 'PPTX жүктеу',
     'show.voice': 'Жүргізуші дауысы',
     'show.ready': 'Бастау',
+    'show.hundred': 'Жүзге бір',
+    'show.hundredSub': 'Аудиторияның алты жауабы, үш қате және супер-ойын',
+    'show.hundQuestion': 'Сұрақ',
+    'show.hundOf': '/',
+    'show.hundGuesses': 'Әрекеттер',
+    'show.hundBank': 'Банк',
+    'show.hundTeam': 'Команда',
+    'show.hundNext': 'Келесі сұрақ',
+    'show.hundRevealAll': 'Барлық жауапты ашу',
+    'show.hundStrikeBtn': 'Қате',
+  'show.hundGuessHint': 'Команда тапқан жауапты басыңыз',
+    'show.hundRoundPoints': 'Раунд ұпайы',
+    'show.hundTotal': 'Банкте барлығы',
+    'show.hundWin': 'Жеңіс!',
+    'show.hundSuperTitle': 'Супер-ойын',
+    'show.hundSuperHint': 'Таблода жоқ жауапты атаңыз',
+    'show.hundSuperOk': 'Жауап қабылданды — банк екі еселенді!',
+    'show.hundSuperFail': 'Өкінішке қарай, бұл жауап таблода болды',
     'show.quitConfirm': 'Ұтысты алып шығасыз ба?',
   });
   Object.assign(I18N.en, {
@@ -11491,6 +12617,24 @@ const SHOWS = (() => {
     'show.pptx': 'Download PPTX',
     'show.voice': 'Host voice',
     'show.ready': 'Start',
+    'show.hundred': '100 to 1',
+    'show.hundredSub': 'Six audience answers, three strikes and a super round',
+    'show.hundQuestion': 'Question',
+    'show.hundOf': 'of',
+    'show.hundGuesses': 'Guesses',
+    'show.hundBank': 'Bank',
+    'show.hundTeam': 'Team',
+    'show.hundNext': 'Next question',
+    'show.hundRevealAll': 'Reveal all answers',
+    'show.hundStrikeBtn': 'Strike',
+  'show.hundGuessHint': 'Tap the answer the team guessed',
+    'show.hundRoundPoints': 'Round points',
+    'show.hundTotal': 'Total in the bank',
+    'show.hundWin': 'Victory!',
+    'show.hundSuperTitle': 'Super round',
+    'show.hundSuperHint': 'Name an answer that is not on the board',
+    'show.hundSuperOk': 'Accepted — the bank is doubled!',
+    'show.hundSuperFail': 'Sorry, that answer was on the board',
     'show.quitConfirm': 'Take the money and leave?',
   });
 
@@ -12508,13 +13652,13 @@ const SHOWS = (() => {
       '<span class="fp-body"><b>' + esc(gameTitle(g)) + '</b>' +
       '<span>' + esc(subjectLabel(g.subject)) + ' · ' + esc(g.grade) + ' ' + esc(t('grade')) + ' · ' + gameQuestionCount(g) + ' Q</span></span>' +
       '</button>').join('');
-    $('#formatPickTitle').textContent = t(kind === 'chgk' ? 'show.chgk' : 'show.million');
+    $('#formatPickTitle').textContent = t(kind === 'chgk' ? 'show.chgk' : kind === 'hundred' ? 'show.hundred' : 'show.million');
     openModal('formatPickModal');
     $$('#formatPickBody [data-set]').forEach((b) => b.addEventListener('click', () => {
       const g = findGame(b.dataset.set);
       closeModal('formatPickModal');
       if (!g) return;
-      if (kind === 'chgk') chgkOpen(g); else millionOpen(g);
+      if (kind === 'chgk') chgkOpen(g); else if (kind === 'hundred') hundOpen(g); else millionOpen(g);
     }));
   }
 
@@ -12523,8 +13667,8 @@ const SHOWS = (() => {
     $$('#showScreen [data-show-exit]').forEach((b) => b.addEventListener('click', closeShow));
     $$('#showScreen [data-show-ppt]').forEach((b) => b.addEventListener('click', () => {
       /* выходим из любого показа: гость мог закрыть Миллионера и открыть ЧГК */
-      const kind = CHGK.active && !MI.active ? 'chgk' : 'million';
-      const game = kind === 'chgk' ? CHGK.game : MI.game;
+      const kind = CHGK.active && !MI.active ? 'chgk' : (SHOWS.HUND && SHOWS.HUND.active) ? 'hundred' : 'million';
+      const game = kind === 'chgk' ? CHGK.game : kind === 'hundred' ? SHOWS.HUND.game : MI.game;
       showPptx(kind, game);
     }));
   }
@@ -12540,16 +13684,16 @@ const SHOWS = (() => {
       const pptx = new PptxGenJS();
       pptx.layout = 'LAYOUT_16x9';
       const W = 13.333, H = 7.5;
-      const gold = 'F2C45A', ink = 'F6ECD2', dark = '0A0A0A';
+      const gold = PPTX_COLORS.gold, ink = PPTX_COLORS.ink, dark = PPTX_COLORS.bg;
       const addBg = (s) => {
-        s.background = { color: '050812' };
-        s.addShape(pptx.ShapeType.rect, { x: 0, y: 0, w: W, h: H, fill: { color: '0B0803' }, line: { width: 0 } });
+        s.background = { color: PPTX_COLORS.bg };
+        s.addShape(pptx.ShapeType.rect, { x: 0, y: 0, w: W, h: H, fill: { color: PPTX_COLORS.bg2 }, line: { width: 0 } });
         s.addShape(pptx.ShapeType.rect, { x: 0, y: 0, w: .16, h: H, fill: { color: gold }, line: { width: 0 } });
         s.addShape(pptx.ShapeType.rect, { x: W - .16, y: 0, w: .16, h: H, fill: { color: gold }, line: { width: 0 } });
       };
       const s1 = pptx.addSlide();
       addBg(s1);
-      s1.addText(kind === 'chgk' ? 'ЧТО? ГДЕ? КОГДА?' : 'КТО ХОЧЕТ СТАТЬ МИЛЛИОНЕРОМ?', {
+      s1.addText(kind === 'chgk' ? 'ЧТО? ГДЕ? КОГДА?' : kind === 'hundred' ? '100 К 1' : 'КТО ХОЧЕТ СТАТЬ МИЛЛИОНЕРОМ?', {
         x: .8, y: 2.3, w: W - 1.6, h: 1.2, fontSize: 32, bold: true, color: gold, align: 'center', charSpacing: 3, fontFace: 'Arial'
       });
       s1.addText(gameTitle(game), { x: .8, y: 3.55, w: W - 1.6, h: .6, fontSize: 16, color: ink, align: 'center', fontFace: 'Arial' });
@@ -12615,14 +13759,394 @@ const SHOWS = (() => {
     }
   }
 
+  /* ========================================================================
+     ЧАСТЬ 4. «100 К 1» (СТО К ОДНОМУ)
+     ===================================================================== */
+  const HUND = { active: false, game: null, items: [], idx: 0, bank: 0, guesses: 0, revealed: 0, strikes: 0, phase: 'play' };
+
+  /** Очки за шесть ответов: чем популярнее ответ, тем больше очков. */
+  const HUND_POINTS = [32, 22, 16, 12, 10, 8];
+
+  /** Короткая форма ответа: убираем «например», скобки и хвосты после точки. */
+  function hundShort(text) {
+    let t = String(text || '').replace(/\s+/g, ' ').trim();
+    t = t.replace(/^[«"']+|[»"']+$/g, '');
+    const cut = t.split(/[.;:]/)[0];
+    if (cut.length > 3) t = cut;
+    const comma = t.split(',')[0];
+    if (comma.length > 3 && t.length > 34) t = comma;
+    if (t.length > 46) t = t.slice(0, 44).trim() + '…';
+    return t;
+  }
+
+  /** «Ответы аудитории»: первый — верный, дальше — короткие правдоподобные
+   *  варианты. Берём только ответы-существительные/числа из банка, без целых
+   *  решений и формул: на табло должны висеть короткие догадки. */
+  function hundAnswers(item, pool) {
+    const right = hundShort(item.a);
+    const out = [right];
+    const seen = new Set([right.toLowerCase()]);
+    const candidates = shuffle(pool.filter((p) => p !== item));
+    /* на табло «100 к 1» висят короткие догадки, а не целые решения */
+    const filler = S.lang === 'en'
+      ? ['Speed', 'Mass', 'Force', 'Energy', 'Time', 'Temperature']
+      : S.lang === 'kk'
+        ? ['Жылдамдық', 'Масса', 'Күш', 'Энергия', 'Уақыт', 'Температура']
+        : ['Скорость', 'Масса', 'Сила', 'Энергия', 'Время', 'Температура'];
+    const bad = (s) => /[=·+÷/^()]|\d|равн|если|когда|потому|зависит|называ|^да\b|^нет\b|например|состоит|значит|можно/i.test(s);
+    const headNoun = (s) => {
+      const m = s.match(/^([А-ЯЁA-Z][а-яёa-z\-]{2,14})(?:\s|$)/);
+      return m ? m[1] : null;
+    };
+    let guard = 0;
+    while (out.length < 6 && guard++ < 900) {
+      const cand = candidates.pop();
+      if (!cand) break;
+      const short = hundShort(cand.a);
+      if (short.length < 3 || short.length > 26) continue;
+      /* берём либо короткую целиком, либо её первое существительное */
+      const guess = bad(short) ? headNoun(short) : short;
+      if (!guess || guess.length < 3 || bad(guess)) continue;
+      const key = guess.toLowerCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push(guess);
+    }
+    let f = 0;
+    while (out.length < 6 && f < 40) {
+      const cand = filler[f++ % filler.length];
+      if (!seen.has(cand.toLowerCase())) { seen.add(cand.toLowerCase()); out.push(cand); }
+    }
+    return out.slice(0, 6);
+  }
+
+  /** Собрать раунд: 6 вопросов по 6 ответов. */
+  function hundBuild(game) {
+    const pool = shuffle(flattenQuestions(game)).filter((q) => q.a);
+    const items = pool.slice(0, 6);
+    return items.map((it) => ({ q: it.q, a: it.a, cat: it.cat, answers: hundAnswers(it, pool) }));
+  }
+
+  function hundOpen(game) {
+    MI.active = false;
+    CHGK.active = false;
+    HUND.active = true;
+    HUND.game = game;
+    HUND.items = hundBuild(game);
+    HUND.idx = 0;
+    HUND.bank = 0;
+    HUND.phase = 'play';
+    showStageHund();
+    $('#app').classList.add('in-game');
+    document.body.style.overflow = 'hidden';
+    AudioKit.resume();
+    AudioKit.setEnabled(S.settings.sfx && S.settings.sound);
+    AudioKit.setPack('studio');
+    hundRender();
+  }
+
+  function showStageHund() {
+    const el = screen();
+    el.classList.add('open');
+    el.innerHTML = closeBar() + '<div class="show-root"><div class="hund" id="hundRoot"></div></div>';
+    bindShowChrome();
+  }
+
+  function hundRender() {
+    const root = $('#hundRoot');
+    if (!root) return;
+    const it = HUND.items[HUND.idx];
+    if (!it) { hundFinish(); return; }
+    HUND.guesses = 0;
+    HUND.revealed = 0;
+    HUND.strikes = 0;
+    HUND.rowState = it.answers.map(() => false);
+    root.innerHTML =
+      '<div class="hund-head"><span class="hund-badge">100 : 1</span>' +
+        '<span class="hund-pool">' + esc(t('show.hundQuestion')) + ' <b>' + (HUND.idx + 1) + '</b> ' + esc(t('show.hundOf')) + ' ' + HUND.items.length + '</span>' +
+      '</div>' +
+      '<div class="hund-q" id="hundQ">' + esc(it.q) + '</div>' +
+      '<div class="hund-board" id="hundBoard">' + it.answers.map((a, i) =>
+        '<div class="hund-row" data-row="' + i + '">' +
+          '<span class="hund-num">' + (i + 1) + '</span>' +
+          '<span class="hund-answer">' + esc(a) + '</span>' +
+          '<span class="hund-score">' + HUND_POINTS[i] + '</span>' +
+        '</div>').join('') + '</div>' +
+      '<div class="hund-side">' +
+        '<span class="hund-pool">' + esc(t('show.hundRoundPoints')) + ' <b id="hundRound">0</b></span>' +
+        '<span class="hund-strikes" id="hundStrikes">' + [0, 1, 2].map(() => '<span class="hund-strike">✕</span>').join('') + '</span>' +
+      '</div>' +
+      '<div class="hund-actions" id="hundActions"></div>' +
+      '<div class="hund-total">' + esc(t('show.hundTotal')) + ': <b id="hundBank">' + fmt(HUND.bank) + '</b></div>';
+    hundActions();
+  }
+
+  function hundActions() {
+    const box = $('#hundActions');
+    if (!box) return;
+    const done = HUND.strikes >= 3 || HUND.revealed >= 6;
+    if (HUND.phase === 'play') {
+      box.innerHTML = done
+        ? '<button class="mi-btn gold" data-hund="next">' + esc(t('show.hundNext')) + ' →</button>'
+        : '<span class="hund-pool">' + esc(t('show.hundGuessHint')) + '</span>' +
+          '<button class="mi-btn" data-hund="reveal">' + esc(t('show.hundRevealAll')) + '</button>';
+      $$('[data-hund]', box).forEach((b) => b.addEventListener('click', () => {
+        if (b.dataset.hund === 'next') { hundNext(); return; }
+        hundRevealAll();
+      }));
+      /* клик по закрытой строке = «команда угадала этот ответ» */
+      if (!done) $$('#hundBoard .hund-row').forEach((row) => {
+        row.addEventListener('click', () => {
+          if (row.classList.contains('open')) return;
+          hundReveal(Number(row.dataset.row), true);
+          if (HUND.revealed >= 6) hundRevealAll();
+          hundActions();
+        });
+      });
+      return;
+    }
+    /* супер-игра */
+    box.innerHTML = '<span class="hund-pool" id="hundSuperState">' + esc(t('show.hundSuperHint')) + '</span>';
+  }
+
+  /** Открыть ответ на табло и добавить очки. */
+  function hundReveal(i, addPoints = true) {
+    const row = $('[data-row="' + i + '"]');
+    if (!row || row.classList.contains('open')) return;
+    row.classList.add('open');
+    HUND.revealed++;
+    if (addPoints) {
+      HUND.bank += HUND_POINTS[i] || 0;
+      const rb = $('#hundRound'); if (rb) rb.textContent = HUND.countPoints();
+      const bb = $('#hundBank'); if (bb) bb.textContent = fmt(HUND.bank);
+      AudioKit.chime ? AudioKit.chime() : AudioKit.click && AudioKit.click();
+    }
+  }
+
+  HUND.countPoints = function () {
+    let n = 0;
+    for (let i = 0; i < 6; i++) if ($('[data-row="' + i + '"]') && $('[data-row="' + i + '"]').classList.contains('open')) n += HUND_POINTS[i] || 0;
+    return n;
+  };
+
+  function hundRevealAll() {
+    for (let i = 0; i < 6; i++) {
+      const row = $('[data-row="' + i + '"]');
+      if (!row) continue;
+      if (!row.classList.contains('open')) {
+        row.classList.add('open');
+        /* если команда не угадала — ответ показываем, но очков не даём */
+        row.classList.add('strike');
+      }
+    }
+    HUND.revealed = 6;
+    HUND.phase = 'play';
+    hundActions();
+  }
+
+  function hundNext() {
+    HUND.idx++;
+    if (HUND.idx >= HUND.items.length) { hundFinish(); return; }
+    hundRender();
+  }
+
+  function hundFinish() {
+    const root = $('#hundRoot');
+    if (!root) return;
+    root.innerHTML =
+      '<div class="hund-head"><span class="hund-badge">100 : 1</span></div>' +
+      '<div class="hund-q">' + esc(t('show.hundTotal')) + ': ' + fmt(HUND.bank) + '</div>' +
+      '<div class="hund-actions">' +
+        '<button class="mi-btn gold" data-hund-fin="super">' + esc(t('show.hundSuperTitle')) + ' →</button>' +
+        '<button class="mi-btn ghost" data-hund-fin="again">' + esc(t('show.again')) + '</button>' +
+        '<button class="mi-btn ghost" data-hund-fin="exit">' + esc(t('show.exit')) + '</button>' +
+      '</div>';
+    $$('[data-hund-fin]').forEach((b) => b.addEventListener('click', () => {
+      const k = b.dataset.hundFin;
+      if (k === 'exit') { closeCrossword(); return; }
+      if (k === 'again') { hundOpen(HUND.game); return; }
+      hundSuper();
+    }));
+    confetti(120);
+  }
+
+  /** Супер-игра: команда называет ответ, которого нет на табло. */
+  function hundSuper() {
+    const root = $('#hundRoot');
+    if (!root) return;
+    HUND.phase = 'super';
+    root.innerHTML =
+      '<div class="hund-head"><span class="hund-badge">' + esc(t('show.hundSuperTitle')) + '</span></div>' +
+      '<div class="hund-q">' + esc(t('show.hundSuperHint')) + '</div>' +
+      '<div class="hund-actions">' +
+        '<button class="mi-btn gold" data-super="ok">' + esc(t('show.hundSuperOk')) + '</button>' +
+        '<button class="mi-btn ghost" data-super="fail">' + esc(t('show.hundSuperFail')) + '</button>' +
+      '</div>' +
+      '<div class="hund-total">' + esc(t('show.hundTotal')) + ': <b id="hundBank2">' + fmt(HUND.bank) + '</b></div>';
+    $$('[data-super]').forEach((b) => b.addEventListener('click', () => {
+      if (b.dataset.super === 'ok') {
+        HUND.bank *= 2;
+        const el = $('#hundBank2'); if (el) el.textContent = fmt(HUND.bank);
+        confetti(240);
+        toast(t('show.hundSuperOk'), 'ok');
+      } else {
+        toast(t('show.hundSuperFail'), 'warn');
+      }
+      setTimeout(() => { closeShow(); }, 900);
+    }));
+  }
+
   /* ------------------------------ публичный API ------------------------- */
-  return { chgkOpen, millionOpen, pickSet, closeShow, LADDER, CHGK, MI, buildMillionQuestions };
+  return { chgkOpen, millionOpen, pickup: pickSet, pickSet, hundOpen, closeShow, LADDER, CHGK, MI, HUND, buildMillionQuestions };
 })();
+
+/* =========================================================================
+   РАЗМИНКА: КРОССВОРД «ФИЗИКА 7»
+   Сетка восстановлена из методички учителя (слайд «Разминка»). В исходнике
+   были только заполненные клетки — определения к словам добавлены здесь,
+   порядок слов совпадает с сеткой.
+   ========================================================================= */
+const CROSS = {
+  words: [
+    { w: 'ПОГРЕШНОСТЬ', dir: 'h', x: 7,  y: 3,  def: 'Разница между измеренным и истинным значением величины.' },
+    { w: 'МЕХАНИКА',    dir: 'h', x: 9,  y: 6,  def: 'Раздел физики о движении тел и силах.' },
+    { w: 'ФИЗИКА',      dir: 'h', x: 9,  y: 10, def: 'Наука о природе и её явлениях.' },
+    { w: 'ТРАЕКТОРИЯ',  dir: 'h', x: 6,  y: 14, def: 'Линия, которую описывает тело при движении.' },
+    { w: 'СЕКУНДОМЕР',  dir: 'h', x: 9,  y: 18, def: 'Прибор для измерения времени.' },
+    { w: 'ОТНОСИТЕЛЬНОСТЬ', dir: 'h', x: 1, y: 23, def: 'Свойство движения зависеть от выбора тела отсчёта.' },
+    { w: 'ДВИЖЕНИЕ',    dir: 'h', x: 4,  y: 26, def: 'Изменение положения тела с течением времени.' },
+    { w: 'ПЕРЕМЕЩЕНИЕ', dir: 'v', x: 10, y: 1,  def: 'Вектор из начального положения тела в конечное.' },
+    { w: 'ЯВЛЕНИЕ',     dir: 'v', x: 8,  y: 20, def: 'Изменение, происходящее в природе.' },
+    { w: 'ВРЕМЯ',       dir: 'v', x: 10, y: 16, def: 'Величина, которую измеряют часами.' },
+    { w: 'ПУТЬ',        dir: 'v', x: 11, y: 12, def: 'Длина участка траектории.' },
+    { w: 'ЭКСПЕРИМЕНТ', dir: 'v', x: 13, y: 9,  def: 'Опыт, поставленный по плану.' },
+    { w: 'СКОРОСТЬ',    dir: 'v', x: 15, y: 16, def: 'Путь, пройденный за единицу времени.' },
+    { w: 'СИСТЕМАСИ',   dir: 'v', x: 16, y: 0,  def: 'Векторная величина в механике, измеряется в ньютонах.' },
+    { w: 'РАВНОМЕРНЫЙ', dir: 'v', x: 17, y: 12, def: 'Вид движения с постоянной по модулю скоростью.' }
+  ]
+};
+/** Собрать матрицу клеток и список пересечений. */
+function crossGrid() {
+  const cell = new Map();
+  const W = CROSS.words;
+  W.forEach((item, idx) => {
+    const letters = item.w.split('');
+    letters.forEach((ch, i) => {
+      const x = item.dir === 'h' ? item.x + i : item.x;
+      const y = item.dir === 'h' ? item.y : item.y + i;
+      const key = x + ':' + y;
+      if (!cell.has(key)) cell.set(key, { ch: null, x, y, h: [], v: [] });
+      const c = cell.get(key);
+      c.ch = ch;
+      c[item.dir === 'h' ? 'h' : 'v'].push(idx);
+    });
+  });
+  let maxX = 0, maxY = 0;
+  cell.forEach((c) => { maxX = Math.max(maxX, c.x); maxY = Math.max(maxY, c.y); });
+  return { cell, maxX, maxY, words: W };
+}
+let crossState = null;
+function openCrossword() {
+  const grid = crossGrid();
+  crossState = { grid, open: new Set() };
+  const el = $('#showScreen');
+  el.classList.add('open');
+  el.innerHTML = '<div class="show-closebar">' +
+      '<button class="glass-btn" data-cross-close title="' + esc(t('show.exit')) + '"><svg><use href="#i-x"/></svg></button>' +
+    '</div>' +
+    '<div class="show-root"><div class="cross" id="crossRoot"></div></div>';
+  $$('[data-cross-close]', el).forEach((b) => b.addEventListener('click', closeCrossword));
+  renderCross();
+  $('#app').classList.add('in-game');
+  document.body.style.overflow = 'hidden';
+  AudioKit.resume();
+}
+function closeCrossword() {
+  const el = $('#showScreen');
+  el.classList.remove('open');
+  el.innerHTML = '';
+  $('#app').classList.remove('in-game');
+  document.body.style.overflow = '';
+}
+function renderCross() {
+  const root = $('#crossRoot');
+  const { cell, maxX, maxY, words } = crossState.grid;
+  const nums = crossNumbering();
+  let cells = '';
+  for (let y = 0; y <= maxY; y++) {
+    for (let x = 0; x <= maxX; x++) {
+      const c = cell.get(x + ':' + y);
+      if (!c) { cells += '<div class="cross-cell blank"></div>'; continue; }
+      const isOpen = crossState.open.has(x + ':' + y);
+      const n = nums.get(x + ':' + y);
+      cells += '<div class="cross-cell' + (isOpen ? ' open' : '') + '" data-cell="' + x + ':' + y + '">' +
+        (n ? '<span class="cross-num">' + n + '</span>' : '') +
+        '<span class="cross-letter">' + (isOpen ? esc(c.ch) : '') + '</span></div>';
+    }
+  }
+  root.innerHTML =
+    '<div class="cross-head"><span class="hund-badge">РАЗМИНКА</span>' +
+      '<span class="hund-pool">Кроссворд · <b id="crossDone">0</b> / ' + cell.size + ' букв</span></div>' +
+    '<div class="cross-wrap">' +
+      '<div class="cross-grid" style="grid-template-columns:repeat(' + (maxX + 1) + ',1fr)">' + cells + '</div>' +
+      '<div class="cross-clues">' + cluesHtml(nums) + '</div>' +
+    '</div>' +
+    '<div class="hund-actions">' +
+      '<button class="mi-btn" data-cross="hint">Открыть букву</button>' +
+      '<button class="mi-btn" data-cross="all">Показать всё</button>' +
+      '<button class="mi-btn ghost" data-cross="reset">Сбросить</button>' +
+      '<button class="mi-btn gold" data-cross="exit">В игру →</button>' +
+    '</div>';
+  $$('[data-cross]', root).forEach((b) => b.addEventListener('click', () => {
+    const k = b.dataset.cross;
+    if (k === 'exit') { closeCrossword(); return; }
+    if (k === 'reset') crossState.open = new Set();
+    if (k === 'all') crossState.grid.cell.forEach((c) => crossState.open.add(c.x + ':' + c.y));
+    if (k === 'hint') {
+      const left = [...crossState.grid.cell.values()].filter((c) => !crossState.open.has(c.x + ':' + c.y));
+      if (left.length) { const pick = left[Math.floor(Math.random() * left.length)]; crossState.open.add(pick.x + ':' + pick.y); }
+    }
+    renderCross();
+  }));
+  $$('.cross-cell[data-cell]', root).forEach((c) => c.addEventListener('click', () => {
+    const k = c.dataset.cell;
+    if (crossState.open.has(k)) crossState.open.delete(k); else crossState.open.add(k);
+    renderCross();
+  }));
+  const done = $('#crossDone');
+  if (done) done.textContent = String(crossState.open.size);
+}
+/** Номера слов: по порядку чтения сетки (сверху вниз, слева направо),
+ *  поэтому в определениях номера идут 1, 2, 3… без разрывов. */
+function crossNumbering() {
+  const starts = crossState.grid.words.map((item) => ({ item, key: item.x + ':' + item.y }))
+    .sort((a, b) => (a.item.y - b.item.y) || (a.item.x - b.item.x));
+  const nums = new Map();
+  starts.forEach((s) => { if (!nums.has(s.key)) nums.set(s.key, nums.size + 1); });
+  return nums;
+}
+function cluesHtml(nums) {
+  const across = [], down = [];
+  crossState.grid.words.forEach((item) => {
+    (item.dir === 'h' ? across : down).push({ n: nums.get(item.x + ':' + item.y), item });
+  });
+  const li = (arr) => arr.sort((a, b) => a.n - b.n).map(({ n, item }) =>
+    '<li><b>' + n + '.</b> ' + esc(item.def) + ' <span class="cross-len">(' + item.w.length + ')</span></li>').join('');
+  return '<div class="cross-col"><h4>По горизонтали</h4><ol>' + li(across) + '</ol></div>' +
+         '<div class="cross-col"><h4>По вертикали</h4><ol>' + li(down) + '</ol></div>';
+}
 
 /* привязка карточек форматов на главной и в библиотеке */
 document.addEventListener('DOMContentLoaded', () => {
+  const launch = (el) => {
+    const fmt = el.dataset.format;
+    if (fmt === 'svoya') { setView('library'); return; }
+    if (fmt === 'hundred') { SHOWS.pickSet('hundred'); return; }
+    SHOWS.pickSet(fmt);
+  };
   $$('[data-format]').forEach((el) => {
-    el.addEventListener('click', () => SHOWS.pickSet(el.dataset.format));
+    el.addEventListener('click', () => launch(el));
+    el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); launch(el); } });
   });
 });
 
