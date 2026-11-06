@@ -79,7 +79,25 @@ function modelFrom(url) { return decodeURIComponent(url).match(/models\/([^:]+):
   }
   {
     const {context} = sandbox(async () => response(429, {error: {message: 'quota'}}));
-    assert.equal(await context.probeGeminiModel('test', 'model', []), null);
+    await assert.rejects(context.probeGeminiModel('test', 'model', []), e => e.aiHint === 'ai.errQuota');
+  }
+  for (const [status, expected] of [[403, 'ai.errKey'], [401, 'ai.errKey'], [503, 'ai.errBusy'], [500, 'ai.errProbe']]) {
+    const {context} = sandbox(async () => response(status, {}));
+    await assert.rejects(context.probeGeminiModel('test', 'model', []), e => e.aiHint === expected);
+  }
+  {
+    const {context} = sandbox(async () => { throw new TypeError('Failed to fetch'); });
+    await assert.rejects(context.probeGeminiModel('test', 'model', []), e => e.aiHint === 'ai.errNetwork');
+  }
+  {
+    const calls = [];
+    const {context} = sandbox(async url => { const model=modelFrom(url); calls.push(model); return model === 'available' ? ok() : response(404, {}); });
+    assert.equal(await context.probeGeminiModel('test', 'old', ['available']), 'available');
+    assert.deepEqual(calls, ['old', 'available']);
+  }
+  {
+    const {context} = sandbox(async () => response(400, {error:{message:'API key not valid'}}));
+    await assert.rejects(context.probeGeminiModel('test', 'model', []), e => e.aiHint === 'ai.errKey');
   }
   {
     const controller = new AbortController();

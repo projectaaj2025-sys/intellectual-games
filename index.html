@@ -962,9 +962,12 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
 .provider-tabs button.active{border-color:rgba(154,123,255,.6);background:rgba(154,123,255,.12);box-shadow:0 0 30px -14px rgba(154,123,255,.8)}
 .provider-tabs b{display:block;font-size:13.5px;color:var(--text)}
 .provider-tabs span{font-size:11px;color:var(--muted)}
-.api-state{display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;margin-top:8px;white-space:nowrap}
-.api-state span{white-space:nowrap}
-.api-state .dot{width:7px;height:7px;border-radius:50%;background:var(--faint)}
+.api-state{display:flex;align-items:flex-start;gap:8px;font-size:11.5px;font-weight:700;margin-top:8px;min-width:0;white-space:normal}
+.api-state span:not(.dot){min-width:0;white-space:normal;overflow-wrap:anywhere;line-height:1.45}
+.api-state .dot{width:7px;height:7px;margin-top:5px;flex:none;border-radius:50%;background:var(--faint)}
+.ai-panel .form-grid>.field{min-width:0}
+#aiKeyState{flex-wrap:wrap}
+.ai-preview-body,.toast{overflow-wrap:anywhere}
 .api-state.ok .dot{background:var(--ok);box-shadow:0 0 10px var(--ok)}
 .api-state.ok{color:var(--ok)}
 .api-state.warn .dot{background:var(--gold);box-shadow:0 0 10px var(--gold)}
@@ -1575,7 +1578,7 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
         <div class="hero-stats">
           <div class="hero-stat"><b id="statGames">0</b><span data-i18n="hero.stat1">готовых игр</span></div>
           <div class="hero-stat"><b id="statQuestions">0</b><span data-i18n="hero.stat2">вопросов в базе</span></div>
-          <div class="hero-stat"><b>4<em>–</em>3</b><span data-i18n="hero.stat3">раунда по правилам шоу</span></div>
+          <div class="hero-stat"><b>3<em>–</em>4</b><span data-i18n="hero.stat3">раунда по правилам шоу</span></div>
           <div class="hero-stat"><b>3</b><span data-i18n="hero.stat4">языка интерфейса</span></div>
         </div>
       </div>
@@ -3102,6 +3105,9 @@ Object.assign(I18N.en, {'ai.busyRetry':'service busy, retrying or switching mode
 Object.assign(I18N.ru, {'ai.format':'Формат игры','ai.anySubject':'Своя тема','ai.topicRequired':'Укажите свою тему или темы секций.','ai.invalidResponse':'Ответ ИИ неполный или не соответствует правилам формата. Попробуйте ещё раз.','ai.generated':'Создано ИИ — проверьте факты и ответы','ai.surveyWarning':'Варианты и баллы предложены ИИ, это не данные реального опроса. Проверьте и отредактируйте.','ai.edit':'Редактировать','ai.schemaInfo':'Схема зависит от выбранного шоу. Перед запуском проверьте и при необходимости исправьте вопросы и ответы.','ai.sub':'Выберите шоу и любую тему — ИИ подготовит вопросы в нужном формате. Проверьте результат перед игрой. Ключ хранится только в вашем браузере.','ai.sectionsHint':'Укажите свои темы через запятую или с новой строки. Для произвольной темы обязательно заполните тему или секции.','ai.topicPh':'Например: космос, кино, история, кошки или физика','ai.h5':'мемы и юмор'});
 Object.assign(I18N.kk, {'ai.format':'Ойын форматы','ai.anySubject':'Өз тақырыбы','ai.topicRequired':'Өз тақырыбыңызды немесе бөлім тақырыптарын енгізіңіз.','ai.invalidResponse':'ИИ жауабы толық емес немесе формат ережелеріне сәйкес келмейді. Қайталап көріңіз.','ai.generated':'ИИ жасады — фактілер мен жауаптарды тексеріңіз','ai.surveyWarning':'Жауаптар мен ұпайлар ИИ ұсынған, нақты сауалнама деректері емес. Тексеріп, түзетіңіз.','ai.edit':'Өңдеу','ai.schemaInfo':'Схема ойын форматына байланысты. Ойын алдында сұрақтар мен жауаптарды тексеріңіз.','ai.sub':'Шоу мен кез келген тақырыпты таңдаңыз — ИИ тиісті форматта сұрақтар жасайды. Нәтижені тексеріңіз. Кілт тек браузерде сақталады.','ai.sectionsHint':'Өз тақырыптарыңызды үтірмен немесе жаңа жолдан жазыңыз. Өз тақырыбы үшін тақырыпты не бөлімдерді енгізіңіз.','ai.topicPh':'Мысалы: ғарыш, кино, тарих, мысықтар немесе физика','ai.h5':'мемдер мен әзіл'});
 Object.assign(I18N.en, {'ai.format':'Game format','ai.anySubject':'Custom topic','ai.topicRequired':'Enter a custom topic or section topics.','ai.invalidResponse':'The AI response is incomplete or does not match the format. Please try again.','ai.generated':'AI-generated — verify facts and answers','ai.surveyWarning':'Answers and scores are AI suggestions, not real survey data. Review and edit them.','ai.edit':'Edit','ai.schemaInfo':'The schema depends on the selected show. Review and correct questions and answers before playing.','ai.sub':'Choose a show and any topic; AI will prepare questions in that format. Review the result before playing. The key stays in your browser.','ai.sectionsHint':'Enter your topics separated by commas or new lines. For a custom topic, enter a topic or sections.','ai.topicPh':'E.g. space, movies, history, cats or physics','ai.h5':'memes and humour'});
+Object.assign(I18N.ru, {'ai.errNetwork':'Не удалось связаться с сервисом. Проверьте интернет и ограничения браузера или сети.','ai.errProbe':'Не удалось проверить модель.','ai.checkFailed':'Модель не подтверждена.','ai.errQuota':'Превышен лимит запросов или квота сервиса. Подождите и проверьте лимиты проекта.','ai.errKey':'Сервис отклонил доступ. Проверьте права ключа, ограничения API и настройки проекта.'});
+Object.assign(I18N.kk, {'ai.errNetwork':'Сервиске қосылу мүмкін болмады. Интернетті және браузер не желі шектеулерін тексеріңіз.','ai.errProbe':'Модельді тексеру мүмкін болмады.','ai.checkFailed':'Модель расталмады.','ai.errQuota':'Сұрау лимиті немесе сервис квотасы асқан. Біраз күтіп, жоба лимиттерін тексеріңіз.','ai.errKey':'Сервис рұқсат бермеді. Кілт рұқсаттарын, API шектеулерін және жоба баптауларын тексеріңіз.'});
+Object.assign(I18N.en, {'ai.errNetwork':'Could not connect to the service. Check your internet connection and browser or network restrictions.','ai.errProbe':'Could not check the model.','ai.checkFailed':'Model not verified.','ai.errQuota':'The request limit or service quota was exceeded. Wait and check your project limits.','ai.errKey':'The service denied access. Check key permissions, API restrictions and project settings.'});
 function t(key) {
   const dict = I18N[S.lang] || I18N.ru;
   if (dict[key] != null) return dict[key];
@@ -9966,7 +9972,7 @@ function libGameCard(g) {
         '<span class="chip chip-gold">' + esc(g.showFormat ? nativeFormatName(g.showFormat) : subjectLabel(g.subject)) + '</span>' +
         '<span class="chip">' + esc(g.grade) + ' ' + esc(t('grade')) + '</span>' +
         '<span class="chip">' + esc(g.quarter ? g.quarter + ' ' + t('quarterShort') : t('lib.wholeCourse')) + '</span>' +
-        '<span class="chip chip-cyan">' + qs + ' Q</span>' +
+        '<span class="chip chip-cyan">' + qs + ' ' + esc(t('presets.questions')) + '</span>' +
         (custom ? '<span class="chip chip-violet">' + esc(t('presets.custom')) + '</span>' : '') +
       '</div>' +
       '<p class="lib-desc">' + esc(tx(g.desc) || '') + '</p>' +
@@ -11504,7 +11510,11 @@ async function listGeminiModels(key, signal) {
   do {
     const url = 'https://generativelanguage.googleapis.com/v1beta/models?pageSize=100&key=' + encodeURIComponent(key) + (token ? '&pageToken=' + encodeURIComponent(token) : '');
     const res = await fetch(url, { signal });
-    if (!res.ok) throw new Error('Gemini models ' + res.status);
+    if (!res.ok) {
+      const err = new Error('Gemini models ' + res.status);
+      if (res.status === 400 && /API key not valid|API_KEY_INVALID/i.test(await res.text().catch(() => ''))) err.aiHint = 'ai.errKey';
+      throw err;
+    }
     const data = await res.json();
     models.push(...(data.models || [])
       .filter((m) => (m.supportedGenerationMethods || []).includes('generateContent'))
@@ -11524,6 +11534,7 @@ function pickBestModel(provider, list) {
 }
 /** Показать выбранную модель в поле и в подписи. */
 function setAiModel(model, note) {
+  AI.diagnosticKey = null;
   const el = $('#aiModel');
   if (el && model) el.value = model;
   S.settings.model = model || S.settings.model;
@@ -11538,6 +11549,7 @@ function setAiModel(model, note) {
 }
 /** Подпись под полем «Модель». */
 function aiModelHint(text, ok) {
+  AI.diagnosticKey = null;
   const wrap = $('#aiModelState');
   const txt = $('#aiModelText');
   if (txt) txt.textContent = text;
@@ -11585,15 +11597,20 @@ async function checkAiKey(silent) {
   const textEl = $('#aiModelText');
   if (stateEl) { stateEl.classList.remove('ok'); stateEl.classList.add('warn'); }
   if (textEl) textEl.textContent = t('ai.modelChecking');
+  AI.diagnosticKey = null;
+  let bestAvailable = null;
   try {
     const list = provider === 'openai' ? await listOpenAIModels(key) : await listGeminiModels(key);
+    if (($('#aiKey').value || '').trim() !== key || AI.provider !== provider || AI.running) return null;
     fillModelList(list);
     /* Для Gemini список моделей может содержать имена, закрытые для новых
        пользователей. Проверяем кандидатов живым запросом: первый же
        ответивший становится рабочей моделью. */
     let best = pickBestModel(provider, list);
+    bestAvailable = best;
     if (provider === 'gemini') {
       const verified = await probeGeminiModel(key, best, list);
+      if (($('#aiKey').value || '').trim() !== key || AI.provider !== provider || AI.running) return null;
       if (verified) best = verified;
       if (!verified) {
         setAiModel(best, t('ai.modelUnverified') + ' ' + best);
@@ -11606,16 +11623,18 @@ async function checkAiKey(silent) {
     if (!silent) toast(t('ai.keyOk') + ' · ' + best, 'ok');
     return best;
   } catch (e) {
-    /* Список моделей может быть закрыт политикой ключа или CORS.
-       Не считаем ключ битым: подставляем рабочую модель по умолчанию
-       и подсказываем, что делать, если ошибка повторится при генерации. */
-    const fallback = provider === 'gemini' ? 'gemini-2.5-flash' : 'gpt-4o-mini';
+    if (($('#aiKey').value || '').trim() !== key || AI.provider !== provider || AI.running) return null;
+    const fallback = bestAvailable || (provider === 'gemini' ? 'gemini-2.5-flash' : 'gpt-4o-mini');
     const msg = String(e.message || e);
-    const hint = /401|403|API_KEY_INVALID|API key not valid|permission/i.test(msg)
-      ? t('ai.errKey')
-      : /429|quota|RESOURCE_EXHAUSTED/i.test(msg) ? t('ai.errQuota') : /\b(502|503|504)\b/.test(msg) ? t('ai.errBusy') : '';
-    setAiModel(fallback, t('ai.modelFallback') + ' ' + fallback);
-    if (!silent) toast(t('ai.modelFallback') + ': ' + fallback + (hint ? ' · ' + hint : ''), hint ? 'err' : 'warn');
+    const hintKey = e.aiHint || (/401|403|API_KEY_INVALID|API key not valid|permission/i.test(msg) ? 'ai.errKey'
+      : /429|quota|RESOURCE_EXHAUSTED/i.test(msg) ? 'ai.errQuota'
+      : /\b(502|503|504)\b/.test(msg) ? 'ai.errBusy'
+      : e instanceof TypeError ? 'ai.errNetwork' : 'ai.errProbe');
+    const hint = t(hintKey);
+    setAiModel(fallback);
+    aiModelHint(t('ai.checkFailed') + ' ' + hint, false);
+    AI.diagnosticKey = hintKey;
+    if (!silent) toast(hint, 'warn', t('ai.checkFailed'));
     return fallback;
   }
 }
@@ -11623,24 +11642,33 @@ async function checkAiKey(silent) {
 /** Проверка «живой» модели Gemini коротким запросом.
  *  Возвращает первую модель, которая реально ответила 200, или null. */
 async function probeGeminiModel(key, preferred, list) {
-  const ordered = geminiCandidates(preferred)
-    .concat((list || []).filter((m) => modelIsUsable(m)).sort((a, b) => modelRank(a) - modelRank(b)));
-  const seen = [];
+  // Сначала проверяем модели, которые Google действительно вернул для ключа.
+  const available = (list || []).filter(modelIsUsable).sort((a, b) => modelRank(a) - modelRank(b));
+  const ordered = [preferred].concat(available, geminiCandidates(preferred));
+  const seen = new Set();
+  let busy = false;
+  const failure = (hint, status) => Object.assign(new Error(t(hint)), {aiHint:hint, status});
   for (const m of ordered) {
-    if (!m || seen.indexOf(m) !== -1) continue;
-    seen.push(m);
-    if (seen.length > 4) break;
+    if (!m || seen.has(m)) continue;
+    seen.add(m);
+    if (seen.size > 8) break;
+    let res;
     try {
-      const res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' + encodeURIComponent(m) + ':generateContent?key=' + encodeURIComponent(key), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' + encodeURIComponent(m) + ':generateContent?key=' + encodeURIComponent(key), {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: 'ping' }] }], generationConfig: { maxOutputTokens: 8 } })
       });
-      if (res.ok) return m;
-      if ([502, 503, 504].includes(res.status)) continue;
-      if (!geminiModelGone(res.status, await res.text().catch(() => ''))) return null; /* Ошибка ключа, лимита или сети не подтверждает модель. */
-    } catch (e) { /* сеть — оставляем как есть */ }
+    } catch (e) { throw failure('ai.errNetwork', 0); }
+    if (res.ok) return m;
+    if ([502, 503, 504].includes(res.status)) { busy = true; continue; }
+    if (res.status === 429) throw failure('ai.errQuota', 429);
+    if (res.status === 401 || res.status === 403) throw failure('ai.errKey', res.status);
+    const text = await res.text().catch(() => '');
+    if (res.status === 400 && /API key not valid|API_KEY_INVALID/i.test(text)) throw failure('ai.errKey', 400);
+    if (geminiModelGone(res.status, text)) continue;
+    throw failure('ai.errProbe', res.status);
   }
+  if (busy) throw failure('ai.errBusy', 503);
   return null;
 }
 /** Запрос к OpenAI. Новые модели (o-серия, gpt-5) не принимают temperature —
@@ -11767,7 +11795,7 @@ async function callGemini(cfg, prompt, signal) {
       continue;
     }
     if (res.status === 400 || res.status === 401 || res.status === 403) {
-      if (/API key not valid|API_KEY_INVALID|permission/i.test(text)) throw new Error(t('ai.errKey'));
+      if (res.status === 401 || res.status === 403 || /API key not valid|API_KEY_INVALID|permission/i.test(text)) throw new Error(t('ai.errKey'));
       throw new Error('Gemini ' + res.status + ': ' + text.slice(0, 300));
     }
     lastErr = new Error('Gemini ' + res.status + ': ' + text.slice(0, 300));
@@ -11881,7 +11909,7 @@ async function runAiGeneration() {
     S.aiResult = game;
     renderAiPreview(game);
     aiSetState('done');
-    aiLog('✓ ' + gameTitle(game) + ' · ' + gameQuestionCount(game) + ' Q', 'ok');
+    aiLog('✓ ' + gameTitle(game) + ' · ' + gameQuestionCount(game) + ' ' + t('presets.questions'), 'ok');
     toast(t('ai.genOk'), 'ok');
     confetti(50);
   } catch (e) {
@@ -11966,7 +11994,10 @@ function setLang(lang) {
     if (G.cell && G.showAnswer) { /* подписи обновятся при следующем действии */ }
   }
   if (S.view === 'builder') { renderBuilderMeta(); renderNativeBuilder(); }
-  if (S.view === 'ai') { syncAiForm(); }
+  if (S.view === 'ai') {
+    syncAiForm();
+    if (AI.diagnosticKey) { const key = AI.diagnosticKey; aiModelHint(t('ai.checkFailed') + ' ' + t(key), false); AI.diagnosticKey = key; }
+  }
   const libGrade = $('#libGrade');
   if (libGrade) { libGrade.options[0].textContent = t('lib.allGrades'); }
   const libQ = $('#libQuarter');
@@ -14176,7 +14207,7 @@ const SHOWS = (() => {
     body.innerHTML = games.map((g) => '<button class="format-pick" data-set="' + esc(g.id) + '">' +
       '<span class="fp-emoji">' + esc(g.emoji || '★') + '</span>' +
       '<span class="fp-body"><b>' + esc(gameTitle(g)) + '</b>' +
-      '<span>' + gameQuestionCount(g) + ' Q · ' + esc(tx(g.desc) || '') + '</span></span>' +
+      '<span>' + gameQuestionCount(g) + ' ' + esc(t('presets.questions')) + ' · ' + esc(tx(g.desc) || '') + '</span></span>' +
       '</button>').join('');
     $('#formatPickTitle').textContent = t(kind === 'chgk' ? 'show.chgk' : kind === 'hundred' ? 'show.hundred' : 'show.million');
     openModal('formatPickModal');
