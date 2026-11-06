@@ -1450,6 +1450,10 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
 @media(max-width:640px){.native-timer-grid{grid-template-columns:1fr 1fr}.chgk-wheel-clock{gap:5px}.chgk-wheel-clock span{width:100%}.chgk-clock-panel{gap:10px;padding:9px}.chgk-clock .dial{width:58px;height:58px}.chgk-clock .num{font-size:19px}.chgk-clock-controls{width:100%}.chgk-clock-button{font-size:10px;padding:8px}.chgk-question-stage .chgk-card{width:100%}.chgk-question-stage .q-text{font-size:clamp(18px,5vw,26px);max-height:29vh}}
 
 @media(max-width:640px){.chgk-head{width:100%;justify-content:flex-start;padding:16px 100px 8px 16px;gap:10px}.chgk-head .owl{width:50px;flex:none}.chgk-head h1{font-size:13px;letter-spacing:.15em;line-height:1.25}.chgk-head small{font-size:9px;letter-spacing:.12em;overflow-wrap:anywhere}}
+
+/* Каталог сгруппирован по классам, фильтры остаются над разделами. */
+#libGrid{display:block}.lib-group{margin:26px 0 34px}.lib-group-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:0 0 14px;padding-bottom:12px;border-bottom:1px solid var(--line)}.lib-group-head h2{font-family:var(--font-display);font-size:25px;margin:4px 0 0}.lib-group-kicker{font-size:9px;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:var(--gold)}.lib-group-count{color:var(--muted);font-size:11px;white-space:nowrap}.lib-group-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+@media(max-width:600px){.lib-toolbar #libSearch{flex:1 0 100%;width:100%}.lib-toolbar #libFormat{flex:1 0 100%;width:100%}.ai-preview-head{flex-wrap:wrap}.ai-preview-head>span{flex:1 0 80%}}
 </style>
 </head>
 <body>
@@ -1674,39 +1678,11 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
       </div>
       <button class="btn btn-line" data-go="library"><svg><use href="#i-grid"/></svg><span data-i18n="play.toLibrary">База игр</span></button>
     </div>
-    <div class="play-grid" id="playGrid">
-      <article class="play-card" data-format="svoya" role="button" tabindex="0">
-        <div class="play-cover"><span class="play-emoji">★</span><span class="play-chip" data-i18n="formats.live">доступно</span></div>
-        <div class="play-body">
-          <h3 data-i18n="formats.f1">Своя игра</h3>
-          <p data-i18n="play.svoyaDesc">Поле 5×5 или 4×4, два раунда, «Кот в мешке», аукцион и супер-игра со ставками.</p>
-          <div class="play-foot"><span data-i18n="play.svoyaMeta">от 2 до 4 команд · таймер · PPTX</span><svg><use href="#i-arrow-right"/></svg></div>
-        </div>
-      </article>
-      <article class="play-card" data-format="million" role="button" tabindex="0">
-        <div class="play-cover"><span class="play-emoji">КХСМ</span><span class="play-chip" data-i18n="formats.live">доступно</span></div>
-        <div class="play-body">
-          <h3 data-i18n="formats.f3">Кто хочет стать миллионером</h3>
-          <p data-i18n="play.millionDesc">15 вопросов с четырьмя вариантами, несгораемые суммы и четыре подсказки.</p>
-          <div class="play-foot"><span data-i18n="play.millionMeta">лестница до 1 000 000 · подсказки</span><svg><use href="#i-arrow-right"/></svg></div>
-        </div>
-      </article>
-      <article class="play-card" data-format="chgk" role="button" tabindex="0">
-        <div class="play-cover"><span class="play-emoji">?</span><span class="play-chip" data-i18n="formats.live">доступно</span></div>
-        <div class="play-body">
-          <h3 data-i18n="formats.f4">Что? Где? Когда?</h3>
-          <p data-i18n="play.chgkDesc">Волчок, 13 секторов, чёрный ящик, блиц и минута на размышление.</p>
-          <div class="play-foot"><span data-i18n="play.chgkMeta">13 секторов · волчок · блиц</span><svg><use href="#i-arrow-right"/></svg></div>
-        </div>
-      </article>
-      <article class="play-card" data-format="hundred" role="button" tabindex="0">
-        <div class="play-cover"><span class="play-emoji">100:1</span><span class="play-chip" data-i18n="formats.live">доступно</span></div>
-        <div class="play-body">
-          <h3 data-i18n="formats.f2">100 к 1</h3>
-          <p data-i18n="play.hundredDesc">Шесть ответов опроса на табло и три промаха. Баллы задаёт автор набора.</p>
-          <div class="play-foot"><span data-i18n="play.hundredMeta">6 вопросов · 6 ответов · 3 промаха</span><svg><use href="#i-arrow-right"/></svg></div>
-        </div>
-      </article>
+    <div class="formats formats-redesign" id="playGrid">
+      <article class="format-card" data-format="svoya" role="button" tabindex="0"><div class="format-top"><span class="format-number">01 / QUIZ</span><span class="format-arrow">↗</span></div><div class="format-symbol">✦</div><h3 data-i18n="formats.f1">Своя игра</h3><p data-i18n="formats.f1d">5×5, два раунда, супер-игра</p><span class="format-ready" data-i18n="formats.live">доступно</span></article>
+      <article class="format-card" data-format="hundred" role="button" tabindex="0"><div class="format-top"><span class="format-number">02 / SURVEY</span><span class="format-arrow">↗</span></div><div class="format-symbol">100<span> : 1</span></div><h3 data-i18n="formats.f2">100 к 1</h3><p data-i18n="formats.f2d">Ответы аудитории и табло</p><span class="format-ready" data-i18n="formats.live">доступно</span></article>
+      <article class="format-card" data-format="million" role="button" tabindex="0"><div class="format-top"><span class="format-number">03 / LADDER</span><span class="format-arrow">↗</span></div><div class="format-symbol">◇</div><h3 data-i18n="formats.f3">Кто хочет стать миллионером</h3><p data-i18n="formats.f3d">15 вопросов и подсказки</p><span class="format-ready" data-i18n="formats.live">доступно</span></article>
+      <article class="format-card" data-format="chgk" role="button" tabindex="0"><div class="format-top"><span class="format-number">04 / CLUB</span><span class="format-arrow">↗</span></div><div class="format-symbol">?</div><h3 data-i18n="formats.f4">Что? Где? Когда?</h3><p data-i18n="formats.f4d">Волчок и минута на размышление</p><span class="format-ready" data-i18n="formats.live">доступно</span></article>
     </div>
     <div class="play-note">
       <svg><use href="#i-spark"/></svg>
@@ -1733,7 +1709,6 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
     </div>
     <div class="tabs" id="libTabs">
       <button class="active" data-tab="all" data-i18n="lib.tabAll">Все</button>
-      <button data-tab="plan" data-i18n="lib.tabPlan">По программе</button>
       <button data-tab="fun" data-i18n="lib.tabFun">Смешные</button>
       <button data-tab="physics" data-i18n="lib.tabPhysics">Физика</button>
       <button data-tab="math" data-i18n="lib.tabMath">Математика</button>
@@ -1741,6 +1716,9 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
     </div>
     <div class="lib-toolbar">
       <input class="input" id="libSearch" type="search" data-i18n-placeholder="lib.search" placeholder="Поиск по названию или теме">
+      <select class="select" id="libFormat" aria-label="Формат игры">
+        <option value="" data-i18n="lib.allFormats">Все форматы</option><option value="svoya" data-i18n="formats.f1">Своя игра</option><option value="million" data-i18n="formats.f3">Кто хочет стать миллионером</option><option value="chgk" data-i18n="formats.f4">Что? Где? Когда?</option><option value="hundred" data-i18n="formats.f2">100 к 1</option>
+      </select>
       <select class="select" id="libGrade"><option value="" data-i18n="lib.allGrades">Все классы</option></select>
       <select class="select" id="libQuarter"><option value="" data-i18n="lib.allQuarters">Все четверти</option></select>
       <span class="lib-count" id="libCount"></span>
@@ -1892,11 +1870,13 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
             <div class="flex"><input class="input" id="aiModel" list="aiModelList" value="gpt-4o-mini" spellcheck="false"><datalist id="aiModelList"></datalist></div>
             <div class="api-state" id="aiModelState" style="white-space:normal"><span class="dot"></span><span id="aiModelText" data-i18n="ai.modelAutoHint">подбирается по ключу автоматически</span></div>
           </label>
+          <label class="field span-3"><span class="label" data-i18n="ai.format">Формат игры</span><select class="select" id="aiFormat"><option value="svoya" data-i18n="formats.f1">Своя игра</option><option value="million" data-i18n="formats.f3">Кто хочет стать миллионером</option><option value="chgk" data-i18n="formats.f4">Что? Где? Когда?</option><option value="hundred" data-i18n="formats.f2">100 к 1</option></select></label>
           <label class="field"><span class="label" data-i18n="ai.subject">Предмет</span>
             <select class="select" id="aiSubject">
               <option value="physics" data-i18n="subject.physics">Физика</option>
               <option value="math" data-i18n="subject.math">Математика</option>
               <option value="mixed" data-i18n="subject.mixed">Физика + математика</option>
+              <option value="other" data-i18n="ai.anySubject">Своя тема</option>
             </select>
           </label>
           <label class="field"><span class="label" data-i18n="ai.grade">Класс</span>
@@ -1929,7 +1909,7 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
           <span class="hint" style="margin-left:auto" data-i18n="ai.time">обычно 20–60 секунд</span>
         </div>
         <div class="ai-preview" id="aiPreview">
-          <div class="ai-preview-head"><svg style="width:15px;height:15px"><use href="#i-eye"/></svg><span data-i18n="ai.preview">Предпросмотр набора</span><button class="btn btn-sm btn-ok" id="aiApply" style="margin-left:auto" data-i18n="ai.apply">Открыть в игре</button></div>
+          <div class="ai-preview-head"><svg style="width:15px;height:15px"><use href="#i-eye"/></svg><span data-i18n="ai.preview">Предпросмотр набора</span><button class="btn btn-sm btn-line" id="aiEdit" data-i18n="ai.edit">Редактировать</button><button class="btn btn-sm btn-ok" id="aiApply" style="margin-left:auto" data-i18n="ai.apply">Открыть в игре</button></div>
           <div class="ai-preview-body" id="aiPreviewBody"></div>
         </div>
       </div>
@@ -1947,22 +1927,7 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
         <div class="panel">
           <div class="panel-head"><h3 data-i18n="ai.system">Системный промпт</h3></div>
           <p class="hint" data-i18n="ai.systemHint">Модель возвращает строгий JSON. Такой же формат можно импортировать в конструктор.</p>
-          <pre class="json-spec">{
-  "title": "...",
-  "subject": "physics",
-  "grade": 7,
-  "quarter": 2,
-  "rounds": [
-    { "categories": [
-      { "name": "...", "questions": [
-        { "q": "...", "a": "...",
-          "type": "normal|cat|auction|bonus|fail",
-          "image": "описание графика" }
-      ]}
-    ]}
-  ],
-  "final": { "theme": "...", "q": "...", "a": "..." }
-}</pre>
+          <p class="hint" data-i18n="ai.schemaInfo">Схема зависит от выбранного шоу. Перед запуском проверьте и при необходимости исправьте вопросы и ответы.</p>
         </div>
       </aside>
     </div>
@@ -3128,6 +3093,15 @@ const LS = {
   },
   del(key) { try { localStorage.removeItem('qs.' + key); } catch (e) {} }
 };
+Object.assign(I18N.ru, {'lib.allFormats':'Все форматы','lib.multiGrades':'Сборные классы','lib.otherGrades':'Другие игры','lib.groupLabel':'подборка по классу'});
+Object.assign(I18N.kk, {'lib.allFormats':'Барлық форматтар','lib.multiGrades':'Жинақ сыныптар','lib.otherGrades':'Басқа ойындар','lib.groupLabel':'сынып бойынша'});
+Object.assign(I18N.en, {'lib.allFormats':'All formats','lib.multiGrades':'Combined grades','lib.otherGrades':'Other games','lib.groupLabel':'by grade'});
+Object.assign(I18N.ru, {'ai.busyRetry':'сервис перегружен, повторяем или меняем модель','ai.errBusy':'Gemini временно перегружен. Попробуйте снова через несколько минут.'});
+Object.assign(I18N.kk, {'ai.busyRetry':'сервис бос емес, қайталап немесе басқа модельді қолданамыз','ai.errBusy':'Gemini уақытша бос емес. Бірнеше минуттан кейін қайталап көріңіз.'});
+Object.assign(I18N.en, {'ai.busyRetry':'service busy, retrying or switching models','ai.errBusy':'Gemini is temporarily busy. Please try again in a few minutes.'});
+Object.assign(I18N.ru, {'ai.format':'Формат игры','ai.anySubject':'Своя тема','ai.topicRequired':'Укажите свою тему или темы секций.','ai.invalidResponse':'Ответ ИИ неполный или не соответствует правилам формата. Попробуйте ещё раз.','ai.generated':'Создано ИИ — проверьте факты и ответы','ai.surveyWarning':'Варианты и баллы предложены ИИ, это не данные реального опроса. Проверьте и отредактируйте.','ai.edit':'Редактировать','ai.schemaInfo':'Схема зависит от выбранного шоу. Перед запуском проверьте и при необходимости исправьте вопросы и ответы.','ai.sub':'Выберите шоу и любую тему — ИИ подготовит вопросы в нужном формате. Проверьте результат перед игрой. Ключ хранится только в вашем браузере.','ai.sectionsHint':'Укажите свои темы через запятую или с новой строки. Для произвольной темы обязательно заполните тему или секции.','ai.topicPh':'Например: космос, кино, история, кошки или физика','ai.h5':'мемы и юмор'});
+Object.assign(I18N.kk, {'ai.format':'Ойын форматы','ai.anySubject':'Өз тақырыбы','ai.topicRequired':'Өз тақырыбыңызды немесе бөлім тақырыптарын енгізіңіз.','ai.invalidResponse':'ИИ жауабы толық емес немесе формат ережелеріне сәйкес келмейді. Қайталап көріңіз.','ai.generated':'ИИ жасады — фактілер мен жауаптарды тексеріңіз','ai.surveyWarning':'Жауаптар мен ұпайлар ИИ ұсынған, нақты сауалнама деректері емес. Тексеріп, түзетіңіз.','ai.edit':'Өңдеу','ai.schemaInfo':'Схема ойын форматына байланысты. Ойын алдында сұрақтар мен жауаптарды тексеріңіз.','ai.sub':'Шоу мен кез келген тақырыпты таңдаңыз — ИИ тиісті форматта сұрақтар жасайды. Нәтижені тексеріңіз. Кілт тек браузерде сақталады.','ai.sectionsHint':'Өз тақырыптарыңызды үтірмен немесе жаңа жолдан жазыңыз. Өз тақырыбы үшін тақырыпты не бөлімдерді енгізіңіз.','ai.topicPh':'Мысалы: ғарыш, кино, тарих, мысықтар немесе физика','ai.h5':'мемдер мен әзіл'});
+Object.assign(I18N.en, {'ai.format':'Game format','ai.anySubject':'Custom topic','ai.topicRequired':'Enter a custom topic or section topics.','ai.invalidResponse':'The AI response is incomplete or does not match the format. Please try again.','ai.generated':'AI-generated — verify facts and answers','ai.surveyWarning':'Answers and scores are AI suggestions, not real survey data. Review and edit them.','ai.edit':'Edit','ai.schemaInfo':'The schema depends on the selected show. Review and correct questions and answers before playing.','ai.sub':'Choose a show and any topic; AI will prepare questions in that format. Review the result before playing. The key stays in your browser.','ai.sectionsHint':'Enter your topics separated by commas or new lines. For a custom topic, enter a topic or sections.','ai.topicPh':'E.g. space, movies, history, cats or physics','ai.h5':'memes and humour'});
 function t(key) {
   const dict = I18N[S.lang] || I18N.ru;
   if (dict[key] != null) return dict[key];
@@ -10009,14 +9983,16 @@ function renderLibrary() {
   const grid = $('#libGrid');
   if (!grid) return;
   const search = ($('#libSearch') && $('#libSearch').value || '').trim().toLowerCase();
+  const formatSel = $('#libFormat') ? $('#libFormat').value : '';
   const gradeSel = $('#libGrade') ? $('#libGrade').value : '';
   const qSel = $('#libQuarter') ? $('#libQuarter').value : '';
   let list = allGames();
   if (S.libraryTab === 'plan') list = list.filter((g) => (g.tags || []).includes('plan'));
   if (S.libraryTab === 'fun') list = list.filter((g) => (g.tags || []).includes('fun'));
-  if (S.libraryTab === 'physics') list = list.filter((g) => g.subject === 'physics' && !(g.tags || []).includes('plan'));
+  if (S.libraryTab === 'physics') list = list.filter((g) => g.subject === 'physics');
   if (S.libraryTab === 'math') list = list.filter((g) => g.subject === 'math');
   if (S.libraryTab === 'custom') list = list.filter((g) => !g.builtin);
+  if (formatSel) list = list.filter((g) => (g.showFormat || 'svoya') === formatSel);
   if (gradeSel) list = list.filter((g) => String(g.grade) === gradeSel || (g.grades || []).map(String).includes(gradeSel));
   /* «весь курс» (quarter = 0) и сборные показываем при любом выборе четверти */
   if (qSel) list = list.filter((g) => !g.quarter || String(g.quarter) === qSel);
@@ -10039,7 +10015,19 @@ function renderLibrary() {
       '<button class="btn btn-gold btn-sm" data-go="builder" style="margin-top:8px">' + esc(t('lib.new')) + '</button></div>';
     return;
   }
-  grid.innerHTML = list.map(libGameCard).join('');
+  const groups = new Map();
+  list.forEach((g) => {
+    const multi = (g.grades || []).length > 1 || /[–—-]/.test(String(g.grade));
+    const n = Number(g.grade);
+    const key = multi ? 'multi' : Number.isInteger(n) && n >= 5 && n <= 11 ? String(n) : 'other';
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(g);
+  });
+  const order = ['5','6','7','8','9','10','11','multi','other'];
+  grid.innerHTML = order.filter((key) => groups.has(key)).map((key) => {
+    const title = key === 'multi' ? t('lib.multiGrades') : key === 'other' ? t('lib.otherGrades') : key + ' ' + t('grade');
+    return '<section class="lib-group"><div class="lib-group-head"><div><span class="lib-group-kicker">' + esc(t('lib.groupLabel')) + '</span><h2>' + esc(title) + '</h2></div><span class="lib-group-count">' + groups.get(key).length + ' ' + esc(t('lib.count')) + '</span></div><div class="lib-group-grid">' + groups.get(key).map(libGameCard).join('') + '</div></section>';
+  }).join('');
 }
 function findGame(id) {
   return allGames().find((g) => String(g.id) === String(id)) || null;
@@ -11376,59 +11364,50 @@ const AI = {
   running: false
 };
 const HUMOR_LEVELS = [
-  { ru: 'Строго научный: формулировки как в учебнике, без шуток, но живо и понятно.', kk: 'Қатаң ғылыми: оқулықтағыдай тұжырым, әзілсіз, бірақ тірі және түсінікті.', en: 'Strictly scientific: textbook wording, no jokes, but lively and clear.' },
-  { ru: 'Живой язык: допустимы аналогии из быта и школы, юмор почти отсутствует.', kk: 'Тірі тіл: тұрмыс пен мектептен ұқсастықтарға рұқсат, әзіл аз.', en: 'Lively tone: everyday and school analogies allowed, almost no humour.' },
+  { ru: 'Серьёзный тон: без шуток, но живо и понятно.', kk: 'Қатаң ғылыми: оқулықтағыдай тұжырым, әзілсіз, бірақ тірі және түсінікті.', en: 'Strictly scientific: textbook wording, no jokes, but lively and clear.' },
+  { ru: 'Живой язык: допустимы аналогии из жизни, юмор почти отсутствует.', kk: 'Тірі тіл: тұрмыс пен мектептен ұқсастықтарға рұқсат, әзіл аз.', en: 'Lively tone: everyday and school analogies allowed, almost no humour.' },
   { ru: 'Лёгкая улыбка: один короткий каламбур или неожиданное сравнение на вопрос.', kk: 'Жеңіл күлкі: әр сұраққа бір қысқа ойын немесе тосын салыстыру.', en: 'A light smile: one short pun or surprising comparison per question.' },
-  { ru: 'Иронично: шутки про уроки, контрольные и «физику в быту», но без потери сути.', kk: 'Ирониялық: сабақ, бақылау жұмысы және «тұрмыстағы физика» туралы әзіл, мазмұн сақталады.', en: 'Ironic: jokes about lessons, tests and “kitchen physics”, without losing the point.' },
-  { ru: 'Очень смешно: мемные ситуации, узнаваемые школьные типажи, ответ всё равно проверяемый.', kk: 'Өте күлкілі: мемдік жағдайлар, таныс мектеп кейіпкерлері, жауап тексерілетін болып қалады.', en: 'Very funny: meme situations and recognisable school characters, yet the answer stays checkable.' },
+  { ru: 'Иронично: уместные шутки по теме, но без потери сути.', kk: 'Ирониялық: тақырыпқа сай әзіл, мазмұн сақталады.', en: 'Ironic: relevant jokes without losing the point.' },
+  { ru: 'Очень смешно: мемные ситуации и узнаваемые образы, ответ всё равно проверяемый.', kk: 'Өте күлкілі: мемдік жағдайлар, таныс мектеп кейіпкерлері, жауап тексерілетін болып қалады.', en: 'Very funny: meme situations and recognisable characters, yet the answer stays checkable.' },
   { ru: 'Мемы: смело, интернет-юмор и абсурд, но правильный ответ обязан быть точным.', kk: 'Мемдер: батыл, интернет-әзіл мен абсурд, бірақ дұрыс жауап дәл болуы керек.', en: 'Memes: bold internet humour and absurdity, but the correct answer must remain exact.' }
 ];
 function aiLangName() {
   return S.lang === 'en' ? 'English' : S.lang === 'kk' ? 'Kazakh' : 'Russian';
 }
 function buildAiPrompt(cfg) {
-  const subject = cfg.subject === 'math' ? 'математика' : cfg.subject === 'mixed' ? 'физика и математика' : 'физика';
-  const langName = aiLangName();
+  const format = cfg.format || 'svoya';
+  const subject = cfg.subject === 'math' ? 'математика' : cfg.subject === 'mixed' ? 'физика и математика' : cfg.subject === 'other' ? 'любая указанная пользователем тема, без привязки к физике или математике' : 'физика';
   const humor = HUMOR_LEVELS[clamp(cfg.humor, 0, 5)][S.lang] || HUMOR_LEVELS[clamp(cfg.humor, 0, 5)].ru;
-  return [
-    'Ты — методист и автор вопросов для школьной интеллектуальной викторины «Своя игра» в Казахстане.',
-    'Составь полный комплект: 2 раунда по 5 категорий, в каждой категории ровно 5 вопросов возрастающей сложности, плюс супер-игра.',
-    'Параметры:',
-    '- предмет: ' + subject,
-    '- класс: ' + cfg.grade,
-    '- четверть: ' + cfg.quarter + ' (учитывай программу Республики Казахстан: в 1-й четверти — начала темы, в 4-й — итоговое повторение)',
-    cfg.topic ? '- акцент на теме: ' + cfg.topic : '- тема: ключевые разделы четверти',
-    (cfg.sections && cfg.sections.length)
-      ? '- СВОИ ТЕМЫ СЕКЦИЙ (используй ровно их, по одной на категорию): ' + cfg.sections.join(' · ')
-      : '- секции возьми из программы класса и четверти',
-    '- уровень юмора: ' + humor,
-    '- язык всех вопросов и ответов: ' + langName + '. Соблюдай школьную терминологию на этом языке.',
-    cfg.media ? '- для 4–6 вопросов придумай, какой график, схему или иллюстрацию стоит добавить, и запиши это в поле "image" (кратко, по-русски).' : '- поле "image" оставь пустой строкой.',
-    'Требования к вопросам:',
-    '1. Вопросы проверяемые, с однозначным коротким ответом (число, формула, термин, 1–2 предложения).',
-    '2. В 1-м раунде — базовые задания (100–500), во 2-м — сложнее (200–600).',
-    '3. Не менее 3 специальных вопросов за всю игру: типы "cat" (кот в мешке), "auction" (аукцион), "bonus" (бонус ×2), "fail" (неудача). Остальные — "normal".',
-    '4. В математике указывай единицы измерения, в физике — данные для расчёта.',
-    '5. Никаких вопросов про политику, религию и личности.',
-    '6. СТИЛЬ: не больше трети вопросов на чистое определение. Обязательно добавь: (а) задачи и вычисления из жизни, (б) вопросы «угадай, почему так», (в) забавные и парадоксальные вопросы, (г) неожиданное применение знаний в быту, технике, спорте или профессии.',
-    '7. У КАЖДОГО вопроса заполни поле "fact" — короткий настоящий интересный факт по теме (1 предложение, до 160 символов). Он показывается после ответа.',
-    '8. В каждом вопросе ответ — короткий и однозначный, чтобы ведущий мог проверить за 2 секунды.',
-    (cfg.sections && cfg.sections.length)
-      ? '9. Если темы секций не про школьный предмет — всё равно ищи в них настоящую физику/математику: игра должна быть смешной, но научно верной.'
-      : '9. Спецвопросы (cat, auction, bonus, fail) — не больше 6–7 на всю игру.',
-    'Верни ТОЛЬКО JSON без markdown-разметки и без пояснений, строго по схеме:',
-    JSON.stringify({
-      title: 'Название игры на языке вопросов',
-      subject: cfg.subject,
-      grade: cfg.grade,
-      quarter: cfg.quarter,
-      rounds: [
-        { name: 'Раунд 1', categories: [{ name: 'Категория', questions: [{ q: 'вопрос', a: 'ответ', type: 'normal', image: '', fact: 'интересный факт' }] }] },
-        { name: 'Раунд 2', categories: [{ name: 'Категория', questions: [{ q: 'вопрос', a: 'ответ', type: 'normal', image: '', fact: 'интересный факт' }] }] }
-      ],
-      final: { theme: 'тема супер-игры', q: 'вопрос', a: 'ответ' }
-    })
-  ].join('\n');
+  const common = [
+    'Ты автор увлекательных вопросов для интеллектуального шоу. Верни только валидный JSON без markdown.',
+    'Предмет или направление: ' + subject + '.',
+    'Возраст аудитории: примерно ' + cfg.grade + ' класс. Язык всех вопросов и ответов: ' + aiLangName() + '.',
+    cfg.subject === 'other' ? 'Не ограничивайся школьной программой или Казахстаном.' : 'Учебная программа Казахстана, четверть ' + cfg.quarter + '.',
+    cfg.topic ? 'Основная тема: ' + cfg.topic : '',
+    cfg.sections && cfg.sections.length ? 'Используй темы пользователя: ' + cfg.sections.join(' · ') + '. Распределяй их по вопросам естественно; не требуй ровно пять тем.' : '',
+    'Уровень юмора: ' + humor,
+    'Вопросы должны быть разнообразными, понятными, оригинальными, точными и соответствовать формату шоу. Не выдумывай факты. Проверяй ответы. Не копируй вопросы телепередач.'
+  ];
+  const schemas = {
+    svoya: [
+      'Формат «Своя игра»: ровно 2 раунда, в каждом ровно 5 категорий, в каждой ровно 5 вопросов с возрастающей сложностью, и финальный вопрос. Короткие однозначные ответы; не менее трёх специальных типов cat, auction, bonus или fail.',
+      'У каждого вопроса добавь короткий достоверный интересный факт в fact. ' + (cfg.media ? 'Для нескольких укажи идею иллюстрации в image.' : 'Поле image оставь пустым.'),
+      'Схема (массивы в примере сокращены, но заполни все требуемые элементы): {"title":"...","desc":"...","rounds":[{"name":"...","categories":[{"name":"...","questions":[{"q":"...","a":"...","type":"normal","fact":"...","image":""}]}]}],"final":{"theme":"...","q":"...","a":"..."}}'
+    ],
+    million: [
+      'Формат «Кто хочет стать миллионером»: ровно 15 разнообразных вопросов с возрастающей сложностью, в каждом ровно 4 различных варианта и один верный. correct — целое число от 0 до 3, индекс правильного варианта.',
+      'Схема: {"title":"...","desc":"...","showItems":[{"q":"...","options":["...","...","...","..."],"correct":0}]}.'
+    ],
+    chgk: [
+      'Формат «Что? Где? Когда?»: ровно 13 секторов. Оригинальные логические вопросы на рассуждение с однозначным ответом и объяснением в fact, без вариантов. kind normal либо blackbox; blackbox только если вопрос действительно о предмете в чёрном ящике. Можно использовать blitz или superblitz: в каждом таком секторе ровно три связанных самостоятельных вопроса в blitz с q и a.',
+      'Схема: {"title":"...","desc":"...","showItems":[{"kind":"normal","q":"...","a":"...","fact":"...","blitz":[]}]}.'
+    ],
+    hundred: [
+      'Формат «100 к 1»: ровно 6 открытых вопросов без единственного объективного ответа; для каждого ровно 6 различных правдоподобных ответов людей и целые условные points от 0 до 100, по убыванию, сумма не более 100. Это предположения, не результаты реального опроса; не называй их реальным опросом.',
+      'Схема: {"title":"...","desc":"...","showItems":[{"q":"...","answers":[{"text":"...","points":30},{"text":"...","points":22},{"text":"...","points":16},{"text":"...","points":12},{"text":"...","points":10},{"text":"...","points":8}]}]}.'
+    ]
+  };
+  return common.concat(schemas[format] || schemas.svoya).join('\n');
 }
 function extractJson(text) {
   if (!text) return null;
@@ -11634,7 +11613,7 @@ async function checkAiKey(silent) {
     const msg = String(e.message || e);
     const hint = /401|403|API_KEY_INVALID|API key not valid|permission/i.test(msg)
       ? t('ai.errKey')
-      : /429|quota|RESOURCE_EXHAUSTED/i.test(msg) ? t('ai.errQuota') : '';
+      : /429|quota|RESOURCE_EXHAUSTED/i.test(msg) ? t('ai.errQuota') : /\b(502|503|504)\b/.test(msg) ? t('ai.errBusy') : '';
     setAiModel(fallback, t('ai.modelFallback') + ' ' + fallback);
     if (!silent) toast(t('ai.modelFallback') + ': ' + fallback + (hint ? ' · ' + hint : ''), hint ? 'err' : 'warn');
     return fallback;
@@ -11658,6 +11637,7 @@ async function probeGeminiModel(key, preferred, list) {
         body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: 'ping' }] }], generationConfig: { maxOutputTokens: 8 } })
       });
       if (res.ok) return m;
+      if ([502, 503, 504].includes(res.status)) continue;
       if (!geminiModelGone(res.status, await res.text().catch(() => ''))) return null; /* Ошибка ключа, лимита или сети не подтверждает модель. */
     } catch (e) { /* сеть — оставляем как есть */ }
   }
@@ -11728,10 +11708,20 @@ async function geminiRequest(key, model, prompt, signal) {
   const text = res.ok ? '' : await res.text().catch(() => '');
   return { res, text };
 }
+function geminiWait(ms, signal) {
+  return new Promise((resolve, reject) => {
+    if (signal && signal.aborted) { const e = new Error('Aborted'); e.name = 'AbortError'; reject(e); return; }
+    const abort = () => { clearTimeout(timer); const e = new Error('Aborted'); e.name = 'AbortError'; reject(e); };
+    const timer = setTimeout(() => { if (signal) signal.removeEventListener('abort', abort); resolve(); }, ms);
+    if (signal) signal.addEventListener('abort', abort, {once:true});
+  });
+}
 async function callGemini(cfg, prompt, signal) {
   const key = (cfg.apiKey || '').trim();
   const list = geminiCandidates(cfg.model);
   let lastErr = null;
+  let busy = false;
+  let busyRetries = 0;
   let discovered = false;
   for (let i = 0; i < list.length; i++) {
     const model = list[i];
@@ -11747,6 +11737,15 @@ async function callGemini(cfg, prompt, signal) {
       return parts ? parts.map((p) => p.text || '').join('') : '';
     }
     if (res.status === 429) throw new Error(t('ai.errQuota'));
+    if ([502, 503, 504].includes(res.status)) {
+      busy = true;
+      aiLog('! ' + model + ' · ' + t('ai.busyRetry'), 'warn');
+      if (busyRetries < 2) {
+        await geminiWait(1000 * Math.pow(2, busyRetries++), signal);
+        i--; /* Повторяем модель с ограниченной задержкой. */
+      }
+      continue; /* Затем пробуем другие модели. */
+    }
     /* Проверяем ошибку модели до общей обработки 400: Google может вернуть
        «not supported for generateContent» с кодом 400 вместо 404. */
     if ((res.status === 400 || res.status === 404) && geminiModelGone(res.status, text)) {
@@ -11774,57 +11773,52 @@ async function callGemini(cfg, prompt, signal) {
     lastErr = new Error('Gemini ' + res.status + ': ' + text.slice(0, 300));
     break;
   }
-  throw lastErr || new Error(t('ai.errKey'));
+  throw (busy ? new Error(t('ai.errBusy')) : lastErr) || new Error(t('ai.errKey'));
 }
 /* Приведение ответа модели к игре Quiz Studio */
-function gameFromAiJson(raw) {
-  const g = normalizeGame({
-    title: raw.title || t('ai.genOk'),
-    subject: raw.subject || 'mixed',
-    grade: raw.grade || Number($('#aiGrade') ? $('#aiGrade').value : 7),
-    quarter: raw.quarter || Number($('#aiQuarter') ? $('#aiQuarter').value : 1),
-    desc: (raw.desc || '') || (S.lang === 'en' ? 'Generated with AI' : S.lang === 'kk' ? 'ИИ арқылы жасалды' : 'Сгенерировано через ИИ'),
-    emoji: '✨',
-    accent: '#9a7bff',
-    rounds: (raw.rounds || []).map((r, i) => ({
-      name: r.name || t('game.roundIntro') + ' ' + (i + 1),
-      categories: (r.categories || []).map((c) => ({
-        name: c.name || '—',
-        questions: (c.questions || []).map((q) => ({
-          q: q.q || q.question || '',
-          a: q.a || q.answer || '',
-          type: ['normal', 'cat', 'auction', 'bonus', 'fail'].includes(q.type) ? q.type : 'normal',
-          visual: null,
-          photo: null,
-          imageIdea: q.image || ''
-        }))
-      }))
-    })),
-    final: raw.final || { theme: '', q: '', a: '' }
-  });
-  /* добить недостающие ячейки, чтобы поле всегда было 5×5 */
-  while (g.rounds.length < 2) g.rounds.push({ name: t('game.roundIntro') + ' ' + (g.rounds.length + 1), categories: [] });
-  g.rounds.forEach((r, ri) => {
-    while (r.categories.length < 5) r.categories.push({ name: '—', questions: [] });
-    r.categories.forEach((c) => {
-      while (c.questions.length < 5) c.questions.push({ q: '', a: '', type: 'normal' });
-    });
-  });
-  return g;
+function gameFromAiJson(raw, cfg) {
+  const filled = x => typeof x === 'string' && !!x.trim();
+  const fail = () => { throw new Error(t('ai.invalidResponse')); };
+  if (!raw || !filled(raw.title)) fail();
+  const kind = cfg.format || 'svoya';
+  const desc = (filled(raw.desc) ? raw.desc.trim() + ' · ' : '') + t('ai.generated') + (kind === 'hundred' ? ' · ' + t('ai.surveyWarning') : '');
+  let data = {title:raw.title, desc, subject:cfg.subject, grade:cfg.grade, quarter:cfg.subject === 'other' ? 0 : cfg.quarter, emoji:'✨', accent:'#9a7bff'};
+  if (kind === 'svoya') {
+    if (!Array.isArray(raw.rounds) || raw.rounds.length !== 2 || !raw.final || !filled(raw.final.theme) || !filled(raw.final.q) || !filled(raw.final.a)) fail();
+    for (const r of raw.rounds) {
+      if (!r || !Array.isArray(r.categories) || r.categories.length !== 5) fail();
+      for (const c of r.categories) {
+        if (!c || !filled(c.name) || !Array.isArray(c.questions) || c.questions.length !== 5) fail();
+        if (!c.questions.every(q => q && filled(q.q) && filled(q.a) && ['normal','cat','auction','bonus','fail'].includes(q.type))) fail();
+      }
+    }
+    data.rounds = raw.rounds; data.final = raw.final;
+  } else {
+    data.showFormat = kind; data.showItems = raw.showItems;
+    if (!nativeValid(data)) fail();
+  }
+  return normalizeGame(data);
 }
 function renderAiPreview(g) {
-  const box = $('#aiPreview');
-  const body = $('#aiPreviewBody');
+  const box = $('#aiPreview'), body = $('#aiPreviewBody');
   if (!box || !body) return;
   box.classList.add('on');
   const loc = localizeGame(g);
-  let html = '<div class="qpre"><b>' + esc(loc.title) + '</b><p>' + esc(subjectLabel(loc.subject)) + ' · ' + esc(loc.grade) + ' ' + esc(t('grade')) + ' · ' + esc(loc.quarter) + ' ' + esc(t('quarterShort')) + '</p></div>';
-  loc.rounds.forEach((r, ri) => {
-    html += '<div class="qpre"><b>' + esc(t('game.roundIntro') + ' ' + (ri + 1)) + '</b><p>' + r.categories.map((c) => esc(c.name)).join(' · ') + '</p></div>';
-  });
-  const first = loc.rounds[0] && loc.rounds[0].categories[0] && loc.rounds[0].categories[0].questions[0];
-  if (first) html += '<div class="qpre"><b>' + esc(t('game.showing')) + '</b><p>' + esc(first.q) + '</p><span>' + esc(first.a) + '</span></div>';
-  html += '<div class="qpre"><b>' + esc(t('presets.final')) + '</b><p>' + esc(loc.final.theme || '—') + '</p><span>' + esc(loc.final.q || '') + '</span></div>';
+  let html = '<div class="qpre"><b>' + esc(loc.title) + '</b><p>' + esc(loc.desc) + '</p></div>';
+  if (g.showFormat) {
+    g.showItems.forEach((item, i) => {
+      const prompt = item.q || (item.blitz || []).map(x => x.q + ' — ' + x.a).join(' / ');
+      const answers = g.showFormat === 'million' ? item.options.map((x,j) => (j === item.correct ? '✓ ' : '') + x).join(' · ') : g.showFormat === 'hundred' ? item.answers.map(x => x.text + ' (' + x.points + ')').join(' · ') : item.a || '';
+      html += '<div class="qpre"><b>' + (i+1) + '.</b><p>' + esc(prompt) + '</p><span>' + esc(answers) + '</span></div>';
+    });
+  } else {
+    loc.rounds.forEach((r, ri) => {
+      html += '<div class="qpre"><b>' + esc(t('game.roundIntro') + ' ' + (ri + 1)) + '</b><p>' + r.categories.map(c => esc(c.name)).join(' · ') + '</p></div>';
+    });
+    const first = loc.rounds[0].categories[0].questions[0];
+    html += '<div class="qpre"><b>' + esc(t('game.showing')) + '</b><p>' + esc(first.q) + '</p><span>' + esc(first.a) + '</span></div>';
+    html += '<div class="qpre"><b>' + esc(t('presets.final')) + '</b><p>' + esc(loc.final.theme) + '</p><span>' + esc(loc.final.q) + '</span></div>';
+  }
   body.innerHTML = html;
 }
 async function runAiGeneration() {
@@ -11843,6 +11837,7 @@ async function runAiGeneration() {
     provider: AI.provider,
     apiKey: key,
     model: ($('#aiModel').value || '').trim() || (AI.provider === 'openai' ? 'gpt-4o-mini' : 'gemini-2.5-flash'),
+    format: $('#aiFormat').value,
     subject: $('#aiSubject').value,
     grade: Number($('#aiGrade').value),
     quarter: Number($('#aiQuarter').value),
@@ -11852,6 +11847,8 @@ async function runAiGeneration() {
     humor: Number($('#aiHumor').value),
     media: $('#aiMedia').checked
   };
+  if (cfg.subject === 'other' && !cfg.topic && !cfg.sections.length) { toast(t('ai.topicRequired'), 'err'); $('#aiTopic').focus(); return; }
+  S.aiResult = null;
   S.settings.apiKey = key;
   S.settings.provider = cfg.provider;
   S.settings.model = cfg.model;
@@ -11880,7 +11877,7 @@ async function runAiGeneration() {
       aiLog(String(text).slice(0, 900), 'err');
       throw new Error('JSON');
     }
-    const game = gameFromAiJson(json);
+    const game = gameFromAiJson(json, cfg);
     S.aiResult = game;
     renderAiPreview(game);
     aiSetState('done');
@@ -12113,7 +12110,14 @@ function renderRules() {
 function bindGlobal() {
   document.addEventListener('click', (e) => {
     const go = e.target.closest('[data-go]');
-    if (go) { e.preventDefault(); setView(go.dataset.go); return; }
+    if (go) {
+      e.preventDefault();
+      if (go.dataset.go === 'library') {
+        $('#libFormat').value = ''; $('#libGrade').value = ''; $('#libQuarter').value = ''; $('#libSearch').value = '';
+        S.libraryTab = 'all'; $$('#libTabs button').forEach((b) => b.classList.toggle('active', b.dataset.tab === 'all'));
+      }
+      setView(go.dataset.go); return;
+    }
     const close = e.target.closest('[data-close]');
     if (close) { closeModal(close.dataset.close); return; }
     const play = e.target.closest('[data-play]');
@@ -12222,6 +12226,7 @@ function bindGlobal() {
     renderLibrary();
   });
   $('#libSearch').addEventListener('input', renderLibrary);
+  $('#libFormat').addEventListener('change', renderLibrary);
   $('#libGrade').addEventListener('change', renderLibrary);
   $('#libQuarter').addEventListener('change', renderLibrary);
   $('#importBtn').addEventListener('click', () => { $('#importText').value = ''; openModal('importModal'); });
@@ -12476,9 +12481,14 @@ function bindGlobal() {
     if (!S.aiResult) return;
     const g = saveGameAsCustom(S.aiResult);
     setView('library');
-    openSetup(g);
+    if (g.showFormat) launchNativeGame(g); else openSetup(g);
   });
-  $('#aiSubject').addEventListener('change', () => {});
+  $('#aiEdit').addEventListener('click', () => {
+    if (!S.aiResult) return;
+    const g = saveGameAsCustom(S.aiResult);
+    if (g.showFormat) editNativeGame(g); else { selectBuilderFormat('svoya'); loadBuilderFromGame(g); setView('builder'); renderBuilder(); }
+  });
+  $('#aiSubject').addEventListener('change', () => { $('#aiQuarter').disabled = $('#aiSubject').value === 'other'; });
   /* инструкция по подключению ключа */
   const openGuide = () => openModal('aiGuide');
   const guideBtn = $('#aiGuideBtn');
@@ -12648,13 +12658,14 @@ function nativeValid(g) {
  if (!NATIVE_DEFAULTS[g.showFormat] || !Array.isArray(g.showItems) || g.showItems.length !== NATIVE_DEFAULTS[g.showFormat]) return false;
  const filled = x => typeof x === 'string' && x.trim().length > 0;
  return g.showItems.every(it => {
+  if (!it || typeof it !== 'object') return false;
   if (g.showFormat === 'chgk') {
    if (!['normal','blackbox','blitz','superblitz'].includes(it.kind)) return false;
-   return ['blitz','superblitz'].includes(it.kind) ? Array.isArray(it.blitz) && it.blitz.length===3 && it.blitz.every(x=>filled(x.q)&&filled(x.a)) : filled(it.q)&&filled(it.a);
+   return ['blitz','superblitz'].includes(it.kind) ? Array.isArray(it.blitz) && it.blitz.length===3 && it.blitz.every(x=>x && filled(x.q)&&filled(x.a)) : filled(it.q)&&filled(it.a);
   }
   if (!filled(it.q)) return false;
   if (g.showFormat === 'million') return Array.isArray(it.options) && it.options.length===4 && it.options.every(filled) && new Set(it.options.map(x=>x.trim().toLowerCase())).size===4 && Number.isInteger(it.correct) && it.correct>=0 && it.correct<4;
-  if (!Array.isArray(it.answers) || it.answers.length!==6 || !it.answers.every(x=>filled(x.text) && String(x.points).trim()!=='' && Number.isInteger(Number(x.points)) && Number(x.points)>=0 && Number(x.points)<=100)) return false;
+  if (!Array.isArray(it.answers) || it.answers.length!==6 || !it.answers.every(x=>x && filled(x.text) && String(x.points).trim()!=='' && Number.isInteger(Number(x.points)) && Number(x.points)>=0 && Number(x.points)<=100)) return false;
   const pts=it.answers.map(x=>Number(x.points));
   return new Set(it.answers.map(x=>x.text.trim().toLowerCase())).size===6 && pts.every((x,i)=>i===0 || pts[i-1]>=x) && pts.reduce((a,b)=>a+b,0)<=100;
  });
@@ -14663,9 +14674,13 @@ function cluesHtml(nums) {
 document.addEventListener('DOMContentLoaded', () => {
   const launch = (el) => {
     const fmt = el.dataset.format;
-    if (fmt === 'svoya') { setView('library'); return; }
-    if (fmt === 'hundred') { SHOWS.pickSet('hundred'); return; }
-    SHOWS.pickSet(fmt);
+    $('#libFormat').value = fmt;
+    $('#libSearch').value = '';
+    $('#libGrade').value = '';
+    $('#libQuarter').value = '';
+    S.libraryTab = 'all';
+    $$('#libTabs button').forEach((b) => b.classList.toggle('active', b.dataset.tab === 'all'));
+    setView('library');
   };
   $$('[data-format]').forEach((el) => {
     el.addEventListener('click', () => launch(el));
