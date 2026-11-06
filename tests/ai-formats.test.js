@@ -20,4 +20,9 @@ const rounds=Array.from({length:2},()=>({categories:Array.from({length:5},()=>({
 const board={title:'Game',rounds,final:{theme:'Theme',q:'Q',a:'A'}};
 assert.equal(ctx.gameFromAiJson(board,{...cfg,format:'svoya'}).rounds[0].categories[0].questions[0].fact,'F');
 assert.throws(()=>ctx.gameFromAiJson({...board,rounds:rounds.slice(0,1)},{...cfg,format:'svoya'}),/ai.invalidResponse/);
+const shortRounds=Array.from({length:2},()=>({categories:Array.from({length:3},()=>({name:'Cat',questions:Array.from({length:4},()=>({q:'Q',a:'A',type:'normal'}))}))}));
+const small={...board,rounds:shortRounds};
+assert.equal(ctx.gameFromAiJson(small,{...cfg,format:'svoya',cats:3,qs:4}).rounds[0].categories[0].questions.length,4);
+assert.throws(()=>ctx.gameFromAiJson(small,{...cfg,format:'svoya',cats:4,qs:4}),/ai.invalidResponse/);
+assert.match(ctx.buildAiPrompt({...cfg,format:'svoya',cats:3,qs:4}),/ровно 3 категорий, в каждой ровно 4 вопросов/);
 console.log('AI prompts, all four formats, custom topics, validation and survey warning: OK');

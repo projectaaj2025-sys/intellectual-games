@@ -968,6 +968,7 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
 .ai-panel .form-grid>.field{min-width:0}
 #aiKeyState{flex-wrap:wrap}
 .ai-preview-body,.toast{overflow-wrap:anywhere}
+#svoyaBuilderActions{flex-wrap:wrap;max-width:100%;min-width:0}
 .api-state.ok .dot{background:var(--ok);box-shadow:0 0 10px var(--ok)}
 .api-state.ok{color:var(--ok)}
 .api-state.warn .dot{background:var(--gold);box-shadow:0 0 10px var(--gold)}
@@ -1789,10 +1790,10 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
           <div class="panel-sub" data-i18n="builder.roundSub">Раунд 1 — от 100 до 500, раунд 2 — от 200 до 600. Тип вопроса выбирается в каждой строке.</div>
           <div class="size-row">
             <label class="field"><span class="label" data-i18n="builder.catsCount">Категорий в раунде</span>
-              <select class="select" id="bCatCount"><option>3</option><option>4</option><option selected>5</option><option>6</option></select>
+              <select class="select" id="bCatCount"><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option><option>6</option></select>
             </label>
             <label class="field"><span class="label" data-i18n="builder.qCount">Вопросов в категории</span>
-              <select class="select" id="bQCount"><option>3</option><option>4</option><option selected>5</option><option>6</option></select>
+              <select class="select" id="bQCount"><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option><option>6</option></select>
             </label>
             <div class="size-hint"><b id="bSizeNow">5 × 5</b><span data-i18n="builder.sizeHint">поле текущего раунда</span></div>
           </div>
@@ -1801,6 +1802,7 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
             <button data-round="2" data-i18n="builder.round2">Раунд 2</button>
             <button data-round="final" data-i18n="builder.final">Супер-игра</button>
           </div>
+          <div class="flex builder-extras" style="gap:8px;flex-wrap:wrap;margin:12px 0"><button type="button" class="btn btn-line btn-sm" id="bShuffleCats" data-i18n="builder.shuffleCats">Перемешать темы</button><button type="button" class="btn btn-line btn-sm" id="bSurprises" data-i18n="builder.surprises">Добавить спецвопросы</button></div>
           <div id="bCatEditors"></div>
           <div id="bFinalEditor" class="hidden">
             <div class="cat-editor">
@@ -1874,12 +1876,13 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
             <div class="api-state" id="aiModelState" style="white-space:normal"><span class="dot"></span><span id="aiModelText" data-i18n="ai.modelAutoHint">подбирается по ключу автоматически</span></div>
           </label>
           <label class="field span-3"><span class="label" data-i18n="ai.format">Формат игры</span><select class="select" id="aiFormat"><option value="svoya" data-i18n="formats.f1">Своя игра</option><option value="million" data-i18n="formats.f3">Кто хочет стать миллионером</option><option value="chgk" data-i18n="formats.f4">Что? Где? Когда?</option><option value="hundred" data-i18n="formats.f2">100 к 1</option></select></label>
+          <div class="field span-3" id="aiBoardSize"><span class="label" data-i18n="ai.boardSize">Размер поля «Своей игры»</span><div class="flex"><select class="select" id="aiCatCount" aria-label="Категории"><option>3</option><option>4</option><option selected>5</option><option>6</option></select><span>×</span><select class="select" id="aiQCount" aria-label="Вопросы"><option>3</option><option>4</option><option selected>5</option><option>6</option></select></div></div>
           <label class="field"><span class="label" data-i18n="ai.subject">Предмет</span>
             <select class="select" id="aiSubject">
+              <option value="other" data-i18n="ai.anySubject" selected>Своя тема</option>
               <option value="physics" data-i18n="subject.physics">Физика</option>
               <option value="math" data-i18n="subject.math">Математика</option>
               <option value="mixed" data-i18n="subject.mixed">Физика + математика</option>
-              <option value="other" data-i18n="ai.anySubject">Своя тема</option>
             </select>
           </label>
           <label class="field"><span class="label" data-i18n="ai.grade">Класс</span>
@@ -2208,14 +2211,14 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
       <label class="field"><span class="label" data-i18n="export.layout">Ориентация</span>
         <select class="select" id="pptxLayout"><option value="16x9" data-i18n="export.wide">16:9 широкий</option><option value="4x3" data-i18n="export.standard">4:3 классика</option></select>
       </label>
-      <label class="field"><span class="label" data-i18n="export.quality">Оформление</span>
-        <select class="select" id="pptxQuality"><option value="full" data-i18n="export.qFull">Полное: фон + бейджи</option><option value="light" data-i18n="export.qLight">Лёгкий файл</option></select>
+      <label class="field"><span class="label" data-i18n="export.design">Дизайн слайдов</span>
+        <select class="select" id="pptxDesign"><option value="studio" data-i18n="export.designStudio">Студия · сияние</option><option value="minimal" data-i18n="export.designMinimal">Минимализм · чистый фон</option><option value="geometry" data-i18n="export.designGeometry">Геометрия · акцентные полосы</option></select>
       </label>
       <div class="field span-2"><span class="label" data-i18n="export.theme">Цветовая схема</span>
         <div class="theme-swatches" id="pptxThemes"></div>
       </div>
       <label class="field span-2"><span class="label" data-i18n="export.name">Имя файла</span><input class="input" id="pptxName" value="svoya-igra"></label>
-      <div class="field span-2">
+      <div class="field span-2" id="boardPptxOptions">
         <div class="flex" style="flex-wrap:wrap;gap:16px">
           <label class="switch"><input type="checkbox" id="pptxWithAnswers" checked><span class="track"></span><span data-i18n="export.answers">Слайды ответов</span></label>
           <label class="switch"><input type="checkbox" id="pptxWithFinal" checked><span class="track"></span><span data-i18n="export.final">Слайды супер-игры</span></label>
@@ -2223,7 +2226,7 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
         </div>
       </div>
     </div>
-    <div class="info-box" style="margin-top:16px"><b data-i18n="export.tip">Как это работает:</b> <span data-i18n="export.tipText">каждая ячейка поля — гиперссылка на слайд вопроса, на слайде вопроса — кнопка «Назад к полю». Гиперссылки сохраняются при показе и не слетают после правки текста.</span></div>
+    <div class="info-box" id="boardPptxTip" style="margin-top:16px"><b data-i18n="export.tip">Как это работает:</b> <span data-i18n="export.tipText">каждая ячейка поля — гиперссылка на слайд вопроса, на слайде вопроса — кнопка «Назад к полю». Гиперссылки сохраняются при показе и не слетают после правки текста.</span></div>
     <div class="loader-bar" id="pptxLoader" style="margin-top:14px"><i></i></div>
     <div class="modal-foot"><button class="btn btn-ghost" data-close="exportModal" data-i18n="export.cancel">Отмена</button><button class="btn btn-gold" id="exportGo"><svg><use href="#i-download"/></svg><span data-i18n="export.go">Скачать PPTX</span></button></div>
   </div>
@@ -3108,6 +3111,12 @@ Object.assign(I18N.en, {'ai.format':'Game format','ai.anySubject':'Custom topic'
 Object.assign(I18N.ru, {'ai.errNetwork':'Не удалось связаться с сервисом. Проверьте интернет и ограничения браузера или сети.','ai.errProbe':'Не удалось проверить модель.','ai.checkFailed':'Модель не подтверждена.','ai.errQuota':'Превышен лимит запросов или квота сервиса. Подождите и проверьте лимиты проекта.','ai.errKey':'Сервис отклонил доступ. Проверьте права ключа, ограничения API и настройки проекта.'});
 Object.assign(I18N.kk, {'ai.errNetwork':'Сервиске қосылу мүмкін болмады. Интернетті және браузер не желі шектеулерін тексеріңіз.','ai.errProbe':'Модельді тексеру мүмкін болмады.','ai.checkFailed':'Модель расталмады.','ai.errQuota':'Сұрау лимиті немесе сервис квотасы асқан. Біраз күтіп, жоба лимиттерін тексеріңіз.','ai.errKey':'Сервис рұқсат бермеді. Кілт рұқсаттарын, API шектеулерін және жоба баптауларын тексеріңіз.'});
 Object.assign(I18N.en, {'ai.errNetwork':'Could not connect to the service. Check your internet connection and browser or network restrictions.','ai.errProbe':'Could not check the model.','ai.checkFailed':'Model not verified.','ai.errQuota':'The request limit or service quota was exceeded. Wait and check your project limits.','ai.errKey':'The service denied access. Check key permissions, API restrictions and project settings.'});
+Object.assign(I18N.ru, {'builder.factHint':'Интересный факт или объяснение (необязательно)','builder.shuffleCats':'Перемешать темы','builder.surprises':'Добавить спецвопросы','builder.surprisesEmpty':'Сначала заполните обычные вопросы и ответы.','builder.resizeTitle':'Уменьшить поле?','builder.resizeWarning':'В удаляемых ячейках есть данные. Они будут потеряны только в этом раунде.','builder.resizeConfirm':'Уменьшить','builder.sizeHint':'поле текущего раунда','ai.boardSize':'Размер поля «Своей игры»','ai.keyManual':'Формат ключа не определён — проверяем выбранный сервис','ai.subject':'Тема или предмет','ai.grade':'Возраст аудитории (примерно класс)'});
+Object.assign(I18N.kk, {'builder.factHint':'Қызықты дерек немесе түсіндірме (міндетті емес)','builder.shuffleCats':'Тақырыптарды араластыру','builder.surprises':'Арнайы сұрақтар қосу','builder.surprisesEmpty':'Алдымен қарапайым сұрақтар мен жауаптарды толтырыңыз.','builder.resizeTitle':'Алаңды кішірейту керек пе?','builder.resizeWarning':'Жойылатын ұяшықтарда деректер бар. Олар тек осы раундта өшіріледі.','builder.resizeConfirm':'Кішірейту','builder.sizeHint':'ағымдағы раунд алаңы','ai.boardSize':'«Өз ойыным» алаңының өлшемі','ai.keyManual':'Кілт форматы анықталмады — таңдалған сервис тексеріледі','ai.subject':'Тақырып немесе пән','ai.grade':'Аудитория жасы (шамамен сынып)'});
+Object.assign(I18N.en, {'builder.factHint':'Fun fact or explanation (optional)','builder.shuffleCats':'Shuffle categories','builder.surprises':'Add special questions','builder.surprisesEmpty':'First fill in ordinary questions and answers.','builder.resizeTitle':'Make the board smaller?','builder.resizeWarning':'The removed cells contain data. Only this round will be affected.','builder.resizeConfirm':'Shrink board','builder.sizeHint':'current round board','ai.boardSize':'Quiz board size','ai.keyManual':'Key format not identified — checking the selected provider','ai.subject':'Topic or subject','ai.grade':'Audience age (approximate grade)'});
+Object.assign(I18N.ru, {'export.design':'Дизайн слайдов','export.designStudio':'Студия · сияние','export.designMinimal':'Минимализм · чистый фон','export.designGeometry':'Геометрия · акцентные полосы'});
+Object.assign(I18N.kk, {'export.design':'Слайд дизайны','export.designStudio':'Студия · жарқыл','export.designMinimal':'Минимализм · таза фон','export.designGeometry':'Геометрия · айқын жолақтар'});
+Object.assign(I18N.en, {'export.design':'Slide design','export.designStudio':'Studio · glow','export.designMinimal':'Minimal · clean background','export.designGeometry':'Geometry · accent bands'});
 function t(key) {
   const dict = I18N[S.lang] || I18N.ru;
   if (dict[key] != null) return dict[key];
@@ -10075,14 +10084,13 @@ function loadBuilderFromGame(g) {
   b.emoji = g.emoji || '★';
   [0, 1].forEach((ri) => {
     const cats = (loc.rounds[ri] && loc.rounds[ri].categories) || [];
-    b.rounds[ri + 1] = cats.slice(0, 5).map((c) => ({
+    b.rounds[ri + 1] = cats.slice(0, 6).map((c) => ({
       name: c.name || '',
-      questions: Array.from({ length: 5 }, (_, qi) => {
-        const q = c.questions[qi];
+      questions: (c.questions || []).slice(0, 6).map((q) => {
         return q ? { q: q.q || '', a: q.a || '', type: q.type || 'normal', visual: q.visual || null, photo: q.photo || null, fact: L(q.fact || '') } : blankQuestion();
       })
     }));
-    while (b.rounds[ri + 1].length < 5) b.rounds[ri + 1].push({ name: '', questions: Array.from({ length: 5 }, blankQuestion) });
+    if (!b.rounds[ri + 1].length) b.rounds[ri + 1] = blankCats();
   });
   b.final = { theme: loc.final.theme || '', q: loc.final.q || '', a: loc.final.a || '' };
   S.builder = b;
@@ -10117,6 +10125,7 @@ function renderBuilder() {
           '<div class="q-fields">' +
             '<textarea class="textarea" data-q="q" placeholder="' + esc(t('builder.qPh')) + '">' + esc(q.q) + '</textarea>' +
             '<input class="input" data-q="a" placeholder="' + esc(t('builder.aPh')) + '" value="' + esc(q.a) + '">' +
+            '<input class="input" data-q="fact" placeholder="' + esc(t('builder.factHint')) + '" value="' + esc(q.fact || '') + '">' +
           '</div>' +
           '<select class="select" data-q="type">' +
             ['normal', 'cat', 'auction', 'bonus', 'fail'].map((tp) => '<option value="' + tp + '"' + (q.type === tp ? ' selected' : '') + '>' + esc(t('qtype.' + tp)) + '</option>').join('') +
@@ -10131,20 +10140,6 @@ function renderBuilder() {
     }).join('');
   }
   renderBuilderMeta();
-}
-function blankBuilder() {
-  return {
-    id: null,
-    title: '',
-    desc: '',
-    subject: 'physics',
-    grade: 7,
-    quarter: 1,
-    emoji: '★',
-    rounds: { 1: blankCats(), 2: blankCats() },
-    final: { theme: '', q: '', a: '' },
-    tab: '1'
-  };
 }
 /** Подогнать раунд под размер поля: категории и вопросы растут/обрезаются,
  *  при увеличении поля новые ячейки остаются пустыми. */
@@ -10167,6 +10162,7 @@ function syncSizeControls() {
   const isFinal = b.tab === 'final';
   if (catSel) catSel.disabled = isFinal;
   if (qSel) qSel.disabled = isFinal;
+  ['#bShuffleCats','#bSurprises'].forEach(sel => { if ($(sel)) $(sel).disabled = isFinal; });
   if (isFinal) { if (now) now.textContent = '★'; return; }
   const round = b.rounds[b.tab] || [];
   const cats = round.length || 0;
@@ -10175,13 +10171,18 @@ function syncSizeControls() {
   if (qSel && qs) qSel.value = String(qs);
   if (now) now.textContent = cats + ' × ' + qs;
 }
-/** Применить новый размер ко ВСЕМ раундам и перерисовать редактор. */
+/** Изменение касается только открытого раунда. */
 function applyBoardSize(catsN, qsN) {
   const b = S.builder;
-  if (!b) return;
-  b.rounds[1] = resizeRound(b.rounds[1], catsN, qsN);
-  b.rounds[2] = resizeRound(b.rounds[2], catsN, qsN);
+  if (!b || b.tab === 'final') return;
+  b.rounds[b.tab] = resizeRound(b.rounds[b.tab], catsN, qsN);
   renderBuilder();
+}
+function resizeWouldLoseContent(round, catsN, qsN) {
+  return (round || []).some((cat, ci) => {
+    const removed = ci >= catsN ? cat.questions || [] : (cat.questions || []).slice(qsN);
+    return (ci >= catsN && String(cat.name || '').trim()) || removed.some(q => q && (q.q || q.a || q.fact || q.photo || q.visual || (q.type && q.type !== 'normal')));
+  });
 }
 function collectBuilder() {
   const b = S.builder;
@@ -10205,9 +10206,9 @@ function collectBuilder() {
       if (!q) return;
       const nextQ = $('[data-q="q"]', row).value.trim();
       const nextA = $('[data-q="a"]', row).value.trim();
-      if (q.q !== nextQ || q.a !== nextA) q.fact = null;
       q.q = nextQ;
       q.a = nextA;
+      q.fact = $('[data-q="fact"]', row).value.trim() || null;
       q.type = $('[data-q="type"]', row).value;
     });
   });
@@ -11036,7 +11037,11 @@ function pptxApplyTheme(key) {
 function pptxIsLight() { return !(PPTX_THEMES[pptxThemeKey] || {}).dark; }
 /** Цвет текста поверх акцентной плашки и фон панели категорий:
  *  на светлых схемах берём тёмный текст и светлую панель. */
-function pptxOnAccent() { return pptxIsLight() ? PPTX_COLORS.ink : PPTX_COLORS.bg; }
+function pptxOnAccent() {
+  const n = parseInt(PPTX_COLORS.gold, 16);
+  const brightness = .299 * (n >> 16) + .587 * ((n >> 8) & 255) + .114 * (n & 255);
+  return brightness > 150 ? '111111' : 'FFFFFF';
+}
 function pptxCatPanel() { return pptxIsLight() ? PPTX_COLORS.panel : '231B45'; }
 function pptxLib() {
   if (window.PptxGenJS) return window.PptxGenJS;
@@ -11046,7 +11051,18 @@ function pptxLib() {
 function pptxFmtScore(n) { return new Intl.NumberFormat('ru-RU').format(Math.round(n)); }
 function pptxAddBg(slide, pptx, W, H, variant) {
   slide.background = { color: PPTX_COLORS.bg };
-  if (variant === 'light') { slide.background = { color: PPTX_COLORS.bg2 }; return; }
+  if (variant === 'minimal') {
+    slide.background = { color: PPTX_COLORS.bg2 };
+    slide.addShape(pptx.ShapeType.rect, { x:0, y:0, w:W, h:.08, fill:{color:PPTX_COLORS.gold}, line:{width:0} });
+    return;
+  }
+  if (variant === 'geometry') {
+    slide.background = { color: PPTX_COLORS.bg2 };
+    slide.addShape(pptx.ShapeType.rect, { x:0, y:0, w:.16, h:H, fill:{color:PPTX_COLORS.gold}, line:{width:0} });
+    slide.addShape(pptx.ShapeType.rect, { x:W-.35, y:0, w:.35, h:H, fill:{color:PPTX_COLORS.cyan, transparency:75}, line:{width:0} });
+    slide.addShape(pptx.ShapeType.rect, { x:W*.72, y:0, w:W*.28, h:.08, fill:{color:PPTX_COLORS.violet}, line:{width:0} });
+    return;
+  }
   slide.addShape(pptx.ShapeType.rect, { x: 0, y: 0, w: W, h: H, fill: { color: PPTX_COLORS.bg2 }, line: { color: PPTX_COLORS.bg2, width: 0 } });
   /* свечения берём из схемы: на светлых схемах они почти прозрачные */
   const soft = pptxIsLight() ? 82 : 45;
@@ -11061,7 +11077,7 @@ function pptxAddFooter(slide, pptx, W, H, text) {
 /* Бейдж «← к полю» на слайде вопроса */
 function pptxBackBadge(slide, pptx, x, y, label) {
   slide.addShape(pptx.ShapeType.roundRect, { x, y, w: 1.55, h: .38, rectRadius: .19, fill: { color: PPTX_COLORS.gold }, line: { color: PPTX_COLORS.goldSoft, width: 1 } });
-  slide.addText('◀ ' + label, { x, y, w: 1.55, h: .38, fontSize: 11, bold: true, color: PPTX_COLORS.bg, align: 'center', valign: 'middle', fontFace: 'Arial' });
+  slide.addText('◀ ' + label, { x, y, w: 1.55, h: .38, fontSize: 11, bold: true, color: pptxOnAccent(), align: 'center', valign: 'middle', fontFace: 'Arial' });
 }
 /* Тайл поля */
 function pptxTile(slide, pptx, x, y, w, h, value, color, dim) {
@@ -11098,7 +11114,7 @@ async function buildPptx(game, opts = {}) {
 
   /* --- 1. титульный слайд --- */
   const sTitle = pptx.addSlide();
-  pptxAddBg(sTitle, pptx, W, H);
+  pptxAddBg(sTitle, pptx, W, H, opts.design);
   sTitle.addShape(pptx.ShapeType.rect, { x: 0, y: H * .30, w: W, h: .012, fill: { color: PPTX_COLORS.gold, transparency: 25 }, line: { width: 0 } });
   sTitle.addText('ИНТЕЛЛЕКТУАЛЬНАЯ ВИКТОРИНА', { x: .7, y: 1.15, w: W - 1.4, h: .4, fontSize: 12, bold: true, color: PPTX_COLORS.gold, charSpacing: 4, fontFace: 'Arial' });
   sTitle.addText('СВОЯ ИГРА', { x: .7, y: 1.6, w: W - 1.4, h: 1.3, fontSize: isWide ? 58 : 48, bold: true, color: PPTX_COLORS.ink, fontFace: 'Arial' });
@@ -11131,7 +11147,7 @@ async function buildPptx(game, opts = {}) {
 
   rounds.forEach((rnd, ri) => {
     const slide = pptx.addSlide();
-    pptxAddBg(slide, pptx, W, H);
+    pptxAddBg(slide, pptx, W, H, opts.design);
     slide.addText('РАУНД ' + (ri + 1), { x: .55, y: .32, w: 3, h: .42, fontSize: 20, bold: true, color: PPTX_COLORS.gold, fontFace: 'Arial', charSpacing: 2 });
     slide.addText(rnd.name || '', { x: .55, y: .74, w: W - 4.9, h: .3, fontSize: 11, color: PPTX_COLORS.muted, valign: 'middle', fontFace: 'Arial' });
     const cats = rnd.categories || [];
@@ -11143,8 +11159,8 @@ async function buildPptx(game, opts = {}) {
     const gridW = W - marginX * 2;
     const colW = (gridW - colGap * Math.max(0, cats.length - 1)) / Math.max(1, cats.length);
     const catH = .82;
-    const tileH = .80;
     const rowGap = .09;
+    const tileH = Math.min(.80, (H - marginTop - catH - .16 - .8 - Math.max(0, values.length - 1) * rowGap) / Math.max(1, values.length));
     const tiles = [];
     cats.forEach((c, ci) => {
       const x = marginX + ci * (colW + colGap);
@@ -11176,7 +11192,7 @@ async function buildPptx(game, opts = {}) {
         const val = values[qi];
         const q = cat.questions[qi] || {};
         const qs = pptx.addSlide();
-        pptxAddBg(qs, pptx, W, H);
+        pptxAddBg(qs, pptx, W, H, opts.design);
         const special = q.type || 'normal';
         const badge = special === 'cat' ? '🐈 КОТ В МЕШКЕ' : special === 'auction' ? '🔔 АУКЦИОН' : special === 'bonus' ? '★ БОНУС ×2' : special === 'fail' ? '✖ НЕУДАЧА' : '';
         qs.addShape(pptx.ShapeType.roundRect, { x: .55, y: .42, w: W - 3.55, h: .46, rectRadius: .23, fill: { color: '141F3C' }, line: { color: PPTX_COLORS.line, width: 1 } });
@@ -11210,11 +11226,11 @@ async function buildPptx(game, opts = {}) {
 
         if (useAnswers) {
           const as = pptx.addSlide();
-          pptxAddBg(as, pptx, W, H);
+          pptxAddBg(as, pptx, W, H, opts.design);
           as.addText('ОТВЕТ', { x: .85, y: .55, w: 4, h: .35, fontSize: 11, bold: true, color: PPTX_COLORS.ok, charSpacing: 3, fontFace: 'Arial' });
           as.addText((cat.name || '') + ' · ' + val, { x: .85, y: .9, w: W - 1.7, h: .32, fontSize: 11, color: PPTX_COLORS.muted, fontFace: 'Arial' });
           as.addShape(pptx.ShapeType.roundRect, { x: .85, y: 1.55, w: W - 1.7, h: H - 3.4, rectRadius: .12, fill: { color: pptxIsLight() ? PPTX_COLORS.panel : '0E2A25' }, line: { color: PPTX_COLORS.ok, width: 1.2 } });
-          as.addText(q.a || '', { x: 1.15, y: 1.8, w: W - 2.3, h: H - 3.9, fontSize: isWide ? 22 : 18, bold: true, color: pptxIsLight() ? PPTX_COLORS.ink : 'D7FFEE', valign: 'middle', fontFace: 'Arial', lineSpacingMultiple: 1.2 });
+          as.addText((q.a || '') + (tx(q.fact || '') ? '\n\n' + t('q.fact') + ': ' + tx(q.fact) : ''), { x: 1.15, y: 1.8, w: W - 2.3, h: H - 3.9, fontSize: isWide ? 22 : 18, bold: true, color: pptxIsLight() ? PPTX_COLORS.ink : 'D7FFEE', valign: 'middle', fontFace: 'Arial', lineSpacingMultiple: 1.2 });
           pptxBackBadge(as, pptx, .85, H - 1.05, 'К ПОЛЮ');
           as.addText('Вопрос: ' + String(q.q || '').slice(0, 120) + (String(q.q || '').length > 120 ? '…' : ''), { x: W - 5.8, y: H - 1.15, w: 5.0, h: .6, fontSize: 8.5, color: PPTX_COLORS.muted, align: 'right', fontFace: 'Arial' });
           answerSlides[ri][ci] = answerSlides[ri][ci] || [];
@@ -11229,7 +11245,7 @@ async function buildPptx(game, opts = {}) {
   if (useFinal) {
     const fin = loc.final || {};
     const fs1 = pptx.addSlide();
-    pptxAddBg(fs1, pptx, W, H);
+    pptxAddBg(fs1, pptx, W, H, opts.design);
     fs1.addText('СУПЕР-ИГРА', { x: .7, y: .9, w: W - 1.4, h: .6, fontSize: 12, bold: true, color: PPTX_COLORS.gold, charSpacing: 5, fontFace: 'Arial' });
     fs1.addText('ТЕМА', { x: .7, y: 1.6, w: W - 1.4, h: .3, fontSize: 11, color: PPTX_COLORS.muted, charSpacing: 4, fontFace: 'Arial' });
     fs1.addText(fin.theme || '—', { x: .7, y: 2.0, w: W - 1.4, h: 1.2, fontSize: isWide ? 34 : 28, bold: true, color: PPTX_COLORS.goldSoft, fontFace: 'Arial' });
@@ -11239,16 +11255,16 @@ async function buildPptx(game, opts = {}) {
     const finalThemeIdx = pptx._slides.length;
 
     const fq = pptx.addSlide();
-    pptxAddBg(fq, pptx, W, H);
+    pptxAddBg(fq, pptx, W, H, opts.design);
     fq.addText('ВОПРОС СУПЕР-ИГРЫ', { x: .85, y: .55, w: W - 1.7, h: .3, fontSize: 11, bold: true, color: PPTX_COLORS.gold, charSpacing: 4, fontFace: 'Arial' });
     fq.addText(fin.q || '—', { x: .85, y: 1.1, w: W - 1.7, h: H - 2.6, fontSize: isWide ? 26 : 22, bold: true, color: PPTX_COLORS.ink, valign: 'middle', fontFace: 'Arial', lineSpacingMultiple: 1.2 });
     pptxBackBadge(fq, pptx, .85, H - 1.0, 'К ПОЛЮ');
     const finalQIdx = pptx._slides.length;
 
     const fa = pptx.addSlide();
-    pptxAddBg(fa, pptx, W, H);
+    pptxAddBg(fa, pptx, W, H, opts.design);
     fa.addText('ОТВЕТ СУПЕР-ИГРЫ', { x: .85, y: .6, w: W - 1.7, h: .35, fontSize: 11, bold: true, color: PPTX_COLORS.ok, charSpacing: 4, fontFace: 'Arial' });
-    fa.addText(fin.a || '—', { x: .85, y: 1.6, w: W - 1.7, h: H - 4, fontSize: isWide ? 24 : 20, bold: true, color: 'D7FFEE', valign: 'middle', fontFace: 'Arial' });
+    fa.addText(fin.a || '—', { x: .85, y: 1.6, w: W - 1.7, h: H - 4, fontSize: isWide ? 24 : 20, bold: true, color: pptxIsLight() ? PPTX_COLORS.ink : 'D7FFEE', valign: 'middle', fontFace: 'Arial' });
     fa.addText('Тема: ' + (fin.theme || '—'), { x: .85, y: 1.15, w: W - 1.7, h: .35, fontSize: 11, color: PPTX_COLORS.muted, fontFace: 'Arial' });
     pptxBackBadge(fa, pptx, .85, H - 1.0, 'К ПОЛЮ');
     const finalAIdx = pptx._slides.length;
@@ -11257,7 +11273,7 @@ async function buildPptx(game, opts = {}) {
 
   /* --- 5. итоговое табло --- */
   const endSlide = pptx.addSlide();
-  pptxAddBg(endSlide, pptx, W, H);
+  pptxAddBg(endSlide, pptx, W, H, opts.design);
   endSlide.addText('СПАСИБО ЗА ИГРУ!', { x: .7, y: 2.2, w: W - 1.4, h: .9, fontSize: isWide ? 40 : 34, bold: true, color: PPTX_COLORS.ink, align: 'center', fontFace: 'Arial' });
   endSlide.addText(loc.title || '', { x: .7, y: 3.2, w: W - 1.4, h: .5, fontSize: 16, color: PPTX_COLORS.goldSoft, align: 'center', fontFace: 'Arial' });
   endSlide.addText('Поле 1 ▶', { x: W / 2 - 3.2, y: 4.35, w: 2.2, h: .5, fontSize: 13, bold: true, color: PPTX_COLORS.gold, align: 'center', fontFace: 'Arial' });
@@ -11336,6 +11352,15 @@ async function buildPptx(game, opts = {}) {
   await pptx.writeFile({ fileName });
   return { fileName, slides: pptx._slides.length };
 }
+let pptxGameRef = null;
+function openPptxExport(game) {
+  pptxGameRef = game;
+  $('#pptxName').value = slug(gameTitle(game));
+  $('#boardPptxOptions').classList.toggle('hidden', !!game.showFormat);
+  $('#boardPptxTip').classList.toggle('hidden', !!game.showFormat);
+  renderPptxThemes();
+  openModal('exportModal');
+}
 async function exportPptxFor(game, opts = {}) {
   const PptxGenJS = pptxLib();
   if (!PptxGenJS) { toast(t('export.noLib'), 'err'); return; }
@@ -11345,7 +11370,7 @@ async function exportPptxFor(game, opts = {}) {
   if (btn) { btn.disabled = true; btn.querySelector('span').textContent = t('export.busy'); }
   try {
     await wait(60);
-    const res = await buildPptx(game, opts);
+    const res = game.showFormat ? await SHOWS.showPptx(game.showFormat, game, opts) : await buildPptx(game, opts);
     toast(res.fileName + ' · ' + res.slides + ' слайдов', 'ok', t('export.ok'));
     const m = $('#exportModal');
     if (m) m.classList.remove('open');
@@ -11384,6 +11409,7 @@ function buildAiPrompt(cfg) {
   const format = cfg.format || 'svoya';
   const subject = cfg.subject === 'math' ? 'математика' : cfg.subject === 'mixed' ? 'физика и математика' : cfg.subject === 'other' ? 'любая указанная пользователем тема, без привязки к физике или математике' : 'физика';
   const humor = HUMOR_LEVELS[clamp(cfg.humor, 0, 5)][S.lang] || HUMOR_LEVELS[clamp(cfg.humor, 0, 5)].ru;
+  const cats = clamp(Number(cfg.cats) || 5, 3, 6), qs = clamp(Number(cfg.qs) || 5, 3, 6);
   const common = [
     'Ты автор увлекательных вопросов для интеллектуального шоу. Верни только валидный JSON без markdown.',
     'Предмет или направление: ' + subject + '.',
@@ -11396,7 +11422,7 @@ function buildAiPrompt(cfg) {
   ];
   const schemas = {
     svoya: [
-      'Формат «Своя игра»: ровно 2 раунда, в каждом ровно 5 категорий, в каждой ровно 5 вопросов с возрастающей сложностью, и финальный вопрос. Короткие однозначные ответы; не менее трёх специальных типов cat, auction, bonus или fail.',
+      'Формат «Своя игра»: ровно 2 раунда, в каждом ровно ' + cats + ' категорий, в каждой ровно ' + qs + ' вопросов с возрастающей сложностью, и финальный вопрос. Короткие однозначные ответы; не менее трёх специальных типов cat, auction, bonus или fail.',
       'У каждого вопроса добавь короткий достоверный интересный факт в fact. ' + (cfg.media ? 'Для нескольких укажи идею иллюстрации в image.' : 'Поле image оставь пустым.'),
       'Схема (массивы в примере сокращены, но заполни все требуемые элементы): {"title":"...","desc":"...","rounds":[{"name":"...","categories":[{"name":"...","questions":[{"q":"...","a":"...","type":"normal","fact":"...","image":""}]}]}],"final":{"theme":"...","q":"...","a":"..."}}'
     ],
@@ -11450,9 +11476,9 @@ function aiSetState(state) {
    ---------------------------------------------------------------------- */
 const KEY_PREFIXES = [
   /* старый формат Google AI Studio */
-  { provider: 'gemini', re: /^AIza[0-9A-Za-z_\-]{16,}$/, label: 'AIza…' },
+  { provider: 'gemini', re: /^AIza[0-9A-Za-z_\-]+$/, label: 'AIza…' },
   /* новый формат (2025): AQ.Ab8… — тоже Gemini */
-  { provider: 'gemini', re: /^AQ\.[0-9A-Za-z_\-]{16,}$/, label: 'AQ.…' },
+  { provider: 'gemini', re: /^AQ\.[0-9A-Za-z_\-]+$/, label: 'AQ.…' },
   { provider: 'openai', re: /^sk-(proj-|svcacct-|admin-)?[A-Za-z0-9_\-]{16,}$/, label: 'sk-…' }
 ];
 /** Сервис по виду ключа. null — не распознан. */
@@ -11812,11 +11838,12 @@ function gameFromAiJson(raw, cfg) {
   const desc = (filled(raw.desc) ? raw.desc.trim() + ' · ' : '') + t('ai.generated') + (kind === 'hundred' ? ' · ' + t('ai.surveyWarning') : '');
   let data = {title:raw.title, desc, subject:cfg.subject, grade:cfg.grade, quarter:cfg.subject === 'other' ? 0 : cfg.quarter, emoji:'✨', accent:'#9a7bff'};
   if (kind === 'svoya') {
+    const cats = clamp(Number(cfg.cats) || 5, 3, 6), qs = clamp(Number(cfg.qs) || 5, 3, 6);
     if (!Array.isArray(raw.rounds) || raw.rounds.length !== 2 || !raw.final || !filled(raw.final.theme) || !filled(raw.final.q) || !filled(raw.final.a)) fail();
     for (const r of raw.rounds) {
-      if (!r || !Array.isArray(r.categories) || r.categories.length !== 5) fail();
+      if (!r || !Array.isArray(r.categories) || r.categories.length !== cats) fail();
       for (const c of r.categories) {
-        if (!c || !filled(c.name) || !Array.isArray(c.questions) || c.questions.length !== 5) fail();
+        if (!c || !filled(c.name) || !Array.isArray(c.questions) || c.questions.length !== qs) fail();
         if (!c.questions.every(q => q && filled(q.q) && filled(q.a) && ['normal','cat','auction','bonus','fail'].includes(q.type))) fail();
       }
     }
@@ -11866,6 +11893,7 @@ async function runAiGeneration() {
     apiKey: key,
     model: ($('#aiModel').value || '').trim() || (AI.provider === 'openai' ? 'gpt-4o-mini' : 'gemini-2.5-flash'),
     format: $('#aiFormat').value,
+    cats: Number($('#aiCatCount').value), qs: Number($('#aiQCount').value),
     subject: $('#aiSubject').value,
     grade: Number($('#aiGrade').value),
     quarter: Number($('#aiQuarter').value),
@@ -12158,8 +12186,7 @@ function bindGlobal() {
     const pp = e.target.closest('[data-pptx]');
     if (pp) {
       const g = findGame(pp.dataset.pptx);
-      if (g && g.showFormat) { SHOWS.showPptx(g.showFormat, g); return; }
-      if (g) { $('#pptxName').value = slug(gameTitle(g)); renderPptxThemes(); openModal('exportModal'); $('#exportGo').onclick = () => exportPptxFor(g, readPptxOpts()); $('#exportModal').dataset.game = g.id; }
+      if (g) openPptxExport(g);
       return;
     }
     const del = e.target.closest('[data-del]');
@@ -12275,12 +12302,25 @@ function bindGlobal() {
     if (el) el.addEventListener('input', () => { collectBuilder(); renderBuilderMeta(); });
     if (el) el.addEventListener('change', () => { collectBuilder(); renderBuilderMeta(); });
   });
-  const sizeChange = () => {
+  const sizeChange = async () => {
     collectBuilder();
-    const c = Number(($('#bCatCount') || {}).value) || 5;
-    const q = Number(($('#bQCount') || {}).value) || 5;
+    const c = Number($('#bCatCount').value) || 5, q = Number($('#bQCount').value) || 5;
+    if (resizeWouldLoseContent(S.builder.rounds[S.builder.tab], c, q)) {
+      if (!(await confirmDialog(t('builder.resizeTitle'), t('builder.resizeWarning'), t('builder.resizeConfirm')))) { syncSizeControls(); return; }
+    }
     applyBoardSize(c, q);
   };
+  $('#bShuffleCats').addEventListener('click', () => {
+    collectBuilder(); const b=S.builder; if (b.tab==='final') return;
+    b.rounds[b.tab]=shuffle(b.rounds[b.tab]); renderBuilder();
+  });
+  $('#bSurprises').addEventListener('click', () => {
+    collectBuilder(); const b=S.builder; if (b.tab==='final') return;
+    const candidates=shuffle(b.rounds[b.tab].flatMap(c=>c.questions).filter(q=>q.q && q.a && q.type==='normal'));
+    ['cat','auction','bonus'].forEach((type,i)=>{if(candidates[i]) candidates[i].type=type;});
+    if (!candidates.length) toast(t('builder.surprisesEmpty'),'warn');
+    renderBuilder();
+  });
   if ($('#crossBtn')) $('#crossBtn').addEventListener('click', openCrossword);
   if ($('#bCatCount')) $('#bCatCount').addEventListener('change', sizeChange);
   if ($('#bQCount')) $('#bQCount').addEventListener('change', sizeChange);
@@ -12316,13 +12356,7 @@ function bindGlobal() {
     if (gameQuestionCount(game) === 0) { toast(t('builder.invalid'), 'err'); return; }
     openSetup(saveGameAsCustom(game));
   });
-  $('#builderPptx').addEventListener('click', () => {
-    const game = builderToGame();
-    $('#pptxName').value = slug(gameTitle(game));
-    renderPptxThemes();
-    openModal('exportModal');
-    $('#exportGo').onclick = () => exportPptxFor(game, readPptxOpts());
-  });
+  $('#builderPptx').addEventListener('click', () => openPptxExport(builderToGame()));
   if ($('#bFunSeed')) {
     $('#bFunSeed').addEventListener('click', () => {
       const src = findGame('plan-fun-1');
@@ -12429,11 +12463,7 @@ function bindGlobal() {
   $('#qBackList').addEventListener('click', () => { if (G.afterAnswer) closeQuestion(); });
   $('#qNextTeam').addEventListener('click', () => { nextTurn(); });
   /* модалка экспорта */
-  $('#exportGo').addEventListener('click', () => {
-    const id = $('#exportModal').dataset.game;
-    const g = id ? findGame(id) : builderToGame();
-    if (g) exportPptxFor(g, readPptxOpts());
-  });
+  $('#exportGo').addEventListener('click', () => { if (pptxGameRef) exportPptxFor(pptxGameRef, readPptxOpts()); });
   /* ИИ */
   $('#aiProvider').addEventListener('click', (e) => {
     const b = e.target.closest('button[data-provider]');
@@ -12465,6 +12495,7 @@ function bindGlobal() {
     const forget = $('#aiKeyForget');
     if (forget) forget.classList.toggle('hidden', !key);
     if (!key) {
+      if (keyCheckTimer) { clearTimeout(keyCheckTimer); keyCheckTimer = null; }
       st.classList.remove('ok', 'warn');
       if (txt) txt.textContent = t('ai.keyMissing');
       aiModelHint(t('ai.modelAutoHint'), false);
@@ -12473,7 +12504,9 @@ function bindGlobal() {
     if (!detected) {
       st.classList.remove('ok');
       st.classList.add('warn');
-      if (txt) txt.textContent = t('ai.keyUnknown');
+      if (txt) txt.textContent = t('ai.keyManual');
+      aiModelHint(t('ai.modelWillCheck'), false);
+      scheduleKeyCheck();
       return;
     }
     st.classList.remove('warn');
@@ -12519,7 +12552,10 @@ function bindGlobal() {
     const g = saveGameAsCustom(S.aiResult);
     if (g.showFormat) editNativeGame(g); else { selectBuilderFormat('svoya'); loadBuilderFromGame(g); setView('builder'); renderBuilder(); }
   });
-  $('#aiSubject').addEventListener('change', () => { $('#aiQuarter').disabled = $('#aiSubject').value === 'other'; });
+  const syncAiOptions = () => { $('#aiQuarter').disabled = $('#aiSubject').value === 'other'; $('#aiBoardSize').classList.toggle('hidden', $('#aiFormat').value !== 'svoya'); };
+  $('#aiSubject').addEventListener('change', syncAiOptions);
+  $('#aiFormat').addEventListener('change', syncAiOptions);
+  syncAiOptions();
   /* инструкция по подключению ключа */
   const openGuide = () => openModal('aiGuide');
   const guideBtn = $('#aiGuideBtn');
@@ -12585,6 +12621,7 @@ function renderPptxThemes() {
 function readPptxOpts() {
   return {
     layout: $('#pptxLayout').value,
+    design: $('#pptxDesign').value,
     answers: $('#pptxWithAnswers').checked,
     final: $('#pptxWithFinal').checked,
     media: $('#pptxWithMedia').checked,
@@ -14233,21 +14270,33 @@ const SHOWS = (() => {
   /* ---------------------------- PPTX для шоу ----------------------------- */
   /* Отдельная колода для шоу-форматов: титул, вопросы, ответы и возврат
      «к волчку». Гиперссылки ставим вторым проходом — так они не слетают. */
-  async function showPptx(kind, game) {
+  async function showPptx(kind, game, opts) {
+    if (!opts) { openPptxExport(game); return; }
     const PptxGenJS = pptxLib();
-    if (!PptxGenJS) { toast(t('export.noLib'), 'err'); return; }
-    toast(t('export.busy'), 'info');
+    if (!PptxGenJS) throw new Error('no-lib');
     try {
+      pptxApplyTheme(opts.theme || 'midnight');
       const pptx = new PptxGenJS();
-      pptx.layout = 'LAYOUT_16x9';
-      const W = 13.333, H = 7.5;
-      const gold = PPTX_COLORS.gold, ink = PPTX_COLORS.ink, dark = PPTX_COLORS.bg;
-      const addBg = (s) => {
-        s.background = { color: PPTX_COLORS.bg };
-        s.addShape(pptx.ShapeType.rect, { x: 0, y: 0, w: W, h: H, fill: { color: PPTX_COLORS.bg2 }, line: { width: 0 } });
-        s.addShape(pptx.ShapeType.rect, { x: 0, y: 0, w: .16, h: H, fill: { color: gold }, line: { width: 0 } });
-        s.addShape(pptx.ShapeType.rect, { x: W - .16, y: 0, w: .16, h: H, fill: { color: gold }, line: { width: 0 } });
+      const W = 13.333, H = 7.5, actualW = opts.layout === '4x3' ? 10 : W;
+      pptx.defineLayout({name:'SHOW_LAYOUT',width:actualW,height:H}); pptx.layout='SHOW_LAYOUT';
+      const scale = actualW / W;
+      const originalAddSlide = pptx.addSlide.bind(pptx);
+      pptx.addSlide = (...args) => {
+        const slide = originalAddSlide(...args);
+        for (const method of ['addText','addShape']) {
+          const original = slide[method].bind(slide);
+          slide[method] = (content, options = {}) => {
+            const o = {...options};
+            if (typeof o.x === 'number') o.x *= scale;
+            if (typeof o.w === 'number') o.w *= scale;
+            if (method === 'addText' && scale < 1) o.fit = 'shrink';
+            return original(content, o);
+          };
+        }
+        return slide;
       };
+      const gold = PPTX_COLORS.gold, ink = PPTX_COLORS.ink, dark = PPTX_COLORS.bg;
+      const addBg = (s) => pptxAddBg(s, pptx, W, H, opts.design);
       const s1 = pptx.addSlide();
       addBg(s1);
       s1.addText(kind === 'chgk' ? 'ЧТО? ГДЕ? КОГДА?' : kind === 'hundred' ? '100 К 1' : 'КТО ХОЧЕТ СТАТЬ МИЛЛИОНЕРОМ?', {
@@ -14255,9 +14304,10 @@ const SHOWS = (() => {
       });
       s1.addText(gameTitle(game), { x: .8, y: 3.55, w: W - 1.6, h: .6, fontSize: 16, color: ink, align: 'center', fontFace: 'Arial' });
       s1.addText(subjectLabel(game.subject) + ' · ' + game.grade + ' ' + t('grade'), {
-        x: .8, y: 4.15, w: W - 1.6, h: .4, fontSize: 12, color: 'B9A97E', align: 'center', fontFace: 'Arial'
+        x: .8, y: 4.15, w: W - 1.6, h: .4, fontSize: 12, color: PPTX_COLORS.muted, align: 'center', fontFace: 'Arial'
       });
-      s1.addText(t(kind === 'chgk' ? 'show.chgkSub' : kind === 'hundred' ? 'show.hundredSub' : 'show.millionSub'), { x: .8, y: 6.55, w: W - 1.6, h: .4, fontSize: 10, color: '6E6450', align: 'center', fontFace: 'Arial' });
+      if (kind === 'hundred' && tx(game.desc)) s1.addText(tx(game.desc), {x:1.0, y:4.7, w:W-2.0, h:1.15, fontSize:10, color:PPTX_COLORS.muted, align:'center', valign:'middle', fit:'shrink', fontFace:'Arial'});
+      s1.addText(t(kind === 'chgk' ? 'show.chgkSub' : kind === 'hundred' ? 'show.hundredSub' : 'show.millionSub'), { x: .8, y: 6.55, w: W - 1.6, h: .4, fontSize: 10, color: PPTX_COLORS.muted, align: 'center', fontFace: 'Arial' });
       const qs = kind === 'hundred' ? hundBuild(game).map((it) => ({q:it.q, a:it.answers.map((a,i)=>a+' — '+(it.points || HUND_POINTS)[i]).join('\n')}))
         : kind === 'chgk' && game.showFormat === 'chgk' ? game.showItems.flatMap((it) => ['blitz','superblitz'].includes(it.kind) ? it.blitz.map(q => ({q:q.q,a:q.a})) : [{q:it.q,a:it.a + (it.fact ? '\n\n' + it.fact : '')}])
         : kind === 'chgk' ? takeRandom(flattenQuestions(game), 6) : buildMillionQuestions(game, 15);
@@ -14281,7 +14331,7 @@ const SHOWS = (() => {
             const col = k % 2, row = Math.floor(k / 2);
             s.addShape(pptx.ShapeType.roundRect, {
               x: .9 + col * 5.9, y: 3.95 + row * 1.15, w: 5.6, h: .95, rectRadius: .06,
-              fill: { color: '0F2358' }, line: { color: gold, width: 1 }
+              fill: { color: PPTX_COLORS.panel }, line: { color: gold, width: 1 }
             });
             s.addText('ABCD'[k] + ':  ' + opt, {
               x: 1.05 + col * 5.9, y: 3.95 + row * 1.15, w: 5.3, h: .95, fontSize: 11, color: ink, valign: 'middle', fontFace: 'Arial'
@@ -14291,13 +14341,13 @@ const SHOWS = (() => {
         qNums.push(pptx._slides.length);
         const a = pptx.addSlide();
         addBg(a);
-        a.addText('ОТВЕТ', { x: .55, y: .45, w: 5, h: .4, fontSize: 11, bold: true, color: '39E29A', charSpacing: 3, fontFace: 'Arial' });
+        a.addText('ОТВЕТ', { x: .55, y: .45, w: 5, h: .4, fontSize: 11, bold: true, color: PPTX_COLORS.ok, charSpacing: 3, fontFace: 'Arial' });
         a.addText(q.a || '—', { x: .9, y: 1.4, w: W - 1.8, h: 3.6, fontSize: 22, color: ink, valign: 'middle', align: 'center', fontFace: 'Arial' });
         a.addShape(pptx.ShapeType.roundRect, {
           x: .6, y: H - .95, w: 2.4, h: .45, rectRadius: .22,
           fill: { color: gold }, line: { width: 0 }, hyperlink: { slide: 2, tooltip: 'К началу' }
         });
-        a.addText('⟵ НАЗАД', { x: .6, y: H - .95, w: 2.4, h: .45, fontSize: 10, bold: true, color: dark, align: 'center', valign: 'middle', fontFace: 'Arial' });
+        a.addText('⟵ НАЗАД', { x: .6, y: H - .95, w: 2.4, h: .45, fontSize: 10, bold: true, color: pptxOnAccent(), align: 'center', valign: 'middle', fontFace: 'Arial' });
         aNums.push(pptx._slides.length);
       });
       /* пиктограммы-ссылки на слайде вопроса → сначала ответ, потом назад */
@@ -14306,16 +14356,14 @@ const SHOWS = (() => {
         if (!s) return;
         s.addShape(pptx.ShapeType.roundRect, {
           x: W - 3.4, y: H - .95, w: 2.8, h: .45, rectRadius: .22,
-          fill: { color: '1A1206' }, line: { color: gold, width: 1 }, hyperlink: { slide: aNums[i], tooltip: 'Ответ' }
+          fill: { color: PPTX_COLORS.panel }, line: { color: gold, width: 1 }, hyperlink: { slide: aNums[i], tooltip: 'Ответ' }
         });
         s.addText('ОТВЕТ  ▶', { x: W - 3.4, y: H - .95, w: 2.8, h: .45, fontSize: 10, bold: true, color: gold, align: 'center', valign: 'middle', fontFace: 'Arial' });
       });
-      await pptx.writeFile({ fileName: slug(gameTitle(game)) + '-' + kind + '.pptx' });
-      toast(t('export.ok'), 'ok');
-    } catch (e) {
-      console.error(e);
-      toast(String((e && e.message) || e), 'err');
-    }
+      const fileName = (opts.name || slug(gameTitle(game)) + '-' + kind) + '.pptx';
+      await pptx.writeFile({ fileName });
+      return {fileName, slides:pptx._slides.length};
+    } catch (e) { throw e; }
   }
 
   /* ========================================================================

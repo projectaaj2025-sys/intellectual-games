@@ -10,6 +10,7 @@ const section = (start, end) => {
   return html.slice(a, b);
 };
 const source = [
+  section('const KEY_PREFIXES =', '/** Модели, которые заведомо'),
   section('function modelIsUsable(name)', '/** Список моделей у OpenAI.'),
   section('async function listGeminiModels(key, signal)', '/** Выбрать лучшую модель'),
   section('async function probeGeminiModel(key, preferred, list)', '/** Запрос к OpenAI.'),
@@ -35,6 +36,12 @@ function sandbox(fetch) {
 function modelFrom(url) { return decodeURIComponent(url).match(/models\/([^:]+):generateContent/)[1]; }
 
 (async () => {
+  {
+    const {context} = sandbox(async () => ok());
+    assert.equal(context.providerFromKey('AIzaShort'), 'gemini');
+    assert.equal(context.providerFromKey('AQ.custom'), 'gemini');
+    assert.equal(context.providerFromKey('custom-format'), null);
+  }
   {
     const calls = [];
     const {context, state} = sandbox(async url => {
