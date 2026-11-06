@@ -929,7 +929,11 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
 .api-state.ok{color:var(--ok)}
 .api-state.warn .dot{background:var(--gold);box-shadow:0 0 10px var(--gold)}
 .api-state.warn{color:var(--gold)}
-.ai-log{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;line-height:1.6;background:rgba(0,0,0,.28);border:1px solid var(--line);border-radius:12px;padding:12px;max-height:200px;overflow:auto;color:var(--muted);white-space:pre-wrap;word-break:break-word}
+.link-btn{margin-left:auto;font-size:11px;font-weight:700;color:var(--muted);text-decoration:underline;
+  text-underline-offset:2px;background:none;border:0;padding:0;cursor:pointer;transition:.15s}
+.link-btn:hover{color:var(--bad)}
+.link-btn.hidden{display:none}
+.ai-log{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;line-height:1.55;background:rgba(0,0,0,.28);border:1px solid var(--line);border-radius:12px;padding:12px;max-height:260px;overflow:auto;color:var(--muted);white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal}
 :root[data-theme="light"] .ai-log{background:rgba(25,56,126,.04);color:#40527a}
 .ai-log .ok{color:var(--ok)}
 .ai-log .err{color:var(--bad)}
@@ -956,6 +960,33 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
 .steps-mini .sm{display:flex;gap:9px;align-items:flex-start}
 .steps-mini .sm i{width:18px;height:18px;border-radius:50%;background:var(--gold-soft);color:var(--gold);display:grid;place-items:center;font-size:10px;font-weight:800;font-style:normal;flex:none;margin-top:1px}
 .json-spec{font-family:ui-monospace,Menlo,monospace;font-size:11px;line-height:1.6;background:var(--surface-3);border:1px solid var(--line);border-radius:10px;padding:12px;color:var(--muted);overflow:auto;white-space:pre}
+/* Инструкция по подключению ключа */
+.aiguide-card{width:min(760px,100%)}
+.aiguide-step{display:flex;gap:14px;padding:16px 0;border-top:1px solid var(--line)}
+.aiguide-step:first-of-type{border-top:none;padding-top:6px}
+.aiguide-num{width:28px;height:28px;border-radius:50%;flex:none;display:grid;place-items:center;
+  font-family:var(--font-display);font-size:14px;color:#141005;background:linear-gradient(180deg,#ffe9a6,#e8b845);box-shadow:0 6px 18px -8px rgba(242,196,90,.9)}
+.aiguide-body{min-width:0;flex:1}
+.aiguide-body h4{font-size:14.5px;margin-bottom:5px;color:var(--text)}
+.aiguide-body p{font-size:12.8px;line-height:1.65;color:var(--muted)}
+.aiguide-body code{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;background:var(--surface-3);
+  border:1px solid var(--line);border-radius:5px;padding:1px 5px;color:var(--cyan)}
+.aiguide-compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.aiguide-opt{border:1px solid var(--line);border-radius:12px;background:var(--surface-3);padding:12px 13px}
+.aiguide-opt>b{display:block;font-size:13px;margin-bottom:4px}
+.aiguide-opt p{font-size:12px;line-height:1.6;margin-top:6px}
+.aiguide-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+  padding:2px 7px;border-radius:20px;border:1px solid transparent}
+.aiguide-tag.ok{color:var(--ok);background:rgba(57,226,154,.12);border-color:rgba(57,226,154,.35)}
+.aiguide-tag.pay{color:var(--gold);background:var(--gold-soft);border-color:rgba(242,196,90,.35)}
+.aiguide-links{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 10px}
+.aiguide-list{margin:8px 0 0 16px;font-size:12.6px;line-height:1.65;color:var(--muted)}
+.aiguide-list li{margin-bottom:5px}
+.ai-guide .hint{font-size:12px;line-height:1.6}
+@media (max-width:640px){
+  .aiguide-compare{grid-template-columns:1fr}
+  .aiguide-step{gap:10px}
+}
 
 /* 11. RESPONSIVE ========================================================== */
 @media (max-width:1240px){
@@ -1637,10 +1668,13 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
         </div>
         <div class="form-grid three">
           <label class="field span-2"><span class="label" data-i18n="ai.apiKey">API-ключ</span>
-            <div class="flex"><input class="input" id="aiKey" type="password" autocomplete="off" data-i18n-placeholder="ai.apiKeyPh" placeholder="sk-... или AIza..."><button class="icon-btn" id="aiKeyEye" title="Показать"><svg><use href="#i-eye"/></svg></button></div>
-            <div class="api-state" id="aiKeyState"><span class="dot"></span><span id="aiKeyText" data-i18n="ai.keyMissing">ключ не сохранён</span></div>
+            <div class="flex"><input class="input" id="aiKey" type="password" autocomplete="off" spellcheck="false" data-i18n-placeholder="ai.apiKeyPh" placeholder="sk-... / sk-proj-... / AIza..."><button class="icon-btn" id="aiKeyEye" title="Показать"><svg><use href="#i-eye"/></svg></button><button class="icon-btn" id="aiKeyCheck" title="Проверить ключ"><svg><use href="#i-check"/></svg></button></div>
+            <div class="api-state" id="aiKeyState"><span class="dot"></span><span id="aiKeyText" data-i18n="ai.keyMissing">ключ не сохранён</span><button class="link-btn hidden" id="aiKeyForget" data-i18n="ai.keyForget">забыть ключ</button></div>
           </label>
-          <label class="field"><span class="label" data-i18n="ai.model">Модель</span><input class="input" id="aiModel" value="gpt-4o-mini"></label>
+          <label class="field"><span class="label" data-i18n="ai.model">Модель</span>
+            <div class="flex"><input class="input" id="aiModel" list="aiModelList" value="gpt-4o-mini" spellcheck="false"><datalist id="aiModelList"></datalist></div>
+            <div class="api-state" id="aiModelState" style="white-space:normal"><span class="dot"></span><span id="aiModelText" data-i18n="ai.modelAutoHint">подбирается по ключу автоматически</span></div>
+          </label>
           <label class="field"><span class="label" data-i18n="ai.subject">Предмет</span>
             <select class="select" id="aiSubject">
               <option value="physics" data-i18n="subject.physics">Физика</option>
@@ -1683,13 +1717,10 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
           <div class="panel-head"><h3 data-i18n="ai.log">Журнал</h3><span class="chip" id="aiLogState" data-i18n="ai.idle">ожидание</span></div>
           <div class="ai-log" id="aiLog">$ prompt builder ready<br>$ waiting for API key…</div>
         </div>
-        <div class="panel">
-          <div class="panel-head"><h3 data-i18n="ai.whereKey">Где взять ключ</h3></div>
-          <div class="steps-mini">
-            <div class="sm"><i>1</i><span data-i18n="ai.k1">OpenAI: platform.openai.com → API keys → Create new secret key.</span></div>
-            <div class="sm"><i>2</i><span data-i18n="ai.k2">Gemini: aistudio.google.com → Get API key.</span></div>
-            <div class="sm"><i>3</i><span data-i18n="ai.k3">Вставьте ключ выше — он сохранится в localStorage только на этом устройстве.</span></div>
-          </div>
+        <div class="panel ai-guide" id="aiGuideOpen">
+          <div class="panel-head"><h3 data-i18n="ai.guideTitle">Как подключить ключ</h3><span class="chip chip-gold" data-i18n="ai.guideChip">инструкция</span></div>
+          <p class="hint" data-i18n="ai.guideLead">Вставьте ключ — сервис и модель подберутся сами. Нужны подробности? Откройте полную инструкцию.</p>
+          <button class="btn btn-line btn-sm" id="aiGuideBtn" style="margin-top:10px"><span data-i18n="ai.guideOpen">Открыть инструкцию</span></button>
           <div class="warn-box" style="margin-top:14px"><b data-i18n="ai.risk">Важно:</b> <span data-i18n="ai.riskText">браузерные запросы к API видны в сети устройства. Для публичных мероприятий используйте ключ с лимитом.</span></div>
         </div>
         <div class="panel">
@@ -2028,6 +2059,91 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
   </div>
 </div>
 
+<!-- Инструкция: как подключить API-ключ. Открывается из раздела «ИИ-генератор». -->
+<div class="modal" id="aiGuide">
+  <div class="modal-backdrop" data-close="aiGuide"></div>
+  <div class="modal-card wide aiguide-card">
+    <div class="modal-head">
+      <div>
+        <div class="eyebrow" data-i18n="ai.guideEyebrow">Подключение</div>
+        <h3 data-i18n="ai.guideTitle">Как подключить ключ</h3>
+        <p data-i18n="ai.guideSub">Ключ хранится только в вашем браузере и никуда не отправляется, кроме самого сервиса ИИ.</p>
+      </div>
+      <button class="icon-btn" data-close="aiGuide"><svg><use href="#i-x"/></svg></button>
+    </div>
+
+    <!-- Шаг 1: выбираем сервис -->
+    <section class="aiguide-step">
+      <div class="aiguide-num">1</div>
+      <div class="aiguide-body">
+        <h4 data-i18n="ai.g1t">Выберите сервис</h4>
+        <p data-i18n="ai.g1d">Оба варианта работают одинаково хорошо. Если ключа ещё нет — берите Google Gemini: он бесплатный и не требует привязки карты. OpenAI обычно даёт более точные вопросы по физике, но нужен платный аккаунт.</p>
+        <div class="aiguide-compare">
+          <div class="aiguide-opt">
+            <b>Google Gemini</b>
+            <span class="aiguide-tag ok" data-i18n="ai.g1free">бесплатный тариф</span>
+            <p data-i18n="ai.g1gem">Ключ: aistudio.google.com/apikey → «Create API key». Ключ начинается с <code>AIza…</code>. Карта не нужна, лимит — несколько десятков игр в сутки.</p>
+          </div>
+          <div class="aiguide-opt">
+            <b>OpenAI</b>
+            <span class="aiguide-tag pay" data-i18n="ai.g1paid">нужен баланс</span>
+            <p data-i18n="ai.g1oai">Ключ: platform.openai.com/api-keys → «Create new secret key». Ключ начинается с <code>sk-…</code>. Одна игра стоит примерно 1–3 цента.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Шаг 2: создаём ключ -->
+    <section class="aiguide-step">
+      <div class="aiguide-num">2</div>
+      <div class="aiguide-body">
+        <h4 data-i18n="ai.g2t">Создайте ключ</h4>
+        <div class="aiguide-links">
+          <a class="btn btn-line btn-sm" href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>
+          <a class="btn btn-line btn-sm" href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">platform.openai.com/api-keys</a>
+        </div>
+        <p data-i18n="ai.g2d">Скопируйте ключ сразу: OpenAI показывает его один раз. Если потеряли — удалите старый и создайте новый.</p>
+      </div>
+    </section>
+
+    <!-- Шаг 3: вставляем и проверяем -->
+    <section class="aiguide-step">
+      <div class="aiguide-num">3</div>
+      <div class="aiguide-body">
+        <h4 data-i18n="ai.g3t">Вставьте ключ и нажмите «Проверить»</h4>
+        <p data-i18n="ai.g3d">Сервис определится по префиксу ключа. Кнопка с галочкой рядом с полем проверит ключ, покажет доступные модели и выберет самую свежую из быстрых. Менять модель вручную не нужно.</p>
+        <div class="info-box" data-i18n="ai.g3note">Если автоподбор не сработал, впишите модель руками: <code>gemini-2.5-flash</code> или <code>gpt-4o-mini</code>. Список доступных моделей появится прямо в поле.</div>
+      </div>
+    </section>
+
+    <!-- Шаг 4: генерируем -->
+    <section class="aiguide-step">
+      <div class="aiguide-num">4</div>
+      <div class="aiguide-body">
+        <h4 data-i18n="ai.g4t">Сгенерируйте игру</h4>
+        <p data-i18n="ai.g4d">Выберите предмет, класс, четверть и уровень юмора, затем нажмите «Сгенерировать игру». Обычно это 20–60 секунд. Готовый набор появится в предпросмотре, оттуда его можно открыть в игре или доработать в конструкторе.</p>
+      </div>
+    </section>
+
+    <!-- Шаг 5: безопасность -->
+    <section class="aiguide-step">
+      <div class="aiguide-num">5</div>
+      <div class="aiguide-body">
+        <h4 data-i18n="ai.g5t">Безопасность</h4>
+        <ul class="aiguide-list">
+          <li data-i18n="ai.g5a">Ключ хранится в localStorage этого браузера и не попадает в файлы игры или экспорт PPTX.</li>
+          <li data-i18n="ai.g5b">Запрос идёт напрямую из браузера в сервис ИИ. На чужом компьютере ключ может увидеть владелец сети — для публичных мероприятий создайте отдельный ключ с лимитом.</li>
+          <li data-i18n="ai.g5c">Кнопка «Забыть ключ» удаляет его с этого устройства.</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="modal-foot">
+      <button class="btn btn-ghost" data-close="aiGuide"><span data-i18n="common.close">Закрыть</span></button>
+      <button class="btn btn-gold" id="aiGuidePickGemini"><span data-i18n="ai.guideUseGemini">Взять бесплатный Gemini</span></button>
+    </div>
+  </div>
+</div>
 <div class="toast-wrap" id="toastWrap" aria-live="polite"></div>
 <div class="confetti" id="confetti" aria-hidden="true"></div>
 <input type="file" id="fileInput" accept="application/json,.json" class="hidden">
@@ -2185,6 +2301,42 @@ ru: {
   'ai.card': 'Генератор вопросов', 'ai.cardSub': 'OpenAI (GPT) или Google Gemini — на выбор',
   'ai.apiKey': 'API-ключ', 'ai.apiKeyPh': 'sk-... или AIza...', 'ai.keyMissing': 'ключ не сохранён', 'ai.keySaved': 'ключ сохранён',
   'ai.model': 'Модель', 'ai.subject': 'Предмет', 'ai.grade': 'Класс', 'ai.quarter': 'Четверть',
+  'ai.modelAutoHint': 'подбирается по ключу автоматически',
+  'ai.modelWillCheck': 'проверяем ключ и подбираем модель…',
+  'ai.modelChecking': 'проверяем ключ и список моделей…',
+  'ai.modelPicked': 'выбрана',
+  'ai.modelFound': 'моделей доступно:',
+  'ai.modelFallback': 'нет доступа к списку моделей — оставлена',
+  'ai.keyOk': 'ключ работает',
+  'ai.keyUnknown': 'ключ не распознан: ожидается sk-… (OpenAI) или AIza… (Gemini)',
+  'ai.keyForget': 'забыть ключ',
+  'ai.keyForgotten': 'ключ удалён с этого устройства',
+  'ai.errKey': 'ключ неверный или без доступа. Откройте инструкцию «Как подключить ключ».',
+  'ai.errQuota': 'лимит сервиса исчерпан — подождите минуту или возьмите другой ключ',
+  'ai.guideEyebrow': 'Подключение',
+  'ai.guideTitle': 'Как подключить ключ',
+  'ai.guideChip': 'инструкция',
+  'ai.guideSub': 'Ключ хранится только в вашем браузере и отправляется только самому сервису ИИ.',
+  'ai.guideLead': 'Вставьте ключ — сервис и модель подберутся сами. Нужны подробности? Откройте полную инструкцию.',
+  'ai.guideOpen': 'Открыть инструкцию',
+  'ai.guideUseGemini': 'Взять бесплатный Gemini',
+  'ai.g1t': 'Выберите сервис',
+  'ai.g1d': 'Оба варианта работают одинаково хорошо. Если ключа ещё нет — берите Google Gemini: он бесплатный и не требует карты. OpenAI обычно точнее по физике, но нужен баланс.',
+  'ai.g1free': 'бесплатный тариф',
+  'ai.g1paid': 'нужен баланс',
+  'ai.g1gem': 'Ключ: aistudio.google.com/apikey → «Create API key». Ключ начинается с AIza… Карта не нужна, лимит — несколько десятков игр в сутки.',
+  'ai.g1oai': 'Ключ: platform.openai.com/api-keys → «Create new secret key». Ключ начинается с sk-… Одна игра стоит примерно 1–3 цента.',
+  'ai.g2t': 'Создайте ключ',
+  'ai.g2d': 'Скопируйте ключ сразу: OpenAI показывает его один раз. Если потеряли — удалите старый и создайте новый.',
+  'ai.g3t': 'Вставьте ключ и нажмите «Проверить»',
+  'ai.g3d': 'Сервис определится по префиксу ключа. Кнопка с галочкой рядом с полем проверит ключ, покажет доступные модели и выберет самую свежую из быстрых. Менять модель вручную не нужно.',
+  'ai.g3note': 'Если автоподбор не сработал, впишите модель руками: gemini-2.5-flash или gpt-4o-mini. Список доступных моделей появится прямо в поле.',
+  'ai.g4t': 'Сгенерируйте игру',
+  'ai.g4d': 'Выберите предмет, класс, четверть и уровень юмора, затем нажмите «Сгенерировать игру». Обычно это 20–60 секунд. Готовый набор появится в предпросмотре, оттуда его можно открыть в игре или доработать в конструкторе.',
+  'ai.g5t': 'Безопасность',
+  'ai.g5a': 'Ключ хранится в localStorage этого браузера и не попадает в файлы игры или экспорт PPTX.',
+  'ai.g5b': 'Запрос идёт напрямую из браузера в сервис ИИ. На чужом компьютере ключ может увидеть владелец сети — для публичных мероприятий создайте отдельный ключ с лимитом.',
+  'ai.g5c': 'Кнопка «Забыть ключ» удаляет его с этого устройства.',
   'ai.topic': 'Тема или акцент', 'ai.topicPh': 'Например: давление и сила Архимеда, проценты, квадратные уравнения',
   'ai.humor': 'Уровень юмора',
   'ai.h0': 'строго научно', 'ai.h1': 'живой язык', 'ai.h2': 'лёгкая улыбка', 'ai.h3': 'иронично', 'ai.h4': 'очень смешно', 'ai.h5': 'мемы',
@@ -2336,6 +2488,42 @@ kk: {
   'ai.card': 'Сұрақ генераторы', 'ai.cardSub': 'OpenAI (GPT) немесе Google Gemini — таңдауыңыз',
   'ai.apiKey': 'API-кілт', 'ai.apiKeyPh': 'sk-... немесе AIza...', 'ai.keyMissing': 'кілт сақталмаған', 'ai.keySaved': 'кілт сақталды',
   'ai.model': 'Модель', 'ai.subject': 'Пән', 'ai.grade': 'Сынып', 'ai.quarter': 'Тоқсан',
+  'ai.modelAutoHint': 'кілт бойынша автоматты түрде таңдалады',
+  'ai.modelWillCheck': 'кілт тексеріліп, модель таңдалуда…',
+  'ai.modelChecking': 'кілт пен модельдер тізімі тексерілуде…',
+  'ai.modelPicked': 'таңдалды',
+  'ai.modelFound': 'модель қолжетімді:',
+  'ai.modelFallback': 'модельдер тізіміне рұқсат жоқ — қалдырылды',
+  'ai.keyOk': 'кілт жұмыс істейді',
+  'ai.keyUnknown': 'кілт танылмады: sk-… (OpenAI) немесе AIza… (Gemini) күтіледі',
+  'ai.keyForget': 'кілтті ұмыту',
+  'ai.keyForgotten': 'кілт осы құрылғыдан жойылды',
+  'ai.errKey': 'кілт қате немесе рұқсат жоқ. «Кілтті қалай қосу» нұсқаулығын ашыңыз.',
+  'ai.errQuota': 'сервис лимиті бітті — бір минут күтіңіз немесе басқа кілт алыңыз',
+  'ai.guideEyebrow': 'Қосу',
+  'ai.guideTitle': 'Кілтті қалай қосу',
+  'ai.guideChip': 'нұсқаулық',
+  'ai.guideSub': 'Кілт тек сіздің браузеріңізде сақталады және тек ИИ сервисіне жіберіледі.',
+  'ai.guideLead': 'Кілтті қойыңыз — сервис пен модель өзі таңдалады. Толығырақ керек пе? Нұсқаулықты ашыңыз.',
+  'ai.guideOpen': 'Нұсқаулықты ашу',
+  'ai.guideUseGemini': 'Тегін Gemini алу',
+  'ai.g1t': 'Сервисті таңдаңыз',
+  'ai.g1d': 'Екеуі де бірдей жақсы жұмыс істейді. Кілт жоқ болса — Google Gemini алыңыз: тегін және карта қажет емес. OpenAI физикада дәлірек, бірақ баланс керек.',
+  'ai.g1free': 'тегін тариф',
+  'ai.g1paid': 'баланс керек',
+  'ai.g1gem': 'Кілт: aistudio.google.com/apikey → «Create API key». Кілт AIza… деп басталады. Карта қажет емес, лимит — тәулігіне бірнеше ондаған ойын.',
+  'ai.g1oai': 'Кілт: platform.openai.com/api-keys → «Create new secret key». Кілт sk-… деп басталады. Бір ойын шамамен 1–3 цент.',
+  'ai.g2t': 'Кілт жасаңыз',
+  'ai.g2d': 'Кілтті бірден көшіріңіз: OpenAI оны бір рет көрсетеді. Жоғалтсаңыз — ескісін жойып, жаңасын жасаңыз.',
+  'ai.g3t': 'Кілтті қойып, «Тексеру» түймесін басыңыз',
+  'ai.g3d': 'Сервис кілт префиксі бойынша анықталады. Өрістің жанындағы белгіше түйме кілтті тексереді, қолжетімді модельдерді көрсетеді және ең жаңа жылдам моделін таңдайды. Модельді қолмен ауыстырудың қажеті жоқ.',
+  'ai.g3note': 'Автотаңдау істемесе, модельді қолмен жазыңыз: gemini-2.5-flash немесе gpt-4o-mini. Қолжетімді модельдер тізімі өрістің өзінде шығады.',
+  'ai.g4t': 'Ойынды жасаңыз',
+  'ai.g4d': 'Пән, сынып, тоқсан және әзіл деңгейін таңдап, «Ойын жасау» түймесін басыңыз. Әдетте 20–60 секунд. Дайын жинақ алдын ала қарауда шығады, одан ойынға ашуға немесе конструкторда өңдеуге болады.',
+  'ai.g5t': 'Қауіпсіздік',
+  'ai.g5a': 'Кілт осы браузердің localStorage ішінде сақталады және ойын файлдарына не PPTX экспортына түспейді.',
+  'ai.g5b': 'Сұраныс браузерден тікелей ИИ сервисіне кетеді. Бөтен компьютерде кілтті желі иесі көре алады — көпшілік іс-шаралар үшін лимиті бар бөлек кілт жасаңыз.',
+  'ai.g5c': '«Кілтті ұмыту» түймесі оны осы құрылғыдан жояды.',
   'ai.topic': 'Тақырып немесе баса назар', 'ai.topicPh': 'Мысалы: қысым және Архимед күші, пайыздар, квадрат теңдеулер',
   'ai.humor': 'Әзіл деңгейі',
   'ai.h0': 'қатаң ғылыми', 'ai.h1': 'тірі тіл', 'ai.h2': 'жеңіл күлкі', 'ai.h3': 'ирониялық', 'ai.h4': 'өте күлкілі', 'ai.h5': 'мемдер',
@@ -2487,6 +2675,42 @@ en: {
   'ai.card': 'Question generator', 'ai.cardSub': 'OpenAI (GPT) or Google Gemini — your choice',
   'ai.apiKey': 'API key', 'ai.apiKeyPh': 'sk-... or AIza...', 'ai.keyMissing': 'no key saved', 'ai.keySaved': 'key saved',
   'ai.model': 'Model', 'ai.subject': 'Subject', 'ai.grade': 'Grade', 'ai.quarter': 'Quarter',
+  'ai.modelAutoHint': 'picked automatically from your key',
+  'ai.modelWillCheck': 'checking the key and picking a model…',
+  'ai.modelChecking': 'checking key and available models…',
+  'ai.modelPicked': 'selected',
+  'ai.modelFound': 'models available:',
+  'ai.modelFallback': 'model list unavailable — kept',
+  'ai.keyOk': 'the key works',
+  'ai.keyUnknown': 'key not recognised: expected sk-… (OpenAI) or AIza… (Gemini)',
+  'ai.keyForget': 'forget key',
+  'ai.keyForgotten': 'key removed from this device',
+  'ai.errKey': 'the key is invalid or has no access. Open “How to connect a key”.',
+  'ai.errQuota': 'service quota reached — wait a minute or use another key',
+  'ai.guideEyebrow': 'Setup',
+  'ai.guideTitle': 'How to connect a key',
+  'ai.guideChip': 'guide',
+  'ai.guideSub': 'The key lives only in your browser and is sent only to the AI service itself.',
+  'ai.guideLead': 'Paste the key — the service and model are detected automatically. Need details? Open the full guide.',
+  'ai.guideOpen': 'Open the guide',
+  'ai.guideUseGemini': 'Get a free Gemini key',
+  'ai.g1t': 'Pick a service',
+  'ai.g1d': 'Both work equally well. No key yet? Choose Google Gemini: it is free and needs no card. OpenAI is often sharper on physics but requires credit.',
+  'ai.g1free': 'free tier',
+  'ai.g1paid': 'needs credit',
+  'ai.g1gem': 'Key: aistudio.google.com/apikey → “Create API key”. The key starts with AIza… No card needed, the limit is dozens of games per day.',
+  'ai.g1oai': 'Key: platform.openai.com/api-keys → “Create new secret key”. The key starts with sk-… One game costs about 1–3 cents.',
+  'ai.g2t': 'Create the key',
+  'ai.g2d': 'Copy the key right away: OpenAI shows it only once. If you lose it, delete the old one and create a new one.',
+  'ai.g3t': 'Paste the key and press “Check”',
+  'ai.g3d': 'The service is detected from the key prefix. The tick button next to the field validates the key, lists available models and picks the newest fast one. No need to choose a model by hand.',
+  'ai.g3note': 'If auto-selection fails, type a model manually: gemini-2.5-flash or gpt-4o-mini. Available models appear right in the field.',
+  'ai.g4t': 'Generate the game',
+  'ai.g4d': 'Choose subject, grade, quarter and humour level, then press “Generate game”. It usually takes 20–60 seconds. The set appears in the preview, from where you can play it or refine it in the builder.',
+  'ai.g5t': 'Safety',
+  'ai.g5a': 'The key is stored in this browser’s localStorage and never ends up in game files or PPTX exports.',
+  'ai.g5b': 'Requests go straight from the browser to the AI service. On someone else’s computer the network owner may see the key — create a separate rate-limited key for public events.',
+  'ai.g5c': 'The “Forget key” button removes it from this device.',
   'ai.topic': 'Topic or focus', 'ai.topicPh': 'E.g. pressure and buoyancy, percentages, quadratic equations',
   'ai.humor': 'Humour level',
   'ai.h0': 'strict science', 'ai.h1': 'lively', 'ai.h2': 'a light smile', 'ai.h3': 'ironic', 'ai.h4': 'very funny', 'ai.h5': 'memes',
@@ -10042,23 +10266,188 @@ function aiSetState(state) {
   const loader = $('#aiLoader');
   if (loader) loader.classList.toggle('on', state === 'working');
 }
+/* ------------------------------------------------------------------------
+   АВТОПОДБОР СЕРВИСА И МОДЕЛИ
+   Пользователь вставляет только ключ — дальше всё определяется по префиксу:
+   sk-… / sk-proj-… / sk-svcacct-… → OpenAI, AIza… → Google Gemini.
+   Затем берём список моделей у самого сервиса и выбираем свежую быструю.
+   ---------------------------------------------------------------------- */
+const KEY_PREFIXES = [
+  { provider: 'gemini', re: /^AIza[0-9A-Za-z_\-]{20,}$/, label: 'AIza…' },
+  { provider: 'openai', re: /^sk-(proj-|svcacct-|admin-)?[A-Za-z0-9_\-]{16,}$/, label: 'sk-…' }
+];
+/** Сервис по виду ключа. null — не распознан. */
+function providerFromKey(key) {
+  const k = String(key || '').trim();
+  if (!k) return null;
+  const hit = KEY_PREFIXES.find((p) => p.re.test(k));
+  return hit ? hit.provider : null;
+}
+/** Модели, которые заведомо не подходят для генерации JSON. */
+function modelIsUsable(name) {
+  const n = String(name || '').toLowerCase();
+  if (!n) return false;
+  return !/(embed|embedding|image|dall-e|tts|whisper|audio|realtime|moderation|davinci|babbage|curie|ada|vision-preview|search|aqa|veo|imagen|learnlm|gemma)/.test(n);
+}
+/** Предпочтения по семействам: чем меньше число, тем охотнее берём модель. */
+function modelRank(name) {
+  const n = String(name || '').toLowerCase();
+  if (/gemini/.test(n)) {
+    if (/2\.5-flash(?!-lite|-image|-tts)/.test(n)) return 10;
+    if (/2\.5-pro/.test(n)) return 20;
+    if (/2\.0-flash(?!-lite|-image|-tts)/.test(n)) return 30;
+    if (/1\.5-flash/.test(n)) return 40;
+    if (/2\.0-pro|1\.5-pro/.test(n)) return 45;
+    return 60;
+  }
+  if (/gpt/.test(n)) {
+    if (/^gpt-4o-mini/.test(n)) return 10;
+    if (/^gpt-4\.1-mini/.test(n)) return 12;
+    if (/^gpt-5-mini|^gpt-5\.1-mini/.test(n)) return 14;
+    if (/^gpt-4o(?!-)/.test(n)) return 20;
+    if (/^gpt-4\.1(?!-mini)/.test(n)) return 22;
+    if (/^gpt-5(?!-mini)/.test(n)) return 24;
+    if (/^gpt-4-turbo|^gpt-4(?!o)/.test(n)) return 40;
+    if (/^o\d/.test(n)) return 50;
+    return 35;
+  }
+  return 70;
+}
+/** Список моделей у OpenAI. */
+async function listOpenAIModels(key) {
+  const res = await fetch('https://api.openai.com/v1/models', {
+    headers: { Authorization: 'Bearer ' + key }
+  });
+  if (!res.ok) throw new Error('OpenAI models ' + res.status);
+  const data = await res.json();
+  return (data.data || []).map((m) => m.id).filter(modelIsUsable);
+}
+/** Список моделей у Gemini (метод list отдаёт только имена поддерживаемых). */
+async function listGeminiModels(key) {
+  const res = await fetch('https://generativelanguage.googleapis.com/v1beta/models?pageSize=100&key=' + encodeURIComponent(key));
+  if (!res.ok) throw new Error('Gemini models ' + res.status);
+  const data = await res.json();
+  return (data.models || [])
+    .filter((m) => (m.supportedGenerationMethods || []).includes('generateContent'))
+    .map((m) => String(m.name || '').replace(/^models\//, ''))
+    .filter(modelIsUsable);
+}
+/** Выбрать лучшую модель из списка. */
+function pickBestModel(provider, list) {
+  const usable = (list || []).filter(modelIsUsable);
+  if (!usable.length) return provider === 'gemini' ? 'gemini-2.5-flash' : 'gpt-4o-mini';
+  return usable.slice().sort((a, b) => modelRank(a) - modelRank(b) || a.localeCompare(b))[0];
+}
+/** Показать выбранную модель в поле и в подписи. */
+function setAiModel(model, note) {
+  const el = $('#aiModel');
+  if (el && model) el.value = model;
+  S.settings.model = model || S.settings.model;
+  persistSettings();
+  const wrap = $('#aiModelState');
+  const txt = $('#aiModelText');
+  if (txt) txt.textContent = note || t('ai.modelPicked') + ' ' + model;
+  if (wrap) {
+    wrap.classList.remove('warn');
+    wrap.classList.add('ok');
+  }
+}
+/** Подпись под полем «Модель». */
+function aiModelHint(text, ok) {
+  const wrap = $('#aiModelState');
+  const txt = $('#aiModelText');
+  if (txt) txt.textContent = text;
+  if (!wrap) return;
+  wrap.classList.toggle('ok', !!ok);
+  wrap.classList.toggle('warn', ok === false && !!text);
+}
+/** Проверка ключа с задержкой — чтобы не дёргать API на каждой букве. */
+let keyCheckTimer = null;
+function scheduleKeyCheck() {
+  if (keyCheckTimer) clearTimeout(keyCheckTimer);
+  keyCheckTimer = setTimeout(() => {
+    keyCheckTimer = null;
+    if (!AI.running) checkAiKey(true);
+  }, 900);
+}
+/** Наполнить выпадающий список моделей. */
+function fillModelList(models) {
+  const dl = $('#aiModelList');
+  if (!dl) return;
+  dl.innerHTML = (models || []).map((m) => '<option value="' + esc(m) + '"></option>').join('');
+}
+/**
+ * Проверить ключ и автоматически выбрать модель.
+ * @param {boolean} silent — не показывать toast при успехе (для тихой проверки при вводе)
+ */
+async function checkAiKey(silent) {
+  const key = ($('#aiKey').value || '').trim();
+  if (!key) {
+    toast(t('ai.noKey'), 'err');
+    return null;
+  }
+  const provider = providerFromKey(key);
+  if (!provider) {
+    toast(t('ai.keyUnknown'), 'err');
+    return null;
+  }
+  /* сервис определился по префиксу — сразу переключаем вкладку */
+  AI.provider = provider;
+  S.settings.provider = provider;
+  $$('#aiProvider button').forEach((b) => b.classList.toggle('active', b.dataset.provider === provider));
+  S.settings.apiKey = key;
+  persistSettings();
+  const stateEl = $('#aiModelState');
+  const textEl = $('#aiModelText');
+  if (stateEl) { stateEl.classList.remove('ok'); stateEl.classList.add('warn'); }
+  if (textEl) textEl.textContent = t('ai.modelChecking');
+  try {
+    const list = provider === 'openai' ? await listOpenAIModels(key) : await listGeminiModels(key);
+    fillModelList(list);
+    const best = pickBestModel(provider, list);
+    setAiModel(best, t('ai.modelPicked') + ' ' + best + ' · ' + t('ai.modelFound') + ' ' + list.length);
+    if (!silent) toast(t('ai.keyOk') + ' · ' + best, 'ok');
+    return best;
+  } catch (e) {
+    /* список закрыт политикой ключа — оставляем проверенную модель по умолчанию */
+    const fallback = provider === 'gemini' ? 'gemini-2.5-flash' : 'gpt-4o-mini';
+    setAiModel(fallback, t('ai.modelFallback') + ' ' + fallback);
+    if (!silent) toast(t('ai.modelFallback') + ': ' + String(e.message || e).slice(0, 80), 'warn');
+    return fallback;
+  }
+}
+
+/** Запрос к OpenAI. Новые модели (o-серия, gpt-5) не принимают temperature —
+ *  поэтому при ошибке 400 повторяем запрос без этих параметров. */
 async function callOpenAI(cfg, prompt, signal) {
   const key = (cfg.apiKey || '').trim();
   const model = (cfg.model || 'gpt-4o-mini').trim();
-  const res = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key },
-    signal,
-    body: JSON.stringify({
-      model,
-      temperature: 0.85,
-      response_format: { type: 'json_object' },
-      messages: [
-        { role: 'system', content: 'Ты выдаёшь только валидный JSON по заданной схеме, без markdown.' },
-        { role: 'user', content: prompt }
-      ]
-    })
-  });
+  const messages = [
+    { role: 'system', content: 'Ты выдаёшь только валидный JSON по заданной схеме, без markdown.' },
+    { role: 'user', content: prompt }
+  ];
+  const send = async (tuned) => {
+    const body = { model, messages };
+    if (tuned) { body.temperature = 0.85; body.response_format = { type: 'json_object' }; }
+    return fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + key },
+      signal,
+      body: JSON.stringify(body)
+    });
+  };
+  let res = await send(true);
+  if (res.status === 400) {
+    /* вероятно, модель не поддерживает temperature/response_format — пробуем проще */
+    const errText = await res.text().catch(() => '');
+    if (/temperature|response_format|unsupported|not supported/i.test(errText)) {
+      res = await send(false);
+    } else {
+      throw new Error('OpenAI 400: ' + errText.slice(0, 300));
+    }
+  }
+  if (res.status === 429) throw new Error(t('ai.errQuota'));
+  if (res.status === 401 || res.status === 403) throw new Error(t('ai.errKey'));
   if (!res.ok) {
     const errText = await res.text().catch(() => '');
     throw new Error('OpenAI ' + res.status + ': ' + errText.slice(0, 300));
@@ -10079,6 +10468,12 @@ async function callGemini(cfg, prompt, signal) {
       generationConfig: { temperature: 0.9, responseMimeType: 'application/json' }
     })
   });
+  if (res.status === 429) throw new Error(t('ai.errQuota'));
+  if (res.status === 400 || res.status === 401 || res.status === 403) {
+    const errText = await res.text().catch(() => '');
+    if (/API key not valid|API_KEY_INVALID|permission/i.test(errText)) throw new Error(t('ai.errKey'));
+    throw new Error('Gemini ' + res.status + ': ' + errText.slice(0, 300));
+  }
   if (!res.ok) {
     const errText = await res.text().catch(() => '');
     throw new Error('Gemini ' + res.status + ': ' + errText.slice(0, 300));
@@ -10142,6 +10537,14 @@ async function runAiGeneration() {
   if (AI.running) return;
   const key = ($('#aiKey').value || '').trim();
   if (!key) { toast(t('ai.noKeyDesc'), 'err', t('ai.noKey')); $('#aiKey').focus(); return; }
+  /* сервис по ключу: пользователь мог вставить ключ и сразу нажать «Сгенерировать» */
+  const detected = providerFromKey(key);
+  if (detected && detected !== AI.provider) {
+    AI.provider = detected;
+    S.settings.provider = detected;
+    persistSettings();
+    $$('#aiProvider button').forEach((b) => b.classList.toggle('active', b.dataset.provider === detected));
+  }
   const cfg = {
     provider: AI.provider,
     apiKey: key,
@@ -10664,23 +11067,69 @@ function bindGlobal() {
     if (!b) return;
     AI.provider = b.dataset.provider;
     S.settings.provider = AI.provider;
-    $('#aiModel').value = AI.provider === 'openai' ? 'gpt-4o-mini' : 'gemini-2.5-flash';
-    S.settings.model = $('#aiModel').value;
     persistSettings();
     $$('#aiProvider button').forEach((x) => x.classList.toggle('active', x === b));
+    /* ключ уже введён — сразу проверяем его для нового сервиса */
+    if (($('#aiKey').value || '').trim()) {
+      checkAiKey(true);
+    } else {
+      $('#aiModel').value = AI.provider === 'openai' ? 'gpt-4o-mini' : 'gemini-2.5-flash';
+      S.settings.model = $('#aiModel').value;
+      persistSettings();
+    }
   });
   $('#aiHumor').addEventListener('input', () => {
     updateHumorLabel();
     S.settings.humor = Number($('#aiHumor').value);
   });
   $('#aiKey').addEventListener('input', (e) => {
-    S.settings.apiKey = e.target.value.trim();
+    const key = e.target.value.trim();
+    S.settings.apiKey = key;
     persistSettings();
     const st = $('#aiKeyState');
-    const has = !!S.settings.apiKey;
-    st.classList.toggle('ok', has);
     const txt = $('#aiKeyText');
-    if (txt) txt.textContent = has ? t('ai.keySaved') : t('ai.keyMissing');
+    const detected = providerFromKey(key);
+    const forget = $('#aiKeyForget');
+    if (forget) forget.classList.toggle('hidden', !key);
+    if (!key) {
+      st.classList.remove('ok', 'warn');
+      if (txt) txt.textContent = t('ai.keyMissing');
+      aiModelHint(t('ai.modelAutoHint'), false);
+      return;
+    }
+    if (!detected) {
+      st.classList.remove('ok');
+      st.classList.add('warn');
+      if (txt) txt.textContent = t('ai.keyUnknown');
+      return;
+    }
+    st.classList.remove('warn');
+    st.classList.add('ok');
+    if (txt) {
+      txt.textContent = (detected === 'gemini' ? 'Google Gemini' : 'OpenAI') + ' · ' + t('ai.keySaved');
+    }
+    /* вкладку сервиса переключаем сразу, модель — после проверки списка */
+    if (AI.provider !== detected) {
+      AI.provider = detected;
+      S.settings.provider = detected;
+      persistSettings();
+      $$('#aiProvider button').forEach((b) => b.classList.toggle('active', b.dataset.provider === detected));
+    }
+    aiModelHint(t('ai.modelWillCheck'), false);
+    scheduleKeyCheck();
+  });
+  $('#aiKeyCheck').addEventListener('click', () => checkAiKey(false));
+  $('#aiKeyForget').addEventListener('click', () => {
+    const el = $('#aiKey');
+    if (el) el.value = '';
+    S.settings.apiKey = '';
+    persistSettings();
+    $('#aiKeyState').classList.remove('ok', 'warn');
+    const txt = $('#aiKeyText');
+    if (txt) txt.textContent = t('ai.keyMissing');
+    $('#aiKeyForget').classList.add('hidden');
+    aiModelHint(t('ai.modelAutoHint'), false);
+    toast(t('ai.keyForgotten'), 'info');
   });
   $('#aiMedia').addEventListener('change', (e) => { S.settings.aiMedia = e.target.checked; persistSettings(); });
   $('#aiModel').addEventListener('change', (e) => { S.settings.model = e.target.value.trim(); persistSettings(); });
@@ -10693,6 +11142,23 @@ function bindGlobal() {
     openSetup(g);
   });
   $('#aiSubject').addEventListener('change', () => {});
+  /* инструкция по подключению ключа */
+  const openGuide = () => openModal('aiGuide');
+  const guideBtn = $('#aiGuideBtn');
+  if (guideBtn) guideBtn.addEventListener('click', openGuide);
+  const guideOpen = $('#aiGuideOpen');
+  if (guideOpen) guideOpen.addEventListener('click', (e) => { if (!e.target.closest('button') || e.target.closest('#aiGuideBtn')) openGuide(); });
+  const guideGemini = $('#aiGuidePickGemini');
+  if (guideGemini) guideGemini.addEventListener('click', () => {
+    closeModal('aiGuide');
+    AI.provider = 'gemini';
+    S.settings.provider = 'gemini';
+    persistSettings();
+    $$('#aiProvider button').forEach((b) => b.classList.toggle('active', b.dataset.provider === 'gemini'));
+    const keyEl = $('#aiKey');
+    if (keyEl) keyEl.focus();
+    window.open('https://aistudio.google.com/apikey', '_blank', 'noopener');
+  });
   /* модалка правил: открытие по клику на чип-форматы */
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
@@ -10820,6 +11286,7 @@ const SHOWS = (() => {
     'show.million': 'Кто хочет стать миллионером?',
     'show.millionSub': '15 вопросов, четыре подсказки и лестница сумм',
     'show.chooseSet': 'Выберите набор вопросов',
+    'show.scheme': 'Схема к вопросу',
     'show.noIdea': 'Не знаю',
     'show.allListed': 'Все перечисленные варианты',
     'show.otherOption': 'Другой вариант',
@@ -10890,6 +11357,7 @@ const SHOWS = (() => {
     'show.million': 'Миллионер болғым келеді',
     'show.millionSub': '15 сұрақ, төрт көмек және сыйлық баспалдағы',
     'show.chooseSet': 'Сұрақтар жинағын таңдаңыз',
+    'show.scheme': 'Сұрақ суреті',
     'show.noIdea': 'Білмеймін',
     'show.allListed': 'Аталғандардың барлығы',
     'show.otherOption': 'Басқа нұсқа',
@@ -10960,6 +11428,7 @@ const SHOWS = (() => {
     'show.million': 'Who Wants to Be a Millionaire?',
     'show.millionSub': '15 questions, four lifelines and a money ladder',
     'show.chooseSet': 'Choose a question set',
+    'show.scheme': 'Diagram for the question',
     'show.noIdea': 'I don’t know',
     'show.allListed': 'All of the above',
     'show.otherOption': 'Another option',
