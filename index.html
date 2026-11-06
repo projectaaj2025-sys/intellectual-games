@@ -1287,6 +1287,24 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
 .million-score{font-family:var(--font-display);font-size:clamp(15px,1.8vw,24px);color:#f2c45a;letter-spacing:.06em}
 .million-score small{display:block;font-family:var(--font-ui);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,240,255,.5)}
 .million-cta{display:flex;gap:10px;flex-wrap:wrap}
+/* ---------- кроссворд-разминка ---------- */
+.cross{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;padding:clamp(10px,2vh,24px) clamp(12px,2.6vw,40px);overflow:auto;
+  background:radial-gradient(120% 80% at 50% -10%,rgba(28,44,104,.9),rgba(6,10,24,.98) 70%)}
+.cross-head{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:clamp(8px,1.6vh,18px)}
+.cross-wrap{display:flex;gap:clamp(14px,2.4vw,34px);align-items:flex-start;justify-content:center;flex-wrap:wrap;width:100%;max-width:1180px}
+.cross-grid{display:grid;gap:2px;flex:none;--cell:clamp(15px,min(1.75vw,1.9vh),25px)}
+.cross-cell{position:relative;aspect-ratio:1;width:var(--cell);border:1px solid rgba(126,163,255,.34);border-radius:3px;
+  background:rgba(16,28,60,.85);display:grid;place-items:center;cursor:pointer;transition:.18s}
+.cross-cell.blank{border:0;background:transparent;cursor:default}
+.cross-cell.open{border-color:rgba(242,196,90,.85);background:rgba(242,196,90,.16)}
+.cross-letter{font-family:var(--font-ui);font-weight:800;font-size:clamp(9px,1.05vw,15px);color:#ffe9a6}
+.cross-num{position:absolute;top:1px;left:2px;font-size:clamp(6px,.72vw,9px);font-weight:800;color:rgba(242,196,90,.75);line-height:1}
+.cross-clues{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(12px,2vw,28px);flex:1;min-width:min(100%,280px);max-width:640px}
+.cross-col h4{font-family:var(--font-ui);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#f2c45a;margin-bottom:8px}
+.cross-col ol{list-style:none;display:flex;flex-direction:column;gap:5px}
+.cross-col li{font-size:clamp(10.5px,1vw,13px);line-height:1.45;color:rgba(224,234,255,.86)}
+.cross-col li b{color:#f2c45a;margin-right:3px}
+.cross-len{color:rgba(159,180,220,.6)}
 /* ---------- 100 к 1 ---------- */
 .hund{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;padding:clamp(12px,2.4vh,30px) clamp(14px,3vw,48px);overflow:auto;
   background:radial-gradient(120% 80% at 50% -10%,rgba(30,52,120,.85),rgba(6,10,24,.98) 70%)}
@@ -1633,6 +1651,7 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
     <div class="play-note">
       <svg><use href="#i-spark"/></svg>
       <span data-i18n="play.note">Вопросы берутся из банка физики и математики 5–11 класса. Свой набор можно собрать в конструкторе или сгенерировать ИИ.</span>
+      <button class="btn btn-line" id="crossBtn"><svg><use href="#i-grid"/></svg><span data-i18n="cross.btn">Кроссворд-разминка</span></button>
       <button class="btn btn-ghost" data-go="ai" data-i18n="nav.ai">ИИ-генератор</button>
     </div>
     <div style="height:60px"></div>
@@ -2380,6 +2399,7 @@ ru: {
   'play.hundredDesc': 'Шесть ответов аудитории на табло, три промаха и супер-игра «наоборот».',
   'play.hundredMeta': '6 вопросов · 6 ответов · 3 промаха',
   'play.note': 'Вопросы берутся из банка физики и математики 5–11 класса. Свой набор можно собрать в конструкторе или сгенерировать ИИ.',
+  'cross.btn': 'Кроссворд-разминка',
   'top.theme': 'Сменить тему', 'top.settings': 'Настройки',
   'hero.kicker': 'телевизионная викторина · конструктор · экспорт',
   'hero.t1': 'Своя', 'hero.t2': 'игра',
@@ -2584,6 +2604,7 @@ kk: {
   'play.hundredDesc': 'Таблодағы аудиторияның алты жауабы, үш қате және «кері» супер-ойын.',
   'play.hundredMeta': '6 сұрақ · 6 жауап · 3 қате',
   'play.note': 'Сұрақтар 5–11 сынып физика және математика қорынан алынады. Өз жинағыңызды құрастырушыда жинауға немесе ИИ арқылы жасауға болады.',
+  'cross.btn': 'Кроссворд-қыздыру',
   'top.theme': 'Тақырыпты ауыстыру', 'top.settings': 'Баптаулар',
   'hero.kicker': 'теледидарлық викторина · құрастырушы · экспорт',
   'hero.t1': 'Өз', 'hero.t2': 'ойының',
@@ -2787,6 +2808,7 @@ en: {
   'play.hundredDesc': 'Six audience answers on the board, three strikes and a reverse super round.',
   'play.hundredMeta': '6 questions · 6 answers · 3 strikes',
   'play.note': 'Questions come from the physics and maths bank for grades 5–11. Build your own set in the builder or generate one with AI.',
+  'cross.btn': 'Crossword warm-up',
   'top.theme': 'Switch theme', 'top.settings': 'Settings',
   'hero.kicker': 'tv quiz · game builder · pptx export',
   'hero.t1': 'Own', 'hero.t2': 'game',
@@ -11970,6 +11992,7 @@ function bindGlobal() {
     const q = Number(($('#bQCount') || {}).value) || 5;
     applyBoardSize(c, q);
   };
+  if ($('#crossBtn')) $('#crossBtn').addEventListener('click', openCrossword);
   if ($('#bCatCount')) $('#bCatCount').addEventListener('change', sizeChange);
   if ($('#bQCount')) $('#bQCount').addEventListener('change', sizeChange);
   $('#bCatEditors').addEventListener('input', () => { collectBuilder(); renderBuilderMeta(); });
@@ -13936,7 +13959,7 @@ const SHOWS = (() => {
       '</div>';
     $$('[data-hund-fin]').forEach((b) => b.addEventListener('click', () => {
       const k = b.dataset.hundFin;
-      if (k === 'exit') { closeShow(); return; }
+      if (k === 'exit') { closeCrossword(); return; }
       if (k === 'again') { hundOpen(HUND.game); return; }
       hundSuper();
     }));
@@ -13972,6 +13995,142 @@ const SHOWS = (() => {
   /* ------------------------------ публичный API ------------------------- */
   return { chgkOpen, millionOpen, pickup: pickSet, pickSet, hundOpen, closeShow, LADDER, CHGK, MI, HUND, buildMillionQuestions };
 })();
+
+/* =========================================================================
+   РАЗМИНКА: КРОССВОРД «ФИЗИКА 7»
+   Сетка восстановлена из методички учителя (слайд «Разминка»). В исходнике
+   были только заполненные клетки — определения к словам добавлены здесь,
+   порядок слов совпадает с сеткой.
+   ========================================================================= */
+const CROSS = {
+  words: [
+    { w: 'ПОГРЕШНОСТЬ', dir: 'h', x: 7,  y: 3,  def: 'Разница между измеренным и истинным значением величины.' },
+    { w: 'МЕХАНИКА',    dir: 'h', x: 9,  y: 6,  def: 'Раздел физики о движении тел и силах.' },
+    { w: 'ФИЗИКА',      dir: 'h', x: 9,  y: 10, def: 'Наука о природе и её явлениях.' },
+    { w: 'ТРАЕКТОРИЯ',  dir: 'h', x: 6,  y: 14, def: 'Линия, которую описывает тело при движении.' },
+    { w: 'СЕКУНДОМЕР',  dir: 'h', x: 9,  y: 18, def: 'Прибор для измерения времени.' },
+    { w: 'ОТНОСИТЕЛЬНОСТЬ', dir: 'h', x: 1, y: 23, def: 'Свойство движения зависеть от выбора тела отсчёта.' },
+    { w: 'ДВИЖЕНИЕ',    dir: 'h', x: 4,  y: 26, def: 'Изменение положения тела с течением времени.' },
+    { w: 'ПЕРЕМЕЩЕНИЕ', dir: 'v', x: 10, y: 1,  def: 'Вектор из начального положения тела в конечное.' },
+    { w: 'ЯВЛЕНИЕ',     dir: 'v', x: 8,  y: 20, def: 'Изменение, происходящее в природе.' },
+    { w: 'ВРЕМЯ',       dir: 'v', x: 10, y: 16, def: 'Величина, которую измеряют часами.' },
+    { w: 'ПУТЬ',        dir: 'v', x: 11, y: 12, def: 'Длина участка траектории.' },
+    { w: 'ЭКСПЕРИМЕНТ', dir: 'v', x: 13, y: 9,  def: 'Опыт, поставленный по плану.' },
+    { w: 'СКОРОСТЬ',    dir: 'v', x: 15, y: 16, def: 'Путь, пройденный за единицу времени.' },
+    { w: 'СИСТЕМАСИ',   dir: 'v', x: 16, y: 0,  def: 'Векторная величина в механике, измеряется в ньютонах.' },
+    { w: 'РАВНОМЕРНЫЙ', dir: 'v', x: 17, y: 12, def: 'Вид движения с постоянной по модулю скоростью.' }
+  ]
+};
+/** Собрать матрицу клеток и список пересечений. */
+function crossGrid() {
+  const cell = new Map();
+  const W = CROSS.words;
+  W.forEach((item, idx) => {
+    const letters = item.w.split('');
+    letters.forEach((ch, i) => {
+      const x = item.dir === 'h' ? item.x + i : item.x;
+      const y = item.dir === 'h' ? item.y : item.y + i;
+      const key = x + ':' + y;
+      if (!cell.has(key)) cell.set(key, { ch: null, x, y, h: [], v: [] });
+      const c = cell.get(key);
+      c.ch = ch;
+      c[item.dir === 'h' ? 'h' : 'v'].push(idx);
+    });
+  });
+  let maxX = 0, maxY = 0;
+  cell.forEach((c) => { maxX = Math.max(maxX, c.x); maxY = Math.max(maxY, c.y); });
+  return { cell, maxX, maxY, words: W };
+}
+let crossState = null;
+function openCrossword() {
+  const grid = crossGrid();
+  crossState = { grid, open: new Set() };
+  const el = $('#showScreen');
+  el.classList.add('open');
+  el.innerHTML = '<div class="show-closebar">' +
+      '<button class="glass-btn" data-cross-close title="' + esc(t('show.exit')) + '"><svg><use href="#i-x"/></svg></button>' +
+    '</div>' +
+    '<div class="show-root"><div class="cross" id="crossRoot"></div></div>';
+  $$('[data-cross-close]', el).forEach((b) => b.addEventListener('click', closeCrossword));
+  renderCross();
+  $('#app').classList.add('in-game');
+  document.body.style.overflow = 'hidden';
+  AudioKit.resume();
+}
+function closeCrossword() {
+  const el = $('#showScreen');
+  el.classList.remove('open');
+  el.innerHTML = '';
+  $('#app').classList.remove('in-game');
+  document.body.style.overflow = '';
+}
+function renderCross() {
+  const root = $('#crossRoot');
+  const { cell, maxX, maxY, words } = crossState.grid;
+  const nums = crossNumbering();
+  let cells = '';
+  for (let y = 0; y <= maxY; y++) {
+    for (let x = 0; x <= maxX; x++) {
+      const c = cell.get(x + ':' + y);
+      if (!c) { cells += '<div class="cross-cell blank"></div>'; continue; }
+      const isOpen = crossState.open.has(x + ':' + y);
+      const n = nums.get(x + ':' + y);
+      cells += '<div class="cross-cell' + (isOpen ? ' open' : '') + '" data-cell="' + x + ':' + y + '">' +
+        (n ? '<span class="cross-num">' + n + '</span>' : '') +
+        '<span class="cross-letter">' + (isOpen ? esc(c.ch) : '') + '</span></div>';
+    }
+  }
+  root.innerHTML =
+    '<div class="cross-head"><span class="hund-badge">РАЗМИНКА</span>' +
+      '<span class="hund-pool">Кроссворд · <b id="crossDone">0</b> / ' + cell.size + ' букв</span></div>' +
+    '<div class="cross-wrap">' +
+      '<div class="cross-grid" style="grid-template-columns:repeat(' + (maxX + 1) + ',1fr)">' + cells + '</div>' +
+      '<div class="cross-clues">' + cluesHtml(nums) + '</div>' +
+    '</div>' +
+    '<div class="hund-actions">' +
+      '<button class="mi-btn" data-cross="hint">Открыть букву</button>' +
+      '<button class="mi-btn" data-cross="all">Показать всё</button>' +
+      '<button class="mi-btn ghost" data-cross="reset">Сбросить</button>' +
+      '<button class="mi-btn gold" data-cross="exit">В игру →</button>' +
+    '</div>';
+  $$('[data-cross]', root).forEach((b) => b.addEventListener('click', () => {
+    const k = b.dataset.cross;
+    if (k === 'exit') { closeCrossword(); return; }
+    if (k === 'reset') crossState.open = new Set();
+    if (k === 'all') crossState.grid.cell.forEach((c) => crossState.open.add(c.x + ':' + c.y));
+    if (k === 'hint') {
+      const left = [...crossState.grid.cell.values()].filter((c) => !crossState.open.has(c.x + ':' + c.y));
+      if (left.length) { const pick = left[Math.floor(Math.random() * left.length)]; crossState.open.add(pick.x + ':' + pick.y); }
+    }
+    renderCross();
+  }));
+  $$('.cross-cell[data-cell]', root).forEach((c) => c.addEventListener('click', () => {
+    const k = c.dataset.cell;
+    if (crossState.open.has(k)) crossState.open.delete(k); else crossState.open.add(k);
+    renderCross();
+  }));
+  const done = $('#crossDone');
+  if (done) done.textContent = String(crossState.open.size);
+}
+/** Номера слов: по порядку чтения сетки (сверху вниз, слева направо),
+ *  поэтому в определениях номера идут 1, 2, 3… без разрывов. */
+function crossNumbering() {
+  const starts = crossState.grid.words.map((item) => ({ item, key: item.x + ':' + item.y }))
+    .sort((a, b) => (a.item.y - b.item.y) || (a.item.x - b.item.x));
+  const nums = new Map();
+  starts.forEach((s) => { if (!nums.has(s.key)) nums.set(s.key, nums.size + 1); });
+  return nums;
+}
+function cluesHtml(nums) {
+  const across = [], down = [];
+  crossState.grid.words.forEach((item) => {
+    (item.dir === 'h' ? across : down).push({ n: nums.get(item.x + ':' + item.y), item });
+  });
+  const li = (arr) => arr.sort((a, b) => a.n - b.n).map(({ n, item }) =>
+    '<li><b>' + n + '.</b> ' + esc(item.def) + ' <span class="cross-len">(' + item.w.length + ')</span></li>').join('');
+  return '<div class="cross-col"><h4>По горизонтали</h4><ol>' + li(across) + '</ol></div>' +
+         '<div class="cross-col"><h4>По вертикали</h4><ol>' + li(down) + '</ol></div>';
+}
 
 /* привязка карточек форматов на главной и в библиотеке */
 document.addEventListener('DOMContentLoaded', () => {
