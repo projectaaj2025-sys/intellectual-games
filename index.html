@@ -1401,6 +1401,29 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
   letter-spacing:.18em;text-transform:uppercase;padding:5px 11px;border-radius:999px;
   background:rgba(57,226,154,.12);color:var(--ok);border:1px solid rgba(57,226,154,.38)}
 
+/* Show format cards and dedicated builders */
+.formats-redesign{gap:16px}
+.formats-redesign .format-card{min-height:260px;display:flex;flex-direction:column;align-items:flex-start;padding:23px;border:1px solid var(--line);border-radius:20px;background:var(--surface);cursor:pointer;transition:transform .25s,border-color .25s,box-shadow .25s;isolation:isolate}
+.formats-redesign .format-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 100% 0%,rgba(242,196,90,.15),transparent 52%);z-index:-1}
+.formats-redesign .format-card:nth-child(2)::before{background:radial-gradient(circle at 100% 0%,rgba(84,224,255,.18),transparent 52%)}
+.formats-redesign .format-card:nth-child(3)::before{background:radial-gradient(circle at 100% 0%,rgba(154,123,255,.2),transparent 52%)}
+.formats-redesign .format-card:nth-child(4)::before{background:radial-gradient(circle at 100% 0%,rgba(57,226,154,.16),transparent 52%)}
+.formats-redesign .format-card:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:var(--shadow-md)}
+.formats-redesign .format-card:focus-visible,.builder-format:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.format-top{display:flex;width:100%;justify-content:space-between;align-items:center;color:var(--faint);font-size:10px;letter-spacing:.18em;font-weight:800}
+.format-arrow{font-size:18px;color:var(--gold)}
+.format-symbol{height:68px;min-width:68px;padding:0 12px;margin:19px 0 15px;display:flex;align-items:center;justify-content:center;border-radius:17px;background:var(--gold-soft);color:var(--gold);font-family:var(--font-display);font-size:37px;line-height:1}
+.format-symbol span{font-size:16px}.formats-redesign .format-card h3{font-size:16px;line-height:1.25}.formats-redesign .format-card p{font-size:12px;line-height:1.5;margin:8px 0 16px}.format-ready{margin-top:auto;color:var(--gold);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.builder-format-heading{display:flex;align-items:end;justify-content:space-between;gap:18px;margin:26px 0 14px}.builder-format-heading h2{font-size:20px}.builder-format-heading p{color:var(--muted);font-size:13px}
+.builder-format-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:24px}.builder-format{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;min-height:150px;padding:17px;border:1px solid var(--line);border-radius:16px;background:var(--surface);color:var(--ink);cursor:pointer;transition:.2s}.builder-format:hover,.builder-format.selected{border-color:var(--gold);background:linear-gradient(145deg,var(--gold-soft),var(--surface))}.builder-format b{font-size:14px;line-height:1.3}.builder-format small{font-size:11px;color:var(--muted);line-height:1.45}.bf-number{font-size:10px;letter-spacing:.18em;color:var(--gold);font-weight:800}.bf-arrow{position:absolute;top:14px;right:17px;color:var(--gold)}
+.native-hero{display:flex;justify-content:space-between;gap:20px;align-items:center;overflow:hidden;padding:32px;border:1px solid rgba(242,196,90,.25);border-radius:22px;background:linear-gradient(115deg,#101c39,#142d55);color:#fff;margin-bottom:18px}.native-hero h2{font-family:var(--font-display);font-size:clamp(28px,3vw,42px);line-height:1.1;margin:8px 0}.native-hero p{color:#bac9df;font-size:13px;max-width:590px;line-height:1.6}.native-kicker{text-transform:uppercase;letter-spacing:.18em;font-weight:800;font-size:10px;color:#d7ae4f}.native-hero-symbol{font-family:var(--font-display);font-size:clamp(55px,7vw,110px);line-height:1;color:rgba(242,196,90,.38);white-space:nowrap}
+.native-layout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:20px;align-items:start}.native-meta{display:grid;gap:14px}.native-list{display:grid;gap:10px;margin-top:16px}.native-item{border:1px solid var(--line);border-radius:16px;background:var(--surface);overflow:hidden}.native-item[open]{border-color:rgba(242,196,90,.5)}.native-item summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:14px;padding:15px 18px}.native-item summary::-webkit-details-marker{display:none}.native-index{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:var(--gold-soft);color:var(--gold);font-weight:800;font-size:12px}.native-item summary b{font-size:14px}.native-chevron{margin-left:auto;color:var(--muted);font-size:20px}.native-fields{display:grid;gap:12px;padding:18px;border-top:1px solid var(--line)}.native-fields textarea{min-height:75px}.native-options{display:grid;grid-template-columns:1fr 1fr;gap:12px}.survey-rows{display:grid;gap:9px}.survey-row{display:grid;grid-template-columns:minmax(0,1fr) 90px;gap:10px}.native-blitz{display:grid;gap:10px;padding:14px;border-radius:12px;background:var(--surface-2)}.native-side{position:sticky;top:20px}.native-side h3{margin:8px 0;font-size:17px}.native-side p{font-size:12px;line-height:1.6;color:var(--muted);margin:0 0 16px}.native-side .btn{margin-top:8px}.native-side .survey-notice{padding:12px;border-left:3px solid var(--gold);background:var(--gold-soft);border-radius:8px}
+@media(max-width:900px){.builder-format-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.native-layout{grid-template-columns:1fr}.native-side{position:static}.builder-format-heading{align-items:start;flex-direction:column}}
+@media(max-width:520px){.builder-format-grid{grid-template-columns:1fr 1fr;gap:8px}.builder-format{min-height:138px;padding:13px}.builder-format b{font-size:12px}.native-hero{padding:22px}.native-hero-symbol{font-size:45px}.native-options{grid-template-columns:1fr}.survey-row{grid-template-columns:minmax(0,1fr) 74px}}
+
+.hund-host{width:100%;text-align:left;color:#eee;font-size:12px}.hund-host summary{cursor:pointer;color:#f2c45a}.hund-host p{margin:8px 0}.hund-host .mi-btn{margin:3px}.chgk-fact{font-size:.8em;opacity:.8;margin:10px 0 0}
+.hund-demo-note{position:relative;z-index:2;color:#d7c999;font-size:11px;line-height:1.35;text-align:center;padding:4px 16px}.format-pick .fp-body span{line-height:1.45}
+.hund-row:not(.open) .hund-answer,.hund-row:not(.open) .hund-score{font-size:0;color:transparent;user-select:none}.hund-row:not(.open) .hund-answer::after{content:"••••••";font-size:clamp(13px,1.55vw,21px);color:rgba(180,198,236,.42);letter-spacing:.2em}.hund-row:not(.open) .hund-score::after{content:"—";font-size:clamp(14px,1.7vw,24px);color:rgba(242,196,90,.32)}
 </style>
 </head>
 <body>
@@ -1602,14 +1625,14 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
       <div>
         <div class="eyebrow" data-i18n="formats.eyebrow">форматы клуба</div>
         <h2 class="h2" data-i18n-html="formats.title">Четыре <em>формата</em></h2>
-        <p class="section-sub" data-i18n="formats.sub">Играются «Своя игра», «Что? Где? Когда?» и «Кто хочет стать миллионером». «100 к 1» появится следом — на том же банке вопросов.</p>
+        <p class="section-sub" data-i18n="formats.sub">Выберите свой формат: игровое поле, викторина с вариантами, вопросы на логику или табло ответов опроса.</p>
       </div>
     </div>
-    <div class="formats">
-      <article class="format-card active"><div class="format-icon">СИ</div><h3 data-i18n="formats.f1">Своя игра</h3><p data-i18n="formats.f1d">5×5, два раунда, супер-игра</p><span class="chip chip-gold" style="margin-top:12px" data-i18n="formats.live">доступно</span></article>
-      <article class="format-card"><span class="soon" data-i18n="formats.soon">скоро</span><div class="format-icon">100:1</div><h3 data-i18n="formats.f2">100 к 1</h3><p data-i18n="formats.f2d">Ответы аудитории и табло</p></article>
-      <article class="format-card" data-format="million" role="button" tabindex="0"><span class="chip-live" data-i18n="formats.live">доступно</span><div class="format-icon">КХСМ</div><h3 data-i18n="formats.f3">Кто хочет стать миллионером</h3><p data-i18n="formats.f3d">15 вопросов и подсказки</p></article>
-      <article class="format-card" data-format="chgk" role="button" tabindex="0"><span class="chip-live" data-i18n="formats.live">доступно</span><div class="format-icon">ЧГК</div><h3 data-i18n="formats.f4">Что? Где? Когда?</h3><p data-i18n="formats.f4d">Волчок и минута на размышление</p></article>
+    <div class="formats formats-redesign">
+      <article class="format-card" data-format="svoya" role="button" tabindex="0"><div class="format-top"><span class="format-number">01 / QUIZ</span><span class="format-arrow">↗</span></div><div class="format-symbol">✦</div><h3 data-i18n="formats.f1">Своя игра</h3><p data-i18n="formats.f1d">5×5, два раунда, супер-игра</p><span class="format-ready" data-i18n="formats.live">доступно</span></article>
+      <article class="format-card" data-format="hundred" role="button" tabindex="0"><div class="format-top"><span class="format-number">02 / SURVEY</span><span class="format-arrow">↗</span></div><div class="format-symbol">100<span> : 1</span></div><h3 data-i18n="formats.f2">100 к 1</h3><p data-i18n="formats.f2d">Ответы аудитории и табло</p><span class="format-ready" data-i18n="formats.live">доступно</span></article>
+      <article class="format-card" data-format="million" role="button" tabindex="0"><div class="format-top"><span class="format-number">03 / LADDER</span><span class="format-arrow">↗</span></div><div class="format-symbol">◇</div><h3 data-i18n="formats.f3">Кто хочет стать миллионером</h3><p data-i18n="formats.f3d">15 вопросов и подсказки</p><span class="format-ready" data-i18n="formats.live">доступно</span></article>
+      <article class="format-card" data-format="chgk" role="button" tabindex="0"><div class="format-top"><span class="format-number">04 / CLUB</span><span class="format-arrow">↗</span></div><div class="format-symbol">?</div><h3 data-i18n="formats.f4">Что? Где? Когда?</h3><p data-i18n="formats.f4d">Волчок и минута на размышление</p><span class="format-ready" data-i18n="formats.live">доступно</span></article>
     </div>
   </section>
 </section>
@@ -1621,7 +1644,7 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
       <div>
         <div class="eyebrow" data-i18n="play.eyebrow">играть</div>
         <h1 data-i18n="play.title">Выберите формат шоу</h1>
-        <p class="section-sub" data-i18n="play.sub">Три телевизионных формата на одном банке вопросов. Выберите формат — дальше укажете набор и команды.</p>
+        <p class="section-sub" data-i18n="play.sub">Четыре формата с собственными наборами вопросов. Выберите шоу и набор.</p>
       </div>
       <button class="btn btn-line" data-go="library"><svg><use href="#i-grid"/></svg><span data-i18n="play.toLibrary">База игр</span></button>
     </div>
@@ -1654,14 +1677,14 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
         <div class="play-cover"><span class="play-emoji">100:1</span><span class="play-chip" data-i18n="formats.live">доступно</span></div>
         <div class="play-body">
           <h3 data-i18n="formats.f2">100 к 1</h3>
-          <p data-i18n="play.hundredDesc">Шесть ответов аудитории на табло, три промаха и супер-игра «наоборот».</p>
+          <p data-i18n="play.hundredDesc">Шесть ответов опроса на табло и три промаха. Баллы задаёт автор набора.</p>
           <div class="play-foot"><span data-i18n="play.hundredMeta">6 вопросов · 6 ответов · 3 промаха</span><svg><use href="#i-arrow-right"/></svg></div>
         </div>
       </article>
     </div>
     <div class="play-note">
       <svg><use href="#i-spark"/></svg>
-      <span data-i18n="play.note">Вопросы берутся из банка физики и математики 5–11 класса. Свой набор можно собрать в конструкторе или сгенерировать ИИ.</span>
+      <span data-i18n="play.note">У каждого шоу свой тип набора. Откройте демонстрацию или создайте вопросы в конструкторе.</span>
       <button class="btn btn-line" id="crossBtn"><svg><use href="#i-grid"/></svg><span data-i18n="cross.btn">Кроссворд-разминка</span></button>
       <button class="btn btn-ghost" data-go="ai" data-i18n="nav.ai">ИИ-генератор</button>
     </div>
@@ -1708,14 +1731,17 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
       <div>
         <div class="eyebrow" data-i18n="builder.eyebrow">конструктор</div>
         <h1 data-i18n="builder.title">Создать свою игру</h1>
-        <p class="section-sub" data-i18n="builder.sub">5 категорий × 5 вопросов в каждом раунде. Отмечайте «Кота в мешке», аукцион и бонусы — всё это работает в игре и переносится в PPTX.</p>
+        <p class="section-sub" id="builderMainSubtitle" data-i18n="builder.sub">5 категорий × 5 вопросов в каждом раунде. Отмечайте «Кота в мешке», аукцион и бонусы — всё это работает в игре и переносится в PPTX.</p>
       </div>
-      <div class="flex">
+      <div class="flex" id="svoyaBuilderActions">
         <button class="btn btn-line" id="builderImport"><svg><use href="#i-upload"/></svg><span data-i18n="builder.load">Загрузить игру</span></button>
         <button class="btn btn-gold" id="builderSave"><svg><use href="#i-save"/></svg><span data-i18n="builder.save">Сохранить игру</span></button>
       </div>
     </div>
-    <div class="builder-layout">
+    <div class="builder-format-heading"><div><div class="eyebrow" data-i18n="builder.eyebrow">конструктор</div><h2 id="formatChooseTitle">Выберите формат</h2></div><p id="formatChooseHint">Для каждого шоу — свои вопросы и правила.</p></div>
+    <div id="builderFormatSelect" class="builder-format-grid"></div>
+    <div id="nativeBuilder" class="native-builder hidden"></div>
+    <div class="builder-layout" id="svoyaBuilder">
       <div>
         <div class="panel">
           <div class="panel-head">
@@ -2147,7 +2173,7 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
         <p class="hint" data-i18n="settings.dataHint">Игры конструктора и настройки сохраняются в localStorage. Сброс удалит сохранённые игры.</p>
       </div>
       <div class="field"><span class="label" data-i18n="settings.about">О проекте</span>
-        <p class="hint" data-i18n="settings.aboutText">Quiz Studio — открытый конструктор интеллектуальных игр. Сейчас готов формат «Своя игра», следующие: 100 к 1, Кто хочет стать миллионером, Что? Где? Когда?</p>
+        <p class="hint" data-i18n="settings.aboutText">Quiz Studio — открытый конструктор интеллектуальных игр. Доступны четыре формата: «Своя игра», 100 к 1, Кто хочет стать миллионером, Что? Где? Когда?</p>
       </div>
     </div>
     <div class="modal-foot"><button class="btn btn-gold" data-close="settingsModal" data-i18n="settings.done">Готово</button></div>
@@ -2411,7 +2437,7 @@ ru: {
   'nav.home': 'Главная', 'nav.play': 'Играть', 'nav.library': 'База игр', 'nav.builder': 'Конструктор', 'nav.ai': 'ИИ-генератор',
   'play.eyebrow': 'играть',
   'play.title': 'Выберите формат шоу',
-  'play.sub': 'Четыре телевизионных формата на одном банке вопросов. Выберите формат — дальше укажете набор и команды.',
+  'play.sub': 'Четыре формата с собственными наборами вопросов. Выберите шоу и набор.',
   'play.toLibrary': 'База игр',
   'play.svoyaDesc': 'Поле 5×5 или 4×4, два раунда, «Кот в мешке», аукцион и супер-игра со ставками.',
   'play.svoyaMeta': 'от 2 до 4 команд · таймер · PPTX',
@@ -2419,9 +2445,9 @@ ru: {
   'play.millionMeta': 'лестница до 1 000 000 · подсказки',
   'play.chgkDesc': 'Волчок, 13 секторов, чёрный ящик, блиц и минута на размышление.',
   'play.chgkMeta': '13 секторов · волчок · блиц',
-  'play.hundredDesc': 'Шесть ответов аудитории на табло, три промаха и супер-игра «наоборот».',
+  'play.hundredDesc': 'Шесть ответов опроса на табло и три промаха. Баллы задаёт автор набора.',
   'play.hundredMeta': '6 вопросов · 6 ответов · 3 промаха',
-  'play.note': 'Вопросы берутся из банка физики и математики 5–11 класса. Свой набор можно собрать в конструкторе или сгенерировать ИИ.',
+  'play.note': 'У каждого шоу свой тип набора. Откройте демонстрацию или создайте вопросы в конструкторе.',
   'cross.btn': 'Кроссворд-разминка',
   'top.theme': 'Сменить тему', 'top.settings': 'Настройки',
   'hero.kicker': 'телевизионная викторина · конструктор · экспорт',
@@ -2445,7 +2471,7 @@ ru: {
   'steps.s2t': 'Настройте эфир', 'steps.s2d': 'Команды от 2 до 4, имена, режим ведущего, таймер, звук и тема оформления — всё в одном окне настроек.',
   'steps.s3t': 'Играйте или скачайте', 'steps.s3d': 'Проводите игру на проекторе прямо из браузера или забирайте готовый PPTX с интерактивным полем.',
   'formats.eyebrow': 'форматы клуба', 'formats.title': 'Четыре <em>формата</em>',
-  'formats.sub': 'Играются «Своя игра», «Что? Где? Когда?» и «Кто хочет стать миллионером». «100 к 1» появится следом — на том же банке вопросов.',
+  'formats.sub': 'Выберите свой формат: игровое поле, викторина с вариантами, вопросы на логику или табло ответов опроса.',
   'formats.f1': 'Своя игра', 'formats.f1d': '5×5, два раунда, супер-игра',
   'formats.f2': '100 к 1', 'formats.f2d': 'Ответы аудитории и табло',
   'formats.f3': 'Кто хочет стать миллионером', 'formats.f3d': '15 вопросов и подсказки',
@@ -2580,7 +2606,7 @@ ru: {
   'settings.data': 'Данные', 'settings.export': 'Выгрузить мои игры', 'settings.import': 'Загрузить JSON', 'settings.reset': 'Сбросить настройки',
   'settings.dataHint': 'Игры конструктора и настройки сохраняются в localStorage. Сброс удалит сохранённые игры.',
   'settings.about': 'О проекте',
-  'settings.aboutText': 'Quiz Studio — открытый конструктор интеллектуальных игр. Сейчас готов формат «Своя игра», следующие: 100 к 1, Кто хочет стать миллионером, Что? Где? Когда?',
+  'settings.aboutText': 'Quiz Studio — открытый конструктор интеллектуальных игр. Доступны четыре формата: «Своя игра», 100 к 1, Кто хочет стать миллионером, Что? Где? Когда?',
   'settings.done': 'Готово',
   'manual.title': 'Изменить очки', 'manual.sub': 'Ручная правка счёта команды', 'manual.close': 'Закрыть',
   'confirm.no': 'Отмена', 'confirm.yes': 'Да',
@@ -2620,7 +2646,7 @@ kk: {
   'nav.home': 'Басты', 'nav.play': 'Ойнау', 'nav.library': 'Ойындар қоры', 'nav.builder': 'Құрастырушы', 'nav.ai': 'ИИ-генератор',
   'play.eyebrow': 'ойнау',
   'play.title': 'Шоу форматын таңдаңыз',
-  'play.sub': 'Бір сұрақ қорындағы төрт теледидар форматы. Форматты таңдаңыз — әрі қарай жинақ пен командаларды көрсетесіз.',
+  'play.sub': 'Әр форматтың өз сұрақтар жинағы бар. Шоу мен жинақты таңдаңыз.',
   'play.toLibrary': 'Ойындар қоры',
   'play.svoyaDesc': '5×5 немесе 4×4 өріс, екі раунд, «Қаптағы мысық», аукцион және ставкалармен супер-ойын.',
   'play.svoyaMeta': '2–4 команда · таймер · PPTX',
@@ -2628,9 +2654,9 @@ kk: {
   'play.millionMeta': '1 000 000-ға дейінгі баспалдақ · көмек',
   'play.chgkDesc': 'Зырылдауық, 13 сектор, қара жәшік, блиц және ойлануға бір минут.',
   'play.chgkMeta': '13 сектор · зырылдауық · блиц',
-  'play.hundredDesc': 'Таблодағы аудиторияның алты жауабы, үш қате және «кері» супер-ойын.',
+  'play.hundredDesc': 'Тақтадағы сауалнаманың алты жауабы және үш қате. Ұпайларды жинақ авторы белгілейді.',
   'play.hundredMeta': '6 сұрақ · 6 жауап · 3 қате',
-  'play.note': 'Сұрақтар 5–11 сынып физика және математика қорынан алынады. Өз жинағыңызды құрастырушыда жинауға немесе ИИ арқылы жасауға болады.',
+  'play.note': 'Әр шоудың өз жинағы бар. Демонстрацияны ашыңыз немесе құрастырушыда өз сұрақтарыңызды жасаңыз.',
   'cross.btn': 'Кроссворд-қыздыру',
   'top.theme': 'Тақырыпты ауыстыру', 'top.settings': 'Баптаулар',
   'hero.kicker': 'теледидарлық викторина · құрастырушы · экспорт',
@@ -2653,7 +2679,7 @@ kk: {
   'steps.s2t': 'Эфирді баптаңыз', 'steps.s2d': '2–4 команда, атаулар, жүргізуші режимі, таймер, дыбыс және тақырып — бәрі бір терезеде.',
   'steps.s3t': 'Ойнаңыз немесе жүктеңіз', 'steps.s3d': 'Ойынды проекторда браузерден өткізіңіз немесе интерактивті тақтасы бар дайын PPTX алыңыз.',
   'formats.eyebrow': 'клуб форматтары', 'formats.title': 'Төрт <em>формат</em>',
-  'formats.sub': '«Өз ойыны», «Не? Қайда? Қашан?» және «Миллионер болғым келеді» ойналады. «100-ге 1» кейін қосылады.',
+  'formats.sub': 'Өз форматыңызды таңдаңыз: ойын алаңы, жауап нұсқалары, логикалық сұрақтар немесе сауалнама тақтасы.',
   'formats.f1': 'Өз ойыны', 'formats.f1d': '5×5, екі раунд, супер-ойын',
   'formats.f2': '100-ге 1', 'formats.f2d': 'Көрермен жауаптары мен тақта',
   'formats.f3': 'Миллионер болғым келеді', 'formats.f3d': '15 сұрақ және көмектер',
@@ -2828,7 +2854,7 @@ en: {
   'nav.home': 'Home', 'nav.play': 'Play', 'nav.library': 'Game library', 'nav.builder': 'Builder', 'nav.ai': 'AI generator',
   'play.eyebrow': 'play',
   'play.title': 'Pick a show format',
-  'play.sub': 'Four TV formats on one question bank. Pick a format, then choose a set and the teams.',
+  'play.sub': 'Each show uses its own question sets. Pick a format and a set.',
   'play.toLibrary': 'Game library',
   'play.svoyaDesc': 'A 5×5 or 4×4 board, two rounds, the Cat in a Bag, an auction and a wagering super game.',
   'play.svoyaMeta': '2–4 teams · timer · PPTX',
@@ -2836,9 +2862,9 @@ en: {
   'play.millionMeta': 'ladder up to 1,000,000 · lifelines',
   'play.chgkDesc': 'A spinning top, 13 sectors, the black box, a blitz and a minute to think.',
   'play.chgkMeta': '13 sectors · top · blitz',
-  'play.hundredDesc': 'Six audience answers on the board, three strikes and a reverse super round.',
+  'play.hundredDesc': 'Six survey responses on the board and three strikes. Scores are entered by the set author.',
   'play.hundredMeta': '6 questions · 6 answers · 3 strikes',
-  'play.note': 'Questions come from the physics and maths bank for grades 5–11. Build your own set in the builder or generate one with AI.',
+  'play.note': 'Each show has its own set type. Open a demo or create questions in the builder.',
   'cross.btn': 'Crossword warm-up',
   'top.theme': 'Switch theme', 'top.settings': 'Settings',
   'hero.kicker': 'tv quiz · game builder · pptx export',
@@ -2861,7 +2887,7 @@ en: {
   'steps.s2t': 'Set up the show', 'steps.s2d': 'Two to four teams, names, host mode, timer, sound and theme — all in one settings window.',
   'steps.s3t': 'Play or download', 'steps.s3d': 'Run the game on a projector straight from the browser or grab a PPTX with an interactive board.',
   'formats.eyebrow': 'club formats', 'formats.title': 'Four <em>formats</em>',
-  'formats.sub': 'Quiz Show, What? Where? When? and Who Wants to Be a Millionaire? are playable now. 100 to 1 follows on the same question bank.',
+  'formats.sub': 'Choose your format: a quiz board, multiple choice, logic questions or a survey board.',
   'formats.f1': 'Own Game', 'formats.f1d': '5×5, two rounds, super-game',
   'formats.f2': 'Family Feud 100 to 1', 'formats.f2d': 'Audience answers and a board',
   'formats.f3': 'Who Wants to Be a Millionaire', 'formats.f3d': '15 questions and lifelines',
@@ -9767,15 +9793,16 @@ function setView(name) {
   $$('.modal.open').forEach((m) => m.classList.remove('open'));
   window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
   if (name === 'library') renderLibrary();
-  if (name === 'builder') renderBuilder();
+  if (name === 'builder') { renderBuilder(); renderNativeBuilder(); }
   if (name === 'ai') { syncAiForm(); }
   history.replaceState(null, '', name === 'home' ? location.pathname : '#' + name);
 }
 function allGames() {
-  return BANK_GAMES.concat(PLAN_GAMES).concat(S.custom.map(normalizeGame));
+  return BANK_GAMES.concat(PLAN_GAMES, SHOW_DEMOS).concat(S.custom.map(normalizeGame));
 }
 function gameTitle(g) { return tx(g.title) || t('presets.custom'); }
 function gameQuestionCount(g) {
+  if (g.showFormat && Array.isArray(g.showItems)) return g.showItems.length;
   return (g.rounds || []).reduce((s, r) => s + (r.categories || []).reduce((x, c) => x + (c.questions || []).length, 0), 0);
 }
 function subjectLabel(subject) {
@@ -9786,6 +9813,8 @@ function subjectLabel(subject) {
 function normalizeGame(raw) {
   const g = {
     id: raw.id || uid('game'),
+    showFormat: ['chgk','million','hundred'].includes(raw.showFormat) ? raw.showFormat : null,
+    showItems: Array.isArray(raw.showItems) ? JSON.parse(JSON.stringify(raw.showItems)) : [],
     title: raw.title || { ru: 'Без названия', kk: 'Атауы жоқ', en: 'Untitled' },
     subject: raw.subject || 'mixed',
     grade: raw.grade || 7,
@@ -9924,7 +9953,7 @@ function libGameCard(g) {
     '<div class="lib-body">' +
       '<div class="lib-title">' + esc(gameTitle(g)) + '</div>' +
       '<div class="lib-meta">' +
-        '<span class="chip chip-gold">' + esc(subjectLabel(g.subject)) + '</span>' +
+        '<span class="chip chip-gold">' + esc(g.showFormat ? nativeFormatName(g.showFormat) : subjectLabel(g.subject)) + '</span>' +
         '<span class="chip">' + esc(g.grade) + ' ' + esc(t('grade')) + '</span>' +
         '<span class="chip">' + esc(g.quarter ? g.quarter + ' ' + t('quarterShort') : t('lib.wholeCourse')) + '</span>' +
         '<span class="chip chip-cyan">' + qs + ' Q</span>' +
@@ -11903,7 +11932,7 @@ function setLang(lang) {
     updateStageChrome();
     if (G.cell && G.showAnswer) { /* подписи обновятся при следующем действии */ }
   }
-  if (S.view === 'builder') { renderBuilderMeta(); }
+  if (S.view === 'builder') { renderBuilderMeta(); renderNativeBuilder(); }
   if (S.view === 'ai') { syncAiForm(); }
   const libGrade = $('#libGrade');
   if (libGrade) { libGrade.options[0].textContent = t('lib.allGrades'); }
@@ -11998,7 +12027,7 @@ function importFromText(text) {
   if (!json) { toast(t('import.bad'), 'err'); return null; }
   const raw = json.game || json;
   const g = normalizeGame(raw);
-  const hasContent = g.rounds.length > 0;
+  const hasContent = g.rounds.length > 0 || (g.showFormat && g.showItems.length > 0);
   if (!hasContent) { toast(t('import.bad'), 'err'); return null; }
   return g;
 }
@@ -12016,11 +12045,14 @@ function saveGameAsCustom(game) {
 function playById(id) {
   const g = findGame(id);
   if (!g) return;
+  if (g.showFormat) { launchNativeGame(g); return; }
   openSetup(g);
 }
 function editById(id) {
   const g = findGame(id);
   if (!g) return;
+  if (g.showFormat) { editNativeGame(g); return; }
+  selectBuilderFormat('svoya');
   loadBuilderFromGame(g);
   S.view = 'builder';
   setView('builder');
@@ -12028,7 +12060,7 @@ function editById(id) {
   toast(t('builder.load') + ': ' + gameTitle(g), 'ok');
 }
 function randomGame() {
-  const g = pick(allGames());
+  const g = pick(allGames().filter((game) => !game.showFormat));
   if (!g) return;
   openSetup(g);
 }
@@ -12055,6 +12087,7 @@ function bindGlobal() {
     const pp = e.target.closest('[data-pptx]');
     if (pp) {
       const g = findGame(pp.dataset.pptx);
+      if (g && g.showFormat) { SHOWS.showPptx(g.showFormat, g); return; }
       if (g) { $('#pptxName').value = slug(gameTitle(g)); renderPptxThemes(); openModal('exportModal'); $('#exportGo').onclick = () => exportPptxFor(g, readPptxOpts()); $('#exportModal').dataset.game = g.id; }
       return;
     }
@@ -12508,10 +12541,160 @@ function PersistDefaultSettings() {
 }
 /* доступ к правилам */
 function initRulesButton() {
-  const fp = $('.format-card.active');
-  if (fp) { fp.style.cursor = 'pointer'; fp.addEventListener('click', () => { renderRules(); openModal('rulesModal'); }); }
   const help = $('#gHelp');
   if (help) help.title = t('game.help');
+}
+
+/* Форматные наборы: варианты и результаты опроса задаются автором, а не угадываются из чужих ответов. */
+const NB_TEXT = {
+ ru: {hostKey:'Ответы ведущего', hostWarning:'Открыв список, вы покажете ответы на общем экране.', choose:'Выберите формат', hint:'У каждого шоу — свои вопросы, правила и игровая сцена.', svoya:'Своя игра', million:'Кто хочет стать миллионером', chgk:'Что? Где? Когда?', hundred:'100 к 1', svoyaDesc:'Поле категорий, стоимость вопросов, спецвопросы и финал.', millionDesc:'15 вопросов по нарастающей сложности, четыре варианта и один правильный ответ.', chgkDesc:'13 секторов: логические вопросы, чёрный ящик и блиц по три вопроса.', hundredDesc:'6 вопросов опроса: для каждого — шесть ответов и их баллы.', edit:'Редактор формата', title:'Название набора', description:'Описание', titlePh:'Например: Интеллектуальный вечер', nameRequired:'Укажите название набора.', pptx:'Скачать PPTX', save:'Сохранить', play:'Сохранить и играть', export:'Экспорт JSON', question:'Вопрос', answer:'Правильный ответ', option:'Вариант', correct:'Правильный вариант', points:'Баллы', sector:'Сектор', normal:'Обычный', blackbox:'Чёрный ящик', blitz:'Блиц', superblitz:'Суперблиц', explain:'Комментарий к ответу', invalid:'Заполните все вопросы и ответы. Для «100 к 1» укажите шесть разных ответов с баллами по убыванию, сумма не более 100. Для «Миллионера» нужны четыре разных варианта.', saved:'Набор сохранён', sample:'Демонстрационный набор: данные опроса условные, не реальные результаты. Замените их результатами своего опроса.', demoLabel:'Демонстрационный набор · русский язык', missing:'Сначала заполните набор целиком.', import:'Импорт JSON', format:'Формат', source:'Источник / комментарий', empty:'Пока нет подходящих наборов.'},
+ kk: {hostKey:'Жүргізуші жауаптары', hostWarning:'Тізімді ашқанда жауаптар ортақ экранда көрінеді.', choose:'Форматты таңдаңыз', hint:'Әр шоудың өз сұрақтары, ережелері және ойын сахнасы бар.', svoya:'Өз ойыны', million:'Миллионер болғым келеді', chgk:'Не? Қайда? Қашан?', hundred:'100-ге 1', svoyaDesc:'Санаттар алаңы, сұрақ құны, арнайы сұрақтар және финал.', millionDesc:'Күрделілігі артатын 15 сұрақ, төрт нұсқа және бір дұрыс жауап.', chgkDesc:'13 сектор: логикалық сұрақтар, қара жәшік және үш сұрақтық блиц.', hundredDesc:'6 сауалнама сұрағы: әрқайсысына алты жауап пен ұпай.', edit:'Формат редакторы', title:'Жинақ атауы', description:'Сипаттама', titlePh:'Мысалы: Зияткерлік кеш', nameRequired:'Жинақ атауын енгізіңіз.', pptx:'PPTX жүктеу', save:'Сақтау', play:'Сақтау және ойнау', export:'JSON экспорты', question:'Сұрақ', answer:'Дұрыс жауап', option:'Нұсқа', correct:'Дұрыс нұсқа', points:'Ұпай', sector:'Сектор', normal:'Қалыпты', blackbox:'Қара жәшік', blitz:'Блиц', superblitz:'Суперблиц', explain:'Жауапқа түсініктеме', invalid:'Барлық сұрақтар мен жауаптарды толтырыңыз. «100-ге 1»: алты түрлі жауап, ұпайлар кему ретімен, қосындысы 100-ден аспайды. «Миллионер»: төрт түрлі нұсқа.', saved:'Жинақ сақталды', sample:'Демонстрациялық жинақ: сауалнама деректері шартты, нақты нәтиже емес. Өз сауалнамаңыздың нәтижелерімен ауыстырыңыз.', demoLabel:'Демонстрациялық жинақ · орыс тілінде', missing:'Алдымен жинақты толық толтырыңыз.', import:'JSON импорттау', format:'Формат', source:'Дереккөз / түсініктеме', empty:'Сәйкес жинақтар әлі жоқ.'},
+ en: {hostKey:'Host answer key', hostWarning:'Opening this will show answers on the shared screen.', choose:'Choose a format', hint:'Each show has its own questions, rules and stage.', svoya:'Quiz board', million:'Who Wants to Be a Millionaire?', chgk:'What? Where? When?', hundred:'100 to 1', svoyaDesc:'Categories, question values, special questions and a final.', millionDesc:'15 questions of increasing difficulty, four options and one correct answer.', chgkDesc:'13 sectors: logic questions, black box and a three-question blitz.', hundredDesc:'6 survey questions, each with six responses and scores.', edit:'Format editor', title:'Set title', description:'Description', titlePh:'For example: Quiz night', nameRequired:'Enter a set title.', pptx:'Download PPTX', save:'Save', play:'Save and play', export:'Export JSON', question:'Question', answer:'Correct answer', option:'Option', correct:'Correct option', points:'Points', sector:'Sector', normal:'Standard', blackbox:'Black box', blitz:'Blitz', superblitz:'Super blitz', explain:'Answer commentary', invalid:'Complete all questions and answers. For 100 to 1, enter six distinct responses with descending scores totalling no more than 100. Millionaire requires four distinct options.', saved:'Set saved', sample:'Demo set: survey scores are illustrative, not real survey results. Replace them with your own survey.', demoLabel:'Demo set · Russian content', missing:'Complete the whole set first.', import:'Import JSON', format:'Format', source:'Source / commentary', empty:'No suitable sets yet.'}
+};
+function nb(k) { return (NB_TEXT[S.lang] || NB_TEXT.ru)[k] || k; }
+function nativeFormatName(k) { return nb(k); }
+const NATIVE_DEFAULTS = {million:15, chgk:13, hundred:6};
+function nativeEmpty(kind) {
+ if (kind === 'million') return {q:'', options:['','','',''], correct:0};
+ if (kind === 'chgk') return {kind:'normal', q:'', a:'', fact:'', blitz:[{q:'',a:''},{q:'',a:''},{q:'',a:''}]};
+ return {q:'', answers:Array.from({length:6}, () => ({text:'',points:''}))};
+}
+function nativeNew(kind) { return {id:null, title:'', desc:'', subject:'other', grade:7, quarter:0, showFormat:kind, showItems:Array.from({length:NATIVE_DEFAULTS[kind]}, () => nativeEmpty(kind))}; }
+function nativeDemo(kind, title, items, desc) { return {id:'show-demo-'+kind, builtin:true, showFormat:kind, showItems:items, title:title, desc:desc, emoji: kind==='million'?'◇':kind==='chgk'?'?':'100:1', accent:'#f2c45a', subject:'other', grade:'7', quarter:0, grades:[], tags:['demo'], rounds:[], final:{theme:'',q:'',a:''}}; }
+const demoMillionRows = [
+ ['Сколько минут в одном часе?', ['30','60','90','100'],1],
+ ['Какой прибор показывает время?', ['Часы','Термометр','Барометр','Весы'],0],
+ ['Какую фигуру образуют три стороны?', ['Круг','Квадрат','Треугольник','Овал'],2],
+ ['Сколько процентов составляет половина?', ['10%','25%','50%','75%'],2],
+ ['В какой единице измеряют силу?', ['Ватт','Ньютон','Метр','Секунда'],1],
+ ['Какой газ растения поглощают при фотосинтезе?', ['Кислород','Углекислый газ','Гелий','Водород'],1],
+ ['Как называется переход воды из жидкости в газ?', ['Плавление','Конденсация','Испарение','Замерзание'],2],
+ ['Чему равна сумма внутренних углов треугольника?', ['90°','180°','270°','360°'],1],
+ ['Какая планета известна своими кольцами?', ['Меркурий','Венера','Марс','Сатурн'],3],
+ ['Что показывает наклон графика пути от времени при равномерном движении?', ['Скорость','Массу','Температуру','Объём'],0],
+ ['Какова вероятность выпадения орла при одном броске честной монеты?', ['1/4','1/3','1/2','1'],2],
+ ['Как называется процесс перехода пара в жидкость?', ['Конденсация','Сублимация','Кипение','Плавление'],0],
+ ['Какова площадь круга радиуса 2?', ['2π','4π','6π','8π'],1],
+ ['Какой закон связывает силу тока, напряжение и сопротивление?', ['Закон Ома','Закон Архимеда','Закон Паскаля','Закон Кулона'],0],
+ ['Какова производная функции x²?', ['x','2x','x²/2','2'],1]
+];
+const demoChgkRows = [
+ ['Два одинаковых стакана наполнены до краёв: один водой, другой водой со льдом, который плавает. Какой стакан содержит большую массу вещества?', 'Массы равны', 'Плавающий лёд вытесняет воду, равную ему по массе.'],
+ ['На карте в масштабе 1:100 000 расстояние равно 3 см. Сколько километров между точками?', '3 км', '1 см на карте соответствует 1 км.'],
+ ['В комнате три лампы; снаружи три выключателя. Войти можно один раз. Как определить выключатели, если лампы нагреваются?', 'Включить первый, затем выключить его и включить второй; войти: горячая выключенная, горящая и холодная укажут выключатели.', 'Тепло сохраняет след ранее включённой лампы.'],
+ ['У квадрата срезали один угол прямым разрезом, не проходящим через другие вершины. Сколько углов стало?', 'Пять', 'Один угол исчез, два новых появились.'],
+ ['Поезд проходит 60 км за час, затем 60 км за два часа. Какова средняя скорость за весь путь?', '40 км/ч', '120 км за 3 часа.'],
+ ['Монету бросили три раза, и каждый раз выпал орёл. Какова вероятность орла в следующем независимом броске честной монеты?', '1/2', 'Прошлые броски не меняют вероятность.'],
+ ['На столе горели пять свечей. Две погасили, остальные полностью сгорели. Сколько свечей осталось?', 'Две', 'Погашенные свечи не сгорели.'],
+ ['В классе каждый обменялся рукопожатием с каждым ровно раз. Участвовали четыре человека. Сколько рукопожатий?', 'Шесть', 'Число пар: 4 × 3 / 2.'],
+ ['Стрелка часов прошла четверть круга. На сколько градусов она повернулась?', '90°', 'Четверть от 360°.'],
+ ['Лист бумаги сложили пополам три раза. Сколько слоёв получилось?', 'Восемь', 'При каждом складывании число слоёв удваивается.'],
+ ['Два отца и два сына поделили три яблока поровну, по одному каждому. Как это возможно?', 'Это дед, отец и сын', 'Средний человек одновременно отец и сын.'],
+ ['В чёрном ящике предмет, который показывает ваш портрет без рисования и фотографии. Что это?', 'Зеркало', 'Изображение возникает благодаря отражению света.'],
+ ['Какая часть круга останется, если из него убрать сектор в 90 градусов?', 'Три четверти', '90° — четверть полного круга.']
+];
+const demoSurveyRows = [
+ ['Что часто берут с собой в школу?', ['Рюкзак','Тетрадь','Ручку','Учебник','Воду','Пенал']],
+ ['Что может лежать на письменном столе?', ['Книга','Ручка','Ноутбук','Лампа','Тетрадь','Часы']],
+ ['Где люди читают книги?', ['Дома','В библиотеке','В школе','В транспорте','В парке','В кафе']],
+ ['Что помогает измерять время?', ['Часы','Телефон','Секундомер','Таймер','Песочные часы','Календарь']],
+ ['Что бывает круглым?', ['Мяч','Колесо','Монета','Тарелка','Часы','Солнце']],
+ ['Что делают на перемене?', ['Разговаривают','Играют','Отдыхают','Едят','Гуляют','Готовятся к уроку']]
+];
+const SHOW_DEMOS = [
+ nativeDemo('million','Миллионер · демонстрация', demoMillionRows.map(([q,options,correct])=>({q,options,correct})), '15 авторских вопросов с четырьмя вариантами. Демонстрация на русском языке.'),
+ nativeDemo('chgk','ЧГК · логика и наблюдательность', demoChgkRows.map(([q,a,fact],i)=>({kind:i===11?'blackbox':'normal',q,a,fact,blitz:[]})), '13 логических секторов. Демонстрация на русском языке.'),
+ nativeDemo('hundred','100 к 1 · пример опроса', demoSurveyRows.map(([q,answers])=>({q,answers:answers.map((text,i)=>({text,points:[30,22,16,12,10,8][i]}))})), 'Демонстрация: баллы условные, не реальные результаты опроса. Русский язык.')
+];
+const NB = {kind:'svoya', drafts:{}, current:null};
+function nativeValid(g) {
+ if (!g || !String(g.title||'').trim()) return false;
+ if (!NATIVE_DEFAULTS[g.showFormat] || !Array.isArray(g.showItems) || g.showItems.length !== NATIVE_DEFAULTS[g.showFormat]) return false;
+ const filled = x => typeof x === 'string' && x.trim().length > 0;
+ return g.showItems.every(it => {
+  if (g.showFormat === 'chgk') {
+   if (!['normal','blackbox','blitz','superblitz'].includes(it.kind)) return false;
+   return ['blitz','superblitz'].includes(it.kind) ? Array.isArray(it.blitz) && it.blitz.length===3 && it.blitz.every(x=>filled(x.q)&&filled(x.a)) : filled(it.q)&&filled(it.a);
+  }
+  if (!filled(it.q)) return false;
+  if (g.showFormat === 'million') return Array.isArray(it.options) && it.options.length===4 && it.options.every(filled) && new Set(it.options.map(x=>x.trim().toLowerCase())).size===4 && Number.isInteger(it.correct) && it.correct>=0 && it.correct<4;
+  if (!Array.isArray(it.answers) || it.answers.length!==6 || !it.answers.every(x=>filled(x.text) && String(x.points).trim()!=='' && Number.isInteger(Number(x.points)) && Number(x.points)>=0 && Number(x.points)<=100)) return false;
+  const pts=it.answers.map(x=>Number(x.points));
+  return new Set(it.answers.map(x=>x.text.trim().toLowerCase())).size===6 && pts.every((x,i)=>i===0 || pts[i-1]>=x) && pts.reduce((a,b)=>a+b,0)<=100;
+ });
+}
+function launchNativeGame(g) {
+ if (!nativeValid(g)) { toast(nb('missing'),'err'); return; }
+ if (g.showFormat==='million') SHOWS.millionOpen(g); else if (g.showFormat==='chgk') SHOWS.chgkOpen(g); else SHOWS.hundOpen(g);
+}
+function editNativeGame(g) {
+ NB.kind=g.showFormat; NB.current=JSON.parse(JSON.stringify(g));
+ if (g.builtin) { NB.current.id=null; NB.current.builtin=false; }
+ NB.drafts[NB.kind]=NB.current; setView('builder'); renderNativeBuilder();
+}
+function selectBuilderFormat(kind) {
+ NB.kind=kind;
+ if (kind!=='svoya') { NB.current=NB.drafts[kind] || nativeNew(kind); NB.drafts[kind]=NB.current; }
+ renderNativeBuilder();
+}
+function initNativeBuilder() {
+ $('#builderFormatSelect').addEventListener('click', e=>{const b=e.target.closest('[data-builder-format]');if(b) selectBuilderFormat(b.dataset.builderFormat);});
+ $('#nativeBuilder').addEventListener('input', nativeInput);
+ $('#nativeBuilder').addEventListener('change', nativeInput);
+ $('#nativeBuilder').addEventListener('click', e=>{
+   const action=e.target.closest('[data-native-action]'); if (!action) return;
+   if (action.dataset.nativeAction==='import') { $('#fileInput').dataset.mode='one'; $('#fileInput').click(); return; }
+   const g=nativeGame();
+   if (action.dataset.nativeAction==='export') { exportGameJson(g); return; }
+   if (!nativeValid(g)) { toast(g.title ? nb('invalid') : nb('nameRequired'),'err'); return; }
+   if (g.showFormat==='hundred') g.showItems.forEach(it=>it.answers.forEach(a=>a.points=Number(a.points)));
+   if (action.dataset.nativeAction==='pptx') { SHOWS.showPptx(g.showFormat,g); return; }
+   const saved=saveGameAsCustom(g); NB.current.id=saved.id; NB.current.builtin=false; toast(nb('saved'),'ok');
+   if (action.dataset.nativeAction==='play') launchNativeGame(saved);
+ });
+}
+function nativeGame() {
+ const g=JSON.parse(JSON.stringify(NB.current));
+ g.id=g.id || uid('custom'); g.builtin=false; g.rounds=[]; g.final={theme:'',q:'',a:''}; g.tags=[];
+ return g;
+}
+function nativeInput(e) {
+ const el=e.target, g=NB.current; if(!g) return;
+ if(el.dataset.nativeMeta) { g[el.dataset.nativeMeta]=el.value; return; }
+ const i=Number(el.dataset.item); if(!Number.isInteger(i)||!g.showItems[i]) return;
+ const it=g.showItems[i], field=el.dataset.field;
+ if(field==='kind') {it.kind=el.value; if (!Array.isArray(it.blitz) || it.blitz.length !== 3) it.blitz=[{q:'',a:''},{q:'',a:''},{q:'',a:''}]; renderNativeBuilder(); return;}
+ if(field==='q'||field==='a'||field==='fact') it[field]=el.value;
+ else if(field==='option') it.options[Number(el.dataset.sub)]=el.value;
+ else if(field==='correct') it.correct=Number(el.value);
+ else if(field==='surveyText') it.answers[Number(el.dataset.sub)].text=el.value;
+ else if(field==='surveyPoints') it.answers[Number(el.dataset.sub)].points=el.value;
+ else if(field==='blitzQ') it.blitz[Number(el.dataset.sub)].q=el.value;
+ else if(field==='blitzA') it.blitz[Number(el.dataset.sub)].a=el.value;
+}
+function renderNativeBuilder() {
+ const selector=$('#builderFormatSelect'), box=$('#nativeBuilder'); if(!selector||!box) return;
+ $('#formatChooseTitle').textContent=nb('choose'); $('#formatChooseHint').textContent=nb('hint');
+ selector.innerHTML=['svoya','million','chgk','hundred'].map((k,i)=>'<button type="button" data-builder-format="'+k+'" class="builder-format '+(NB.kind===k?'selected':'')+'"><span class="bf-number">0'+(i+1)+'</span><b>'+esc(nb(k))+'</b><small>'+esc(nb(k+'Desc'))+'</small><span class="bf-arrow">↗</span></button>').join('');
+ const native=NB.kind!=='svoya'; $('#builderMainSubtitle').textContent=native ? nb(NB.kind+'Desc') : t('builder.sub'); $('#svoyaBuilder').classList.toggle('hidden',native); $('#svoyaBuilderActions').classList.toggle('hidden',native); box.classList.toggle('hidden',!native);
+ if(!native) return;
+ const g=NB.current;
+ const text=(label,value,field,i,sub,tag='input')=>'<label class="field"><span class="label">'+esc(label)+'</span>'+ (tag==='textarea'?'<textarea class="textarea"':'<input class="input"')+' data-item="'+i+'" data-field="'+field+'"'+(sub==null?'':' data-sub="'+sub+'"')+(tag==='textarea'? '>'+esc(value||'')+'</textarea>':' value="'+esc(value==null?'':String(value))+'">')+'</label>';
+ const items=g.showItems.map((it,i)=>{
+   let body='';
+   if(g.showFormat==='chgk') {
+    body='<label class="field"><span class="label">'+esc(nb('format'))+'</span><select class="select" data-item="'+i+'" data-field="kind">'+['normal','blackbox','blitz','superblitz'].map(k=>'<option value="'+k+'"'+(it.kind===k?' selected':'')+'>'+esc(nb(k))+'</option>').join('')+'</select></label>';
+    if(['blitz','superblitz'].includes(it.kind)) body+=(it.blitz||[]).map((q,j)=>'<div class="native-blitz">'+text(nb('question')+' '+(j+1),q.q,'blitzQ',i,j,'textarea')+text(nb('answer'),q.a,'blitzA',i,j)+'</div>').join('');
+    else body+=text(nb('question'),it.q,'q',i,null,'textarea')+text(nb('answer'),it.a,'a',i)+text(nb('source'),it.fact,'fact',i,null,'textarea');
+   } else if(g.showFormat==='million') {
+    body=text(nb('question'),it.q,'q',i,null,'textarea')+'<div class="native-options">'+it.options.map((v,j)=>text(nb('option')+' '+String.fromCharCode(65+j),v,'option',i,j)).join('')+'</div><label class="field"><span class="label">'+esc(nb('correct'))+'</span><select class="select" data-item="'+i+'" data-field="correct">'+[0,1,2,3].map(j=>'<option value="'+j+'"'+(it.correct===j?' selected':'')+'>'+String.fromCharCode(65+j)+'</option>').join('')+'</select></label>';
+   } else {
+    body=text(nb('question'),it.q,'q',i,null,'textarea')+'<div class="survey-rows">'+it.answers.map((v,j)=>'<div class="survey-row">'+text(nb('answer')+' '+(j+1),v.text,'surveyText',i,j)+text(nb('points'),v.points,'surveyPoints',i,j)+'</div>').join('')+'</div>';
+   }
+   return '<details class="native-item"'+(i===0?' open':'')+'><summary><span class="native-index">'+String(i+1).padStart(2,'0')+'</span><b>'+esc(g.showFormat==='chgk'?nb('sector'):nb('question'))+' '+(i+1)+'</b><span class="native-chevron">⌄</span></summary><div class="native-fields">'+body+'</div></details>';
+ }).join('');
+ box.innerHTML='<div class="native-hero"><div><span class="native-kicker">'+esc(nb('edit'))+'</span><h2>'+esc(nb(g.showFormat))+'</h2><p>'+esc(nb(g.showFormat+'Desc'))+'</p></div><div class="native-hero-symbol">'+({million:'◇',chgk:'?',hundred:'100 : 1'})[g.showFormat]+'</div></div>'+
+  '<div class="native-layout"><main><section class="panel native-meta"><div class="panel-head"><h3>'+esc(nb('title'))+'</h3></div><label class="field"><span class="label">'+esc(nb('title'))+'</span><input class="input" data-native-meta="title" value="'+esc(g.title||'')+'" placeholder="'+esc(nb('titlePh'))+'"></label><label class="field"><span class="label">'+esc(nb('description'))+'</span><input class="input" data-native-meta="desc" value="'+esc(g.desc||'')+'"></label></section><div class="native-list">'+items+'</div></main><aside><div class="panel native-side"><span class="native-kicker">'+esc(nb('format'))+'</span><h3>'+esc(nb(g.showFormat))+'</h3><p>'+esc(nb(g.showFormat+'Desc'))+'</p>'+(g.showFormat==='hundred'?'<p class="survey-notice">'+esc(nb('sample'))+'</p>':'')+'<button class="btn btn-gold btn-block" data-native-action="play">▶ &nbsp;'+esc(nb('play'))+'</button><button class="btn btn-line btn-block" data-native-action="save">'+esc(nb('save'))+'</button><button class="btn btn-line btn-block" data-native-action="pptx">'+esc(nb('pptx'))+'</button><button class="btn btn-ghost btn-block" data-native-action="export">'+esc(nb('export'))+'</button><button class="btn btn-ghost btn-block" data-native-action="import">'+esc(nb('import'))+'</button></div></aside></div>';
 }
 
 /* --- старт приложения --- */
@@ -12540,6 +12723,7 @@ function boot() {
   renderLibrary();
   if (!S.builder) S.builder = blankBuilder();
   bindGlobal();
+  initNativeBuilder();
   initRulesButton();
   updateHumorLabel();
   syncAiForm();
@@ -12597,8 +12781,8 @@ const SHOWS = (() => {
     'show.seconds': 'Секунд на ответ',
     'show.blitz': 'Блиц',
     'show.superblitz': 'Суперблиц',
-    'show.blitzNote': 'Три вопроса подряд. На всё — 20 секунд.',
-    'show.superblitzNote': 'Отвечает один игрок. Три вопроса, 20 секунд.',
+    'show.blitzNote': 'Три вопроса подряд, по 20 секунд на каждый.',
+    'show.superblitzNote': 'Отвечает один игрок. Три вопроса, по 20 секунд на каждый.',
     'show.blackbox': 'Чёрный ящик',
     'show.blackboxLead': 'Внесите чёрный ящик',
     'show.blackboxNote': 'В ящике лежит то, о чём пойдёт речь. Вопрос появится после того, как ящик окажется на столе.',
@@ -12644,7 +12828,7 @@ const SHOWS = (() => {
     'show.voice': 'Голос ведущего',
     'show.ready': 'Начать',
     'show.hundred': 'Сто к одному',
-    'show.hundredSub': 'Шесть ответов аудитории, три промаха и супер-игра',
+    'show.hundredSub': 'Шесть ответов опроса и три промаха',
     'show.hundQuestion': 'Вопрос',
     'show.hundOf': 'из',
     'show.hundGuesses': 'Попытки',
@@ -12686,8 +12870,8 @@ const SHOWS = (() => {
     'show.seconds': 'Жауапқа берілген секунд',
     'show.blitz': 'Блиц',
     'show.superblitz': 'Суперблиц',
-    'show.blitzNote': 'Үш сұрақ қатарынан. Барлығына — 20 секунд.',
-    'show.superblitzNote': 'Бір ойыншы жауап береді. Үш сұрақ, 20 секунд.',
+    'show.blitzNote': 'Үш сұрақ қатарынан, әрқайсысына 20 секунд.',
+    'show.superblitzNote': 'Бір ойыншы жауап береді. Үш сұрақ, әрқайсысына 20 секунд.',
     'show.blackbox': 'Қара жәшік',
     'show.blackboxLead': 'Қара жәшікті әкеліңіз',
     'show.blackboxNote': 'Жәшікте сөз болатын зат бар. Сұрақ жәшік үстелге қойылған соң шығады.',
@@ -12733,7 +12917,7 @@ const SHOWS = (() => {
     'show.voice': 'Жүргізуші дауысы',
     'show.ready': 'Бастау',
     'show.hundred': 'Жүзге бір',
-    'show.hundredSub': 'Аудиторияның алты жауабы, үш қате және супер-ойын',
+    'show.hundredSub': 'Сауалнаманың алты жауабы және үш қате',
     'show.hundQuestion': 'Сұрақ',
     'show.hundOf': '/',
     'show.hundGuesses': 'Әрекеттер',
@@ -12775,8 +12959,8 @@ const SHOWS = (() => {
     'show.seconds': 'Seconds to answer',
     'show.blitz': 'Blitz',
     'show.superblitz': 'Super blitz',
-    'show.blitzNote': 'Three questions in a row. Twenty seconds for all of them.',
-    'show.superblitzNote': 'One player answers. Three questions, twenty seconds.',
+    'show.blitzNote': 'Three questions in a row, twenty seconds per question.',
+    'show.superblitzNote': 'One player answers. Three questions, twenty seconds each.',
     'show.blackbox': 'Black box',
     'show.blackboxLead': 'Bring in the black box',
     'show.blackboxNote': 'The box holds the object in question. The question appears once the box is on the table.',
@@ -12822,7 +13006,7 @@ const SHOWS = (() => {
     'show.voice': 'Host voice',
     'show.ready': 'Start',
     'show.hundred': '100 to 1',
-    'show.hundredSub': 'Six audience answers, three strikes and a super round',
+    'show.hundredSub': 'Six survey responses and three strikes',
     'show.hundQuestion': 'Question',
     'show.hundOf': 'of',
     'show.hundGuesses': 'Guesses',
@@ -12862,6 +13046,8 @@ const SHOWS = (() => {
 
   /** Закрыть сцену шоу и вернуться в библиотеку. */
   function closeShow() {
+    chgkStopClock();
+    CHGK.active = false; MI.active = false; HUND.active = false;
     TTS.stop();
     const el = screen();
     el.classList.remove('open');
@@ -12932,15 +13118,17 @@ const SHOWS = (() => {
     /* форматы взаимоисключающие: иначе экспорт и счётчики путают шоу */
     MI.active = false;
     CHGK.active = true;
+    HUND.active = false;
     CHGK.game = game;
     CHGK.round = 0;
     CHGK.experts = 0;
     CHGK.viewers = 0;
     CHGK.used = new Set();
     CHGK.phase = 'wheel';
+    CHGK.revealed = false;
     const pool = shuffle(flattenQuestions(game));
     CHGK.pool = pool;
-    CHGK.sectors = buildSectors(pool);
+    CHGK.sectors = game.showFormat === 'chgk' ? game.showItems.map((item, i) => ({ n: i + 1, kind: item.kind || 'normal', item })) : buildSectors(pool);
     showStage();
     chgkRenderWheel();
     $('#app').classList.add('in-game');
@@ -13034,7 +13222,7 @@ const SHOWS = (() => {
       chgkScore() +
       '<div class="chgk-actions"><button class="chgk-btn solid" id="chgkSpin">' + esc(t('show.spin')) + '</button>' +
       '<span style="align-self:center;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(246,236,210,.45)">' +
-      esc(t('show.round')) + ' ' + (CHGK.round + 1) + '/6</span></div>' +
+      esc(t('show.round')) + ' ' + (CHGK.round + 1) + '</span></div>' +
       '</div>' + chgkSides();
     $('#chgkSpin').addEventListener('click', chgkSpin);
   }
@@ -13055,6 +13243,7 @@ const SHOWS = (() => {
     const g = $('#wheelRot');
     if (g) { g.style.transition = 'none'; g.style.transform = 'rotate(0deg)'; void g.offsetWidth; g.style.transition = ''; g.style.transform = 'rotate(' + target + 'deg)'; }
     setTimeout(() => {
+      if (!CHGK.active || !$('#chgkRoot')) return;
       CHGK.sector = CHGK.sectors[pick];
       chgkOpenSector();
     }, 4600);
@@ -13094,7 +13283,7 @@ const SHOWS = (() => {
   function chgkQuestionScreen(withMedia) {
     CHGK.phase = 'question';
     const s = CHGK.sector;
-    const q = CHGK.pool.find((item) => !item.__used && (!withMedia || item.visual || item.photo)) || CHGK.pool.find((item) => !item.__used) || CHGK.pool[0];
+    const q = s.item || CHGK.pool.find((item) => !item.__used && (!withMedia || item.visual || item.photo)) || CHGK.pool.find((item) => !item.__used) || CHGK.pool[0];
     q.__used = true;
     CHGK.current = q;
     const root = $('#chgkRoot');
@@ -13143,7 +13332,8 @@ const SHOWS = (() => {
       if (CHGK.left <= 0) {
         chgkStopClock();
         AudioKit.timeUp();
-        if ($('#chgkAnswerSlot') && !CHGK.revealed) chgkReveal();
+        if (CHGK.phase === 'blitz') { const b = $('#chgkBlitzReveal'); if (b) b.click(); }
+        else if ($('#chgkAnswerSlot') && !CHGK.revealed) chgkReveal();
       }
     }, 1000);
   }
@@ -13158,7 +13348,7 @@ const SHOWS = (() => {
     if (!slot) return;
     AudioKit.reveal();
     slot.innerHTML = '<div class="chgk-answer"><span class="ic">✓</span><div><b style="display:block;font-size:10px;letter-spacing:.24em;text-transform:uppercase;opacity:.6;margin-bottom:4px">' +
-      esc(t('show.correctAnswer')) + '</b>' + esc(CHGK.current.a || '—') + '</div></div>';
+      esc(t('show.correctAnswer')) + '</b>' + esc(CHGK.current.a || '—') + (CHGK.current.fact ? '<p class="chgk-fact">' + esc(CHGK.current.fact) + '</p>' : '') + '</div></div>';
     const acts = $('#chgkActions');
     if (!acts) return;
     acts.innerHTML = '<button class="chgk-btn ok" id="chgkRight">' + esc(t('show.right')) + '</button>' +
@@ -13174,15 +13364,15 @@ const SHOWS = (() => {
     else { CHGK.viewers++; AudioKit.wrong(); toast(t('fail.answer'), 'err'); }
     CHGK.round++;
     CHGK.revealed = false;
-    if (CHGK.round >= CHGK.rounds) return chgkFinish();
+    if (CHGK.experts >= 6 || CHGK.viewers >= 6) return chgkFinish();
     chgkRenderWheel();
   }
 
-  /** Блиц и суперблиц: 3 вопроса, 20 секунд на все. */
+  /** Блиц и суперблиц: три вопроса, по 20 секунд на каждый. */
   function chgkBlitzScreen(kind) {
     CHGK.phase = 'blitz';
     const questions = [];
-    const pool = CHGK.pool.filter((q) => !q.__used);
+    const pool = CHGK.sector.item ? CHGK.sector.item.blitz : CHGK.pool.filter((q) => !q.__used);
     for (let i = 0; i < 3; i++) {
       const q = pool[i] || CHGK.pool[i];
       if (q) { q.__used = true; questions.push(q); }
@@ -13208,13 +13398,15 @@ const SHOWS = (() => {
       '<div id="chgkAnswerSlot"></div>' +
       '<div class="chgk-actions" id="chgkActions"><button class="chgk-btn" id="chgkBlitzReveal">' + esc(t('show.showAnswer')) + '</button></div>' +
       '</div>' + chgkScoreCompact() + '</div>' + chgkSides();
-    if (b.index === 0) chgkStartClock(20);
+    chgkStartClock(20);
     $('#chgkBlitzReveal').addEventListener('click', () => {
       const slot = $('#chgkAnswerSlot');
       slot.innerHTML = '<div class="chgk-answer"><span class="ic">✓</span><div>' + esc(q.a || '—') + '</div></div>';
       const acts = $('#chgkActions');
       if (!acts) return;
-      acts.innerHTML = '<button class="chgk-btn solid" id="chgkBlitzNext">' + esc(b.index < 2 ? t('show.nextQuestion') : t('show.finish')) + '</button>';
+      chgkStopClock();
+      acts.innerHTML = '<button class="chgk-btn solid" id="chgkBlitzNext">' + esc(t('show.right')) + '</button><button class="chgk-btn no" id="chgkBlitzWrong">' + esc(t('show.wrong')) + '</button>';
+      $('#chgkBlitzWrong').addEventListener('click', () => chgkJudge(false));
       $('#chgkBlitzNext').addEventListener('click', () => {
         if (b.index < 2) { b.index++; chgkBlitzStep(); }
         else { chgkStopClock(); chgkJudge(true); }
@@ -13346,6 +13538,7 @@ const SHOWS = (() => {
    *  • ответ с числом → неправильные варианты считаются от него же, в тех же единицах;
    *  • ответ-понятие → неправильные берём из понятий того же предмета. */
   function buildMillionQuestions(game, count) {
+    if (game.showFormat === 'million') return game.showItems.map((it) => ({ q: it.q, a: it.options[it.correct], full: it.options[it.correct], options: it.options.slice(), correct: it.correct, cat: '' }));
     const all = flattenQuestions(game);
     const norm = (x) => String(x || '').toLowerCase().replace(/[^a-zа-я0-9ёәғқңөұүһі]/gi, '');
 
@@ -13570,6 +13763,7 @@ const SHOWS = (() => {
 
   function millionOpen(game) {
     CHGK.active = false;
+    HUND.active = false;
     MI.active = true;
     MI.game = game;
     MI.questions = buildMillionQuestions(game, 15);
@@ -13799,11 +13993,11 @@ const SHOWS = (() => {
       AudioKit.select();
       setTimeout(() => { if (slot) slot.innerHTML = ''; }, 11000);
     } else if (kind === 'swap') {
-      MI.lifelines.swap = false;
-      refreshLifelines();
       const spare = CHGK.pool; /* не используем — берём запас из банка */
       const fresh = buildMillionQuestions(MI.game, 15).find((nq) => !MI.questions.some((x) => x.q === nq.q));
       if (fresh) {
+        MI.lifelines.swap = false;
+        refreshLifelines();
         MI.questions[MI.idx] = fresh;
         MI.picked = null;
         MI.locked = false;
@@ -13849,12 +14043,12 @@ const SHOWS = (() => {
      ===================================================================== */
   /** Диалог выбора набора вопросов для шоу. */
   function pickSet(kind) {
-    const games = allGames().filter((g) => gameQuestionCount(g) >= 12);
+    const games = allGames().filter((g) => g.showFormat === kind);
     const body = $('#formatPickBody');
     body.innerHTML = games.map((g) => '<button class="format-pick" data-set="' + esc(g.id) + '">' +
       '<span class="fp-emoji">' + esc(g.emoji || '★') + '</span>' +
       '<span class="fp-body"><b>' + esc(gameTitle(g)) + '</b>' +
-      '<span>' + esc(subjectLabel(g.subject)) + ' · ' + esc(g.grade) + ' ' + esc(t('grade')) + ' · ' + gameQuestionCount(g) + ' Q</span></span>' +
+      '<span>' + gameQuestionCount(g) + ' Q · ' + esc(tx(g.desc) || '') + '</span></span>' +
       '</button>').join('');
     $('#formatPickTitle').textContent = t(kind === 'chgk' ? 'show.chgk' : kind === 'hundred' ? 'show.hundred' : 'show.million');
     openModal('formatPickModal');
@@ -13904,8 +14098,10 @@ const SHOWS = (() => {
       s1.addText(subjectLabel(game.subject) + ' · ' + game.grade + ' ' + t('grade'), {
         x: .8, y: 4.15, w: W - 1.6, h: .4, fontSize: 12, color: 'B9A97E', align: 'center', fontFace: 'Arial'
       });
-      s1.addText(t('show.chgkSub'), { x: .8, y: 6.55, w: W - 1.6, h: .4, fontSize: 10, color: '6E6450', align: 'center', fontFace: 'Arial' });
-      const qs = kind === 'chgk' ? takeRandom(flattenQuestions(game), 6) : buildMillionQuestions(game, 15);
+      s1.addText(t(kind === 'chgk' ? 'show.chgkSub' : kind === 'hundred' ? 'show.hundredSub' : 'show.millionSub'), { x: .8, y: 6.55, w: W - 1.6, h: .4, fontSize: 10, color: '6E6450', align: 'center', fontFace: 'Arial' });
+      const qs = kind === 'hundred' ? hundBuild(game).map((it) => ({q:it.q, a:it.answers.map((a,i)=>a+' — '+(it.points || HUND_POINTS)[i]).join('\n')}))
+        : kind === 'chgk' && game.showFormat === 'chgk' ? game.showItems.flatMap((it) => ['blitz','superblitz'].includes(it.kind) ? it.blitz.map(q => ({q:q.q,a:q.a})) : [{q:it.q,a:it.a + (it.fact ? '\n\n' + it.fact : '')}])
+        : kind === 'chgk' ? takeRandom(flattenQuestions(game), 6) : buildMillionQuestions(game, 15);
       const qNums = [];
       const aNums = [];
       qs.forEach((q, i) => {
@@ -14026,6 +14222,7 @@ const SHOWS = (() => {
 
   /** Собрать раунд: 6 вопросов по 6 ответов. */
   function hundBuild(game) {
+    if (game.showFormat === 'hundred') return game.showItems.map((it) => ({ q: it.q, answers: it.answers.map((a) => a.text), points: it.answers.map((a) => a.points) }));
     const pool = shuffle(flattenQuestions(game)).filter((q) => q.a);
     const items = pool.slice(0, 6);
     return items.map((it) => ({ q: it.q, a: it.a, cat: it.cat, answers: hundAnswers(it, pool) }));
@@ -14069,12 +14266,13 @@ const SHOWS = (() => {
       '<div class="hund-head"><span class="hund-badge">100 : 1</span>' +
         '<span class="hund-pool">' + esc(t('show.hundQuestion')) + ' <b>' + (HUND.idx + 1) + '</b> ' + esc(t('show.hundOf')) + ' ' + HUND.items.length + '</span>' +
       '</div>' +
+      (HUND.game.desc ? '<div class="hund-demo-note">' + esc(tx(HUND.game.desc)) + '</div>' : '') +
       '<div class="hund-q" id="hundQ">' + esc(it.q) + '</div>' +
       '<div class="hund-board" id="hundBoard">' + it.answers.map((a, i) =>
         '<div class="hund-row" data-row="' + i + '">' +
           '<span class="hund-num">' + (i + 1) + '</span>' +
-          '<span class="hund-answer">' + esc(a) + '</span>' +
-          '<span class="hund-score">' + HUND_POINTS[i] + '</span>' +
+          '<span class="hund-answer" aria-hidden="true">' + esc(a) + '</span>' +
+          '<span class="hund-score" aria-hidden="true">' + ((it.points || HUND_POINTS)[i]) + '</span>' +
         '</div>').join('') + '</div>' +
       '<div class="hund-side">' +
         '<span class="hund-pool">' + esc(t('show.hundRoundPoints')) + ' <b id="hundRound">0</b></span>' +
@@ -14093,19 +14291,21 @@ const SHOWS = (() => {
       box.innerHTML = done
         ? '<button class="mi-btn gold" data-hund="next">' + esc(t('show.hundNext')) + ' →</button>'
         : '<span class="hund-pool">' + esc(t('show.hundGuessHint')) + '</span>' +
-          '<button class="mi-btn" data-hund="reveal">' + esc(t('show.hundRevealAll')) + '</button>';
+          '<button class="mi-btn" data-hund="strike">✕ ' + esc(t('show.wrong')) + '</button>' + '<button class="mi-btn" data-hund="reveal">' + esc(t('show.hundRevealAll')) + '</button>' + '<details class="hund-host"><summary>' + esc(nb('hostKey')) + '</summary><p>' + esc(nb('hostWarning')) + '</p>' + HUND.items[HUND.idx].answers.map((a,i)=>'<button type="button" class="mi-btn" data-host-answer="'+i+'">'+(i+1)+'. '+esc(a)+'</button>').join('') + '</details>';
       $$('[data-hund]', box).forEach((b) => b.addEventListener('click', () => {
         if (b.dataset.hund === 'next') { hundNext(); return; }
+        if (b.dataset.hund === 'strike') { HUND.strikes++; const strikes = $$('#hundStrikes .hund-strike'); if (strikes[HUND.strikes - 1]) strikes[HUND.strikes - 1].classList.add('on'); if (HUND.strikes >= 3) hundRevealAll(); else hundActions(); return; }
         hundRevealAll();
       }));
+      $$('[data-host-answer]', box).forEach((b) => b.addEventListener('click', () => { hundReveal(Number(b.dataset.hostAnswer), true); if (HUND.revealed >= 6) hundRevealAll(); hundActions(); }));
       /* клик по закрытой строке = «команда угадала этот ответ» */
       if (!done) $$('#hundBoard .hund-row').forEach((row) => {
-        row.addEventListener('click', () => {
+        row.onclick = () => {
           if (row.classList.contains('open')) return;
           hundReveal(Number(row.dataset.row), true);
           if (HUND.revealed >= 6) hundRevealAll();
           hundActions();
-        });
+        };
       });
       return;
     }
@@ -14118,9 +14318,10 @@ const SHOWS = (() => {
     const row = $('[data-row="' + i + '"]');
     if (!row || row.classList.contains('open')) return;
     row.classList.add('open');
+    row.querySelectorAll('.hund-answer, .hund-score').forEach((node) => node.setAttribute('aria-hidden', 'false'));
     HUND.revealed++;
     if (addPoints) {
-      HUND.bank += HUND_POINTS[i] || 0;
+      HUND.bank += (HUND.items[HUND.idx].points || HUND_POINTS)[i] || 0;
       const rb = $('#hundRound'); if (rb) rb.textContent = HUND.countPoints();
       const bb = $('#hundBank'); if (bb) bb.textContent = fmt(HUND.bank);
       AudioKit.chime ? AudioKit.chime() : AudioKit.click && AudioKit.click();
@@ -14129,7 +14330,7 @@ const SHOWS = (() => {
 
   HUND.countPoints = function () {
     let n = 0;
-    for (let i = 0; i < 6; i++) if ($('[data-row="' + i + '"]') && $('[data-row="' + i + '"]').classList.contains('open')) n += HUND_POINTS[i] || 0;
+    for (let i = 0; i < 6; i++) if ($('[data-row="' + i + '"]') && $('[data-row="' + i + '"]').classList.contains('open')) n += (HUND.items[HUND.idx].points || HUND_POINTS)[i] || 0;
     return n;
   };
 
@@ -14139,6 +14340,7 @@ const SHOWS = (() => {
       if (!row) continue;
       if (!row.classList.contains('open')) {
         row.classList.add('open');
+        row.querySelectorAll('.hund-answer, .hund-score').forEach((node) => node.setAttribute('aria-hidden', 'false'));
         /* если команда не угадала — ответ показываем, но очков не даём */
         row.classList.add('strike');
       }
@@ -14161,13 +14363,13 @@ const SHOWS = (() => {
       '<div class="hund-head"><span class="hund-badge">100 : 1</span></div>' +
       '<div class="hund-q">' + esc(t('show.hundTotal')) + ': ' + fmt(HUND.bank) + '</div>' +
       '<div class="hund-actions">' +
-        '<button class="mi-btn gold" data-hund-fin="super">' + esc(t('show.hundSuperTitle')) + ' →</button>' +
+        (!HUND.game.showFormat ? '<button class="mi-btn gold" data-hund-fin="super">' + esc(t('show.hundSuperTitle')) + ' →</button>' : '') +
         '<button class="mi-btn ghost" data-hund-fin="again">' + esc(t('show.again')) + '</button>' +
         '<button class="mi-btn ghost" data-hund-fin="exit">' + esc(t('show.exit')) + '</button>' +
       '</div>';
     $$('[data-hund-fin]').forEach((b) => b.addEventListener('click', () => {
       const k = b.dataset.hundFin;
-      if (k === 'exit') { closeCrossword(); return; }
+      if (k === 'exit') { closeShow(); return; }
       if (k === 'again') { hundOpen(HUND.game); return; }
       hundSuper();
     }));
@@ -14201,7 +14403,7 @@ const SHOWS = (() => {
   }
 
   /* ------------------------------ публичный API ------------------------- */
-  return { chgkOpen, millionOpen, pickup: pickSet, pickSet, hundOpen, closeShow, LADDER, CHGK, MI, HUND, buildMillionQuestions };
+  return { chgkOpen, millionOpen, pickup: pickSet, pickSet, hundOpen, closeShow, showPptx, LADDER, CHGK, MI, HUND, buildMillionQuestions };
 })();
 
 /* =========================================================================
