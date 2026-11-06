@@ -10903,6 +10903,10 @@ function pptxApplyTheme(key) {
 /** Палитра по-прежнему нужна светлой, даже если схема тёмная:
  *  для «Лёд» и «Бумага» фон слайдов светлый, текст — ink. */
 function pptxIsLight() { return !(PPTX_THEMES[pptxThemeKey] || {}).dark; }
+/** Цвет текста поверх акцентной плашки и фон панели категорий:
+ *  на светлых схемах берём тёмный текст и светлую панель. */
+function pptxOnAccent() { return pptxIsLight() ? PPTX_COLORS.ink : PPTX_COLORS.bg; }
+function pptxCatPanel() { return pptxIsLight() ? PPTX_COLORS.panel : '231B45'; }
 function pptxLib() {
   if (window.PptxGenJS) return window.PptxGenJS;
   if (window.pptxgen) return window.pptxgen;
@@ -10972,8 +10976,8 @@ async function buildPptx(game, opts = {}) {
   sTitle.addText(loc.desc || '', { x: .7, y: 4.4, w: W * .62, h: 1.0, fontSize: 11.5, color: PPTX_COLORS.muted, fontFace: 'Arial', lineSpacingMultiple: 1.25 });
   const round1BtnY = H - 1.55;
   sTitle.addShape(pptx.ShapeType.roundRect, { x: .7, y: round1BtnY, w: 2.55, h: .5, rectRadius: .25, fill: { color: PPTX_COLORS.gold }, line: { color: PPTX_COLORS.goldSoft, width: 1 } });
-  sTitle.addText('РАУНД 1 ▶', { x: .7, y: round1BtnY, w: 2.55, h: .5, fontSize: 13, bold: true, color: '0B1326', align: 'center', valign: 'middle', fontFace: 'Arial' });
-  sTitle.addShape(pptx.ShapeType.roundRect, { x: 3.4, y: round1BtnY, w: 2.55, h: .5, rectRadius: .25, fill: { color: '0F1C3A' }, line: { color: PPTX_COLORS.cyan, width: 1 } });
+  sTitle.addText('РАУНД 1 ▶', { x: .7, y: round1BtnY, w: 2.55, h: .5, fontSize: 13, bold: true, color: pptxOnAccent(), align: 'center', valign: 'middle', fontFace: 'Arial' });
+  sTitle.addShape(pptx.ShapeType.roundRect, { x: 3.4, y: round1BtnY, w: 2.55, h: .5, rectRadius: .25, fill: { color: pptxOnAccent() }, line: { color: PPTX_COLORS.cyan, width: 1 } });
   sTitle.addText('РАУНД 2 ▶', { x: 3.4, y: round1BtnY, w: 2.55, h: .5, fontSize: 13, bold: true, color: PPTX_COLORS.cyan, align: 'center', valign: 'middle', fontFace: 'Arial' });
   sTitle.addText('Управление: на игровом поле нажмите на стоимость вопроса.\nНа слайде вопроса кнопка «К полю» возвращает к таблице.\nКлавиша Esc / переход по гиперссылке — назад к полю.',
     { x: W - 4.1, y: H - 2.35, w: 3.4, h: 1.0, fontSize: 8.5, color: PPTX_COLORS.muted, fontFace: 'Arial', lineSpacingMultiple: 1.3 });
@@ -11013,7 +11017,7 @@ async function buildPptx(game, opts = {}) {
     const tiles = [];
     cats.forEach((c, ci) => {
       const x = marginX + ci * (colW + colGap);
-      slide.addShape(pptx.ShapeType.roundRect, { x, y: topForCats, w: colW, h: catH, rectRadius: .08, fill: { color: '231B45' }, line: { color: PPTX_COLORS.gold, width: 1.2, transparency: 20 } });
+      slide.addShape(pptx.ShapeType.roundRect, { x, y: topForCats, w: colW, h: catH, rectRadius: .08, fill: { color: pptxCatPanel() }, line: { color: PPTX_COLORS.gold, width: 1.2, transparency: 20 } });
       slide.addText(String(c.name || '').toUpperCase(), { x: x + .04, y: topForCats, w: colW - .08, h: catH, fontSize: cats.length > 4 ? 9 : 10, bold: true, color: PPTX_COLORS.goldSoft, align: 'center', valign: 'middle', fontFace: 'Arial' });
       values.forEach((val, qi) => {
         if (!(c.questions || [])[qi]) return;   /* в этом раунде может быть меньше вопросов */
@@ -11078,8 +11082,8 @@ async function buildPptx(game, opts = {}) {
           pptxAddBg(as, pptx, W, H);
           as.addText('ОТВЕТ', { x: .85, y: .55, w: 4, h: .35, fontSize: 11, bold: true, color: PPTX_COLORS.ok, charSpacing: 3, fontFace: 'Arial' });
           as.addText((cat.name || '') + ' · ' + val, { x: .85, y: .9, w: W - 1.7, h: .32, fontSize: 11, color: PPTX_COLORS.muted, fontFace: 'Arial' });
-          as.addShape(pptx.ShapeType.roundRect, { x: .85, y: 1.55, w: W - 1.7, h: H - 3.4, rectRadius: .12, fill: { color: '0E2A25' }, line: { color: PPTX_COLORS.ok, width: 1.2 } });
-          as.addText(q.a || '', { x: 1.15, y: 1.8, w: W - 2.3, h: H - 3.9, fontSize: isWide ? 22 : 18, bold: true, color: 'D7FFEE', valign: 'middle', fontFace: 'Arial', lineSpacingMultiple: 1.2 });
+          as.addShape(pptx.ShapeType.roundRect, { x: .85, y: 1.55, w: W - 1.7, h: H - 3.4, rectRadius: .12, fill: { color: pptxIsLight() ? PPTX_COLORS.panel : '0E2A25' }, line: { color: PPTX_COLORS.ok, width: 1.2 } });
+          as.addText(q.a || '', { x: 1.15, y: 1.8, w: W - 2.3, h: H - 3.9, fontSize: isWide ? 22 : 18, bold: true, color: pptxIsLight() ? PPTX_COLORS.ink : 'D7FFEE', valign: 'middle', fontFace: 'Arial', lineSpacingMultiple: 1.2 });
           pptxBackBadge(as, pptx, .85, H - 1.05, 'К ПОЛЮ');
           as.addText('Вопрос: ' + String(q.q || '').slice(0, 120) + (String(q.q || '').length > 120 ? '…' : ''), { x: W - 5.8, y: H - 1.15, w: 5.0, h: .6, fontSize: 8.5, color: PPTX_COLORS.muted, align: 'right', fontFace: 'Arial' });
           answerSlides[ri][ci] = answerSlides[ri][ci] || [];
