@@ -3117,6 +3117,9 @@ Object.assign(I18N.en, {'builder.factHint':'Fun fact or explanation (optional)',
 Object.assign(I18N.ru, {'export.design':'Дизайн слайдов','export.designStudio':'Студия · сияние','export.designMinimal':'Минимализм · чистый фон','export.designGeometry':'Геометрия · акцентные полосы'});
 Object.assign(I18N.kk, {'export.design':'Слайд дизайны','export.designStudio':'Студия · жарқыл','export.designMinimal':'Минимализм · таза фон','export.designGeometry':'Геометрия · айқын жолақтар'});
 Object.assign(I18N.en, {'export.design':'Slide design','export.designStudio':'Studio · glow','export.designMinimal':'Minimal · clean background','export.designGeometry':'Geometry · accent bands'});
+Object.assign(I18N.ru, {'ai.badJsonHelp':'Модель вернула некорректный ответ. Попробуйте ещё раз, другую модель или меньшее поле.','ai.truncated':'Ответ модели обрезан по ограничению длины. Попробуйте поле меньшего размера или другую модель.','ai.emptyResponse':'Модель вернула пустой ответ. Попробуйте ещё раз.','ai.blocked':'Сервис заблокировал запрос или ответ. Попробуйте изменить формулировку темы.','ai.retryResponse':'Ответ неполный или некорректный, повторяем запрос один раз.','ai.smallerBatch':'Ответ слишком длинный, запрашиваем категории по отдельности.','ai.batch':'Раунд · категории','ai.time':'Большое поле создаётся по частям и может занять несколько минут.'});
+Object.assign(I18N.kk, {'ai.badJsonHelp':'Модель қате JSON қайтарды. Қайта көріңіз немесе кішірек алаң таңдаңыз.','ai.truncated':'Модель жауабы ұзындық шегінен қысқарды. Кішірек алаңды немесе басқа модельді таңдаңыз.','ai.emptyResponse':'Модель бос жауап берді. Қайта көріңіз.','ai.blocked':'Сервис сұрауды немесе жауапты бұғаттады. Тақырып тұжырымын өзгертіңіз.','ai.retryResponse':'Жауап толық емес немесе қате, сұрауды бір рет қайталаймыз.','ai.smallerBatch':'Жауап тым ұзын, санаттарды жеке сұраймыз.','ai.batch':'Раунд · санаттар','ai.time':'Үлкен алаң бөліктермен жасалады және бірнеше минут алуы мүмкін.'});
+Object.assign(I18N.en, {'ai.badJsonHelp':'The model returned invalid JSON. Try again or choose a smaller board.','ai.truncated':'The model response was cut off by its length limit. Try a smaller board or another model.','ai.emptyResponse':'The model returned an empty response. Please try again.','ai.blocked':'The service blocked the request or response. Try rewording the topic.','ai.retryResponse':'The response is incomplete or invalid; retrying once.','ai.smallerBatch':'The response was too long; requesting categories individually.','ai.batch':'Round · categories','ai.time':'A large board is generated in parts and may take several minutes.'});
 function t(key) {
   const dict = I18N[S.lang] || I18N.ru;
   if (dict[key] != null) return dict[key];
@@ -11420,6 +11423,17 @@ function buildAiPrompt(cfg) {
     'Уровень юмора: ' + humor,
     'Вопросы должны быть разнообразными, понятными, оригинальными, точными и соответствовать формату шоу. Не выдумывай факты. Проверяй ответы. Не копируй вопросы телепередач.'
   ];
+  if (format === 'svoya' && cfg.batch) {
+    const b = cfg.batch;
+    const schema = '{"rounds":[{"name":"...","categories":[{"name":"...","questions":[{"q":"...","a":"...","type":"normal","fact":"..."}]}]}]}' ;
+    return common.concat([
+      'Мы создаём игру «Своя игра» по частям. Сейчас выдай только часть раунда ' + b.round + ': ровно ' + b.count + ' различных категорий (номера с ' + b.start + ' по ' + (b.start + b.count - 1) + '), в каждой ровно ' + qs + ' вопросов с возрастающей сложностью.',
+      'Короткие однозначные ответы. Тип каждого вопроса только normal, cat, auction, bonus или fail. Добавь короткий достоверный интересный факт в fact. Не повторяй вопросы и категории.',
+      b.previous.length ? 'Уже использованы категории: ' + b.previous.join(' · ') + '. Не повторяй их.' : '',
+      b.first ? 'Также верни непустые строки title, desc и final с полями theme, q, a для всей игры.' : 'Не добавляй другие раунды, категории или финал.',
+      'Верни только один JSON-объект по схеме ' + schema + (b.first ? ' с добавлением полей "title":"...", "desc":"...", "final":{"theme":"...","q":"...","a":"..."} на верхнем уровне.' : '.') + ' Пример сокращён; заполни точно указанное число категорий и вопросов.'
+    ]).join('\n');
+  }
   const schemas = {
     svoya: [
       'Формат «Своя игра»: ровно 2 раунда, в каждом ровно ' + cats + ' категорий, в каждой ровно ' + qs + ' вопросов с возрастающей сложностью, и финальный вопрос. Короткие однозначные ответы; не менее трёх специальных типов cat, auction, bonus или fail.',
@@ -11442,16 +11456,37 @@ function buildAiPrompt(cfg) {
   return common.concat(schemas[format] || schemas.svoya).join('\n');
 }
 function extractJson(text) {
-  if (!text) return null;
-  let t = String(text).trim();
-  t = t.replace(/^```(?:json)?/i, '').replace(/```$/, '').trim();
-  const first = t.indexOf('{');
-  const last = t.lastIndexOf('}');
-  if (first === -1 || last === -1 || last <= first) return null;
-  const slice = t.slice(first, last + 1);
-  try { return JSON.parse(slice); } catch (e) {}
-  try { return JSON.parse(slice.replace(/,\s*([}\]])/g, '$1')); } catch (e) {}
-  return null;
+  if (typeof text !== 'string') return null;
+  const start = text.indexOf('{');
+  if (start < 0) return null;
+  let inString = false, escaped = false, depth = 0, end = -1;
+  for (let i = start; i < text.length; i++) {
+    const ch = text[i];
+    if (inString) {
+      if (escaped) escaped = false;
+      else if (ch === '\\') escaped = true;
+      else if (ch === '"') inString = false;
+    } else if (ch === '"') inString = true;
+    else if (ch === '{') depth++;
+    else if (ch === '}' && --depth === 0) { end = i + 1; break; }
+  }
+  if (end < 0) return null; // Не пытаемся «достроить» обрезанные вопросы.
+  const slice = text.slice(start, end);
+  try { return JSON.parse(slice); } catch (_) {}
+  // Допускаем только завершающие запятые вне строк; содержимое ответов не меняем.
+  let clean = '', quoted = false, slash = false;
+  for (let i = 0; i < slice.length; i++) {
+    const ch = slice[i];
+    if (quoted) {
+      clean += ch;
+      if (slash) slash = false;
+      else if (ch === '\\') slash = true;
+      else if (ch === '"') quoted = false;
+    } else if (ch === '"') { quoted = true; clean += ch; }
+    else if (ch === ',' && /^\s*[}\]]/.test(slice.slice(i + 1))) continue;
+    else clean += ch;
+  }
+  try { return JSON.parse(clean); } catch (_) { return null; }
 }
 function aiLog(line, cls) {
   const box = $('#aiLog');
@@ -11733,11 +11768,19 @@ async function callOpenAI(cfg, prompt, signal) {
     throw new Error('OpenAI ' + res.status + ': ' + errText.slice(0, 300));
   }
   const data = await res.json();
-  return data.choices && data.choices[0] && data.choices[0].message ? data.choices[0].message.content : '';
+  const choice = data.choices && data.choices[0];
+  if (choice && choice.finish_reason === 'length') throw aiCompletionError('ai.truncated', true, true);
+  if (choice && (choice.finish_reason === 'content_filter' || (choice.message && choice.message.refusal))) throw aiCompletionError('ai.blocked', false, false);
+  const content = choice && choice.message && choice.message.content;
+  if (typeof content !== 'string' || !content.trim()) throw aiCompletionError('ai.emptyResponse', true, false);
+  return content;
 }
 /* Рабочие модели Gemini по убыванию удобства. Google регулярно закрывает
    старые имена для новых пользователей и отвечает 404 «no longer available» —
    поэтому при такой ошибке молча пробуем следующую модель из списка. */
+function aiCompletionError(key, retryable, truncated) {
+  return Object.assign(new Error(t(key)), {aiRetryable:!!retryable, aiTruncated:!!truncated});
+}
 const GEMINI_FALLBACKS = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-flash-latest', 'gemini-1.5-flash', 'gemini-2.5-pro'];
 function geminiCandidates(model) {
   const first = String(model || '').trim().replace(/^models\//, '');
@@ -11756,7 +11799,7 @@ async function geminiRequest(key, model, prompt, signal) {
     signal,
     body: JSON.stringify({
       contents: [{ role: 'user', parts: [{ text: prompt }] }],
-      generationConfig: { temperature: 0.9, responseMimeType: 'application/json' }
+      generationConfig: { temperature: 0.9, responseMimeType: 'application/json', maxOutputTokens: 8192 }
     })
   });
   const text = res.ok ? '' : await res.text().catch(() => '');
@@ -11787,8 +11830,13 @@ async function callGemini(cfg, prompt, signal) {
         aiLog('! ' + t('ai.modelSwitched') + ' ' + model, 'warn');
       }
       const data = await res.json();
-      const parts = data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts;
-      return parts ? parts.map((p) => p.text || '').join('') : '';
+      const candidate = data.candidates && data.candidates[0];
+      if (candidate && candidate.finishReason === 'MAX_TOKENS') throw aiCompletionError('ai.truncated', true, true);
+      if ((candidate && ['SAFETY','RECITATION','BLOCKLIST','PROHIBITED_CONTENT','SPII'].includes(candidate.finishReason)) || (data.promptFeedback && data.promptFeedback.blockReason)) throw aiCompletionError('ai.blocked', false, false);
+      const parts = candidate && candidate.content && candidate.content.parts;
+      const result = parts ? parts.filter(p => !p.thought).map(p => p.text || '').join('') : '';
+      if (!result.trim()) throw aiCompletionError('ai.emptyResponse', true, false);
+      return result;
     }
     if (res.status === 429) throw new Error(t('ai.errQuota'));
     if ([502, 503, 504].includes(res.status)) {
@@ -11832,7 +11880,7 @@ async function callGemini(cfg, prompt, signal) {
 /* Приведение ответа модели к игре Quiz Studio */
 function gameFromAiJson(raw, cfg) {
   const filled = x => typeof x === 'string' && !!x.trim();
-  const fail = () => { throw new Error(t('ai.invalidResponse')); };
+  const fail = () => { throw aiCompletionError('ai.invalidResponse', true, false); };
   if (!raw || !filled(raw.title)) fail();
   const kind = cfg.format || 'svoya';
   const desc = (filled(raw.desc) ? raw.desc.trim() + ' · ' : '') + t('ai.generated') + (kind === 'hundred' ? ' · ' + t('ai.surveyWarning') : '');
@@ -11844,7 +11892,7 @@ function gameFromAiJson(raw, cfg) {
       if (!r || !Array.isArray(r.categories) || r.categories.length !== cats) fail();
       for (const c of r.categories) {
         if (!c || !filled(c.name) || !Array.isArray(c.questions) || c.questions.length !== qs) fail();
-        if (!c.questions.every(q => q && filled(q.q) && filled(q.a) && ['normal','cat','auction','bonus','fail'].includes(q.type))) fail();
+        if (!c.questions.every(q => q && filled(q.q) && filled(q.a) && (q.type == null || ['normal','cat','auction','bonus','fail'].includes(q.type)))) fail();
       }
     }
     data.rounds = raw.rounds; data.final = raw.final;
@@ -11875,6 +11923,62 @@ function renderAiPreview(g) {
     html += '<div class="qpre"><b>' + esc(t('presets.final')) + '</b><p>' + esc(loc.final.theme) + '</p><span>' + esc(loc.final.q) + '</span></div>';
   }
   body.innerHTML = html;
+}
+async function requestAiObject(cfg, prompt, signal, validate, splitOnTruncation) {
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      if (signal && signal.aborted) { const e = new Error('Aborted'); e.name = 'AbortError'; throw e; }
+      const requestPrompt = attempt ? prompt + '\nПредыдущий ответ был некорректным. Верни только полный валидный JSON точно по указанной схеме.' : prompt;
+      const text = cfg.provider === 'openai'
+        ? await callOpenAI(cfg, requestPrompt, signal)
+        : await callGemini(cfg, requestPrompt, signal);
+      const json = extractJson(text);
+      if (!json) throw aiCompletionError('ai.badJsonHelp', true, false);
+      return validate(json);
+    } catch (e) {
+      if (!e || e.name === 'AbortError' || !e.aiRetryable || (e.aiTruncated && splitOnTruncation) || attempt === 1) throw e;
+      aiLog('↻ ' + t('ai.retryResponse'), 'warn');
+    }
+  }
+}
+function validateAiBatch(raw, count, qs, first) {
+  const filled = x => typeof x === 'string' && !!x.trim();
+  const invalid = () => { throw aiCompletionError('ai.invalidResponse', true, false); };
+  if (!raw || !Array.isArray(raw.rounds) || raw.rounds.length !== 1) invalid();
+  const round = raw.rounds[0];
+  if (!round || !Array.isArray(round.categories) || round.categories.length !== count) invalid();
+  if (!round.categories.every(c => c && filled(c.name) && Array.isArray(c.questions) && c.questions.length === qs && c.questions.every(q => q && filled(q.q) && filled(q.a) && (q.type == null || ['normal','cat','auction','bonus','fail'].includes(q.type))))) invalid();
+  if (first && (!filled(raw.title) || !raw.final || !filled(raw.final.theme) || !filled(raw.final.q) || !filled(raw.final.a))) invalid();
+  return raw;
+}
+async function generateAiGame(cfg, signal) {
+  if (cfg.format !== 'svoya') return requestAiObject(cfg, buildAiPrompt(cfg), signal, json => gameFromAiJson(json, cfg), false);
+  const cats = clamp(Number(cfg.cats) || 5, 3, 6), qs = clamp(Number(cfg.qs) || 5, 3, 6);
+  const assembled = {title:'', desc:'', rounds:[{name:'', categories:[]}, {name:'', categories:[]}], final:null};
+  const previous = [];
+  async function appendBatch(round, start, count) {
+    const first = round === 1 && start === 1;
+    const batchCfg = {...cfg, batch:{round, start, count, first, previous:previous.slice()}};
+    aiLog('› ' + t('ai.batch') + ' ' + round + ' · ' + start + '–' + (start + count - 1), 'step');
+    let part;
+    try {
+      part = await requestAiObject(cfg, buildAiPrompt(batchCfg), signal, json => validateAiBatch(json, count, qs, first), count > 1);
+    } catch (e) {
+      if (!e.aiTruncated || count <= 1) throw e;
+      aiLog('↻ ' + t('ai.smallerBatch'), 'warn');
+      for (let i = 0; i < count; i++) await appendBatch(round, start + i, 1);
+      return;
+    }
+    if (first) { assembled.title = part.title; assembled.desc = part.desc; assembled.final = part.final; }
+    const target = assembled.rounds[round - 1];
+    if (!target.name) target.name = typeof part.rounds[0].name === 'string' ? part.rounds[0].name : '';
+    target.categories.push(...part.rounds[0].categories);
+    previous.push(...part.rounds[0].categories.map(c => c.name));
+  }
+  for (let round = 1; round <= 2; round++) {
+    for (let start = 1; start <= cats; start += 3) await appendBatch(round, start, Math.min(3, cats - start + 1));
+  }
+  return gameFromAiJson(assembled, cfg);
 }
 async function runAiGeneration() {
   if (AI.running) return;
@@ -11920,20 +12024,10 @@ async function runAiGeneration() {
   aiSetState('working');
   aiLog('$ ' + cfg.provider + ' · ' + cfg.model, 'info');
   aiLog('$ grade=' + cfg.grade + ' quarter=' + cfg.quarter + ' humor=' + cfg.humor + ' lang=' + S.lang, 'step');
-  const prompt = buildAiPrompt(cfg);
   try {
     const t0 = Date.now();
-    const text = cfg.provider === 'openai'
-      ? await callOpenAI(cfg, prompt, AI.controller.signal)
-      : await callGemini(cfg, prompt, AI.controller.signal);
-    aiLog('$ response ' + (text ? text.length : 0) + ' chars in ' + Math.round((Date.now() - t0) / 100) / 10 + 's', 'ok');
-    const json = extractJson(text);
-    if (!json) {
-      aiLog('! ' + t('ai.badJson'), 'err');
-      aiLog(String(text).slice(0, 900), 'err');
-      throw new Error('JSON');
-    }
-    const game = gameFromAiJson(json, cfg);
+    const game = await generateAiGame(cfg, AI.controller.signal);
+    aiLog('$ response in ' + Math.round((Date.now() - t0) / 100) / 10 + 's', 'ok');
     S.aiResult = game;
     renderAiPreview(game);
     aiSetState('done');
