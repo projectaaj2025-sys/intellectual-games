@@ -3,7 +3,7 @@
 import json
 from pathlib import Path
 HERE = Path(__file__).resolve().parent
-import m5, m6, alg, alg2, alg3, alg4, geo8, geo9, geo11, mathfun
+import m5, m6, alg, alg2, alg3, alg4, geo8, geo9, geo11, mathfun, stat11
 
 VAL = [100, 200, 300, 400, 500]
 GRADE_RU = {'5': '5 класс', '6': '6 класс', '7': '7 класс', '8': '8 класс',
@@ -167,6 +167,21 @@ for g in ('7', '8', '9', '10', '11'):
     add_part('alg', g, ALG[g])
 for g in ('8', '9', '11'):
     add_part('geo', g, GEO[g])
+
+# Дополнительные тематические игры: не выдаются за конкретную четверть КТП.
+for number, cats in enumerate((stat11.FIRST, stat11.SECOND), 1):
+    deck = game('plan-alg-11-statistics-%d' % number,
+        {'ru': '11 класс · Алгебра · Статистика %d' % number, 'kk': '11 сынып · Алгебра · Статистика %d' % number, 'en': 'Grade 11 · Algebra · Statistics %d' % number},
+        {'ru': 'Практика статистики и исторические факты. Учебные данные, один раунд.', 'kk': 'Статистика практикасы және тарихи деректер. Оқу деректері, бір раунд.', 'en': 'Statistics practice and historical facts. Illustrative data, one round.'},
+        '📊', '#9a7bff', [cats], ['algebra','statistics','grade11'], '11', 0, subject='algebra')
+    deck['final'] = {
+        'theme': {'ru':'Решение по данным','kk':'Деректерге сүйенген шешім','en':'A decision from data'},
+        'q': {'ru':'В опросе 8 из 20 человек выбрали A, а 12 — B. Какую долю опрошенных составляет B?', 'kk':'Сауалнамада 20 адамның 8-і A, 12-сі B таңдады. Сұралғандардың қандай бөлігі B таңдады?', 'en':'In a survey, 8 out of 20 choose A and 12 choose B. What proportion chose B?'},
+        'a': {'ru':'60%', 'kk':'60%', 'en':'60%'}
+    }
+    if number == 2:
+        deck['final'] = {'theme': {'ru':'Корреляция','kk':'Корреляция','en':'Correlation'}, 'q': {'ru':'Связаны ли две величины причинно только потому, что их корреляция равна 0,9?', 'kk':'Екі шама корреляциясы 0,9 болғандықтан ғана олардың арасында себеп-салдар байланысы бар ма?', 'en':'Does a correlation of 0.9 alone establish that one variable causes the other?'}, 'a': {'ru':'Нет','kk':'Жоқ','en':'No'}}
+    decks.append(deck)
 
 
 def flat(grades, parts):
