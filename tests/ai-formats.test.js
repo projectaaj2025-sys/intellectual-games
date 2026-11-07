@@ -26,4 +26,8 @@ const small={...board,rounds:shortRounds};
 assert.equal(ctx.gameFromAiJson(small,{...cfg,format:'svoya',cats:3,qs:4}).rounds[0].categories[0].questions.length,4);
 assert.throws(()=>ctx.gameFromAiJson(small,{...cfg,format:'svoya',cats:4,qs:4}),/ai.invalidResponse/);
 assert.match(ctx.buildAiPrompt({...cfg,format:'svoya',cats:3,qs:4}),/ровно 3 категорий, в каждой ровно 4 вопросов/);
+for (const [level,phrase] of [['easy','базовая'],['medium','средняя'],['hard','продвинутая']]) for (const kind of ['svoya','million','chgk','hundred']) {
+ const prompt=ctx.buildAiPrompt({...cfg,format:kind,difficulty:level,humor:5});
+ assert(prompt.includes(phrase));assert(prompt.includes('комичные ситуации'));assert(prompt.includes('применение знаний'));assert(prompt.includes('Не раскрывай'));
+}
 console.log('AI prompts, all four formats, custom topics, validation and survey warning: OK');
