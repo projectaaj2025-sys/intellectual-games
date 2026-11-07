@@ -36,7 +36,7 @@ function sandbox(call){const context=vm.createContext({S:{lang:'ru'},clamp:(n,a,
  assert.throws(()=>ctx.validateAiBatch({categories:[]},1,1),/ai.badCategories/);
  // Missing metadata must not lose completed categories; missing finale is requested separately.
  calls=[];ctx=sandbox(async(_cfg,prompt)=>{calls.push(prompt);if(prompt.includes('Создай один оригинальный финальный вопрос'))return JSON.stringify({final:{category:'Финал',question:'Q',answer:'A'}});const obj=JSON.parse(makeResponse(prompt,''));delete obj.title;delete obj.final;return JSON.stringify(obj)});
- game=await ctx.generateAiGame({...cfg,cats:3},new AbortController().signal);assert.equal(game.title,'Кино');assert.equal(game.final.theme,'Финал');assert.equal(calls.length,3);
+ game=await ctx.generateAiGame({...cfg,cats:3,sourceText:'DOC_FINAL_SENTINEL'},new AbortController().signal);assert.equal(game.title,'Кино');assert.equal(game.final.theme,'Финал');assert.equal(calls.length,3);assert(calls.every(prompt=>prompt.includes('DOC_FINAL_SENTINEL')));
  // Incomplete finale never becomes a playable partial game.
  requests=0;ctx=sandbox(async(_cfg,prompt)=>{requests++;if(prompt.includes('Создай один оригинальный финальный вопрос'))return '{"final":{"theme":"F","q":"Q"}}';const obj=JSON.parse(makeResponse(prompt,''));delete obj.final;return JSON.stringify(obj)});
  await assert.rejects(ctx.generateAiGame({...cfg,cats:3},new AbortController().signal),/ai.badFinal/);assert.equal(requests,4);
