@@ -905,7 +905,7 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
 .lib-desc{font-size:12px;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .lib-actions{display:flex;gap:6px;padding:0 16px 16px}
 .lib-actions .btn{flex:1;padding:9px 10px;font-size:12px}
-.tabs{display:flex;gap:4px;padding:4px;background:var(--surface-3);border:1px solid var(--line);border-radius:14px;width:fit-content;flex-wrap:wrap;margin-bottom:22px}
+.tabs{max-width:100%;display:flex;gap:4px;padding:4px;background:var(--surface-3);border:1px solid var(--line);border-radius:14px;width:fit-content;flex-wrap:wrap;margin-bottom:22px}
 .tabs button{padding:10px 18px;border-radius:10px;font-size:13.5px;font-weight:700;color:var(--muted);transition:.18s;white-space:nowrap}
 .tabs button.active{background:var(--surface-solid);color:var(--text);box-shadow:var(--shadow-sm)}
 :root[data-theme="dark"] .tabs button.active{background:rgba(242,196,90,.15);color:var(--gold-2)}
@@ -1716,6 +1716,7 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
       <button data-tab="fun" data-i18n="lib.tabFun">Смешные</button>
       <button data-tab="physics" data-i18n="lib.tabPhysics">Физика</button>
       <button data-tab="math" data-i18n="lib.tabMath">Математика</button>
+      <button data-tab="geometry" data-i18n="lib.tabGeometry">Геометрия</button>
       <button data-tab="custom" data-i18n="lib.tabCustom">Мои игры</button>
     </div>
     <div class="lib-toolbar">
@@ -1762,6 +1763,7 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
               <select class="select" id="bSubject">
                 <option value="physics" data-i18n="subject.physics">Физика</option>
                 <option value="math" data-i18n="subject.math">Математика</option>
+                <option value="geometry" data-i18n="subject.geometry">Геометрия</option>
                 <option value="mixed" data-i18n="subject.mixed">Физика + математика</option>
                 <option value="other" data-i18n="subject.other">Другое</option>
               </select>
@@ -1882,6 +1884,7 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
               <option value="other" data-i18n="ai.anySubject" selected>Своя тема</option>
               <option value="physics" data-i18n="subject.physics">Физика</option>
               <option value="math" data-i18n="subject.math">Математика</option>
+                <option value="geometry" data-i18n="subject.geometry">Геометрия</option>
               <option value="mixed" data-i18n="subject.mixed">Физика + математика</option>
             </select>
           </label>
@@ -2477,13 +2480,13 @@ ru: {
   'lib.eyebrow': 'база игр', 'lib.title': 'База игр',
   'lib.sub': 'Готовые игры и ваши сохранённые наборы. Любую игру можно запустить, открыть в конструкторе или выгрузить в PPTX.',
   'lib.import': 'Импорт JSON', 'lib.new': 'Новая игра',
-  'lib.tabAll': 'Все', 'lib.tabPhysics': 'Физика', 'lib.tabMath': 'Математика', 'lib.tabCustom': 'Мои игры',
+  'lib.tabAll': 'Все', 'lib.tabPhysics': 'Физика', 'lib.tabMath': 'Математика', 'lib.tabGeometry': 'Геометрия', 'lib.tabCustom': 'Мои игры',
   'lib.tabPlan': 'По программе', 'lib.tabFun': 'Смешные', 'lib.wholeCourse': 'весь курс', 'lib.combo': 'сборная',
   'lib.search': 'Поиск по названию или теме', 'lib.allGrades': 'Все классы', 'lib.allQuarters': 'Все четверти',
   'lib.count': 'игр найдено', 'lib.empty': 'Ничего не найдено', 'lib.emptySub': 'Измените фильтры или создайте новую игру в конструкторе.',
   'lib.emptyCustom': 'Здесь появятся ваши игры', 'lib.emptyCustomSub': 'Соберите поле в конструкторе или сгенерируйте набор через ИИ — игры сохранятся в этом браузере.',
   'lib.delete': 'Удалить', 'lib.dup': 'Копия',
-  'subject.physics': 'Физика', 'subject.math': 'Математика', 'subject.mixed': 'Физика + математика', 'subject.other': 'Другое',
+  'subject.physics': 'Физика', 'subject.math': 'Математика', 'subject.geometry': 'Геометрия', 'subject.mixed': 'Физика + математика', 'subject.other': 'Другое',
   'grade': 'класс', 'quarter': 'четверть', 'quarterShort': 'четв.',
   'q.fact': 'Интересный факт', "ai.modelProbeOk": "Модель ответила — беру её:", "ai.modelGone": "Модель недоступна:", "ai.modelTryNext": "пробую следующую", "ai.modelSwitched": "Переключился на рабочую модель:", "builder.funMode": "Режим «просто так»", "builder.funModeHint": "Не по предмету: кошки, мемы, еда", "builder.funSeed": "Взять шаблон «Смешная физика»", "builder.funSeedTitle": "Смешная игра · моя версия", "builder.funSeedDone": "Шаблон загружен — правьте вопросы под себя", "builder.funModeOn": "Игра помечена как «просто так» — она появится во вкладке «Смешные»",
   'ai.sections': 'Свои темы секций', 'ai.sectionsPh': 'По одной теме в строке — станут категориями поля. Пример: Давление · Архимед · Плавание тел', 'ai.sectionsHint': 'Если пусто — секции возьмутся из программы выбранного класса и четверти. Можно писать темы не по предмету: «Кошки», «Мемы», «Еда».',
@@ -2685,13 +2688,13 @@ kk: {
   'lib.eyebrow': 'ойындар қоры', 'lib.title': 'Ойындар қоры',
   'lib.sub': 'Дайын ойындар және сақталған жинақтарыңыз. Кез келген ойынды бастауға, құрастырушыда ашуға немесе PPTX-ке шығаруға болады.',
   'lib.import': 'JSON импорты', 'lib.new': 'Жаңа ойын',
-  'lib.tabAll': 'Барлығы', 'lib.tabPhysics': 'Физика', 'lib.tabMath': 'Математика', 'lib.tabCustom': 'Менің ойындарым',
+  'lib.tabAll': 'Барлығы', 'lib.tabPhysics': 'Физика', 'lib.tabMath': 'Математика', 'lib.tabGeometry': 'Геометрия', 'lib.tabCustom': 'Менің ойындарым',
   'lib.tabPlan': 'Бағдарлама бойынша', 'lib.tabFun': 'Күлкілі', 'lib.wholeCourse': 'толық курс', 'lib.combo': 'жиынтық',
   'lib.search': 'Атауы немесе тақырыбы бойынша іздеу', 'lib.allGrades': 'Барлық сыныптар', 'lib.allQuarters': 'Барлық тоқсандар',
   'lib.count': 'ойын табылды', 'lib.empty': 'Ештеңе табылмады', 'lib.emptySub': 'Сүзгілерді өзгертіңіз немесе құрастырушыда жаңа ойын жасаңыз.',
   'lib.emptyCustom': 'Мұнда сіздің ойындарыңыз пайда болады', 'lib.emptyCustomSub': 'Құрастырушыда тақта жасаңыз немесе ИИ арқылы жинақ жасаңыз — ойындар осы браузерде сақталады.',
   'lib.delete': 'Жою', 'lib.dup': 'Көшірме',
-  'subject.physics': 'Физика', 'subject.math': 'Математика', 'subject.mixed': 'Физика + математика', 'subject.other': 'Басқа',
+  'subject.physics': 'Физика', 'subject.math': 'Математика', 'subject.geometry': 'Геометрия', 'subject.mixed': 'Физика + математика', 'subject.other': 'Басқа',
   'grade': 'сынып', 'quarter': 'тоқсан', 'quarterShort': 'тоқс.',
   'q.fact': 'Қызықты факт', "ai.modelProbeOk": "Модель жауап берді — соны аламын:", "ai.modelGone": "Модель қолжетімсіз:", "ai.modelTryNext": "келесісін көремін", "ai.modelSwitched": "Жұмыс істейтін модельге көштім:", "builder.funMode": "«Жай ғана» режимі", "builder.funModeHint": "Пәнсіз: мысықтар, мемдер, тағам", "builder.funSeed": "«Күлкілі физика» үлгісін алу", "builder.funSeedTitle": "Күлкілі ойын · менің нұсқам", "builder.funSeedDone": "Үлгі жүктелді — сұрақтарды өзіңізге лайықтаңыз", "builder.funModeOn": "Ойын «жай ғана» деп белгіленді — «Күлкілі» қойындысында көрінеді",
   'ai.sections': 'Өз секция тақырыптарыңыз', 'ai.sectionsPh': 'Әр жолға бір тақырып — өріс санаттары болады', 'ai.sectionsHint': 'Бос болса — таңдалған сынып пен тоқсан бағдарламасынан алынады. Пәнсіз тақырыптар да жазылады.',
@@ -2893,13 +2896,13 @@ en: {
   'lib.eyebrow': 'game bank', 'lib.title': 'Game library',
   'lib.sub': 'Ready-made games and your saved sets. Any game can be played, opened in the builder or exported to PPTX.',
   'lib.import': 'Import JSON', 'lib.new': 'New game',
-  'lib.tabAll': 'All', 'lib.tabPhysics': 'Physics', 'lib.tabMath': 'Math', 'lib.tabCustom': 'My games',
+  'lib.tabAll': 'All', 'lib.tabPhysics': 'Physics', 'lib.tabMath': 'Math', 'lib.tabGeometry': 'Geometry', 'lib.tabCustom': 'My games',
   'lib.tabPlan': 'Curriculum', 'lib.tabFun': 'Fun', 'lib.wholeCourse': 'full course', 'lib.combo': 'combined',
   'lib.search': 'Search by title or topic', 'lib.allGrades': 'All grades', 'lib.allQuarters': 'All quarters',
   'lib.count': 'games found', 'lib.empty': 'Nothing found', 'lib.emptySub': 'Change the filters or create a new game in the builder.',
   'lib.emptyCustom': 'Your games will appear here', 'lib.emptyCustomSub': 'Build a board or generate a set with AI — games are stored in this browser.',
   'lib.delete': 'Delete', 'lib.dup': 'Duplicate',
-  'subject.physics': 'Physics', 'subject.math': 'Mathematics', 'subject.mixed': 'Physics + math', 'subject.other': 'Other',
+  'subject.physics': 'Physics', 'subject.math': 'Mathematics', 'subject.geometry': 'Geometry', 'subject.mixed': 'Physics + math', 'subject.other': 'Other',
   'grade': 'grade', 'quarter': 'quarter', 'quarterShort': 'q.',
   'q.fact': 'Fun fact', "ai.modelProbeOk": "Model responded, using it:", "ai.modelGone": "Model unavailable:", "ai.modelTryNext": "trying the next one", "ai.modelSwitched": "Switched to a working model:", "builder.funMode": "Just-for-fun mode", "builder.funModeHint": "Not a school subject: cats, memes, food", "builder.funSeed": "Load the Fun physics template", "builder.funSeedTitle": "Fun game · my version", "builder.funSeedDone": "Template loaded — now make it yours", "builder.funModeOn": "Marked as just for fun — it appears in the Fun tab",
   'ai.sections': 'Your own section topics', 'ai.sectionsPh': 'One topic per line — they become board categories', 'ai.sectionsHint': 'If empty, sections come from the selected grade and term. Non-school topics are fine.',
@@ -3108,6 +3111,9 @@ Object.assign(I18N.en, {'ai.busyRetry':'service busy, retrying or switching mode
 Object.assign(I18N.ru, {'ai.format':'Формат игры','ai.anySubject':'Своя тема','ai.topicRequired':'Укажите свою тему или темы секций.','ai.invalidResponse':'Ответ ИИ неполный или не соответствует правилам формата. Попробуйте ещё раз.','ai.generated':'Создано ИИ — проверьте факты и ответы','ai.surveyWarning':'Варианты и баллы предложены ИИ, это не данные реального опроса. Проверьте и отредактируйте.','ai.edit':'Редактировать','ai.schemaInfo':'Схема зависит от выбранного шоу. Перед запуском проверьте и при необходимости исправьте вопросы и ответы.','ai.sub':'Выберите шоу и любую тему — ИИ подготовит вопросы в нужном формате. Проверьте результат перед игрой. Ключ хранится только в вашем браузере.','ai.sectionsHint':'Укажите свои темы через запятую или с новой строки. Для произвольной темы обязательно заполните тему или секции.','ai.topicPh':'Например: космос, кино, история, кошки или физика','ai.h5':'мемы и юмор'});
 Object.assign(I18N.kk, {'ai.format':'Ойын форматы','ai.anySubject':'Өз тақырыбы','ai.topicRequired':'Өз тақырыбыңызды немесе бөлім тақырыптарын енгізіңіз.','ai.invalidResponse':'ИИ жауабы толық емес немесе формат ережелеріне сәйкес келмейді. Қайталап көріңіз.','ai.generated':'ИИ жасады — фактілер мен жауаптарды тексеріңіз','ai.surveyWarning':'Жауаптар мен ұпайлар ИИ ұсынған, нақты сауалнама деректері емес. Тексеріп, түзетіңіз.','ai.edit':'Өңдеу','ai.schemaInfo':'Схема ойын форматына байланысты. Ойын алдында сұрақтар мен жауаптарды тексеріңіз.','ai.sub':'Шоу мен кез келген тақырыпты таңдаңыз — ИИ тиісті форматта сұрақтар жасайды. Нәтижені тексеріңіз. Кілт тек браузерде сақталады.','ai.sectionsHint':'Өз тақырыптарыңызды үтірмен немесе жаңа жолдан жазыңыз. Өз тақырыбы үшін тақырыпты не бөлімдерді енгізіңіз.','ai.topicPh':'Мысалы: ғарыш, кино, тарих, мысықтар немесе физика','ai.h5':'мемдер мен әзіл'});
 Object.assign(I18N.en, {'ai.format':'Game format','ai.anySubject':'Custom topic','ai.topicRequired':'Enter a custom topic or section topics.','ai.invalidResponse':'The AI response is incomplete or does not match the format. Please try again.','ai.generated':'AI-generated — verify facts and answers','ai.surveyWarning':'Answers and scores are AI suggestions, not real survey data. Review and edit them.','ai.edit':'Edit','ai.schemaInfo':'The schema depends on the selected show. Review and correct questions and answers before playing.','ai.sub':'Choose a show and any topic; AI will prepare questions in that format. Review the result before playing. The key stays in your browser.','ai.sectionsHint':'Enter your topics separated by commas or new lines. For a custom topic, enter a topic or sections.','ai.topicPh':'E.g. space, movies, history, cats or physics','ai.h5':'memes and humour'});
+Object.assign(I18N.ru, {'ai.badRounds':'Неверное число раундов или отсутствуют категории.', 'ai.badCategories':'Неверное число категорий. Ожидалось:', 'ai.badQuestions':'Неверное число вопросов в категории. Ожидалось:', 'ai.badCell':'Вопрос, ответ или тип вопроса отсутствует либо некорректен.', 'ai.badFinal':'Отсутствует тема, вопрос или ответ финала.', 'ai.badTitle':'Отсутствует название игры.', 'ai.badItems':'Неверное число вопросов или секторов. Ожидалось:', 'ai.badMillion':'В вопросе должны быть четыре разных варианта и индекс верного ответа от 0 до 3.', 'ai.badChgk':'В секторе нужен вопрос и ответ; для блица — три вопроса с ответами.', 'ai.badHundred':'Нужны шесть разных ответов с целыми баллами по убыванию, сумма не больше 100.', 'ai.item':'Позиция', 'ai.nativeBatch':'Вопросы / секторы', 'ai.finishing':'Создаём недостающий финальный вопрос.'});
+Object.assign(I18N.kk, {'ai.badRounds':'Раунд саны қате немесе категориялар жоқ.', 'ai.badCategories':'Категория саны қате. Қажетті саны:', 'ai.badQuestions':'Категориядағы сұрақ саны қате. Қажетті саны:', 'ai.badCell':'Сұрақ, жауап немесе түрі жоқ не қате.', 'ai.badFinal':'Финалдың тақырыбы, сұрағы немесе жауабы жоқ.', 'ai.badTitle':'Ойын атауы жоқ.', 'ai.badItems':'Сұрақтар немесе секторлар саны қате. Қажетті саны:', 'ai.badMillion':'Төрт түрлі нұсқа және 0 мен 3 арасындағы дұрыс жауап индексі қажет.', 'ai.badChgk':'Секторға сұрақ пен жауап, блицке жауаптары бар үш сұрақ қажет.', 'ai.badHundred':'Ұпайы кему ретімен берілген алты түрлі жауап қажет; қосындысы 100-ден аспайды.', 'ai.item':'Орын', 'ai.nativeBatch':'Сұрақтар / секторлар', 'ai.finishing':'Жетіспейтін финал сұрағы жасалуда.'});
+Object.assign(I18N.en, {'ai.badRounds':'Wrong number of rounds or missing categories.', 'ai.badCategories':'Wrong number of categories. Expected:', 'ai.badQuestions':'Wrong number of questions in a category. Expected:', 'ai.badCell':'A question, answer or question type is missing or invalid.', 'ai.badFinal':'The final theme, question or answer is missing.', 'ai.badTitle':'The game title is missing.', 'ai.badItems':'Wrong number of questions or sectors. Expected:', 'ai.badMillion':'A question needs four distinct options and a correct index from 0 to 3.', 'ai.badChgk':'A sector needs a question and answer; a blitz needs three question-answer pairs.', 'ai.badHundred':'Six distinct answers with descending integer scores totalling at most 100 are required.', 'ai.item':'Position', 'ai.nativeBatch':'Questions / sectors', 'ai.finishing':'Generating the missing final question.'});
 Object.assign(I18N.ru, {'ai.errNetwork':'Не удалось связаться с сервисом. Проверьте интернет и ограничения браузера или сети.','ai.errProbe':'Не удалось проверить модель.','ai.checkFailed':'Модель не подтверждена.','ai.errQuota':'Превышен лимит запросов или квота сервиса. Подождите и проверьте лимиты проекта.','ai.errKey':'Сервис отклонил доступ. Проверьте права ключа, ограничения API и настройки проекта.'});
 Object.assign(I18N.kk, {'ai.errNetwork':'Сервиске қосылу мүмкін болмады. Интернетті және браузер не желі шектеулерін тексеріңіз.','ai.errProbe':'Модельді тексеру мүмкін болмады.','ai.checkFailed':'Модель расталмады.','ai.errQuota':'Сұрау лимиті немесе сервис квотасы асқан. Біраз күтіп, жоба лимиттерін тексеріңіз.','ai.errKey':'Сервис рұқсат бермеді. Кілт рұқсаттарын, API шектеулерін және жоба баптауларын тексеріңіз.'});
 Object.assign(I18N.en, {'ai.errNetwork':'Could not connect to the service. Check your internet connection and browser or network restrictions.','ai.errProbe':'Could not check the model.','ai.checkFailed':'Model not verified.','ai.errQuota':'The request limit or service quota was exceeded. Wait and check your project limits.','ai.errKey':'The service denied access. Check key permissions, API restrictions and project settings.'});
@@ -3117,9 +3123,9 @@ Object.assign(I18N.en, {'builder.factHint':'Fun fact or explanation (optional)',
 Object.assign(I18N.ru, {'export.design':'Дизайн слайдов','export.designStudio':'Студия · сияние','export.designMinimal':'Минимализм · чистый фон','export.designGeometry':'Геометрия · акцентные полосы'});
 Object.assign(I18N.kk, {'export.design':'Слайд дизайны','export.designStudio':'Студия · жарқыл','export.designMinimal':'Минимализм · таза фон','export.designGeometry':'Геометрия · айқын жолақтар'});
 Object.assign(I18N.en, {'export.design':'Slide design','export.designStudio':'Studio · glow','export.designMinimal':'Minimal · clean background','export.designGeometry':'Geometry · accent bands'});
-Object.assign(I18N.ru, {'ai.badJsonHelp':'Модель вернула некорректный ответ. Попробуйте ещё раз, другую модель или меньшее поле.','ai.truncated':'Ответ модели обрезан по ограничению длины. Попробуйте поле меньшего размера или другую модель.','ai.emptyResponse':'Модель вернула пустой ответ. Попробуйте ещё раз.','ai.blocked':'Сервис заблокировал запрос или ответ. Попробуйте изменить формулировку темы.','ai.retryResponse':'Ответ неполный или некорректный, повторяем запрос один раз.','ai.smallerBatch':'Ответ слишком длинный, запрашиваем категории по отдельности.','ai.batch':'Раунд · категории','ai.time':'Большое поле создаётся по частям и может занять несколько минут.'});
-Object.assign(I18N.kk, {'ai.badJsonHelp':'Модель қате JSON қайтарды. Қайта көріңіз немесе кішірек алаң таңдаңыз.','ai.truncated':'Модель жауабы ұзындық шегінен қысқарды. Кішірек алаңды немесе басқа модельді таңдаңыз.','ai.emptyResponse':'Модель бос жауап берді. Қайта көріңіз.','ai.blocked':'Сервис сұрауды немесе жауапты бұғаттады. Тақырып тұжырымын өзгертіңіз.','ai.retryResponse':'Жауап толық емес немесе қате, сұрауды бір рет қайталаймыз.','ai.smallerBatch':'Жауап тым ұзын, санаттарды жеке сұраймыз.','ai.batch':'Раунд · санаттар','ai.time':'Үлкен алаң бөліктермен жасалады және бірнеше минут алуы мүмкін.'});
-Object.assign(I18N.en, {'ai.badJsonHelp':'The model returned invalid JSON. Try again or choose a smaller board.','ai.truncated':'The model response was cut off by its length limit. Try a smaller board or another model.','ai.emptyResponse':'The model returned an empty response. Please try again.','ai.blocked':'The service blocked the request or response. Try rewording the topic.','ai.retryResponse':'The response is incomplete or invalid; retrying once.','ai.smallerBatch':'The response was too long; requesting categories individually.','ai.batch':'Round · categories','ai.time':'A large board is generated in parts and may take several minutes.'});
+Object.assign(I18N.ru, {'ai.badJsonHelp':'Модель вернула некорректный ответ. Попробуйте ещё раз, другую модель или меньшее поле.','ai.truncated':'Ответ модели обрезан по ограничению длины. Попробуйте поле меньшего размера или другую модель.','ai.emptyResponse':'Модель вернула пустой ответ. Попробуйте ещё раз.','ai.blocked':'Сервис заблокировал запрос или ответ. Попробуйте изменить формулировку темы.','ai.retryResponse':'Ответ неполный или некорректный, повторяем запрос один раз.','ai.smallerBatch':'Часть ответа некорректна или обрезана; запрашиваем элементы по одному.','ai.batch':'Раунд · категории','ai.time':'Большое поле создаётся по частям и может занять несколько минут.'});
+Object.assign(I18N.kk, {'ai.badJsonHelp':'Модель қате JSON қайтарды. Қайта көріңіз немесе кішірек алаң таңдаңыз.','ai.truncated':'Модель жауабы ұзындық шегінен қысқарды. Кішірек алаңды немесе басқа модельді таңдаңыз.','ai.emptyResponse':'Модель бос жауап берді. Қайта көріңіз.','ai.blocked':'Сервис сұрауды немесе жауапты бұғаттады. Тақырып тұжырымын өзгертіңіз.','ai.retryResponse':'Жауап толық емес немесе қате, сұрауды бір рет қайталаймыз.','ai.smallerBatch':'Жауап бөлігі қате немесе қысқарған; элементтерді жеке сұраймыз.','ai.batch':'Раунд · санаттар','ai.time':'Үлкен алаң бөліктермен жасалады және бірнеше минут алуы мүмкін.'});
+Object.assign(I18N.en, {'ai.badJsonHelp':'The model returned invalid JSON. Try again or choose a smaller board.','ai.truncated':'The model response was cut off by its length limit. Try a smaller board or another model.','ai.emptyResponse':'The model returned an empty response. Please try again.','ai.blocked':'The service blocked the request or response. Try rewording the topic.','ai.retryResponse':'The response is incomplete or invalid; retrying once.','ai.smallerBatch':'Part of the response was invalid or truncated; requesting items individually.','ai.batch':'Round · categories','ai.time':'A large board is generated in parts and may take several minutes.'});
 function t(key) {
   const dict = I18N[S.lang] || I18N.ru;
   if (dict[key] != null) return dict[key];
@@ -9815,8 +9821,94 @@ function setView(name) {
   if (name === 'ai') { syncAiForm(); }
   history.replaceState(null, '', name === 'home' ? location.pathname : '#' + name);
 }
+/* Авторская развлекательная игра: вопросы заранее подготовлены, а не
+   меняются случайным образом при каждом запуске. Три языка хранятся вместе. */
+const FUN_MIXED_ROWS = [
+ {name:['Звериные новости','Жануарлар жаңалығы','Animal news'], rows:[
+  [['Какое животное носит детёныша в сумке и прыгает по Австралии?','Қай жануар баласын қалтасында көтеріп, Австралияда секіреді?','Which animal carries its young in a pouch and hops around Australia?'],['Кенгуру','Кенгуру','Kangaroo']],
+  [['У кого три сердца: у осьминога или у кошки?','Үш жүрек кімде: сегізаяқта ма, мысықта ма?','Who has three hearts: an octopus or a cat?'],['У осьминога','Сегізаяқта','The octopus']],
+  [['Как называется единственное млекопитающее, способное к активному полёту?','Белсенді ұша алатын жалғыз сүтқоректі қалай аталады?','What is the only mammal capable of powered flight?'],['Летучая мышь','Жарқанат','Bat']],
+  [['Какое животное откладывает яйца, хотя кормит детёнышей молоком и имеет утиный клюв?','Үйрек тұмсықты, жұмыртқа салатын, бірақ төлін сүтпен қоректендіретін жануар қандай?','Which egg-laying mammal has a duck-like bill and feeds milk to its young?'],['Утконос','Үйректұмсық','Platypus']],
+  [['Как называется смена окраски животного под цвет окружающей среды для маскировки?','Жануардың жасырыну үшін орта түсіне ұқсап өзгеруі қалай аталады?','What is an animal’s colour adaptation to blend into its surroundings called?'],['Маскировка','Бүркеніш','Camouflage']]
+ ]},
+ {name:['Съедобная планета','Дәмді ғаламшар','Edible planet'], rows:[
+  [['Из какого фрукта обычно делают изюм?','Мейіз әдетте қандай жемістен жасалады?','Which fruit is usually dried to make raisins?'],['Из винограда','Жүзімнен','Grapes']],
+  [['Что пчёлы собирают с цветов для производства мёда?','Аралар бал жасау үшін гүлден не жинайды?','What do bees collect from flowers to make honey?'],['Нектар','Шірне','Nectar']],
+  [['Как называется итальянское блюдо: круглая лепёшка с начинкой и сыром?','Салмасы мен ірімшігі бар дөңгелек итальян тағамы қалай аталады?','What is the Italian dish made with a round base, toppings and cheese?'],['Пицца','Пицца','Pizza']],
+  [['Из зёрен какого растения делают попкорн?','Попкорн қай өсімдіктің дәнінен жасалады?','Which plant’s kernels are used to make popcorn?'],['Кукуруза','Жүгері','Corn']],
+  [['Какой газ образует пузырьки в газированной воде?','Газдалған судағы көпіршіктерді қандай газ құрайды?','Which gas forms the bubbles in sparkling water?'],['Углекислый газ','Көмірқышқыл газы','Carbon dioxide']]
+ ]},
+ {name:['Техника с характером','Техника мінезі','Technology with character'], rows:[
+  [['Какое устройство позволяет позвонить другу и поместится в кармане?','Досыңа қоңырау шалатын әрі қалтаға сыятын құрылғы қандай?','What pocket-sized device can you use to call a friend?'],['Телефон','Телефон','Phone']],
+  [['Какую комбинацию клавиш обычно используют для копирования в Windows?','Windows жүйесінде көшіру үшін әдетте қандай пернелер басылады?','Which keyboard shortcut usually copies in Windows?'],['Ctrl + C','Ctrl + C','Ctrl + C']],
+  [['Как называется устройство, которое печатает документ на бумаге?','Құжатты қағазға басып шығаратын құрылғы қалай аталады?','What device prints a document onto paper?'],['Принтер','Принтер','Printer']],
+  [['Как называется вредоносная программа, которая способна заражать файлы и распространяться?','Файлдарды зақымдап, тарала алатын зиянды бағдарлама қалай аталады?','What is malware that can infect files and spread called?'],['Компьютерный вирус','Компьютерлік вирус','A computer virus']],
+  [['Что означает сокращение URL в адресе сайта?','Сайт мекенжайындағы URL қысқартуы нені білдіреді?','What does URL stand for in a web address?'],['Uniform Resource Locator — адрес ресурса','Uniform Resource Locator — ресурс мекенжайы','Uniform Resource Locator']]
+ ]},
+ {name:['Космос рядом','Ғарыш жақын','Space nearby'], rows:[
+  [['Как называется звезда, вокруг которой обращается Земля?','Жер айналатын жұлдыз қалай аталады?','What is the star that Earth orbits called?'],['Солнце','Күн','The Sun']],
+  [['Как называется естественный спутник Земли?','Жердің табиғи серігі қалай аталады?','What is Earth’s natural satellite called?'],['Луна','Ай','The Moon']],
+  [['Какую планету называют Красной?','Қай ғаламшар Қызыл ғаламшар деп аталады?','Which planet is called the Red Planet?'],['Марс','Марс','Mars']],
+  [['Как называется путь планеты вокруг Солнца?','Ғаламшардың Күнді айнала жүретін жолы қалай аталады?','What is a planet’s path around the Sun called?'],['Орбита','Орбита','Orbit']],
+  [['Как называется галактика, в которой находится Солнечная система?','Күн жүйесі орналасқан галактика қалай аталады?','What is the galaxy containing our Solar System called?'],['Млечный Путь','Құс жолы','The Milky Way']]
+ ]},
+ {name:['Ловушки для мозга','Ойға тұзақ','Brain teasers'], rows:[
+  [['У двух велосипедов сколько колёс, если у каждого по два?','Әрқайсысында екі дөңгелек болса, екі велосипедте неше дөңгелек бар?','How many wheels do two bicycles have if each has two?'],['Четыре','Төрт','Four']],
+  [['Что становится мокрее, пока вы вытираетесь им после душа?','Душтан кейін онымен сүртінгенде не ылғалдана түседі?','What gets wetter as you dry yourself after a shower?'],['Полотенце','Сүлгі','A towel']],
+  [['Два отца и два сына — всего три человека. Кто они друг другу?','Екі әке мен екі ұл — барлығы үш адам. Олар кімдер?','Two fathers and two sons are only three people. Who are they?'],['Дед, отец и сын','Ата, әке және ұл','Grandfather, father and son']],
+  [['Если сегодня понедельник, какой день будет через 10 дней?','Егер бүгін дүйсенбі болса, 10 күннен кейін аптаның қай күні болады?','If today is Monday, what day will it be in ten days?'],['Четверг','Бейсенбі','Thursday']],
+  [['В коробке лежат 5 красных и 5 синих носков. Сколько носков нужно достать вслепую, чтобы гарантировать пару одного цвета?','Қорапта 5 қызыл және 5 көк шұлық бар. Бір түсті жұпқа кепіл болу үшін қарамай неше шұлық алу керек?','A box has 5 red and 5 blue socks. How many must you draw blindly to guarantee a matching pair?'],['Три','Үш','Three']]
+ ]}
+];
+const FUN_MIXED_ROWS_2 = [
+ {name:['Мир на карте','Әлем картасы','Around the world'], rows:[
+  [['В какой стране находится Эйфелева башня?','Эйфель мұнарасы қай елде орналасқан?','In which country is the Eiffel Tower?'],['Франция','Франция','France']],
+  [['Какой океан самый большой на Земле?','Жердегі ең үлкен мұхит қайсы?','Which is the largest ocean on Earth?'],['Тихий океан','Тынық мұхиты','Pacific Ocean']],
+  [['В каком городе находится Биг-Бен?','Биг-Бен қай қалада орналасқан?','In which city is Big Ben?'],['Лондон','Лондон','London']],
+  [['Какой материк расположен вокруг Южного полюса?','Оңтүстік полюсті қай материк қоршап жатыр?','Which continent surrounds the South Pole?'],['Антарктида','Антарктида','Antarctica']],
+  [['Как называется самая длинная река Южной Америки?','Оңтүстік Америкадағы ең ұзын өзен қалай аталады?','What is the longest river in South America?'],['Амазонка','Амазонка','Amazon']]
+ ]},
+ {name:['Книжная полка','Кітап сөресі','On the bookshelf'], rows:[
+  [['Кто написал сказку «Золушка» в известной французской версии?','«Золушка» ертегісінің танымал француз нұсқасын кім жазды?','Who wrote the well-known French version of Cinderella?'],['Шарль Перро','Шарль Перро','Charles Perrault']],
+  [['Как зовут деревянного мальчика с длинным носом из сказки Карло Коллоди?','Карло Коллодидің ертегісіндегі мұрны ұзын ағаш бала қалай аталады?','What is the name of Carlo Collodi’s wooden boy with a long nose?'],['Пиноккио','Пиноккио','Pinocchio']],
+  [['Кто написал «Гарри Поттера»?','«Гарри Поттерді» кім жазды?','Who wrote Harry Potter?'],['Джоан Роулинг','Джоан Роулинг','J. K. Rowling']],
+  [['Как называется краткое нравоучительное произведение, часто с животными в роли героев?','Кейіпкерлері көбіне жануарлар болатын қысқа ғибратты шығарма қалай аталады?','What is a short moral tale, often featuring animals, called?'],['Басня','Мысал','Fable']],
+  [['Как зовут сыщика, жившего по адресу Бейкер-стрит, 221Б?','Бейкер-стрит, 221Б мекенжайында тұрған детективтің аты кім?','What is the detective’s name at 221B Baker Street?'],['Шерлок Холмс','Шерлок Холмс','Sherlock Holmes']]
+ ]},
+ {name:['Звуки и сцена','Дыбыс пен сахна','Sounds and stage'], rows:[
+  [['На каком инструменте играют клавишами и педалями, ударяя по струнам молоточками?','Пернелері мен педальдары бар, балғашықтары ішектерге соғылатын аспап қандай?','Which keyboard instrument uses hammers to strike strings?'],['Фортепиано','Фортепиано','Piano']],
+  [['Сколько струн у обычной классической гитары?','Кәдімгі классикалық гитарада неше ішек бар?','How many strings does a standard classical guitar have?'],['Шесть','Алты','Six']],
+  [['Как называется человек, который руководит оркестром?','Оркестрді басқаратын адам қалай аталады?','What do you call the person who leads an orchestra?'],['Дирижёр','Дирижёр','Conductor']],
+  [['Как называется спектакль, где история рассказывается преимущественно танцем?','Оқиғасы негізінен би арқылы баяндалатын қойылым қалай аталады?','What is a stage performance that tells a story mainly through dance?'],['Балет','Балет','Ballet']],
+  [['Как называется высокая или низкая позиция звука, которую музыканты записывают нотами?','Музыканттар нотамен жазатын дыбыстың жуан не жіңішке болу қасиеті қалай аталады?','What is the highness or lowness of a musical sound called?'],['Высота звука','Дыбыс биіктігі','Pitch']]
+ ]},
+ {name:['Спортивный переполох','Спорт думаны','Sports scramble'], rows:[
+  [['Каким мячом играют в бадминтон: круглым или воланом?','Бадминтонда дөңгелек доппен ойнай ма, әлде воланмен бе?','Does badminton use a round ball or a shuttlecock?'],['Воланом','Воланмен','A shuttlecock']],
+  [['Сколько клеток на стандартной шахматной доске?','Стандарт шахмат тақтасында неше торкөз бар?','How many squares are on a standard chessboard?'],['64','64','64']],
+  [['Какая шахматная фигура ходит буквой «Г»?','Қай шахмат фигурасы «Г» әрпі тәрізді жүреді?','Which chess piece moves in an L shape?'],['Конь','Ат','Knight']],
+  [['В каком виде спорта бросают мяч в корзину?','Қай спортта допты себетке лақтырады?','In which sport do players throw a ball into a basket?'],['Баскетбол','Баскетбол','Basketball']],
+  [['Сколько игроков одной команды находится на поле при стандартном начале футбольного матча, включая вратаря?','Футбол матчы стандарт басталғанда бір командадан, қақпашымен бірге, алаңда неше ойыншы болады?','How many players from one team start a standard football match on the field, including the goalkeeper?'],['11','11','11']]
+ ]},
+ {name:['Просто чудеса','Кішкентай ғажайыптар','Everyday wonders'], rows:[
+  [['Какого цвета свет получается при смешении красного, зелёного и синего света?','Қызыл, жасыл және көк жарықты араластырғанда қандай түсті жарық шығады?','What colour light results from mixing red, green and blue light?'],['Белый','Ақ','White']],
+  [['Что показывает компас: направление на магнитный север или на ближайший магазин?','Компас қай бағытты көрсетеді: магниттік солтүстікті ме, әлде ең жақын дүкенді ме?','Does a compass point towards magnetic north or the nearest shop?'],['На магнитный север','Магниттік солтүстікке','Towards magnetic north']],
+  [['Как называется переход воды из жидкого состояния в газообразное?','Судың сұйық күйден газ күйіне өтуі қалай аталады?','What is the change of liquid water into gas called?'],['Испарение','Булану','Evaporation']],
+  [['Как называется световое явление, которое можно увидеть после дождя в виде разноцветной дуги?','Жаңбырдан кейін түрлі түсті доға түрінде көрінетін жарық құбылысы қалай аталады?','What colourful arc can appear after rain?'],['Радуга','Кемпірқосақ','Rainbow']],
+  [['Что сильнее всего притягивает железные скрепки: магнит или резинка?','Темір қыстырғыштарды қайсысы күштірек тартады: магнит пе, өшіргіш пе?','Which attracts iron paper clips more strongly: a magnet or an eraser?'],['Магнит','Магнит','Magnet']]
+ ]}
+];
+
+const FUN_MIXED_GAME = {
+ id:'fun-mixed-random-topics', builtin:true, subject:'other', grade:7, grades:['5','6','7','8','9','10','11'], quarter:0,
+ tags:['fun'], emoji:'🎲', accent:'#f2c45a',
+ title:{ru:'Смешное ассорти · случайные темы',kk:'Көңілді ассорти · әртүрлі тақырыптар',en:'Fun mix · random topics'},
+ desc:{ru:'Два раунда: 50 вопросов о животных, еде, книгах, спорте, космосе и других неожиданных темах.',kk:'Екі раунд: жануарлар, тағам, кітап, спорт, ғарыш және басқа тақырыптар туралы 50 сұрақ.',en:'Two rounds: 50 questions on animals, food, books, sport, space and other surprising topics.'},
+ rounds:[FUN_MIXED_ROWS,FUN_MIXED_ROWS_2].map((rows,i)=>({name:{ru:'Раунд '+(i+1),kk:(i+1)+'-раунд',en:'Round '+(i+1)},categories:rows.map((c)=>({name:{ru:c.name[0],kk:c.name[1],en:c.name[2]},questions:c.rows.map(([q,a],j)=>({q:{ru:q[0],kk:q[1],en:q[2]},a:{ru:a[0],kk:a[1],en:a[2]},type:j===4?'auction':j===2?'cat':'normal'}))}))})),
+ final:{theme:{ru:'Секретный ингредиент',kk:'Құпия ингредиент',en:'Secret ingredient'},q:{ru:'Этого вещества много в океанской воде, а в кастрюлю супа его обычно добавляют совсем немного. Что это? ',kk:'Бұл зат мұхитта көп, ал бір қазан сорпаға әдетте аздап қана қосылады. Бұл не?',en:'This substance is abundant in the ocean, but only a little is usually added to a pot of soup. What is it?'},a:{ru:'Соль',kk:'Тұз',en:'Salt'}}
+};
+
 function allGames() {
-  return BANK_GAMES.concat(PLAN_GAMES, SHOW_DEMOS).concat(S.custom.map(normalizeGame));
+  return BANK_GAMES.concat(PLAN_GAMES, [FUN_MIXED_GAME], SHOW_DEMOS).concat(S.custom.map(normalizeGame));
 }
 function gameTitle(g) { return tx(g.title) || t('presets.custom'); }
 function gameQuestionCount(g) {
@@ -9824,8 +9916,13 @@ function gameQuestionCount(g) {
   return (g.rounds || []).reduce((s, r) => s + (r.categories || []).reduce((x, c) => x + (c.questions || []).length, 0), 0);
 }
 function subjectLabel(subject) {
-  return t('subject.' + (subject === 'math' ? 'math' : subject === 'physics' ? 'physics' : subject === 'mixed' ? 'mixed' : 'other'));
+  return t('subject.' + (subject === 'geometry' ? 'geometry' : subject === 'math' ? 'math' : subject === 'physics' ? 'physics' : subject === 'mixed' ? 'mixed' : 'other'));
 }
+
+function isGeometryGame(g) {
+  return g.subject === 'geometry' || (g.tags || []).includes('geometry');
+}
+function gameSubjectLabel(g) { return subjectLabel(isGeometryGame(g) ? 'geometry' : g.subject); }
 
 /* Таймер ЧГК: старые и импортированные наборы получают безопасные значения. */
 function chgkTimerConfig(raw) {
@@ -9951,7 +10048,7 @@ function presetCard(g, index) {
     '<span class="preset-index">' + pad2(index + 1) + '</span>' +
     '<div class="preset-top">' +
       '<div class="preset-icon">' + esc(g.emoji || '★') + '</div>' +
-      '<div class="preset-meta"><span class="lbl">' + esc(subjectLabel(g.subject)) + '</span><span class="val">' + esc(g.grade) + ' ' + esc(t('grade')) + ' · ' + esc(g.quarter ? g.quarter + ' ' + t('quarterShort') : t('lib.wholeCourse')) + '</span></div>' +
+      '<div class="preset-meta"><span class="lbl">' + esc(gameSubjectLabel(g)) + '</span><span class="val">' + esc(g.grade) + ' ' + esc(t('grade')) + ' · ' + esc(g.quarter ? g.quarter + ' ' + t('quarterShort') : t('lib.wholeCourse')) + '</span></div>' +
     '</div>' +
     '<div class="preset-body">' +
       '<h3 class="preset-title">' + esc(gameTitle(g)) + '</h3>' +
@@ -9977,11 +10074,11 @@ function libGameCard(g) {
   const qs = gameQuestionCount(g);
   const custom = !g.builtin;
   return '<article class="lib-card" style="--cg:' + (g.accent || '#54e0ff') + '55">' +
-    '<div class="lib-cover"><b>' + esc(g.emoji || '★') + '</b><span class="cover-sub">' + esc(subjectLabel(g.subject)) + ' · ' + esc(g.grade) + ' ' + esc(t('grade')) + '</span></div>' +
+    '<div class="lib-cover"><b>' + esc(g.emoji || '★') + '</b><span class="cover-sub">' + esc(gameSubjectLabel(g)) + ' · ' + esc(g.grade) + ' ' + esc(t('grade')) + '</span></div>' +
     '<div class="lib-body">' +
       '<div class="lib-title">' + esc(gameTitle(g)) + '</div>' +
       '<div class="lib-meta">' +
-        '<span class="chip chip-gold">' + esc(g.showFormat ? nativeFormatName(g.showFormat) : subjectLabel(g.subject)) + '</span>' +
+        '<span class="chip chip-gold">' + esc(g.showFormat ? nativeFormatName(g.showFormat) : gameSubjectLabel(g)) + '</span>' +
         '<span class="chip">' + esc(g.grade) + ' ' + esc(t('grade')) + '</span>' +
         '<span class="chip">' + esc(g.quarter ? g.quarter + ' ' + t('quarterShort') : t('lib.wholeCourse')) + '</span>' +
         '<span class="chip chip-cyan">' + qs + ' ' + esc(t('presets.questions')) + '</span>' +
@@ -10008,7 +10105,8 @@ function renderLibrary() {
   if (S.libraryTab === 'plan') list = list.filter((g) => (g.tags || []).includes('plan'));
   if (S.libraryTab === 'fun') list = list.filter((g) => (g.tags || []).includes('fun'));
   if (S.libraryTab === 'physics') list = list.filter((g) => g.subject === 'physics');
-  if (S.libraryTab === 'math') list = list.filter((g) => g.subject === 'math');
+  if (S.libraryTab === 'math') list = list.filter((g) => g.subject === 'math' && !isGeometryGame(g));
+  if (S.libraryTab === 'geometry') list = list.filter(isGeometryGame);
   if (S.libraryTab === 'custom') list = list.filter((g) => !g.builtin);
   if (formatSel) list = list.filter((g) => (g.showFormat || 'svoya') === formatSel);
   if (gradeSel) list = list.filter((g) => String(g.grade) === gradeSel || (g.grades || []).map(String).includes(gradeSel));
@@ -10016,7 +10114,7 @@ function renderLibrary() {
   if (qSel) list = list.filter((g) => !g.quarter || String(g.quarter) === qSel);
   if (search) {
     list = list.filter((g) => {
-      const hay = [gameTitle(g), tx(g.desc), subjectLabel(g.subject)]
+      const hay = [gameTitle(g), tx(g.desc), gameSubjectLabel(g)]
         .concat((g.rounds || []).map((r) => tx(r.name)))
         .concat((g.rounds || []).flatMap((r) => (r.categories || []).map((c) => tx(c.name))))
         .join(' ').toLowerCase();
@@ -10081,7 +10179,8 @@ function loadBuilderFromGame(g) {
   b.id = g.builtin ? null : g.id;
   b.title = L(g.title);
   b.desc = L(g.desc);
-  b.subject = g.subject;
+  b.subject = isGeometryGame(g) ? 'geometry' : g.subject;
+  b.fun = (g.tags || []).includes('fun');
   b.grade = g.grade;
   b.quarter = g.quarter;
   b.emoji = g.emoji || '★';
@@ -11410,7 +11509,7 @@ function aiLangName() {
 }
 function buildAiPrompt(cfg) {
   const format = cfg.format || 'svoya';
-  const subject = cfg.subject === 'math' ? 'математика' : cfg.subject === 'mixed' ? 'физика и математика' : cfg.subject === 'other' ? 'любая указанная пользователем тема, без привязки к физике или математике' : 'физика';
+  const subject = cfg.subject === 'geometry' ? 'геометрия' : cfg.subject === 'math' ? 'математика' : cfg.subject === 'mixed' ? 'физика и математика' : cfg.subject === 'other' ? 'любая указанная пользователем тема, без привязки к физике или математике' : 'физика';
   const humor = HUMOR_LEVELS[clamp(cfg.humor, 0, 5)][S.lang] || HUMOR_LEVELS[clamp(cfg.humor, 0, 5)].ru;
   const cats = clamp(Number(cfg.cats) || 5, 3, 6), qs = clamp(Number(cfg.qs) || 5, 3, 6);
   const common = [
@@ -11434,6 +11533,7 @@ function buildAiPrompt(cfg) {
       'Верни только один JSON-объект по схеме ' + schema + (b.first ? ' с добавлением полей "title":"...", "desc":"...", "final":{"theme":"...","q":"...","a":"..."} на верхнем уровне.' : '.') + ' Пример сокращён; заполни точно указанное число категорий и вопросов.'
     ]).join('\n');
   }
+  const nativeCount = cfg.nativeBatch ? cfg.nativeBatch.count : ({million:15, chgk:13, hundred:6})[format];
   const schemas = {
     svoya: [
       'Формат «Своя игра»: ровно 2 раунда, в каждом ровно ' + cats + ' категорий, в каждой ровно ' + qs + ' вопросов с возрастающей сложностью, и финальный вопрос. Короткие однозначные ответы; не менее трёх специальных типов cat, auction, bonus или fail.',
@@ -11441,19 +11541,23 @@ function buildAiPrompt(cfg) {
       'Схема (массивы в примере сокращены, но заполни все требуемые элементы): {"title":"...","desc":"...","rounds":[{"name":"...","categories":[{"name":"...","questions":[{"q":"...","a":"...","type":"normal","fact":"...","image":""}]}]}],"final":{"theme":"...","q":"...","a":"..."}}'
     ],
     million: [
-      'Формат «Кто хочет стать миллионером»: ровно 15 разнообразных вопросов с возрастающей сложностью, в каждом ровно 4 различных варианта и один верный. correct — целое число от 0 до 3, индекс правильного варианта.',
+      'Формат «Кто хочет стать миллионером»: ровно ' + nativeCount + ' разнообразных вопросов с возрастающей сложностью, в каждом ровно 4 различных варианта и один верный. correct — целое число от 0 до 3, индекс правильного варианта.',
       'Схема: {"title":"...","desc":"...","showItems":[{"q":"...","options":["...","...","...","..."],"correct":0}]}.'
     ],
     chgk: [
-      'Формат «Что? Где? Когда?»: ровно 13 секторов. Оригинальные логические вопросы на рассуждение с однозначным ответом и объяснением в fact, без вариантов. kind normal либо blackbox; blackbox только если вопрос действительно о предмете в чёрном ящике. Можно использовать blitz или superblitz: в каждом таком секторе ровно три связанных самостоятельных вопроса в blitz с q и a.',
+      'Формат «Что? Где? Когда?»: ровно ' + nativeCount + ' секторов. Оригинальные логические вопросы на рассуждение с однозначным ответом и объяснением в fact, без вариантов. kind normal либо blackbox; blackbox только если вопрос действительно о предмете в чёрном ящике. Можно использовать blitz или superblitz: в каждом таком секторе ровно три связанных самостоятельных вопроса в blitz с q и a.',
       'Схема: {"title":"...","desc":"...","showItems":[{"kind":"normal","q":"...","a":"...","fact":"...","blitz":[]}]}.'
     ],
     hundred: [
-      'Формат «100 к 1»: ровно 6 открытых вопросов без единственного объективного ответа; для каждого ровно 6 различных правдоподобных ответов людей и целые условные points от 0 до 100, по убыванию, сумма не более 100. Это предположения, не результаты реального опроса; не называй их реальным опросом.',
+      'Формат «100 к 1»: ровно ' + nativeCount + ' открытых вопросов без единственного объективного ответа; для каждого ровно 6 различных правдоподобных ответов людей и целые условные points от 0 до 100, по убыванию, сумма не более 100. Это предположения, не результаты реального опроса; не называй их реальным опросом.',
       'Схема: {"title":"...","desc":"...","showItems":[{"q":"...","answers":[{"text":"...","points":30},{"text":"...","points":22},{"text":"...","points":16},{"text":"...","points":12},{"text":"...","points":10},{"text":"...","points":8}]}]}.'
     ]
   };
-  return common.concat(schemas[format] || schemas.svoya).join('\n');
+  const batchNote = cfg.nativeBatch ? [
+    'Это часть игры: вопросы или секторы с номера ' + cfg.nativeBatch.start + ' по ' + (cfg.nativeBatch.start + nativeCount - 1) + '. Верни только эти элементы в showItems, без других частей.',
+    cfg.nativeBatch.previous.length ? 'Уже использованы вопросы: ' + cfg.nativeBatch.previous.join(' · ') + '. Не повторяй их.' : ''
+  ] : [];
+  return common.concat(schemas[format] || schemas.svoya, batchNote).join('\n');
 }
 function extractJson(text) {
   if (typeof text !== 'string') return null;
@@ -11779,7 +11883,7 @@ async function callOpenAI(cfg, prompt, signal) {
    старые имена для новых пользователей и отвечает 404 «no longer available» —
    поэтому при такой ошибке молча пробуем следующую модель из списка. */
 function aiCompletionError(key, retryable, truncated) {
-  return Object.assign(new Error(t(key)), {aiRetryable:!!retryable, aiTruncated:!!truncated});
+  return Object.assign(new Error(t(key)), {aiRetryable:!!retryable, aiTruncated:!!truncated, aiStructural:key === 'ai.invalidResponse' || key === 'ai.badJsonHelp'});
 }
 const GEMINI_FALLBACKS = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-flash-latest', 'gemini-1.5-flash', 'gemini-2.5-pro'];
 function geminiCandidates(model) {
@@ -11877,28 +11981,67 @@ async function callGemini(cfg, prompt, signal) {
   }
   throw (busy ? new Error(t('ai.errBusy')) : lastErr) || new Error(t('ai.errKey'));
 }
+/* Разрешаем только однозначные варианты названий полей и числовые строки.
+   Недостающие вопросы, ответы и баллы не придумываются. */
+function normalizeAiResponse(raw, kind) {
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return raw;
+  const text = x => typeof x === 'number' && Number.isFinite(x) ? String(x) : x;
+  const field = (o, a, b) => o[a] != null ? o[a] : o[b];
+  const qa = item => item && typeof item === 'object' && !Array.isArray(item) ? {...item, q:text(field(item,'q','question')), a:text(field(item,'a','answer'))} : item;
+  const category = c => c && typeof c === 'object' && !Array.isArray(c) ? {...c, name:field(c,'name','category'), questions:Array.isArray(c.questions) ? c.questions.map(qa) : c.questions} : c;
+  const round = r => r && typeof r === 'object' && !Array.isArray(r) ? {...r, categories:Array.isArray(r.categories) ? r.categories.map(category) : r.categories} : r;
+  const out = {...raw};
+  if (!Array.isArray(out.rounds) && Array.isArray(out.categories)) out.rounds = [{categories:out.categories}];
+  if (Array.isArray(out.rounds)) out.rounds = out.rounds.map(round);
+  if (out.final && typeof out.final === 'object' && !Array.isArray(out.final)) out.final = {...qa(out.final), theme:field(out.final,'theme','category')};
+  if (!Array.isArray(out.showItems) && Array.isArray(out.items)) out.showItems = out.items;
+  if (Array.isArray(out.showItems)) out.showItems = out.showItems.map(item => {
+    if (!item || typeof item !== 'object' || Array.isArray(item)) return item;
+    const it = qa(item);
+    if (kind === 'million') {
+      if (typeof it.correct === 'string') {
+        const v = it.correct.trim();
+        if (/^[A-D]$/i.test(v)) it.correct = v.toUpperCase().charCodeAt(0)-65;
+        else if (/^[0-3]$/.test(v)) it.correct = Number(v);
+      }
+    } else if (kind === 'chgk') {
+      if (it.kind == null && it.q && it.a && (!Array.isArray(it.blitz) || it.blitz.length === 0)) it.kind = 'normal';
+      if (Array.isArray(it.blitz)) it.blitz = it.blitz.map(qa);
+    }
+    return it;
+  });
+  return out;
+}
+function aiInvalid(key, info) {
+  const e = aiCompletionError('ai.invalidResponse', true, false);
+  e.message += ' ' + t(key) + (info == null ? '' : ' ' + info);
+  return e;
+}
 /* Приведение ответа модели к игре Quiz Studio */
 function gameFromAiJson(raw, cfg) {
   const filled = x => typeof x === 'string' && !!x.trim();
-  const fail = () => { throw aiCompletionError('ai.invalidResponse', true, false); };
-  if (!raw || !filled(raw.title)) fail();
+  const fail = (key, info) => { throw aiInvalid(key, info); };
+  raw = normalizeAiResponse(raw, cfg.format || 'svoya');
+  if (!raw || !filled(raw.title)) fail('ai.badTitle');
   const kind = cfg.format || 'svoya';
   const desc = (filled(raw.desc) ? raw.desc.trim() + ' · ' : '') + t('ai.generated') + (kind === 'hundred' ? ' · ' + t('ai.surveyWarning') : '');
   let data = {title:raw.title, desc, subject:cfg.subject, grade:cfg.grade, quarter:cfg.subject === 'other' ? 0 : cfg.quarter, emoji:'✨', accent:'#9a7bff'};
   if (kind === 'svoya') {
     const cats = clamp(Number(cfg.cats) || 5, 3, 6), qs = clamp(Number(cfg.qs) || 5, 3, 6);
-    if (!Array.isArray(raw.rounds) || raw.rounds.length !== 2 || !raw.final || !filled(raw.final.theme) || !filled(raw.final.q) || !filled(raw.final.a)) fail();
+    if (!Array.isArray(raw.rounds) || raw.rounds.length !== 2) fail('ai.badRounds');
+    if (!raw.final || !filled(raw.final.theme) || !filled(raw.final.q) || !filled(raw.final.a)) fail('ai.badFinal');
     for (const r of raw.rounds) {
-      if (!r || !Array.isArray(r.categories) || r.categories.length !== cats) fail();
+      if (!r || !Array.isArray(r.categories) || r.categories.length !== cats) fail('ai.badCategories', cats);
       for (const c of r.categories) {
-        if (!c || !filled(c.name) || !Array.isArray(c.questions) || c.questions.length !== qs) fail();
-        if (!c.questions.every(q => q && filled(q.q) && filled(q.a) && (q.type == null || ['normal','cat','auction','bonus','fail'].includes(q.type)))) fail();
+        if (!c || !filled(c.name) || !Array.isArray(c.questions) || c.questions.length !== qs) fail('ai.badQuestions', qs);
+        if (!c.questions.every(q => q && filled(q.q) && filled(q.a) && (q.type == null || ['normal','cat','auction','bonus','fail'].includes(q.type)))) fail('ai.badCell');
       }
     }
     data.rounds = raw.rounds; data.final = raw.final;
   } else {
     data.showFormat = kind; data.showItems = raw.showItems;
-    if (!nativeValid(data)) fail();
+    if (!Array.isArray(data.showItems) || data.showItems.length !== NATIVE_DEFAULTS[kind]) fail('ai.badItems', NATIVE_DEFAULTS[kind]);
+    for (let i=0;i<data.showItems.length;i++) if (!nativeValid({...data,showItems:[data.showItems[i]]},1)) fail(kind === 'million' ? 'ai.badMillion' : kind === 'chgk' ? 'ai.badChgk' : 'ai.badHundred', t('ai.item') + ' ' + (i+1));
   }
   return normalizeGame(data);
 }
@@ -11925,10 +12068,11 @@ function renderAiPreview(g) {
   body.innerHTML = html;
 }
 async function requestAiObject(cfg, prompt, signal, validate, splitOnTruncation) {
+  let hint = '';
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
       if (signal && signal.aborted) { const e = new Error('Aborted'); e.name = 'AbortError'; throw e; }
-      const requestPrompt = attempt ? prompt + '\nПредыдущий ответ был некорректным. Верни только полный валидный JSON точно по указанной схеме.' : prompt;
+      const requestPrompt = attempt ? prompt + '\nПредыдущий ответ был некорректным. Верни только полный валидный JSON точно по указанной схеме. ' + hint : prompt;
       const text = cfg.provider === 'openai'
         ? await callOpenAI(cfg, requestPrompt, signal)
         : await callGemini(cfg, requestPrompt, signal);
@@ -11937,22 +12081,59 @@ async function requestAiObject(cfg, prompt, signal, validate, splitOnTruncation)
       return validate(json);
     } catch (e) {
       if (!e || e.name === 'AbortError' || !e.aiRetryable || (e.aiTruncated && splitOnTruncation) || attempt === 1) throw e;
+      hint = e.aiStructural ? e.message : '';
       aiLog('↻ ' + t('ai.retryResponse'), 'warn');
     }
   }
 }
-function validateAiBatch(raw, count, qs, first) {
+function validateAiBatch(raw, count, qs) {
   const filled = x => typeof x === 'string' && !!x.trim();
-  const invalid = () => { throw aiCompletionError('ai.invalidResponse', true, false); };
-  if (!raw || !Array.isArray(raw.rounds) || raw.rounds.length !== 1) invalid();
+  raw = normalizeAiResponse(raw, 'svoya');
+  if (!raw || !Array.isArray(raw.rounds) || raw.rounds.length !== 1) throw aiInvalid('ai.badRounds');
   const round = raw.rounds[0];
-  if (!round || !Array.isArray(round.categories) || round.categories.length !== count) invalid();
-  if (!round.categories.every(c => c && filled(c.name) && Array.isArray(c.questions) && c.questions.length === qs && c.questions.every(q => q && filled(q.q) && filled(q.a) && (q.type == null || ['normal','cat','auction','bonus','fail'].includes(q.type))))) invalid();
-  if (first && (!filled(raw.title) || !raw.final || !filled(raw.final.theme) || !filled(raw.final.q) || !filled(raw.final.a))) invalid();
+  if (!round || !Array.isArray(round.categories) || round.categories.length !== count) throw aiInvalid('ai.badCategories', count);
+  for (let i=0;i<round.categories.length;i++) {
+    const c = round.categories[i];
+    if (!c || !filled(c.name) || !Array.isArray(c.questions) || c.questions.length !== qs) throw aiInvalid('ai.badQuestions', qs + ' · ' + t('ai.item') + ' ' + (i+1));
+    if (!c.questions.every(q => q && filled(q.q) && filled(q.a) && (q.type == null || ['normal','cat','auction','bonus','fail'].includes(q.type)))) throw aiInvalid('ai.badCell', t('ai.item') + ' ' + (i+1));
+  }
+  return raw;
+}
+function validateAiNativeBatch(raw, kind, count) {
+  raw = normalizeAiResponse(raw, kind);
+  if (!raw || !Array.isArray(raw.showItems) || raw.showItems.length !== count) throw aiInvalid('ai.badItems', count);
+  for (let i=0;i<raw.showItems.length;i++) {
+    if (!nativeValid({title:'AI', showFormat:kind, showItems:[raw.showItems[i]]}, 1)) throw aiInvalid(kind === 'million' ? 'ai.badMillion' : kind === 'chgk' ? 'ai.badChgk' : 'ai.badHundred', t('ai.item') + ' ' + (i+1));
+  }
   return raw;
 }
 async function generateAiGame(cfg, signal) {
-  if (cfg.format !== 'svoya') return requestAiObject(cfg, buildAiPrompt(cfg), signal, json => gameFromAiJson(json, cfg), false);
+  const filled = x => typeof x === 'string' && !!x.trim();
+  const fallbackTitle = () => (filled(cfg.topic) ? cfg.topic : cfg.sections && cfg.sections.find(filled)) || t('ai.genOk');
+  if (cfg.format !== 'svoya') {
+    const kind = cfg.format, total = NATIVE_DEFAULTS[kind], assembled = {title:'', desc:'', showItems:[]};
+    if (!total) throw aiInvalid('ai.badItems');
+    const previous = [];
+    async function appendNative(start, count) {
+      const batchCfg = {...cfg, nativeBatch:{start,count,previous:previous.slice()}};
+      aiLog('› ' + t('ai.nativeBatch') + ' · ' + start + '–' + (start + count - 1), 'step');
+      let part;
+      try { part = await requestAiObject(cfg, buildAiPrompt(batchCfg), signal, json => validateAiNativeBatch(json, kind, count), count > 1); }
+      catch (e) {
+        if ((!e.aiTruncated && !e.aiStructural) || count <= 1) throw e;
+        aiLog('↻ ' + t('ai.smallerBatch'), 'warn');
+        for (let i=0;i<count;i++) await appendNative(start+i,1);
+        return;
+      }
+      if (!assembled.title && filled(part.title)) assembled.title = part.title;
+      if (!assembled.desc && filled(part.desc)) assembled.desc = part.desc;
+      assembled.showItems.push(...part.showItems);
+      previous.push(...part.showItems.map(it => it.q || (it.blitz && it.blitz[0] && it.blitz[0].q) || ''));
+    }
+    for (let start=1;start<=total;start+=3) await appendNative(start,Math.min(3,total-start+1));
+    if (!assembled.title) assembled.title = fallbackTitle();
+    return gameFromAiJson(assembled,cfg);
+  }
   const cats = clamp(Number(cfg.cats) || 5, 3, 6), qs = clamp(Number(cfg.qs) || 5, 3, 6);
   const assembled = {title:'', desc:'', rounds:[{name:'', categories:[]}, {name:'', categories:[]}], final:null};
   const previous = [];
@@ -11961,12 +12142,11 @@ async function generateAiGame(cfg, signal) {
     const batchCfg = {...cfg, batch:{round, start, count, first, previous:previous.slice()}};
     aiLog('› ' + t('ai.batch') + ' ' + round + ' · ' + start + '–' + (start + count - 1), 'step');
     let part;
-    try {
-      part = await requestAiObject(cfg, buildAiPrompt(batchCfg), signal, json => validateAiBatch(json, count, qs, first), count > 1);
-    } catch (e) {
-      if (!e.aiTruncated || count <= 1) throw e;
+    try { part = await requestAiObject(cfg, buildAiPrompt(batchCfg), signal, json => validateAiBatch(json, count, qs), count > 1); }
+    catch (e) {
+      if ((!e.aiTruncated && !e.aiStructural) || count <= 1) throw e;
       aiLog('↻ ' + t('ai.smallerBatch'), 'warn');
-      for (let i = 0; i < count; i++) await appendBatch(round, start + i, 1);
+      for (let i=0;i<count;i++) await appendBatch(round,start+i,1);
       return;
     }
     if (first) { assembled.title = part.title; assembled.desc = part.desc; assembled.final = part.final; }
@@ -11975,10 +12155,20 @@ async function generateAiGame(cfg, signal) {
     target.categories.push(...part.rounds[0].categories);
     previous.push(...part.rounds[0].categories.map(c => c.name));
   }
-  for (let round = 1; round <= 2; round++) {
-    for (let start = 1; start <= cats; start += 3) await appendBatch(round, start, Math.min(3, cats - start + 1));
+  for (let round=1;round<=2;round++) for (let start=1;start<=cats;start+=3) await appendBatch(round,start,Math.min(3,cats-start+1));
+  if (!filled(assembled.title)) assembled.title = fallbackTitle();
+  const f = assembled.final;
+  if (!f || !filled(f.theme) || !filled(f.q) || !filled(f.a)) {
+    aiLog('› ' + t('ai.finishing'), 'step');
+    const prompt = 'Ты автор интеллектуальной игры. Создай один оригинальный финальный вопрос с однозначным ответом. Язык: ' + aiLangName() + '. Возраст: ' + cfg.grade + ' класс. Тема: ' + (cfg.topic || (cfg.sections || []).join(', ') || cfg.subject) + '. Верни только JSON: {"final":{"theme":"тема финала","q":"вопрос","a":"ответ"}}. Все три поля обязательны и непусты.';
+    const result = await requestAiObject(cfg,prompt,signal,json => {
+      const data = normalizeAiResponse(json,'svoya'), final = data && data.final;
+      if (!final || !filled(final.theme) || !filled(final.q) || !filled(final.a)) throw aiInvalid('ai.badFinal');
+      return final;
+    },false);
+    assembled.final = result;
   }
-  return gameFromAiJson(assembled, cfg);
+  return gameFromAiJson(assembled,cfg);
 }
 async function runAiGeneration() {
   if (AI.running) return;
@@ -12815,9 +13005,9 @@ const SHOW_DEMOS = [
  nativeDemo('hundred','100 к 1 · пример опроса', demoSurveyRows.map(([q,answers])=>({q,answers:answers.map((text,i)=>({text,points:[30,22,16,12,10,8][i]}))})), 'Демонстрация: баллы условные, не реальные результаты опроса. Русский язык.')
 ];
 const NB = {kind:'svoya', drafts:{}, current:null};
-function nativeValid(g) {
+function nativeValid(g, expectedCount) {
  if (!g || !String(g.title||'').trim()) return false;
- if (!NATIVE_DEFAULTS[g.showFormat] || !Array.isArray(g.showItems) || g.showItems.length !== NATIVE_DEFAULTS[g.showFormat]) return false;
+ if (!NATIVE_DEFAULTS[g.showFormat] || !Array.isArray(g.showItems) || g.showItems.length !== (expectedCount == null ? NATIVE_DEFAULTS[g.showFormat] : expectedCount)) return false;
  const filled = x => typeof x === 'string' && x.trim().length > 0;
  return g.showItems.every(it => {
   if (!it || typeof it !== 'object') return false;
@@ -12827,7 +13017,7 @@ function nativeValid(g) {
   }
   if (!filled(it.q)) return false;
   if (g.showFormat === 'million') return Array.isArray(it.options) && it.options.length===4 && it.options.every(filled) && new Set(it.options.map(x=>x.trim().toLowerCase())).size===4 && Number.isInteger(it.correct) && it.correct>=0 && it.correct<4;
-  if (!Array.isArray(it.answers) || it.answers.length!==6 || !it.answers.every(x=>x && filled(x.text) && String(x.points).trim()!=='' && Number.isInteger(Number(x.points)) && Number(x.points)>=0 && Number(x.points)<=100)) return false;
+  if (!Array.isArray(it.answers) || it.answers.length!==6 || !it.answers.every(x=>x && filled(x.text) && (typeof x.points === 'number' || typeof x.points === 'string') && String(x.points).trim()!=='' && Number.isInteger(Number(x.points)) && Number(x.points)>=0 && Number(x.points)<=100)) return false;
   const pts=it.answers.map(x=>Number(x.points));
   return new Set(it.answers.map(x=>x.text.trim().toLowerCase())).size===6 && pts.every((x,i)=>i===0 || pts[i-1]>=x) && pts.reduce((a,b)=>a+b,0)<=100;
  });
