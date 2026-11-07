@@ -1266,10 +1266,10 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
 @keyframes miPulse{0%{box-shadow:0 0 0 0 rgba(57,226,154,.7)}100%{box-shadow:0 0 0 22px rgba(57,226,154,0)}}
 
 .million-side{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;gap:3px;
-  padding:14px clamp(10px,1.4vw,20px);border-left:1px solid rgba(242,196,90,.18);background:linear-gradient(180deg,rgba(4,10,26,.55),rgba(2,5,14,.8))}
+  padding:14px clamp(10px,1.4vw,20px);border-left:1px solid rgba(242,196,90,.18);background:rgba(4,10,26,.92)}
 .million-rung{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:3px 10px;border-radius:3px;
-  font-family:var(--font-display);font-size:clamp(11px,1.05vw,15px);color:rgba(234,240,255,.62);transition:.2s}
-.million-rung .n{opacity:.55;min-width:18px;font-size:.82em}
+  font-family:var(--font-display);font-size:clamp(11px,1.05vw,15px);color:#d9e4ff;transition:.2s}
+.million-rung .n{opacity:.85;min-width:18px;font-size:.82em}
 .million-rung.milestone{color:#fff;font-weight:600}
 .million-rung.passed{color:rgba(57,226,154,.85)}
 .million-rung.current{background:linear-gradient(90deg,rgba(242,196,90,.95),rgba(242,196,90,.55));color:#0b0f1e;font-weight:700;box-shadow:0 0 22px -6px rgba(242,196,90,.9)}
@@ -1285,7 +1285,7 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
 .mi-life.used::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(255,96,121,.8);
   clip-path:polygon(0 0,100% 100%,100% 92%,8% 0)}
 .million-score{font-family:var(--font-display);font-size:clamp(15px,1.8vw,24px);color:#f2c45a;letter-spacing:.06em}
-.million-score small{display:block;font-family:var(--font-ui);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(234,240,255,.5)}
+.million-score small{display:block;font-family:var(--font-ui);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#cdd9f3}
 .million-cta{display:flex;gap:10px;flex-wrap:wrap}
 /* ---------- кроссворд-разминка ---------- */
 .cross{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;padding:clamp(10px,2vh,24px) clamp(12px,2.6vw,40px);overflow:auto;
@@ -1471,11 +1471,11 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
 
 /* Пользовательские студийные изображения; подложки маскируют напечатанные примеры. */
 .million{background:#030712;isolation:isolate;overflow:auto}
-.million::before{mask-image:none;-webkit-mask-image:none;background:linear-gradient(to bottom,transparent 0 58%,#050921 68% 100%),linear-gradient(to right,#050921 0 12%,transparent 18% 75%,#050921 81% 100%),url('assets/shows/million-studio.png') center top / 100% 100% no-repeat;opacity:.75}
+.million::before{mask-image:none;-webkit-mask-image:none;background:linear-gradient(#05133255,#051332a0),url('assets/shows/million-stage.jpg') center top / 100% 100% no-repeat;opacity:1;filter:none}
 .mi-hint{pointer-events:none}
 .mi-life{font-family:Arial,sans-serif}.mi-life svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .mi-choose{position:relative;z-index:3;grid-column:1 / -1;max-width:720px;margin:auto;padding:24px;background:#06102bed;border:1px solid #e8bd5e;border-radius:14px}
-.mi-choose select{background:#102556;color:white;border:1px solid #f2c45a;border-radius:6px;padding:12px;font-size:16px}
+.mi-choose label{color:#f5f7ff}.mi-choose select{background:#102556;color:white;border:1px solid #f2c45a;border-radius:6px;padding:12px;font-size:16px}
 .chgk{isolation:isolate}.chgk::before{background:linear-gradient(#080704bb,#080704ee),url('assets/shows/chgk-owl.jpg') center/cover no-repeat}
 .chgk-scene-wheel::before{background:linear-gradient(#0009,#000d),url('assets/shows/chgk-wheel.jpg') center/cover no-repeat}
 .chgk-scene-box::before{background:linear-gradient(#0009,#000e),url('assets/shows/chgk-owl.jpg') center/cover no-repeat}
@@ -1533,7 +1533,7 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
 .hund-template .hund-row.open .hund-num{display:none}
 .hund-template .hund-answer{white-space:normal;overflow:auto;text-overflow:clip;text-align:left;line-height:1.1;max-height:100%;font-size:clamp(11px,2.1vw,26px);font-weight:800;color:#fff;letter-spacing:0}
 .hund-template .hund-score{font-size:clamp(12px,2.3vw,29px);color:#fff;line-height:1}
-.hund-template .hund-row.strike{background:#252525;border-color:#9c9c9c}
+.hund-template .hund-row.strike{background:#531824;border-color:#ff9bad;box-shadow:inset 4px 0 #ff728a}
 .hund-actions .mi-btn{background:#0d2d65;color:#fff;border-color:#85c9ff}.hund-actions .mi-btn.gold{background:#ffd044;color:#261500;border-color:#fff2a6}
 .hund-demo-note{color:#fff;background:#152d5d;border-radius:5px;margin-bottom:6px}
 @media(max-width:640px){.hund{padding:52px 10px 24px}.hund-template{width:100%;aspect-ratio:auto;display:flex;flex-wrap:wrap;background:linear-gradient(90deg,#12b5dd 50%,#cc382e 50%);padding:8px;gap:8px}.hund-template .hund-board{position:static;order:2;width:100%;height:auto;display:flex;gap:5px}.hund-template .hund-row{min-height:45px}.hund-template .hund-num{font-size:25px}.hund-template .hund-answer{font-size:16px}.hund-template .hund-score{font-size:18px}.hund-template-side{position:static;width:calc(50% - 4px);min-height:65px;padding:5px}.hund-template-side.blue{order:0}.hund-template-side.red{order:1}.hund-template-side b{font-size:25px}.hund-template .hund-strikes{flex-direction:row}.hund-template .hund-strike{width:26px;height:26px;font-size:16px;border-radius:7px}.hund-template-side{gap:4px}}
@@ -1554,7 +1554,7 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
 
 /* Light stages retain the show colours but make their surfaces and text readable. */
 :root[data-theme="light"] .million{background:#eaf1ff;color:#142548}
-:root[data-theme="light"] .million::before{background:linear-gradient(#f5f9ffe0,#e4edffec),url('assets/shows/million-stage.jpg') center top/100% 100% no-repeat;opacity:1}
+:root[data-theme="light"] .million::before{background:linear-gradient(#f5f9ff70,#e4edff9c),url('assets/shows/million-stage.jpg') center top/100% 100% no-repeat;opacity:1;filter:none}
 :root[data-theme="light"] .million-q::before{background:#fff}
 :root[data-theme="light"] .million-q p{color:#102348}
 :root[data-theme="light"] .million-ans{--mi-fill:linear-gradient(#fff,#e3ecff);color:#172a4d}
@@ -1563,7 +1563,7 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
 :root[data-theme="light"] .million-ans.correct{--mi-fill:linear-gradient(#1e8f63,#0f5c3f);color:#fff}
 :root[data-theme="light"] .million-ans.wrong{--mi-fill:linear-gradient(#8f1e34,#5c0f20);color:#fff}
 :root[data-theme="light"] .million-ans.correct .letter,:root[data-theme="light"] .million-ans.wrong .letter{color:#fff}
-:root[data-theme="light"] .million-side{background:#fff9;border-color:#b8c8e6}
+:root[data-theme="light"] .million-side{background:#ffffffeb;border-color:#b8c8e6}
 :root[data-theme="light"] .million-rung{color:#364763}:root[data-theme="light"] .million-rung.current{color:#161a21}
 :root[data-theme="light"] .million-rung.milestone{color:#132950}:root[data-theme="light"] .million-rung.passed{color:#12613c}
 :root[data-theme="light"] .million .mi-btn.ghost,:root[data-theme="light"] .million .mi-btn{background:#fff;color:#193463;border-color:#947022}
@@ -1589,7 +1589,8 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
 :root[data-theme="light"] .chgk-box p,:root[data-theme="light"] .chgk-end p{color:#40341c}
 :root[data-theme="light"] .chgk-box h2,:root[data-theme="light"] .chgk-end h2{color:#765515}
 :root[data-theme="light"] .hund:not(.hund-big){background:linear-gradient(#d9f3ff,#f4faff);color:#172447}
-:root[data-theme="light"] .hund-pool,:root[data-theme="light"] .hund-total{color:#284565}
+:root[data-theme="light"] .hund:not(.hund-big) .hund-pool,:root[data-theme="light"] .hund:not(.hund-big) .hund-total{color:#284565}
+:root[data-theme="light"] .hund:not(.hund-big) .hund-pool b{color:#07577a}:root[data-theme="light"] .hund:not(.hund-big) .hund-total b{color:#805000}
 :root[data-theme="light"] .hund:not(.hund-big) .hund-badge{color:#8a4800;text-shadow:none}
 :root[data-theme="light"] .hund:not(.hund-big) .hund-q{background:#fff;color:#162c50}
 /* Long live questions resize with the viewport; scrolling is a fallback. */
@@ -11356,7 +11357,7 @@ function pptxOnAccent() {
   const brightness = .299 * (n >> 16) + .587 * ((n >> 8) & 255) + .114 * (n & 255);
   return brightness > 150 ? '111111' : 'FFFFFF';
 }
-function pptxCatPanel() { return pptxIsLight() ? PPTX_COLORS.panel : '231B45'; }
+function pptxCatPanel() { return PPTX_COLORS.panel; }
 function pptxLib() {
   if (window.PptxGenJS) return window.PptxGenJS;
   if (window.pptxgen) return window.pptxgen;
@@ -11521,11 +11522,11 @@ async function buildPptx(game, opts = {}) {
         pptxAddBg(qs, pptx, W, H, opts.design);
         const special = q.type || 'normal';
         const badge = special === 'cat' ? '🐈 КОТ В МЕШКЕ' : special === 'auction' ? '🔔 АУКЦИОН' : special === 'bonus' ? '★ БОНУС ×2' : special === 'fail' ? '✖ НЕУДАЧА' : '';
-        qs.addShape(pptx.ShapeType.roundRect, { x: .55, y: .42, w: W - 3.55, h: .46, rectRadius: .23, fill: { color: pptxIsLight() ? PPTX_COLORS.panel : '141F3C' }, line: { color: PPTX_COLORS.line, width: 1 } });
+        qs.addShape(pptx.ShapeType.roundRect, { x: .55, y: .42, w: W - 3.55, h: .46, rectRadius: .23, fill: { color: PPTX_COLORS.panel }, line: { color: PPTX_COLORS.line, width: 1 } });
         qs.addText((cat.name || '').toUpperCase(), { x: .8, y: .42, w: W - 4.6, h: .46, fontSize: 11, bold: true, color: PPTX_COLORS.goldSoft, valign: 'middle', fontFace: 'Arial', charSpacing: 1 });
         qs.addText(String(val), { x: W - 2.65, y: .38, w: 1.0, h: .5, fontSize: 20, bold: true, color: PPTX_COLORS.gold, align: 'right', valign: 'middle', fontFace: 'Arial' });
         if (badge) {
-          qs.addShape(pptx.ShapeType.roundRect, { x: W - 1.6, y: .42, w: 1.0, h: .46, rectRadius: .23, fill: { color: '2A1F56' }, line: { color: PPTX_COLORS.violet, width: 1 } });
+          qs.addShape(pptx.ShapeType.roundRect, { x: W - 1.6, y: .42, w: 1.0, h: .46, rectRadius: .23, fill: { color: PPTX_COLORS.panel }, line: { color: PPTX_COLORS.violet, width: 1 } });
           qs.addText(special === 'cat' ? 'КОТ' : special === 'auction' ? 'АУК.' : special === 'bonus' ? '×2' : 'ШТРАФ', { x: W - 1.6, y: .42, w: 1.0, h: .46, fontSize: 9, bold: true, color: PPTX_COLORS.violet, align: 'center', valign: 'middle', fontFace: 'Arial' });
         }
         /* картинка / график */
@@ -11555,8 +11556,8 @@ async function buildPptx(game, opts = {}) {
           pptxAddBg(as, pptx, W, H, opts.design);
           as.addText('ОТВЕТ', { x: .85, y: .55, w: 4, h: .35, fontSize: 11, bold: true, color: PPTX_COLORS.ok, charSpacing: 3, fontFace: 'Arial' });
           as.addText((cat.name || '') + ' · ' + val, { x: .85, y: .9, w: W - 1.7, h: .32, fontSize: 11, color: PPTX_COLORS.muted, fontFace: 'Arial' });
-          as.addShape(pptx.ShapeType.roundRect, { x: .85, y: 1.55, w: W - 1.7, h: H - 3.4, rectRadius: .12, fill: { color: pptxIsLight() ? PPTX_COLORS.panel : '0E2A25' }, line: { color: PPTX_COLORS.ok, width: 1.2 } });
-          as.addText((q.a || '') + (tx(q.fact || '') ? '\n\n' + t('q.fact') + ': ' + tx(q.fact) : ''), { x: 1.15, y: 1.8, w: W - 2.3, h: H - 3.9, fontSize: pptxFitFont((q.a || '') + (tx(q.fact || '') ? '\n\n' + t('q.fact') + ': ' + tx(q.fact) : ''), W - 2.3, H - 3.9, isWide ? 22 : 18), fit: 'shrink', bold: true, color: pptxIsLight() ? PPTX_COLORS.ink : 'D7FFEE', valign: 'middle', fontFace: 'Arial', lineSpacingMultiple: 1.2 });
+          as.addShape(pptx.ShapeType.roundRect, { x: .85, y: 1.55, w: W - 1.7, h: H - 3.4, rectRadius: .12, fill: { color: PPTX_COLORS.panel }, line: { color: PPTX_COLORS.ok, width: 1.2 } });
+          as.addText((q.a || '') + (tx(q.fact || '') ? '\n\n' + t('q.fact') + ': ' + tx(q.fact) : ''), { x: 1.15, y: 1.8, w: W - 2.3, h: H - 3.9, fontSize: pptxFitFont((q.a || '') + (tx(q.fact || '') ? '\n\n' + t('q.fact') + ': ' + tx(q.fact) : ''), W - 2.3, H - 3.9, isWide ? 22 : 18), fit: 'shrink', bold: true, color: PPTX_COLORS.ink, valign: 'middle', fontFace: 'Arial', lineSpacingMultiple: 1.2 });
           pptxBackBadge(as, pptx, .85, H - 1.05, 'К ПОЛЮ');
           as.addText('Вопрос: ' + String(q.q || '').slice(0, 120) + (String(q.q || '').length > 120 ? '…' : ''), { x: W - 5.8, y: H - 1.15, w: 5.0, h: .6, fontSize: 8.5, color: PPTX_COLORS.muted, align: 'right', fontFace: 'Arial' });
           answerSlides[ri][ci] = answerSlides[ri][ci] || [];
@@ -11590,7 +11591,7 @@ async function buildPptx(game, opts = {}) {
     const fa = pptx.addSlide();
     pptxAddBg(fa, pptx, W, H, opts.design);
     fa.addText('ОТВЕТ СУПЕР-ИГРЫ', { x: .85, y: .6, w: W - 1.7, h: .35, fontSize: 11, bold: true, color: PPTX_COLORS.ok, charSpacing: 4, fontFace: 'Arial' });
-    fa.addText(fin.a || '—', { x: .85, y: 1.6, w: W - 1.7, h: H - 4, fontSize: isWide ? 24 : 20, bold: true, color: pptxIsLight() ? PPTX_COLORS.ink : 'D7FFEE', valign: 'middle', fontFace: 'Arial' });
+    fa.addText(fin.a || '—', { x: .85, y: 1.6, w: W - 1.7, h: H - 4, fontSize: isWide ? 24 : 20, bold: true, color: PPTX_COLORS.ink, valign: 'middle', fontFace: 'Arial' });
     fa.addText('Тема: ' + (fin.theme || '—'), { x: .85, y: 1.15, w: W - 1.7, h: .35, fontSize: 11, color: PPTX_COLORS.muted, fontFace: 'Arial' });
     pptxBackBadge(fa, pptx, .85, H - 1.0, 'К ПОЛЮ');
     const finalAIdx = pptx._slides.length;
@@ -11623,7 +11624,7 @@ async function buildPptx(game, opts = {}) {
     if (finalSlides) {
       ref.slide.addShape(pptx.ShapeType.roundRect, {
         x: W - 3.35, y: H - .78, w: 2.8, h: .4, rectRadius: .2,
-        fill: { color: '2A1F56' }, line: { color: PPTX_COLORS.violet, width: 1 },
+        fill: { color: PPTX_COLORS.panel }, line: { color: PPTX_COLORS.violet, width: 1 },
         hyperlink: { slide: finalSlides.theme }
       });
       ref.slide.addText('★ СУПЕР-ИГРА', { x: W - 3.35, y: H - .78, w: 2.8, h: .4, fontSize: 10, bold: true, color: PPTX_COLORS.violet, align: 'center', valign: 'middle', fontFace: 'Arial' });
@@ -14076,8 +14077,10 @@ const SHOWS = (() => {
     if (!btn || btn.disabled) return;
     btn.disabled = true;
     AudioKit.topSpin ? AudioKit.topSpin() : AudioKit.roundStart();
-    let pick;
-    do { pick = Math.floor(Math.random() * 13); } while (CHGK.used.has(CHGK.sectors[pick].n));
+    const available = CHGK.sectors.map((sector, index) => ({sector, index})).filter(x => !CHGK.used.has(x.sector.n));
+    if (!available.length) { btn.disabled = false; chgkFinish(); return; }
+    const pick = available[Math.floor(Math.random() * available.length)].index;
+    const clock = $('#chgkWheelTimer'); if (clock) clock.disabled = true;
     const sectorAngle = 360 / 13;
     /* центр сектора относительно верхней стрелки */
     const center = pick * sectorAngle + sectorAngle / 2;
@@ -15010,11 +15013,11 @@ const SHOWS = (() => {
       if (!/\.mp3$/i.test(opts.audioFile.name) || opts.audioFile.size > 10 * 1024 * 1024) throw new Error('MP3 ≤ 10 MB');
       audio = await readData(opts.audioFile);
     }
-    const light=pptxIsLight(), gold=light ? PPTX_COLORS.gold : PPTX_COLORS.gold, white=light ? PPTX_COLORS.ink : 'FFFFFF', panel=light ? 'FFFFFF' : '07132C', P=pptx.ShapeType;
-    const rect=(s,x,y,w,h,color,transparency=0,line=null)=>{if(light && ['07132C','060C20','050913','050505','050B17'].includes(color)) color=panel;s.addShape(P.rect,{x:x*sx,y,w:w*sx,h,fill:{color,transparency},line:line ? {color:line,width:1} : {color,transparency:100}})};
+    const light=pptxIsLight(), gold=PPTX_COLORS.gold, white=PPTX_COLORS.ink, panel=PPTX_COLORS.panel, P=pptx.ShapeType;
+    const rect=(s,x,y,w,h,color,transparency=0,line=null)=>{if(['07132C','060C20','050913','050505','050B17'].includes(color)) color=panel;s.addShape(P.rect,{x:x*sx,y,w:w*sx,h,fill:{color,transparency},line:line ? {color:line,width:1} : {color,transparency:100}})};
     const txt=(s,text,x,y,w,h,size=18,color=white,extra={})=>s.addText(String(text || ''),{x:x*sx,y,w:w*sx,h,fontFace:'Arial',fontSize:pptxFitFont(text,w*sx,h,size),color,margin:.05,breakLine:false,fit:'shrink',...extra});
     const btn=(s,text,x,y,w,h,target) => {s.addShape(P.rect,{x:x*sx,y,w:w*sx,h,fill:{color:panel},line:{color:gold,width:1},hyperlink:{slide:target}});txt(s,text,x,y,w,h,12,gold,{bold:true,align:'center',valign:'mid',hyperlink:{slide:target}});};
-    const slide = (bg=media[0])=>{const s=pptx.addSlide();s.background={color:'050A18'};if(bg)s.addImage({data:bg,x:0,y:0,w:W,h:H});rect(s,0,0,13.333,H,light?'F7FAFF':'030711',light?15:35);return s;};
+    const slide = (bg=media[0])=>{const s=pptx.addSlide();s.background={color:PPTX_COLORS.bg};if(bg)s.addImage({data:bg,x:0,y:0,w:W,h:H});rect(s,0,0,13.333,H,PPTX_COLORS.bg,light?18:30);return s;};
     const header=(s,label)=>{rect(s,.35,.18,12.63,.55,'050913',0);txt(s,label,.55,.22,11.8,.42,13,gold,{bold:true,align:'center'});};
     const title=slide();header(title,nativeFormatName(kind));
     rect(title,1.2,1.5,10.93,3.9,'060C20',3,gold);
@@ -15075,12 +15078,12 @@ const SHOWS = (() => {
           const board=slide(); if(!first)first=pptx._slides.length;
           header(board,t('show.hundred')+' · '+t('show.hundQuestion')+' '+(i+1)+'/'+items.length);
           rect(board,.75,.85,11.83,.8,panel,0,gold);txt(board,it.q,.95,.93,11.43,.62,20,white,{bold:true,align:'center',valign:'mid'});
-          rect(board,.85,1.82,2.0,4.05,'079DC9');rect(board,10.48,1.82,2.0,4.05,'BE332E');photo(board,it,.9,2.6,1.9,1.8);
+          rect(board,.85,1.82,2.0,4.05,PPTX_COLORS.bg2,0,PPTX_COLORS.cyan);rect(board,10.48,1.82,2.0,4.05,PPTX_COLORS.bg2,0,PPTX_COLORS.violet);photo(board,it,.9,2.6,1.9,1.8);
           it.answers.forEach((answer,j)=>{
             const y=1.85+j*.67, open=(mask & (1<<j))!==0;
-            rect(board,2.87,y,7.58,.57,open?'101010':'F4BED0',0,open?'888888':'873B50');
-            txt(board,open ? answer : String(j+1),3.02,y+.05,6.15,.45,17,open?'FFFFFF':'171321',{bold:true,align:open?'left':'center'});
-            if(open)txt(board,String((it.points||HUND_POINTS)[j]),9.15,y+.05,1.0,.45,17,'FFFFFF',{bold:true,align:'right'});
+            rect(board,2.87,y,7.58,.57,open?panel:PPTX_COLORS.tile,0,open?gold:PPTX_COLORS.line);
+            txt(board,open ? answer : String(j+1),3.02,y+.05,6.15,.45,17,white,{bold:true,align:open?'left':'center'});
+            if(open)txt(board,String((it.points||HUND_POINTS)[j]),9.15,y+.05,1.0,.45,17,white,{bold:true,align:'right'});
             if(!open) nav.push(()=>board.addShape(P.rect,{x:2.87*sx,y,w:7.58*sx,h:.57,fill:{color:'FFFFFF',transparency:100},line:{color:'FFFFFF',transparency:100},hyperlink:{slide:refs[i]+(mask | (1<<j))}}));
           });
           later(board,i===items.length-1?(Array.isArray(game.bigItems)&&game.bigItems.length===5?t('show.big'):t('show.finish')):t('show.hundNext'),9.4,6.55,3.2,.55,()=>refs[i+1]||bigFirst||1);
@@ -15277,7 +15280,7 @@ const SHOWS = (() => {
 
   HUND.countPoints = function () {
     let n = 0;
-    for (let i = 0; i < 6; i++) if ($('[data-row="' + i + '"]') && $('[data-row="' + i + '"]').classList.contains('open')) n += (HUND.items[HUND.idx].points || HUND_POINTS)[i] || 0;
+    for (let i = 0; i < 6; i++) if ($('[data-row="' + i + '"]') && $('[data-row="' + i + '"]').classList.contains('open') && !$('[data-row="' + i + '"]').classList.contains('strike')) n += (HUND.items[HUND.idx].points || HUND_POINTS)[i] || 0;
     return n;
   };
 
