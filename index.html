@@ -1473,7 +1473,7 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
 .million{background:#030712;isolation:isolate;overflow:auto}
 .million::before{mask-image:none;-webkit-mask-image:none;background:linear-gradient(to bottom,transparent 0 58%,#050921 68% 100%),linear-gradient(to right,#050921 0 12%,transparent 18% 75%,#050921 81% 100%),url('assets/shows/million-studio.png') center top / 100% 100% no-repeat;opacity:.75}
 .mi-hint{pointer-events:none}
-.mi-life{font-family:Arial,sans-serif}
+.mi-life{font-family:Arial,sans-serif}.mi-life svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .mi-choose{position:relative;z-index:3;grid-column:1 / -1;max-width:720px;margin:auto;padding:24px;background:#06102bed;border:1px solid #e8bd5e;border-radius:14px}
 .mi-choose select{background:#102556;color:white;border:1px solid #f2c45a;border-radius:6px;padding:12px;font-size:16px}
 .chgk{isolation:isolate}.chgk::before{background:linear-gradient(#080704bb,#080704ee),url('assets/shows/chgk-owl.jpg') center/cover no-repeat}
@@ -1487,6 +1487,69 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
 .hund-row{cursor:pointer}.hund-row.open{animation:chgkIn .35s ease}
 .big-help{max-width:800px;text-align:center;line-height:1.45;color:#fff}.big-grid{width:min(900px,100%);display:grid;gap:10px}.big-grid label{display:flex;flex-direction:column;gap:4px;color:#fff;text-align:left}.big-grid input{width:100%;min-width:0;padding:9px;border-radius:6px;border:1px solid #8da6d3;background:#071327;color:#fff;font:inherit}.big-row{display:grid;grid-template-columns:1.6fr 1fr 100px;gap:10px;align-items:center;background:#071327ef;border:1px solid #486a9b;border-radius:8px;padding:10px;color:white}.big-result{background:#071327;padding:10px;border-radius:8px;color:white}.big-clock{display:flex;gap:12px;align-items:center;color:white}.big-clock b{font-size:28px;color:#ffe28b}@media(max-width:640px){.big-row{grid-template-columns:1fr 90px}.big-row>b{grid-column:1 / -1}}
 @media(prefers-reduced-motion:reduce){.box-template,.hund-row.open{animation:none}#wheelRot{transition-duration:.01s}}
+
+
+/* Millionaire: layered metallic frames retain their cut corners, even in states. */
+.million-main{justify-content:flex-end;padding-bottom:clamp(30px,5vh,55px)}
+.million-q{border:0;isolation:isolate;background:linear-gradient(130deg,#7d5411,#ffe8a0 35%,#bd8a32 65%,#fff1b9);box-shadow:none}
+.million-q::before{content:"";position:absolute;inset:2px;z-index:-1;clip-path:polygon(21px 0,calc(100% - 21px) 0,100% 21px,100% calc(100% - 21px),calc(100% - 21px) 100%,21px 100%,0 calc(100% - 21px),0 21px);background:linear-gradient(180deg,#172e74 0%,#0a1948 55%,#050d27 100%)}
+.million-ans{--mi-fill:linear-gradient(180deg,#172c68,#081536);border:0;isolation:isolate;background:linear-gradient(130deg,#876024,#ffe5a1 45%,#a87526);min-height:58px}
+.million-ans::before{content:"";position:absolute;inset:2px;z-index:-1;clip-path:polygon(15px 0,calc(100% - 15px) 0,100% 15px,100% calc(100% - 15px),calc(100% - 15px) 100%,15px 100%,0 calc(100% - 15px),0 15px);background:var(--mi-fill)}
+.million-ans:hover{--mi-fill:linear-gradient(180deg,#21438a,#10275c);background:linear-gradient(130deg,#e2b252,#fff0c0,#bd872d)}
+.million-ans.picked{--mi-fill:linear-gradient(180deg,#ffe296,#d29c28);background:#fff1b0}
+.million-ans.correct{--mi-fill:linear-gradient(180deg,#1e8f63,#0f5c3f);background:#75e8b5}
+.million-ans.wrong{--mi-fill:linear-gradient(180deg,#8f1e34,#5c0f20);background:#ff8397}
+.million-ans .txt{display:block;-webkit-line-clamp:unset;overflow:visible;overflow-wrap:anywhere}
+@media(max-width:900px){.million-main{justify-content:center;padding-bottom:18px}.million-ans{min-height:48px}.million-q p{font-family:var(--font-ui);font-size:clamp(16px,4.3vw,22px)}}
+/* A single readable wheel over the supplied tabletop, with no duplicated wheel or printed score. */
+.chgk-scene-wheel::before{background:radial-gradient(ellipse at 50% 48%,#080706 0 60%,#080706dd 78%,#08070688 100%),url('assets/shows/chgk-wheel.jpg') center/cover no-repeat;filter:none;transform:none;opacity:1}
+.chgk-board,.chgk-board.compact{padding-top:0;background:none;border-radius:8px;flex-shrink:0}
+.chgk-wheel-stage{flex-direction:column;gap:clamp(8px,1.5vh,16px);justify-content:safe center;overflow-y:auto;padding-top:10px;scrollbar-color:#b39148 #111}
+.chgk-wheel-stage>*{flex-shrink:0}
+.chgk-wheel{width:min(41vh,410px,78vw)}
+@media(max-height:700px){.chgk-wheel{width:min(34vh,320px,70vw)}.chgk-wheel-stage{gap:8px}.chgk-wheel-stage .chgk-board .half{padding:6px 10px}}
+@media(max-width:640px){.chgk-wheel{width:min(39vh,76vw,310px)}.chgk-wheel-stage{padding-left:12px;padding-right:12px}.chgk-wheel-stage .chgk-board{width:min(94vw,600px)}}
+/* Reuse the actual six-slot PDF board. Its sample scores and strikes are masked by live panels. */
+.hund{background:radial-gradient(ellipse at top,#2360a4,#142c66 50%,#081635);color:#fff}
+.hund-badge{color:#ffda54;text-shadow:0 3px #78350b,0 0 18px #e89320}
+.hund-q{background:#0b285c;border:2px solid #83ccff;border-radius:10px;padding:8px 18px;box-shadow:0 4px 0 #081c43;color:#fff}
+.hund-template{position:relative;flex:none;aspect-ratio:1067/605;width:min(1067px,96vw,calc((100vh - 310px)*1.764));min-width:0;background:url('assets/shows/hundred-board.jpg') center/100% 100% no-repeat;box-shadow:0 16px 50px #0008;border:2px solid #72d4ef;overflow:hidden}
+.hund-template-side{position:absolute;top:0;bottom:0;width:26%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(5px,1vh,12px);padding:2%;text-align:center}
+.hund-template-side.blue{left:0;background:linear-gradient(135deg,#006894,#18b9e6 55%,#087caa)}
+.hund-template-side.red{right:0;background:linear-gradient(135deg,#d6382c,#a41f21 65%,#e75a35)}
+.hund-template-side b{font-family:var(--font-ui);font-size:clamp(18px,4vw,48px);color:#131525;line-height:1.1;background:#f3b1c1;border:2px solid #803348;border-radius:10px;padding:.1em .35em;max-width:100%;overflow-wrap:anywhere}
+.hund-template-side.red b{background:#0ad0f6;border-color:#087d9e}
+.hund-side-label{color:#fff;font-size:clamp(9px,1.2vw,15px);font-weight:800;line-height:1.2;text-shadow:0 1px 3px #123}
+.hund-template .hund-strikes{flex-direction:column;gap:clamp(3px,.7vh,8px)}
+.hund-template .hund-strike{width:clamp(22px,4.7vw,58px);height:clamp(22px,4.7vw,58px);background:#f2ca35;color:#8f7d43;border:2px solid #fff184;border-radius:14px;opacity:.45;font-size:clamp(15px,3vw,35px)}
+.hund-template .hund-strike.on{opacity:1;background:#ffe92a;color:#d70012;border-color:#fffbb2;box-shadow:0 3px 8px #5a1d20}
+.hund-template .hund-strike{position:relative;font-size:0!important}.hund-template .hund-strike::before,.hund-template .hund-strike::after{content:"";position:absolute;width:72%;height:19%;border-radius:2px;background:#a25839;transform:rotate(45deg)}.hund-template .hund-strike::after{transform:rotate(-45deg)}.hund-template .hund-strike.on::before,.hund-template .hund-strike.on::after{background:#d70012}
+.hund-template .hund-board{position:absolute;left:26.4%;top:5.6%;width:47.2%;height:90.2%;background:linear-gradient(90deg,#21bddb 50%,#bc4139 50%);display:grid;grid-template-rows:repeat(6,1fr);gap:3.2%;}
+.hund-template .hund-row{width:100%;height:100%;min-height:0;display:grid;grid-template-columns:1fr auto;gap:8px;padding:2px 3%;border:2px solid #843d52;border-radius:6px;background:linear-gradient(#fad1e0,#edb0c4);box-shadow:inset 0 2px 5px #fff8;color:#181627;cursor:pointer}
+.hund-template .hund-row:hover,.hund-template .hund-row:focus-visible{outline:3px solid #ffe966;outline-offset:1px}
+.hund-template .hund-num{border:0;color:#1c1727;width:auto;aspect-ratio:auto;grid-column:1 / 3;font-size:clamp(17px,3.5vw,46px);font-weight:900;line-height:1}
+.hund-template .hund-row:not(.open) .hund-answer,.hund-template .hund-row:not(.open) .hund-score{display:none}
+.hund-template .hund-row.open{background:#080808;border-color:#757575;box-shadow:inset 0 1px 3px #ffffff66}
+.hund-template .hund-row.open .hund-num{display:none}
+.hund-template .hund-answer{white-space:normal;overflow:auto;text-overflow:clip;text-align:left;line-height:1.1;max-height:100%;font-size:clamp(11px,2.1vw,26px);font-weight:800;color:#fff;letter-spacing:0}
+.hund-template .hund-score{font-size:clamp(12px,2.3vw,29px);color:#fff;line-height:1}
+.hund-template .hund-row.strike{background:#252525;border-color:#9c9c9c}
+.hund-actions .mi-btn{background:#0d2d65;color:#fff;border-color:#85c9ff}.hund-actions .mi-btn.gold{background:#ffd044;color:#261500;border-color:#fff2a6}
+.hund-demo-note{color:#fff;background:#152d5d;border-radius:5px;margin-bottom:6px}
+@media(max-width:640px){.hund{padding:52px 10px 24px}.hund-template{width:100%;aspect-ratio:auto;display:flex;flex-wrap:wrap;background:linear-gradient(90deg,#12b5dd 50%,#cc382e 50%);padding:8px;gap:8px}.hund-template .hund-board{position:static;order:2;width:100%;height:auto;display:flex;gap:5px}.hund-template .hund-row{min-height:45px}.hund-template .hund-num{font-size:25px}.hund-template .hund-answer{font-size:16px}.hund-template .hund-score{font-size:18px}.hund-template-side{position:static;width:calc(50% - 4px);min-height:65px;padding:5px}.hund-template-side.blue{order:0}.hund-template-side.red{order:1}.hund-template-side b{font-size:25px}.hund-template .hund-strikes{flex-direction:row}.hund-template .hund-strike{width:26px;height:26px;font-size:16px;border-radius:7px}.hund-template-side{gap:4px}}
+
+
+/* The PDF's orange big-game cards and blue clock are used for the final too. */
+.hund-big{background:radial-gradient(circle at 18% 15%,#ffd09166 0 9%,transparent 9.3%),radial-gradient(circle at 86% 70%,#ffcb5a55 0 12%,transparent 12.4%),linear-gradient(155deg,#ff8b18,#ed6204 55%,#8c3000);color:#fff}
+.hund-big .hund-badge{color:#fff8d5;text-shadow:0 3px 0 #9c3b00,0 5px 20px #732500}
+.hund-big .big-help{background:#763001e8;border:1px solid #ffe09d;border-radius:8px;padding:8px 12px}
+.hund-big .big-clock{background:#ffd180ed;border:3px solid #f8e4aa;border-radius:15px;padding:7px 15px;color:#402108;box-shadow:0 6px 20px #8131008c}
+.hund-big .big-clock b{display:grid;place-items:center;width:75px;height:75px;border:6px double #1b477f;border-radius:50%;background:#fff;color:#12376f;font-size:27px;font-variant-numeric:tabular-nums}
+.hund-big .big-row,.hund-big .big-result{background:#1b407bf5;border:2px solid #ffe2ae;box-shadow:0 4px 8px #79300066}
+.hund-big .big-grid input{border-color:#9cbee8;background:#fff;color:#142f53}
+.hund-big .big-grid input:focus-visible{outline:3px solid #ffdf42;outline-offset:1px}
+.hund-big .mi-btn{background:#173b75;color:#fff;border-color:#ffe1a5}.hund-big .mi-btn.gold{background:#ffda40;color:#3d1b00}
+@media(max-width:640px){.hund-big .big-clock b{width:56px;height:56px;font-size:22px}}
 
 </style>
 </head>
@@ -1760,7 +1823,7 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
       <button data-tab="custom" data-i18n="lib.tabCustom">Мои игры</button>
     </div>
     <div class="lib-toolbar">
-      <input class="input" id="libSearch" type="search" data-i18n-placeholder="lib.search" placeholder="Поиск по названию или теме">
+      <input class="input" id="libSearch" name="game-library-search" type="search" autocomplete="off" data-i18n-placeholder="lib.search" placeholder="Поиск по названию или теме">
       <select class="select" id="libFormat" aria-label="Формат игры">
         <option value="" data-i18n="lib.allFormats">Все форматы</option><option value="svoya" data-i18n="formats.f1">Своя игра</option><option value="million" data-i18n="formats.f3">Кто хочет стать миллионером</option><option value="chgk" data-i18n="formats.f4">Что? Где? Когда?</option><option value="hundred" data-i18n="formats.f2">100 к 1</option>
       </select>
@@ -3158,6 +3221,9 @@ Object.assign(I18N.en, {'ai.busyRetry':'service busy, retrying or switching mode
 Object.assign(I18N.ru, {'ai.format':'Формат игры','ai.anySubject':'Своя тема','ai.topicRequired':'Укажите свою тему или темы секций.','ai.invalidResponse':'Ответ ИИ неполный или не соответствует правилам формата. Попробуйте ещё раз.','ai.generated':'Создано ИИ — проверьте факты и ответы','ai.surveyWarning':'Варианты и баллы предложены ИИ, это не данные реального опроса. Проверьте и отредактируйте.','ai.edit':'Редактировать','ai.schemaInfo':'Схема зависит от выбранного шоу. Перед запуском проверьте и при необходимости исправьте вопросы и ответы.','ai.sub':'Выберите шоу и любую тему — ИИ подготовит вопросы в нужном формате. Проверьте результат перед игрой. Ключ хранится только в вашем браузере.','ai.sectionsHint':'Укажите свои темы через запятую или с новой строки. Для произвольной темы обязательно заполните тему или секции.','ai.topicPh':'Например: космос, кино, история, кошки или физика','ai.h5':'мемы и юмор'});
 Object.assign(I18N.kk, {'ai.format':'Ойын форматы','ai.anySubject':'Өз тақырыбы','ai.topicRequired':'Өз тақырыбыңызды немесе бөлім тақырыптарын енгізіңіз.','ai.invalidResponse':'ИИ жауабы толық емес немесе формат ережелеріне сәйкес келмейді. Қайталап көріңіз.','ai.generated':'ИИ жасады — фактілер мен жауаптарды тексеріңіз','ai.surveyWarning':'Жауаптар мен ұпайлар ИИ ұсынған, нақты сауалнама деректері емес. Тексеріп, түзетіңіз.','ai.edit':'Өңдеу','ai.schemaInfo':'Схема ойын форматына байланысты. Ойын алдында сұрақтар мен жауаптарды тексеріңіз.','ai.sub':'Шоу мен кез келген тақырыпты таңдаңыз — ИИ тиісті форматта сұрақтар жасайды. Нәтижені тексеріңіз. Кілт тек браузерде сақталады.','ai.sectionsHint':'Өз тақырыптарыңызды үтірмен немесе жаңа жолдан жазыңыз. Өз тақырыбы үшін тақырыпты не бөлімдерді енгізіңіз.','ai.topicPh':'Мысалы: ғарыш, кино, тарих, мысықтар немесе физика','ai.h5':'мемдер мен әзіл'});
 Object.assign(I18N.en, {'ai.format':'Game format','ai.anySubject':'Custom topic','ai.topicRequired':'Enter a custom topic or section topics.','ai.invalidResponse':'The AI response is incomplete or does not match the format. Please try again.','ai.generated':'AI-generated — verify facts and answers','ai.surveyWarning':'Answers and scores are AI suggestions, not real survey data. Review and edit them.','ai.edit':'Edit','ai.schemaInfo':'The schema depends on the selected show. Review and correct questions and answers before playing.','ai.sub':'Choose a show and any topic; AI will prepare questions in that format. Review the result before playing. The key stays in your browser.','ai.sectionsHint':'Enter your topics separated by commas or new lines. For a custom topic, enter a topic or sections.','ai.topicPh':'E.g. space, movies, history, cats or physics','ai.h5':'memes and humour'});
+Object.assign(I18N.ru, {'lib.clearFilters':'Сбросить фильтры'});
+Object.assign(I18N.kk, {'lib.clearFilters':'Сүзгілерді тазалау'});
+Object.assign(I18N.en, {'lib.clearFilters':'Clear filters'});
 Object.assign(I18N.ru, {'export.audio':'Аудиофайл для титульного слайда (необязательно)', 'export.audioHint':'MP3 до 10 МБ, только если у вас есть право его использовать. Запуск кнопкой на титульном слайде.', 'show.surveySource':'Баллы заданы автором набора. Проверьте происхождение данных.'});
 Object.assign(I18N.kk, {'export.audio':'Титул слайдына аудиофайл (міндетті емес)', 'export.audioHint':'10 МБ-қа дейінгі MP3, тек қолдануға құқығыңыз болса. Титул слайдында батырмамен қосылады.', 'show.surveySource':'Ұпайларды жинақ авторы енгізді. Дереккөзін тексеріңіз.'});
 Object.assign(I18N.en, {'export.audio':'Audio for the title slide (optional)', 'export.audioHint':'MP3 up to 10 MB, only if you have permission to use it. Play using the button on the title slide.', 'show.surveySource':'Scores are supplied by the author. Check their source.'});
@@ -10189,8 +10255,8 @@ function renderLibrary() {
     grid.innerHTML = '<div class="empty" style="grid-column:1/-1"><div class="ei"><svg><use href="#i-library"/></svg></div>' +
       '<h3>' + esc(isCustom ? t('lib.emptyCustom') : t('lib.empty')) + '</h3>' +
       '<p>' + esc(isCustom ? t('lib.emptyCustomSub') : t('lib.emptySub')) + '</p>' +
-      '<button class="btn btn-gold btn-sm" data-go="builder" style="margin-top:8px">' + esc(t('lib.new')) + '</button></div>';
-    return;
+      '<button class="btn btn-gold btn-sm" data-go="builder" style="margin-top:8px">' + esc(t('lib.new')) + '</button> <button class="btn btn-line btn-sm" data-clear-library style="margin-top:8px">' + esc(t('lib.clearFilters')) + '</button></div>';
+    return 0;
   }
   const groups = new Map();
   list.forEach((g) => {
@@ -10205,6 +10271,16 @@ function renderLibrary() {
     const title = key === 'multi' ? t('lib.multiGrades') : key === 'other' ? t('lib.otherGrades') : key + ' ' + t('grade');
     return '<section class="lib-group"><div class="lib-group-head"><div><span class="lib-group-kicker">' + esc(t('lib.groupLabel')) + '</span><h2>' + esc(title) + '</h2></div><span class="lib-group-count">' + groups.get(key).length + ' ' + esc(t('lib.count')) + '</span></div><div class="lib-group-grid">' + groups.get(key).map(libGameCard).join('') + '</div></section>';
   }).join('');
+  return list.length;
+}
+function resetLibraryFilters() {
+  ['#libSearch', '#libFormat', '#libGrade', '#libQuarter'].forEach(selector => { const el = $(selector); if (el) el.value = ''; });
+  S.libraryTab = 'all';
+  $$('#libTabs button').forEach(b => b.classList.toggle('active', b.dataset.tab === 'all'));
+}
+function restoreLibraryAfterGame() {
+  setView('library');
+  if (renderLibrary() === 0) { resetLibraryFilters(); renderLibrary(); }
 }
 function findGame(id) {
   return allGames().find((g) => String(g.id) === String(id)) || null;
@@ -10517,7 +10593,7 @@ function exitGame(silent) {
   $('#qLayer').classList.remove('open');
   $('#splashLayer').innerHTML = '';
   $('#finalLayer').innerHTML = '';
-  if (!silent) setView('library');
+  if (!silent) restoreLibraryAfterGame();
 }
 function closeSheets() {
   ['#presenterSheet', '#helpSheet', '#statsSheet'].forEach((s) => $(s).classList.remove('open'));
@@ -12593,6 +12669,8 @@ function renderRules() {
 /* --- навешивание обработчиков --- */
 function bindGlobal() {
   document.addEventListener('click', (e) => {
+    const clear = e.target.closest('[data-clear-library]');
+    if (clear) { resetLibraryFilters(); renderLibrary(); return; }
     const go = e.target.closest('[data-go]');
     if (go) {
       e.preventDefault();
@@ -13636,6 +13714,7 @@ const SHOWS = (() => {
     el.innerHTML = '';
     $('#app').classList.remove('in-game');
     document.body.style.overflow = '';
+    if (S.view === 'library' && renderLibrary() === 0) { resetLibraryFilters(); renderLibrary(); }
   }
 
   /** Верхняя панель с крестиком — одинаковая для обоих шоу. */
@@ -13816,7 +13895,7 @@ const SHOWS = (() => {
     const root = $('#chgkRoot');
     CHGK.phase = 'wheel';
     root.className = 'chgk chgk-scene-wheel';
-    root.innerHTML = chgkHeader() + '<div class="chgk-stage" style="flex-direction:column;gap:18px">' +
+    root.innerHTML = chgkHeader() + '<div class="chgk-stage chgk-wheel-stage">' +
       '<div class="chgk-wheel-wrap"><div class="chgk-wheel">' + chgkWheelSvg() + '</div></div>' +
       chgkScore() +
       '<div class="chgk-wheel-clock"><button class="chgk-clock-toggle" id="chgkWheelTimer" aria-pressed="' + String(CHGK.clockEnabled) + '">◷ &nbsp;' + esc(t(CHGK.clockEnabled ? 'show.clockOnShort' : 'show.clockOffShort')) + '</button><span>' + esc(t('show.clockRules')) + ' · ' + CHGK.clockSettings.standard + 's / ' + CHGK.clockSettings.blitz + 's</span></div>' +
@@ -14068,6 +14147,7 @@ const SHOWS = (() => {
   function chgkFinish() {
     chgkStopClock();
     const root = $('#chgkRoot');
+    root.className = 'chgk chgk-scene-end';
     const win = CHGK.experts > CHGK.viewers;
     const draw = CHGK.experts === CHGK.viewers;
     root.innerHTML = chgkHeader() + '<div class="chgk-stage"><div class="chgk-end">' +
@@ -14498,8 +14578,13 @@ const SHOWS = (() => {
 
   function millionLifeHtml(key, label, glyph) {
     const used = !MI.lifelines[key];
+    const icons = {
+      friend: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h3l2 5-2 2c1.5 3 3 4.5 6 6l2-2 5 2v3c0 1.1-1 2-2.2 2C11 20.2 3.8 13 3 5.2 3 4 3.9 3 5 3z"/></svg>',
+      hall: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="3"/><path d="M6 20v-2a6 6 0 0 1 12 0v2M5 9a2.5 2.5 0 1 0 0 5M19 9a2.5 2.5 0 1 1 0 5M2 19v-1a4 4 0 0 1 3-3.8M22 19v-1a4 4 0 0 0-3-3.8"/></svg>',
+      swap: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h14l-3-3M20 16H6l3 3M18 5l3 3-3 3M6 13l-3 3 3 3"/></svg>'
+    };
     return '<button class="mi-life' + (used ? ' used' : '') + '" data-life="' + key + '"' + (used ? ' disabled' : '') +
-      ' title="' + esc(label) + '">' + glyph + '</button>';
+      ' title="' + esc(label) + '" aria-label="' + esc(label) + '">' + (icons[key] || glyph) + '</button>';
   }
 
   /** Кнопки под вопросом: до выбора — «забрать деньги», после — «подтвердить». */
@@ -14924,6 +15009,7 @@ const SHOWS = (() => {
   function hundRender() {
     const root = $('#hundRoot');
     if (!root) return;
+    root.className = 'hund';
     const it = HUND.items[HUND.idx];
     if (!it) { hundFinish(); return; }
     HUND.guesses = 0;
@@ -14936,18 +15022,19 @@ const SHOWS = (() => {
       '</div>' +
       (HUND.game.desc ? '<div class="hund-demo-note">' + esc(tx(HUND.game.desc)) + '</div>' : '') +
       '<div class="hund-q" id="hundQ">' + esc(it.q) + '</div>' +
-      '<div class="hund-board" id="hundBoard">' + it.answers.map((a, i) =>
-        '<div class="hund-row" data-row="' + i + '">' +
-          '<span class="hund-num">' + (i + 1) + '</span>' +
-          '<span class="hund-answer" aria-hidden="true">' + esc(a) + '</span>' +
-          '<span class="hund-score" aria-hidden="true">' + ((it.points || HUND_POINTS)[i]) + '</span>' +
-        '</div>').join('') + '</div>' +
-      '<div class="hund-side">' +
-        '<span class="hund-pool">' + esc(t('show.hundRoundPoints')) + ' <b id="hundRound">0</b></span>' +
-        '<span class="hund-strikes" id="hundStrikes">' + [0, 1, 2].map(() => '<span class="hund-strike">✕</span>').join('') + '</span>' +
+      '<div class="hund-template">' +
+        '<div class="hund-template-side blue"><span class="hund-side-label">' + esc(t('show.hundRoundPoints')) + '</span><b id="hundRound">0</b>' +
+          '<span class="hund-strikes" id="hundStrikes">' + [0, 1, 2].map(() => '<span class="hund-strike">✕</span>').join('') + '</span></div>' +
+        '<div class="hund-board" id="hundBoard">' + it.answers.map((a, i) =>
+          '<button type="button" class="hund-row" data-row="' + i + '">' +
+            '<span class="hund-num">' + (i + 1) + '</span>' +
+            '<span class="hund-answer" aria-hidden="true">' + esc(a) + '</span>' +
+            '<span class="hund-score" aria-hidden="true">' + ((it.points || HUND_POINTS)[i]) + '</span>' +
+          '</button>').join('') + '</div>' +
+        '<div class="hund-template-side red"><span class="hund-side-label">' + esc(t('show.hundTotal')) + '</span><b id="hundBank">' + fmt(HUND.bank) + '</b></div>' +
       '</div>' +
       '<div class="hund-actions" id="hundActions"></div>' +
-      '<div class="hund-total">' + esc(t('show.hundTotal')) + ': <b id="hundBank">' + fmt(HUND.bank) + '</b></div>';
+      '<div class="hund-total">' + esc(t('show.hundTotal')) + ': <b id="hundBankText">' + fmt(HUND.bank) + '</b></div>';
     hundActions();
   }
 
@@ -14992,6 +15079,7 @@ const SHOWS = (() => {
       HUND.bank += (HUND.items[HUND.idx].points || HUND_POINTS)[i] || 0;
       const rb = $('#hundRound'); if (rb) rb.textContent = HUND.countPoints();
       const bb = $('#hundBank'); if (bb) bb.textContent = fmt(HUND.bank);
+      const bt = $('#hundBankText'); if (bt) bt.textContent = fmt(HUND.bank);
       AudioKit.chime ? AudioKit.chime() : AudioKit.click && AudioKit.click();
     }
   }
@@ -15027,6 +15115,7 @@ const SHOWS = (() => {
   function hundFinish() {
     const root = $('#hundRoot');
     if (!root) return;
+    root.className = 'hund';
     root.innerHTML =
       '<div class="hund-head"><span class="hund-badge">100 : 1</span></div>' +
       '<div class="hund-q">' + esc(t('show.hundTotal')) + ': ' + fmt(HUND.bank) + '</div>' +
@@ -15057,6 +15146,7 @@ const SHOWS = (() => {
       HUND.big.cards = HUND.game.bigItems; HUND.big.questions = HUND.big.cards.map(it=>it.q); hundBigPlayer(); return;
     }
     const root = $('#hundRoot');
+    root.className = 'hund hund-big';
     root.innerHTML = '<div class="hund-head"><span class="hund-badge">' + esc(t('show.big')) + '</span></div><p class="big-help">' + esc(t('show.bigHelp')) + '</p><h2>' + esc(t('show.bigSetup')) + '</h2>' +
       '<div class="big-grid">' + Array.from({length:5}, (_,i) => '<label>' + esc(t('show.bigQuestion')) + ' ' + (i+1) + '<input data-big-question="' + i + '" maxlength="220"></label>').join('') + '</div>' +
       '<p class="big-help">' + esc(t('show.bigMissing')) + '</p><div class="hund-actions"><button class="mi-btn gold" id="bigGenerate">' + esc(t('show.bigGenerate')) + '</button><button class="mi-btn ghost" id="bigPrepare">' + esc(t('show.bigPrepare')) + '</button></div>';
@@ -15091,6 +15181,7 @@ const SHOWS = (() => {
     hundStopBigTimer();
     HUND.phase = 'bigPlay';
     const root = $('#hundRoot'), big = HUND.big, player = big.player;
+    root.className = 'hund hund-big';
     const seconds = player ? 20 : 15;
     root.innerHTML = '<div class="hund-head"><span class="hund-badge">' + esc(t('show.big')) + ' · ' + esc(t('show.player')) + ' ' + (player+1) + '</span></div><p class="big-help">' + esc(t(big.cards ? 'show.bigAuto' : 'show.bigHelp')) + '</p>' +
       '<div class="big-clock"><b id="bigSeconds">' + seconds + '</b>s <button class="mi-btn" id="bigStart">' + esc(t('show.bigTime')) + '</button></div>' +
@@ -15121,6 +15212,7 @@ const SHOWS = (() => {
     hundStopBigTimer(); HUND.phase = 'bigFinish';
     const big = HUND.big, total = big.players.flat().reduce((n,x)=>n+x.points,0);
     const root = $('#hundRoot');
+    root.className = 'hund hund-big';
     root.innerHTML = '<div class="hund-head"><span class="hund-badge">' + esc(t('show.big')) + '</span></div><h2>' + esc(t(total >= 200 ? 'show.bigSuccess' : 'show.bigMiss')) + '</h2><div class="hund-q">' + esc(t('show.bigTotal')) + ': ' + total + ' / 200</div>' +
       '<div class="big-grid">' + big.questions.map((q,i)=>'<div class="big-result"><b>'+esc(q)+'</b><div>'+big.players.map((p,j)=>esc(t('show.player'))+' '+(j+1)+': '+esc(p[i].answer || '—')+' · '+p[i].points).join(' / ')+'</div></div>').join('') + '</div>' +
       '<div class="hund-actions"><button class="mi-btn gold" id="bigAgain">' + esc(t('show.again')) + '</button><button class="mi-btn ghost" id="bigExit">' + esc(t('show.exit')) + '</button></div>';
