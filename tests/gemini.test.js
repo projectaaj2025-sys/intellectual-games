@@ -10,6 +10,7 @@ const section = (start, end) => {
   return html.slice(a, b);
 };
 const source = [
+  section('function aiCompletionError(', 'const GEMINI_FALLBACKS ='),
   section('const KEY_PREFIXES =', '/** Модели, которые заведомо'),
   section('function modelIsUsable(name)', '/** Список моделей у OpenAI.'),
   section('async function listGeminiModels(key, signal)', '/** Выбрать лучшую модель'),
@@ -41,6 +42,15 @@ function modelFrom(url) { return decodeURIComponent(url).match(/models\/([^:]+):
     assert.equal(context.providerFromKey('AIzaShort'), 'gemini');
     assert.equal(context.providerFromKey('AQ.custom'), 'gemini');
     assert.equal(context.providerFromKey('custom-format'), null);
+  }
+  for (const [body, key, retryable, truncated] of [
+    [{candidates:[{finishReason:'MAX_TOKENS'}]}, 'ai.truncated', true, true],
+    [{candidates:[{finishReason:'SAFETY'}]}, 'ai.blocked', false, false],
+    [{promptFeedback:{blockReason:'SAFETY'}}, 'ai.blocked', false, false],
+    [{candidates:[{content:{parts:[]}}]}, 'ai.emptyResponse', true, false],
+  ]) {
+    const {context} = sandbox(async () => response(200, body));
+    await assert.rejects(context.callGemini({apiKey:'test',model:'model'}, 'prompt'), e => e.message === key && e.aiRetryable === retryable && e.aiTruncated === truncated);
   }
   {
     const calls = [];
