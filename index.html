@@ -1452,7 +1452,7 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
 .home-show-icon{font-weight:900;color:var(--gold);font-size:25px;line-height:1.1}.home-show h3{font-size:16px;line-height:1.3;margin:0}.home-show p{font-size:13px;line-height:1.5;color:var(--muted);margin:0 0 6px}.home-show-actions{margin-top:auto;display:flex;flex-wrap:wrap;gap:8px}.home-show-actions .btn{min-height:40px}
 @media(max-width:900px){.home-show-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:500px){.home-show-grid{grid-template-columns:1fr}.home-show{padding:17px}.home-show-actions .btn{flex:1}}
-/* Сцены шоу всегда тёмные: настройки светлой темы не должны перекрашивать текст в тёмный. */
+/* Базовая контрастная палитра сцен; светлая тема задаётся ниже. */
 .show-screen{--ink:#f7f8ff;--text:#f7f8ff;--muted:#ccd7ec;--faint:#b9c6dd;--gold:#f5c950;--gold-2:#ffe5a2;--cyan:#78e8ff}
 :root[data-theme="light"] .show-screen .chgk-card .q-text,
 .show-screen .chgk-card .q-text{color:#fff;text-shadow:none}
@@ -1550,6 +1550,74 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
 .hund-big .big-grid input:focus-visible{outline:3px solid #ffdf42;outline-offset:1px}
 .hund-big .mi-btn{background:#173b75;color:#fff;border-color:#ffe1a5}.hund-big .mi-btn.gold{background:#ffda40;color:#3d1b00}
 @media(max-width:640px){.hund-big .big-clock b{width:56px;height:56px;font-size:22px}}
+
+
+/* Light stages retain the show colours but make their surfaces and text readable. */
+:root[data-theme="light"] .million{background:#eaf1ff;color:#142548}
+:root[data-theme="light"] .million::before{background:linear-gradient(#f5f9ffe0,#e4edffec),url('assets/shows/million-stage.jpg') center top/100% 100% no-repeat;opacity:1}
+:root[data-theme="light"] .million-q::before{background:#fff}
+:root[data-theme="light"] .million-q p{color:#102348}
+:root[data-theme="light"] .million-ans{--mi-fill:linear-gradient(#fff,#e3ecff);color:#172a4d}
+:root[data-theme="light"] .million-ans .letter{color:#73520a}
+:root[data-theme="light"] .million-ans.picked{--mi-fill:linear-gradient(#ffe296,#d29c28);color:#241500}
+:root[data-theme="light"] .million-ans.correct{--mi-fill:linear-gradient(#1e8f63,#0f5c3f);color:#fff}
+:root[data-theme="light"] .million-ans.wrong{--mi-fill:linear-gradient(#8f1e34,#5c0f20);color:#fff}
+:root[data-theme="light"] .million-ans.correct .letter,:root[data-theme="light"] .million-ans.wrong .letter{color:#fff}
+:root[data-theme="light"] .million-side{background:#fff9;border-color:#b8c8e6}
+:root[data-theme="light"] .million-rung{color:#364763}:root[data-theme="light"] .million-rung.current{color:#161a21}
+:root[data-theme="light"] .million-rung.milestone{color:#132950}:root[data-theme="light"] .million-rung.passed{color:#12613c}
+:root[data-theme="light"] .million .mi-btn.ghost,:root[data-theme="light"] .million .mi-btn{background:#fff;color:#193463;border-color:#947022}
+:root[data-theme="light"] .million .mi-btn.gold{background:#f5cf6b;color:#2d2207}
+:root[data-theme="light"] .million-score{color:#614600}:root[data-theme="light"] .million-score small{color:#4d5e79}
+:root[data-theme="light"] .chgk{background:#f8f4e9;color:#392909}
+:root[data-theme="light"] .chgk::before{opacity:.15}
+:root[data-theme="light"] .chgk-head .owl,:root[data-theme="light"] .chgk-head h1{color:#73500a}
+:root[data-theme="light"] .chgk-clock-toggle,:root[data-theme="light"] .chgk-clock .num{color:#6f500c}
+:root[data-theme="light"] .chgk-wheel-stage .chgk-round-label{color:#5b4820}
+:root[data-theme="light"] .chgk-head small,:root[data-theme="light"] .chgk-wheel-clock span,:root[data-theme="light"] .chgk-clock .lbl{color:#554521}
+:root[data-theme="light"] .show-screen .chgk-card .q-text,:root[data-theme="light"] .show-screen .chgk-card .q-cat,:root[data-theme="light"] .show-screen .chgk-card .sector-chip{color:#261d0c}
+:root[data-theme="light"] .chgk-card{background:#fffffff0;border-radius:12px;padding:12px}
+:root[data-theme="light"] .chgk-answer{color:#124b2d;background:#e4f8ed}
+:root[data-theme="light"] .show-screen .chgk-clock-panel{background:#f3ead8;border-color:#a98d50}
+:root[data-theme="light"] .show-screen .chgk-clock-status,:root[data-theme="light"] .show-screen .chgk-clock .lbl,:root[data-theme="light"] .show-screen .chgk-wheel-clock span{color:#54401c}
+:root[data-theme="light"] .show-screen .chgk-clock-button,:root[data-theme="light"] .show-screen .chgk-clock-toggle{background:#fffaf0;border-color:#9e792b;color:#5a4009}
+:root[data-theme="light"] .show-screen .chgk-btn{background:#fff9ed;border-color:#a17a2d;color:#5a4009}
+:root[data-theme="light"] .show-screen .chgk-btn.ghost{background:#fff;border-color:#9f9274;color:#483b20}
+:root[data-theme="light"] .show-screen .chgk-btn.ok{color:#14633f;background:#e5f8ed;border-color:#26875c}
+:root[data-theme="light"] .show-screen .chgk-btn.no{color:#8f1e34;background:#fff1f3;border-color:#b53450}
+:root[data-theme="light"] .hund:not(.hund-big) .hund-host{color:#2b4164}:root[data-theme="light"] .hund:not(.hund-big) .hund-host summary{color:#805400}
+:root[data-theme="light"] .chgk-box p,:root[data-theme="light"] .chgk-end p{color:#40341c}
+:root[data-theme="light"] .chgk-box h2,:root[data-theme="light"] .chgk-end h2{color:#765515}
+:root[data-theme="light"] .hund:not(.hund-big){background:linear-gradient(#d9f3ff,#f4faff);color:#172447}
+:root[data-theme="light"] .hund-pool,:root[data-theme="light"] .hund-total{color:#284565}
+:root[data-theme="light"] .hund:not(.hund-big) .hund-badge{color:#8a4800;text-shadow:none}
+:root[data-theme="light"] .hund:not(.hund-big) .hund-q{background:#fff;color:#162c50}
+/* Long live questions resize with the viewport; scrolling is a fallback. */
+.game-screen .q-body,.game-screen .final-body{overflow-y:auto;align-items:safe center}
+@media(min-width:861px){.game-screen .q-body{padding-left:72px;padding-right:72px}}
+.game-screen .q-text{font-size:clamp(14px,calc(min(3.2vw,52px) * var(--q-scale,1)),52px);overflow-wrap:anywhere}
+.game-screen .fq-text{font-size:clamp(14px,calc(min(2.9vw,44px) * var(--q-scale,1)),44px);overflow-wrap:anywhere}
+.game-screen .q-media img{max-width:100%;object-fit:contain}
+.show-screen .chgk-question-stage .q-text{font-size:clamp(15px,calc(min(2.05vw,30px) * var(--q-scale,1)),30px);overflow-wrap:anywhere}
+.hund #hundQ{font-size:clamp(15px,calc(min(2.2vw,29px) * var(--q-scale,1)),29px);overflow-wrap:anywhere}
+@media(max-width:640px){.game-screen .q-text{font-size:clamp(14px,calc(min(5.4vw,26px) * var(--q-scale,1)),26px)}.show-screen .chgk-question-stage .q-text{font-size:clamp(15px,calc(min(5vw,25px) * var(--q-scale,1)),25px)}.hund #hundQ{font-size:clamp(15px,calc(min(5vw,22px) * var(--q-scale,1)),22px)}}
+
+.million{grid-template-rows:auto minmax(0,1fr) auto}
+.million-main{min-height:0;overflow:auto;justify-content:safe flex-end}
+.million-q{flex-shrink:0;max-height:32vh;overflow:auto}
+.million-q p{font-size:clamp(12px,calc(min(2.1vw,30px) * var(--question-scale,1)),30px);overflow-wrap:anywhere}
+.million-answers{flex-shrink:0}.million-ans .txt{overflow-wrap:anywhere}
+.show-question-photo{display:block;max-width:min(420px,70vw);max-height:17vh;object-fit:contain;margin:0 auto;border-radius:6px}
+@media(max-width:900px){.million-q p{font-size:clamp(12px,calc(min(4.3vw,22px) * var(--question-scale,1)),22px)}.million-main{justify-content:safe center}}
+@media(max-width:640px){
+  .million-top{padding-top:62px}.chgk-head{padding:62px 16px 8px}
+  .million-main{gap:7px;padding:6px 10px 10px}.million-q{padding:12px 22px}
+  .million-answers{gap:5px}.million-ans{min-height:41px;padding:7px 15px}
+  .million-foot{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:7px;padding:0 10px 10px}
+  .million-lifelines{gap:4px}.million-lifelines .mi-life{width:36px;height:36px}
+  .million-cta .mi-btn{font-size:10px;letter-spacing:0;padding:8px 10px}
+  .million-score{grid-column:1/-1;grid-row:2}.million-score small{letter-spacing:.08em}
+}
 
 </style>
 </head>
@@ -2098,6 +2166,8 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
         <button class="glass-btn" id="gPresenter" data-i18n-title="game.presenter" title="Экран ведущего"><svg><use href="#i-present"/></svg></button>
         <button class="glass-btn" id="gHelp" data-i18n-title="game.help" title="Правила и клавиши"><svg><use href="#i-help"/></svg></button>
         <button class="glass-btn on" id="gSound" data-i18n-title="game.sound" title="Звук"><svg><use href="#i-volume"/></svg></button>
+        <button class="glass-btn" id="gMusic" title="Музыка / Music" aria-label="Музыка / Music"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 17V5l10-2v12M9 17c0 2-4 3-4 1 0-1.4 2-2.4 4-2M19 15c0 2-4 3-4 1 0-1.4 2-2.4 4-2"/></svg></button>
+        <button class="glass-btn" id="gTheme" title="Тема / Theme" aria-label="Тема / Theme"><svg><use href="#i-sun"/></svg></button>
         <button class="glass-btn" id="gFull" data-i18n-title="game.full" title="На весь экран"><svg><use href="#i-fullscreen"/></svg></button>
         <button class="glass-btn" id="gExit" data-i18n-title="game.exit" title="Выйти"><svg><use href="#i-x"/></svg></button>
       </div>
@@ -2266,6 +2336,8 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
         <span class="label" data-i18n="settings.theme">Тема</span>
         <div class="segmented" id="settingsTheme"><button data-theme="dark" class="active"><span data-i18n="settings.dark">Тёмная</span></button><button data-theme="light"><span data-i18n="settings.light">Светлая</span></button></div>
       </div>
+      <div class="divider"></div>
+      <div class="field"><span class="label" data-i18n="music.title">Музыка игр</span><p class="hint" data-i18n="music.help">Выберите MP3 для каждого формата. Файлы сохраняются в этом браузере; используйте только записи, на которые у вас есть права.</p><div id="musicSlots"></div></div>
       <div class="divider"></div>
       <div class="field"><span class="label" data-i18n="settings.api">API-ключ для ИИ</span>
         <div class="flex"><input class="input" id="setApiKey" type="password" autocomplete="off" placeholder="sk-... / AIza..."><button class="icon-btn" id="setApiEye"><svg><use href="#i-eye"/></svg></button></div>
@@ -2491,6 +2563,7 @@ const shuffle = (arr) => { const a = arr.slice(); for (let i = a.length - 1; i >
 const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
 const sum = (arr) => arr.reduce((s, n) => s + n, 0);
 const isUrl = (s) => /^(https?:\/\/|data:image\/)/i.test(String(s || ''));
+const questionTextScale = text => Math.max(.38, Math.min(1, Math.sqrt(110 / Math.max(110, String(text || '').length))));
 const TEAM_COLORS = ['#54e0ff', '#f2c45a', '#9a7bff', '#39e29a'];
 const TEAM_COLORS_DARK = ['#0a3a48', '#4a3506', '#2a1f56', '#06382a'];
 const TEAM_LETTERS = ['A', 'B', 'C', 'D'];
@@ -10363,6 +10436,7 @@ function renderBuilder() {
           '<div class="q-num">' + vals[qi] + '</div>' +
           '<div class="q-fields">' +
             (q.photo && isUrl(q.photo) ? '<div><img src="' + esc(q.photo) + '" alt="' + esc(t('builder.image')) + '" style="max-width:180px;max-height:100px;object-fit:contain"><button type="button" class="btn btn-ghost btn-sm" data-remove-image="' + ci + ':' + qi + '">' + esc(t('builder.removeImage')) + '</button></div>' : '') +
+            '<label class="field"><span class="label">' + esc(t('q.photoAdd')) + ' · JPEG / PNG / WebP ≤ 8 MB</span><input type="file" accept="image/jpeg,image/png,image/webp" data-upload-image="' + ci + ':' + qi + '"></label>' +
             '<textarea class="textarea" data-q="q" placeholder="' + esc(t('builder.qPh')) + '">' + esc(q.q) + '</textarea>' +
             '<input class="input" data-q="a" placeholder="' + esc(t('builder.aPh')) + '" value="' + esc(q.a) + '">' +
             '<input class="input" data-q="fact" placeholder="' + esc(t('builder.factHint')) + '" value="' + esc(q.fact || '') + '">' +
@@ -10548,6 +10622,7 @@ const ROUND_META = [
 
 function startGame(game, opts = {}) {
   const loc = localizeGame(game);
+  Music.start('svoya');
   G.game = game;
   G.loc = loc;
   G.active = true;
@@ -10583,6 +10658,7 @@ function startGame(game, opts = {}) {
   showRoundSplash(0);
 }
 function exitGame(silent) {
+  Music.stop();
   stopTimer();
   TTS.stop();
   G.active = false;
@@ -10760,7 +10836,7 @@ function openQuestion() {
   const media = visual ? '<div class="q-media mermaid"><img alt="' + esc(visual.alt) + '" src="' + visualDataUrl(q.visual, S.lang) + '"></div>'
     : photo ? '<div class="q-media"><img alt="" src="' + esc(photo) + '"></div>' : '';
   inner.innerHTML = media +
-    '<div class="q-text" id="qText">' + esc(q.q) + '</div>' +
+    '<div class="q-text" id="qText" style="--q-scale:' + questionTextScale(q.q) + '">' + esc(q.q) + '</div>' +
     '<div id="qAnswerSlot"></div>';
   $('#qActions').innerHTML = '';
   if (type === 'cat') return openCatBag();
@@ -10979,7 +11055,7 @@ function openCatBag() {
     const q = G.cell.q;
     const visual = q.visual ? visualSvg(q.visual, S.lang) : null;
     inner.innerHTML = (visual ? '<div class="q-media mermaid"><img alt="" src="' + visualDataUrl(q.visual, S.lang) + '"></div>' : q.photo && isUrl(q.photo) ? '<div class="q-media"><img alt="" src="' + esc(q.photo) + '"></div>' : '') +
-      '<div class="q-text">' + esc(q.q) + '</div><div id="qAnswerSlot"></div>' +
+      '<div class="q-text" style="--q-scale:' + questionTextScale(q.q) + '">' + esc(q.q) + '</div><div id="qAnswerSlot"></div>' +
       '<div class="q-note">' + esc(t('qtype.cat')) + ' → ' + esc(G.teams[tid].name) + '</div>';
     renderQuestionActions();
     startTimer();
@@ -11026,7 +11102,7 @@ function openAuction() {
     const q = G.cell.q;
     const visual = q.visual ? visualSvg(q.visual, S.lang) : null;
     inner.innerHTML = (visual ? '<div class="q-media mermaid"><img alt="" src="' + visualDataUrl(q.visual, S.lang) + '"></div>' : q.photo && isUrl(q.photo) ? '<div class="q-media"><img alt="" src="' + esc(q.photo) + '"></div>' : '') +
-      '<div class="q-text">' + esc(q.q) + '</div><div id="qAnswerSlot"></div>' +
+      '<div class="q-text" style="--q-scale:' + questionTextScale(q.q) + '">' + esc(q.q) + '</div><div id="qAnswerSlot"></div>' +
       '<div class="q-note">' + esc(t('qtype.auction')) + ' · ' + esc(G.teams[bidTeam].name) + ' · ' + esc(t('game.bet')) + ' ' + fmt(bet) + '</div>';
     renderTeams();
     renderQuestionActions();
@@ -11090,7 +11166,7 @@ function renderFinalQuestion(bets) {
       '<h2>' + esc(fin.theme || t('game.finalBtn')) + '</h2></div>' +
     '<div class="final-body" style="flex-direction:column;gap:20px">' +
       '<div class="final-question"><div class="fq-label">' + esc(t('game.showing')) + '</div>' +
-        '<div class="fq-text">' + esc(fin.q || '—') + '</div></div>' +
+        '<div class="fq-text" style="--q-scale:' + questionTextScale(fin.q) + '">' + esc(fin.q || '—') + '</div></div>' +
       '<div class="judge-grid" id="judgeGrid">' + G.teams.map((tm) => '<div class="judge-card">' +
         '<div class="jc-name"><span class="team-ava" style="width:22px;height:22px;font-size:10px;background:' + tm.color + '">' + TEAM_LETTERS[tm.id] + '</span>' + esc(tm.name) + '</div>' +
         '<div class="jc-bet">' + fmt(bets[tm.id]) + '</div>' +
@@ -11313,6 +11389,30 @@ function pptxTile(slide, pptx, x, y, w, h, value, color, dim) {
     fontSize: 20, bold: true, color: dim ? '33456B' : PPTX_COLORS.ink, fontFace: 'Arial'
   });
 }
+/* Conservative pre-fit for viewers that do not honour PowerPoint's auto-fit. */
+function pptxFitFont(text, width, height, maximum) {
+  const words = String(text || '').replace(/\r/g, '').split(/(\s+)/);
+  const fits = size => {
+    const capacity = Math.max(1, width * 72 * .90 / (size * .58));
+    let lines = 1, used = 0;
+    for (const word of words) {
+      const pieces = word.split('\n');
+      for (let i = 0; i < pieces.length; i++) {
+        if (i) { lines++; used = 0; }
+        let len = Array.from(pieces[i]).length;
+        if (!len) continue;
+        if (/^\s+$/.test(pieces[i])) { used = Math.min(capacity, used + len); continue; }
+        if (used && used + len > capacity) { lines++; used = 0; }
+        while (len > capacity) { lines++; len -= capacity; }
+        used += len;
+      }
+    }
+    return lines * size * 1.25 <= Math.max(1, height * 72 - 8);
+  };
+  let low=3, high=maximum;
+  for(let i=0;i<14;i++){const mid=(low+high)/2;if(fits(mid)) low=mid;else high=mid;}
+  return Math.max(3, Math.floor(low * 10) / 10);
+}
 async function buildPptx(game, opts = {}) {
   const PptxGenJS = pptxLib();
   if (!PptxGenJS) throw new Error('no-lib');
@@ -11336,6 +11436,12 @@ async function buildPptx(game, opts = {}) {
   /* --- 1. титульный слайд --- */
   const sTitle = pptx.addSlide();
   pptxAddBg(sTitle, pptx, W, H, opts.design);
+  if (opts.audioFile) {
+    if (!/\.mp3$/i.test(opts.audioFile.name) || opts.audioFile.size > 10*1024*1024) throw new Error('MP3 ≤ 10 MB');
+    const data=await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=()=>reject(new Error('Cannot read audio'));r.readAsDataURL(opts.audioFile)});
+    sTitle.addMedia({type:'audio',data,extn:'mp3',x:W-.95,y:.45,w:.55,h:.55});
+  }
+
   sTitle.addShape(pptx.ShapeType.rect, { x: 0, y: H * .30, w: W, h: .012, fill: { color: PPTX_COLORS.gold, transparency: 25 }, line: { width: 0 } });
   sTitle.addText('ИНТЕЛЛЕКТУАЛЬНАЯ ВИКТОРИНА', { x: .7, y: 1.15, w: W - 1.4, h: .4, fontSize: 12, bold: true, color: PPTX_COLORS.gold, charSpacing: 4, fontFace: 'Arial' });
   sTitle.addText('СВОЯ ИГРА', { x: .7, y: 1.6, w: W - 1.4, h: 1.3, fontSize: isWide ? 58 : 48, bold: true, color: PPTX_COLORS.ink, fontFace: 'Arial' });
@@ -11415,7 +11521,7 @@ async function buildPptx(game, opts = {}) {
         pptxAddBg(qs, pptx, W, H, opts.design);
         const special = q.type || 'normal';
         const badge = special === 'cat' ? '🐈 КОТ В МЕШКЕ' : special === 'auction' ? '🔔 АУКЦИОН' : special === 'bonus' ? '★ БОНУС ×2' : special === 'fail' ? '✖ НЕУДАЧА' : '';
-        qs.addShape(pptx.ShapeType.roundRect, { x: .55, y: .42, w: W - 3.55, h: .46, rectRadius: .23, fill: { color: '141F3C' }, line: { color: PPTX_COLORS.line, width: 1 } });
+        qs.addShape(pptx.ShapeType.roundRect, { x: .55, y: .42, w: W - 3.55, h: .46, rectRadius: .23, fill: { color: pptxIsLight() ? PPTX_COLORS.panel : '141F3C' }, line: { color: PPTX_COLORS.line, width: 1 } });
         qs.addText((cat.name || '').toUpperCase(), { x: .8, y: .42, w: W - 4.6, h: .46, fontSize: 11, bold: true, color: PPTX_COLORS.goldSoft, valign: 'middle', fontFace: 'Arial', charSpacing: 1 });
         qs.addText(String(val), { x: W - 2.65, y: .38, w: 1.0, h: .5, fontSize: 20, bold: true, color: PPTX_COLORS.gold, align: 'right', valign: 'middle', fontFace: 'Arial' });
         if (badge) {
@@ -11436,7 +11542,7 @@ async function buildPptx(game, opts = {}) {
         }
         const textW = (hasVisual || photo) ? (W - mediaW - 1.35) : (W - 1.7);
         const textH = (hasVisual || photo) ? mediaH + .3 : (isWide ? 4.0 : 4.2);
-        qs.addText(q.q || '', { x: .85, y: 1.35, w: textW, h: textH, fontSize: (hasVisual || photo) ? (isWide ? 21 : 18) : (isWide ? 26 : 22), bold: true, color: PPTX_COLORS.ink, valign: 'middle', fontFace: 'Arial', lineSpacingMultiple: 1.18 });
+        qs.addText(q.q || '', { x: .85, y: 1.35, w: textW, h: textH, fontSize: pptxFitFont(q.q, textW, textH, (hasVisual || photo) ? (isWide ? 21 : 18) : (isWide ? 26 : 22)), fit: 'shrink', bold: true, color: PPTX_COLORS.ink, valign: 'middle', fontFace: 'Arial', lineSpacingMultiple: 1.18 });
         qs.addText('60 сек · ' + (special === 'cat' ? 'передаётся соперникам' : special === 'auction' ? 'ставка от номинала' : 'отвечает команда'), { x: .85, y: H - 1.25, w: W - 3.2, h: .3, fontSize: 10, color: PPTX_COLORS.muted, fontFace: 'Arial' });
         pptxBackBadge(qs, pptx, .55, H - .9, 'К ПОЛЮ');
         qs.addText(useAnswers ? 'Ответ — следующий слайд ▶' : '', { x: W - 4.1, y: H - .9, w: 3.55, h: .38, fontSize: 10, color: PPTX_COLORS.cyan, align: 'right', valign: 'middle', fontFace: 'Arial' });
@@ -11450,7 +11556,7 @@ async function buildPptx(game, opts = {}) {
           as.addText('ОТВЕТ', { x: .85, y: .55, w: 4, h: .35, fontSize: 11, bold: true, color: PPTX_COLORS.ok, charSpacing: 3, fontFace: 'Arial' });
           as.addText((cat.name || '') + ' · ' + val, { x: .85, y: .9, w: W - 1.7, h: .32, fontSize: 11, color: PPTX_COLORS.muted, fontFace: 'Arial' });
           as.addShape(pptx.ShapeType.roundRect, { x: .85, y: 1.55, w: W - 1.7, h: H - 3.4, rectRadius: .12, fill: { color: pptxIsLight() ? PPTX_COLORS.panel : '0E2A25' }, line: { color: PPTX_COLORS.ok, width: 1.2 } });
-          as.addText((q.a || '') + (tx(q.fact || '') ? '\n\n' + t('q.fact') + ': ' + tx(q.fact) : ''), { x: 1.15, y: 1.8, w: W - 2.3, h: H - 3.9, fontSize: isWide ? 22 : 18, bold: true, color: pptxIsLight() ? PPTX_COLORS.ink : 'D7FFEE', valign: 'middle', fontFace: 'Arial', lineSpacingMultiple: 1.2 });
+          as.addText((q.a || '') + (tx(q.fact || '') ? '\n\n' + t('q.fact') + ': ' + tx(q.fact) : ''), { x: 1.15, y: 1.8, w: W - 2.3, h: H - 3.9, fontSize: pptxFitFont((q.a || '') + (tx(q.fact || '') ? '\n\n' + t('q.fact') + ': ' + tx(q.fact) : ''), W - 2.3, H - 3.9, isWide ? 22 : 18), fit: 'shrink', bold: true, color: pptxIsLight() ? PPTX_COLORS.ink : 'D7FFEE', valign: 'middle', fontFace: 'Arial', lineSpacingMultiple: 1.2 });
           pptxBackBadge(as, pptx, .85, H - 1.05, 'К ПОЛЮ');
           as.addText('Вопрос: ' + String(q.q || '').slice(0, 120) + (String(q.q || '').length > 120 ? '…' : ''), { x: W - 5.8, y: H - 1.15, w: 5.0, h: .6, fontSize: 8.5, color: PPTX_COLORS.muted, align: 'right', fontFace: 'Arial' });
           answerSlides[ri][ci] = answerSlides[ri][ci] || [];
@@ -11477,7 +11583,7 @@ async function buildPptx(game, opts = {}) {
     const fq = pptx.addSlide();
     pptxAddBg(fq, pptx, W, H, opts.design);
     fq.addText('ВОПРОС СУПЕР-ИГРЫ', { x: .85, y: .55, w: W - 1.7, h: .3, fontSize: 11, bold: true, color: PPTX_COLORS.gold, charSpacing: 4, fontFace: 'Arial' });
-    fq.addText(fin.q || '—', { x: .85, y: 1.1, w: W - 1.7, h: H - 2.6, fontSize: isWide ? 26 : 22, bold: true, color: PPTX_COLORS.ink, valign: 'middle', fontFace: 'Arial', lineSpacingMultiple: 1.2 });
+    fq.addText(fin.q || '—', { x: .85, y: 1.1, w: W - 1.7, h: H - 2.6, fontSize: pptxFitFont(fin.q, W - 1.7, H - 2.6, isWide ? 26 : 22), fit: 'shrink', bold: true, color: PPTX_COLORS.ink, valign: 'middle', fontFace: 'Arial', lineSpacingMultiple: 1.2 });
     pptxBackBadge(fq, pptx, .85, H - 1.0, 'К ПОЛЮ');
     const finalQIdx = pptx._slides.length;
 
@@ -11572,18 +11678,19 @@ async function buildPptx(game, opts = {}) {
   await pptx.writeFile({ fileName });
   return { fileName, slides: pptx._slides.length };
 }
-let pptxGameRef = null;
-function openPptxExport(game) {
+let pptxGameRef = null, pptxKindRef = null;
+function openPptxExport(game, showKind = null) {
   pptxGameRef = game;
+  pptxKindRef = showKind || game.showFormat || null;
   $('#pptxName').value = slug(gameTitle(game));
-  $('#boardPptxOptions').classList.toggle('hidden', !!game.showFormat);
-  $('#showPptxAudio').classList.toggle('hidden', !game.showFormat);
+  $('#boardPptxOptions').classList.toggle('hidden', !!pptxKindRef);
+  $('#showPptxAudio').classList.remove('hidden');
   $('#pptxAudio').value = '';
-  $('#boardPptxTip').classList.toggle('hidden', !!game.showFormat);
+  $('#boardPptxTip').classList.toggle('hidden', !!pptxKindRef);
   renderPptxThemes();
   openModal('exportModal');
 }
-async function exportPptxFor(game, opts = {}) {
+async function exportPptxFor(game, opts = {}, showKind = game.showFormat || null) {
   const PptxGenJS = pptxLib();
   if (!PptxGenJS) { toast(t('export.noLib'), 'err'); return; }
   const loader = $('#pptxLoader');
@@ -11592,7 +11699,8 @@ async function exportPptxFor(game, opts = {}) {
   if (btn) { btn.disabled = true; btn.querySelector('span').textContent = t('export.busy'); }
   try {
     await wait(60);
-    const res = game.showFormat ? await SHOWS.showPptx(game.showFormat, game, opts) : await buildPptx(game, opts);
+    if (!opts.audioFile) opts.audioFile = Music.fileFor(showKind || 'svoya');
+    const res = showKind ? await SHOWS.showPptx(showKind, game, opts) : await buildPptx(game, opts);
     toast(res.fileName + ' · ' + res.slides + ' слайдов', 'ok', t('export.ok'));
     const m = $('#exportModal');
     if (m) m.classList.remove('open');
@@ -12364,6 +12472,11 @@ function compactAiPicture(src) {
     image.src = src;
   });
 }
+async function readUserPicture(file) {
+  if (!file || !/^(image\/jpeg|image\/png|image\/webp)$/i.test(file.type) || file.size > 8*1024*1024) throw new Error('JPEG / PNG / WebP ≤ 8 MB');
+  const src = await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=()=>reject(new Error('Cannot read image'));r.readAsDataURL(file)});
+  return compactAiPicture(src);
+}
 async function addAiPictures(game, cfg, signal) {
   const rounds = (game.rounds || []).slice(0,2);
   for (let ri=0;ri<rounds.length;ri++) {
@@ -12506,9 +12619,11 @@ function applyTheme() {
   const meta = document.querySelector('meta[name="theme-color"]');
   if (meta) meta.setAttribute('content', S.theme === 'dark' ? '#070b18' : '#eef2fb');
 }
+function toggleGameTheme() { S.theme = S.theme === 'dark' ? 'light' : 'dark'; LS.set('theme', S.theme); applyTheme(); }
 function setLang(lang) {
   S.lang = ['ru', 'kk', 'en'].includes(lang) ? lang : 'ru';
   LS.set('lang', S.lang);
+  Music.render();
   VISUAL_CACHE.clear();
   applyI18n();
   renderStatNumbers();
@@ -12750,7 +12865,7 @@ function bindGlobal() {
   $('#resetAll').addEventListener('click', () => {
     confirmDialog(t('settings.reset') + '?', t('settings.dataHint'), t('settings.reset')).then((ok) => {
       if (!ok) return;
-      S.custom = []; saveCustom();
+      S.custom = []; saveCustom(); Music.clearAll();
       LS.del('settings'); LS.del('lang'); LS.del('theme');
       S.settings.apiKey = '';
       setLang('ru'); S.theme = 'dark'; applyTheme();
@@ -12828,7 +12943,14 @@ function bindGlobal() {
   if ($('#bCatCount')) $('#bCatCount').addEventListener('change', sizeChange);
   if ($('#bQCount')) $('#bQCount').addEventListener('change', sizeChange);
   $('#bCatEditors').addEventListener('input', () => { collectBuilder(); renderBuilderMeta(); });
-  $('#bCatEditors').addEventListener('change', () => { collectBuilder(); renderBuilderMeta(); });
+  $('#bCatEditors').addEventListener('change', async (e) => {
+    if (!e.target.matches('[data-upload-image]')) { collectBuilder(); renderBuilderMeta(); return; }
+    const [ci,qi]=e.target.dataset.uploadImage.split(':').map(Number), round=S.builder.tab;
+    collectBuilder(); const question=S.builder.rounds[round][ci].questions[qi], file=e.target.files[0];
+    if (!file) return;
+    try { question.photo=await readUserPicture(file); question.visual=null; if(S.builder.tab===round) renderBuilder(); }
+    catch(err){toast(String(err.message || err),'err'); e.target.value='';}
+  });
   $('#bCatEditors').addEventListener('click', (e) => {
     const removeImage = e.target.closest('[data-remove-image]');
     if (removeImage) { const [ci,qi] = removeImage.dataset.removeImage.split(':').map(Number); collectBuilder(); const q = S.builder.rounds[S.builder.tab][ci].questions[qi]; q.photo = null; q.visual = null; renderBuilder(); return; }
@@ -12938,10 +13060,13 @@ function bindGlobal() {
   });
   $('#gSound').addEventListener('click', () => {
     S.settings.sound = !S.settings.sound;
+    if (!S.settings.sound) Music.stop(); else Music.start('svoya');
     AudioKit.setEnabled(S.settings.sound && S.settings.sfx);
     persistSettings();
     updateStageChrome();
   });
+  $('#gMusic').addEventListener('click', () => Music.toggle('svoya'));
+  $('#gTheme').addEventListener('click', toggleGameTheme);
   $('#gFull').addEventListener('click', toggleFullscreen);
   $('#gHelp').addEventListener('click', () => {
     $('#presenterSheet').classList.remove('open');
@@ -12968,7 +13093,7 @@ function bindGlobal() {
   $('#qBackList').addEventListener('click', () => { if (G.afterAnswer) closeQuestion(); });
   $('#qNextTeam').addEventListener('click', () => { nextTurn(); });
   /* модалка экспорта */
-  $('#exportGo').addEventListener('click', () => { if (pptxGameRef) exportPptxFor(pptxGameRef, readPptxOpts()); });
+  $('#exportGo').addEventListener('click', () => { if (pptxGameRef) exportPptxFor(pptxGameRef, readPptxOpts(), pptxKindRef); });
   /* ИИ */
   $('#aiProvider').addEventListener('click', (e) => {
     const b = e.target.closest('button[data-provider]');
@@ -13271,8 +13396,17 @@ function selectBuilderFormat(kind) {
 function initNativeBuilder() {
  $('#builderFormatSelect').addEventListener('click', e=>{const b=e.target.closest('[data-builder-format]');if(b) selectBuilderFormat(b.dataset.builderFormat);});
  $('#nativeBuilder').addEventListener('input', nativeInput);
- $('#nativeBuilder').addEventListener('change', nativeInput);
+ $('#nativeBuilder').addEventListener('change', async e=>{
+   const el=e.target; if(!el.matches('[data-native-photo],[data-native-big-photo]')) return nativeInput(e);
+   const g=NB.current, isBig=el.dataset.nativeBigPhoto != null, idx=Number(isBig?el.dataset.nativeBigPhoto:el.dataset.nativePhoto), sub=el.dataset.photoSub;
+   const item=g && (isBig?g.bigItems:g.showItems)[idx], target=sub == null ? item : item && item.blitz[Number(sub)];
+   if(!target || !el.files[0]) return;
+   try {target.photo=await readUserPicture(el.files[0]); if(NB.current===g){renderNativeBuilder();const details=$$('#nativeBuilder .native-list > details');if(details[isBig?g.showItems.length+idx:idx])details[isBig?g.showItems.length+idx:idx].open=true;}}
+   catch(err){toast(String(err.message||err),'err');el.value='';}
+ });
  $('#nativeBuilder').addEventListener('click', e=>{
+   const remove=e.target.closest('[data-remove-native-photo],[data-remove-native-big-photo]');
+   if(remove){const g=NB.current,isBig=remove.dataset.removeNativeBigPhoto!=null,idx=Number(isBig?remove.dataset.removeNativeBigPhoto:remove.dataset.removeNativePhoto),sub=remove.dataset.photoSub,it=(isBig?g.bigItems:g.showItems)[idx],target=sub==null?it:it && it.blitz[Number(sub)];if(target)target.photo=null;renderNativeBuilder();const details=$$('#nativeBuilder .native-list > details'),di=isBig?g.showItems.length+idx:idx;if(details[di])details[di].open=true;return;}
    const action=e.target.closest('[data-native-action]'); if (!action) return;
    if (action.dataset.nativeAction==='import') { $('#fileInput').dataset.mode='one'; $('#fileInput').click(); return; }
    const g=nativeGame();
@@ -13331,21 +13465,23 @@ function renderNativeBuilder() {
  if (g.showFormat === 'chgk') g.chgkTimer = chgkTimerConfig(g.chgkTimer);
  const timerEditor = g.showFormat === 'chgk' ? '<section class="panel native-timer-settings"><div><span class="native-kicker">'+esc(nb('timerSettings'))+'</span><p>'+esc(nb('timerHelp'))+'</p></div><label class="switch"><input type="checkbox" data-timer-field="enabled"'+(g.chgkTimer.enabled?' checked':'')+'><span class="track"></span><span>'+esc(nb('timerEnable'))+'</span></label><div class="native-timer-grid"><label class="field"><span class="label">'+esc(nb('timerStandard'))+'</span><input class="input" type="number" min="5" max="600" step="1" data-timer-field="standard" value="'+g.chgkTimer.standard+'"></label><label class="field"><span class="label">'+esc(nb('timerBlitz'))+'</span><input class="input" type="number" min="5" max="600" step="1" data-timer-field="blitz" value="'+g.chgkTimer.blitz+'"></label></div></section>' : '';
  const text=(label,value,field,i,sub,tag='input')=>'<label class="field"><span class="label">'+esc(label)+'</span>'+ (tag==='textarea'?'<textarea class="textarea"':'<input class="input"')+' data-item="'+i+'" data-field="'+field+'"'+(sub==null?'':' data-sub="'+sub+'"')+(tag==='textarea'? '>'+esc(value||'')+'</textarea>':' value="'+esc(value==null?'':String(value))+'">')+'</label>';
+ const photoField=(obj,i,sub,isBig=false)=>{const upload=isBig?'data-native-big-photo':'data-native-photo',remove=isBig?'data-remove-native-big-photo':'data-remove-native-photo',extra=sub==null?'':' data-photo-sub="'+sub+'"';return '<label class="field"><span class="label">'+esc(t('q.photoAdd'))+' · JPEG / PNG / WebP ≤ 8 MB</span><input type="file" accept="image/jpeg,image/png,image/webp" '+upload+'="'+i+'"'+extra+'></label>'+(obj.photo && isUrl(obj.photo)?'<div><img src="'+esc(obj.photo)+'" alt="" style="max-width:180px;max-height:100px;object-fit:contain"><button type="button" class="btn btn-ghost btn-sm" '+remove+'="'+i+'"'+extra+'>'+esc(t('builder.removeImage'))+'</button></div>':'');};
  const bigFields = g.showFormat==='hundred' && Array.isArray(g.bigItems) ? g.bigItems.map((it,i)=>{
    const content=text(nb('question'),it.q,'q',i,null,'textarea')+'<div class="survey-rows">'+it.answers.map((v,j)=>'<div class="survey-row">'+text(nb('answer')+' '+(j+1),v.text,'surveyText',i,j)+text(nb('points'),v.points,'surveyPoints',i,j)+'</div>').join('')+'</div>';
-   return '<details class="native-item"><summary><b>'+esc(t('show.big'))+' · '+(i+1)+'</b></summary><div class="native-fields">'+content.replace(/data-item=/g,'data-big-item=')+'</div></details>';
+   return '<details class="native-item"><summary><b>'+esc(t('show.big'))+' · '+(i+1)+'</b></summary><div class="native-fields">'+content.replace(/data-item=/g,'data-big-item=')+photoField(it,i,null,true)+'</div></details>';
  }).join('') : '';
  const items=g.showItems.map((it,i)=>{
    let body='';
    if(g.showFormat==='chgk') {
     body='<label class="field"><span class="label">'+esc(nb('format'))+'</span><select class="select" data-item="'+i+'" data-field="kind">'+['normal','blackbox','blitz','superblitz'].map(k=>'<option value="'+k+'"'+(it.kind===k?' selected':'')+'>'+esc(nb(k))+'</option>').join('')+'</select></label>';
-    if(['blitz','superblitz'].includes(it.kind)) body+=(it.blitz||[]).map((q,j)=>'<div class="native-blitz">'+text(nb('question')+' '+(j+1),q.q,'blitzQ',i,j,'textarea')+text(nb('answer'),q.a,'blitzA',i,j)+'</div>').join('');
+    if(['blitz','superblitz'].includes(it.kind)) body+=(it.blitz||[]).map((q,j)=>'<div class="native-blitz">'+text(nb('question')+' '+(j+1),q.q,'blitzQ',i,j,'textarea')+text(nb('answer'),q.a,'blitzA',i,j)+photoField(q,i,j)+'</div>').join('');
     else body+=text(nb('question'),it.q,'q',i,null,'textarea')+text(nb('answer'),it.a,'a',i)+text(nb('source'),it.fact,'fact',i,null,'textarea');
    } else if(g.showFormat==='million') {
     body=text(nb('question'),it.q,'q',i,null,'textarea')+'<div class="native-options">'+it.options.map((v,j)=>text(nb('option')+' '+String.fromCharCode(65+j),v,'option',i,j)).join('')+'</div><label class="field"><span class="label">'+esc(nb('correct'))+'</span><select class="select" data-item="'+i+'" data-field="correct">'+[0,1,2,3].map(j=>'<option value="'+j+'"'+(it.correct===j?' selected':'')+'>'+String.fromCharCode(65+j)+'</option>').join('')+'</select></label>';
    } else {
     body=text(nb('question'),it.q,'q',i,null,'textarea')+'<div class="survey-rows">'+it.answers.map((v,j)=>'<div class="survey-row">'+text(nb('answer')+' '+(j+1),v.text,'surveyText',i,j)+text(nb('points'),v.points,'surveyPoints',i,j)+'</div>').join('')+'</div>';
    }
+   if (!(g.showFormat==='chgk' && ['blitz','superblitz'].includes(it.kind))) body+=photoField(it,i,null);
    return '<details class="native-item"'+(i===0?' open':'')+'><summary><span class="native-index">'+String(i+1).padStart(2,'0')+'</span><b>'+esc(g.showFormat==='chgk'?nb('sector'):nb('question'))+' '+(i+1)+'</b><span class="native-chevron">⌄</span></summary><div class="native-fields">'+body+'</div></details>';
  }).join('');
  box.innerHTML='<div class="native-hero"><div><span class="native-kicker">'+esc(nb('edit'))+'</span><h2>'+esc(nb(g.showFormat))+'</h2><p>'+esc(nb(g.showFormat+'Desc'))+'</p></div><div class="native-hero-symbol">'+({million:'◇',chgk:'?',hundred:'100 : 1'})[g.showFormat]+'</div></div>'+
@@ -13353,6 +13489,28 @@ function renderNativeBuilder() {
 }
 
 /* --- старт приложения --- */
+/* Optional user-provided soundtracks. No third-party tracks are bundled. */
+Object.assign(I18N.ru,{'music.title':'Музыка игр','music.help':'Выберите MP3 для каждого формата. Файлы хранятся в этом браузере; используйте только записи, на которые у вас есть права.','music.none':'Файл не выбран','music.remove':'Удалить','music.source':'Источник','music.choose':'Выберите MP3 в настройках','music.error':'Не удалось сохранить аудио в браузере'});
+Object.assign(I18N.kk,{'music.title':'Ойын музыкасы','music.help':'Әр форматқа MP3 таңдаңыз. Файлдар осы браузерде сақталады; пайдалануға құқығыңыз бар жазбаларды ғана қолданыңыз.','music.none':'Файл таңдалмады','music.remove':'Өшіру','music.source':'Дереккөз','music.choose':'Баптаулардан MP3 таңдаңыз','music.error':'Аудионы браузерде сақтау мүмкін болмады'});
+Object.assign(I18N.en,{'music.title':'Game music','music.help':'Choose an MP3 for each format. Files stay in this browser; use only recordings you have permission to use.','music.none':'No file selected','music.remove':'Remove','music.source':'Source','music.choose':'Choose an MP3 in settings','music.error':'Could not save audio in this browser'});
+const Music = (()=>{
+  const urls={svoya:'https://zvukipro.com/teleshow/1105-zvuki-i-muzyka-iz-teleperedachi-svoja-igra.html',hundred:'https://zvukipro.com/teleshow/722-zvuki-iz-teleperedachi-sto-k-odnomu.html',million:'https://zvukipro.com/teleshow/568-zvuki-iz-teleperedachi-kto-hochet-stat-millionerom.html',chgk:'https://zvukipro.com/teleshow/720-zvuki-i-muzyka-iz-teleperedachi-chto-gde-kogda.html'};
+  const files={}, kinds=Object.keys(urls); let player=null, objectUrl=null, current=null, db=null;
+  function render(){const el=$('#musicSlots');if(!el)return;el.innerHTML=kinds.map(k=>'<div class="music-slot"><b>'+esc(nb(k))+'</b> · <span>'+esc(files[k] ? files[k].name : t('music.none'))+'</span><div class="flex" style="gap:8px;flex-wrap:wrap"><label class="btn btn-line btn-sm">MP3 <input type="file" accept="audio/mpeg,.mp3" data-music-file="'+k+'" style="max-width:210px"></label><button type="button" class="btn btn-ghost btn-sm" data-music-delete="'+k+'">'+esc(t('music.remove'))+'</button><a target="_blank" rel="noopener noreferrer" href="'+urls[k]+'">'+esc(t('music.source'))+' ↗</a></div></div>').join('');}
+  const transaction=(mode,action)=>new Promise((resolve,reject)=>{if(!db)return reject(new Error('no storage'));const tx=db.transaction('tracks',mode),store=tx.objectStore('tracks');let result;try{const req=action(store);if(req)req.onsuccess=()=>{result=req.result};}catch(e){reject(e);return}tx.oncomplete=()=>resolve(result);tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error)});
+  async function init(){
+    const slot=$('#musicSlots');if(!slot)return;
+    slot.addEventListener('change',async e=>{const el=e.target,k=el.dataset.musicFile,file=el.files&&el.files[0];if(!k||!file)return;if(!/\.mp3$/i.test(file.name)||file.size>10*1024*1024){toast('MP3 ≤ 10 MB','err');el.value='';return;}try{await transaction('readwrite',store=>store.put(file,k));files[k]=file;render();}catch(_){toast(t('music.error'),'err');el.value='';}});
+    slot.addEventListener('click',async e=>{const btn=e.target.closest('[data-music-delete]');if(!btn)return;const k=btn.dataset.musicDelete;try{await transaction('readwrite',store=>store.delete(k));delete files[k];if(current===k)stop();render();}catch(_){toast(t('music.error'),'err')}});
+    render();
+    try {db=await new Promise((resolve,reject)=>{const req=indexedDB.open('quiz-studio-music',1);req.onupgradeneeded=()=>req.result.createObjectStore('tracks');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error)});for(const k of kinds){const f=await transaction('readonly',store=>store.get(k));if(f)files[k]=f;}render();}catch(_){/* app remains usable without persistent audio */}
+  }
+  function stop(){if(player){player.pause();player=null;}if(objectUrl){URL.revokeObjectURL(objectUrl);objectUrl=null;}current=null;}
+  function start(k){stop();if(!files[k] || !S.settings.sound)return;current=k;objectUrl=URL.createObjectURL(files[k]);player=new Audio(objectUrl);player.loop=true;player.volume=.3;player.play().catch(()=>{});}
+  function toggle(k){if(current===k && player){if(player.paused)player.play().catch(()=>toast(t('music.choose'),'warn'));else player.pause();return;}if(!files[k]){toast(t('music.choose'),'warn');return;}if(!S.settings.sound)S.settings.sound=true;start(k);}
+  async function clearAll(){stop();if(db)try{await transaction('readwrite',store=>store.clear())}catch(_){};for(const k of kinds)delete files[k];render();}
+  return {init,start,stop,toggle,clearAll,fileFor:k=>files[k]||null,render};
+})();
 function boot() {
   loadStored();
   S.ttsWanted = !!S.settings.tts;
@@ -13378,6 +13536,7 @@ function boot() {
   renderLibrary();
   if (!S.builder) S.builder = blankBuilder();
   bindGlobal();
+  Music.init();
   initNativeBuilder();
   initRulesButton();
   updateHumorLabel();
@@ -13704,6 +13863,7 @@ const SHOWS = (() => {
 
   /** Закрыть сцену шоу и вернуться в библиотеку. */
   function closeShow() {
+    Music.stop();
     chgkStopClock();
     hundStopBigTimer();
     if (CHGK.spinTimer != null) { clearTimeout(CHGK.spinTimer); CHGK.spinTimer = null; }
@@ -13720,6 +13880,8 @@ const SHOWS = (() => {
   /** Верхняя панель с крестиком — одинаковая для обоих шоу. */
   function closeBar() {
     return '<div class="show-closebar">' +
+      '<button class="glass-btn" data-show-music title="Музыка / Music" aria-label="Музыка / Music"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 17V5l10-2v12M9 17c0 2-4 3-4 1 0-1.4 2-2.4 4-2M19 15c0 2-4 3-4 1 0-1.4 2-2.4 4-2"/></svg></button>' +
+      '<button class="glass-btn" data-show-theme title="Тема / Theme" aria-label="Тема / Theme"><svg><use href="#i-sun"/></svg></button>' +
       '<button class="glass-btn" data-show-ppt title="' + esc(t('show.pptx')) + '"><svg><use href="#i-download"/></svg></button>' +
       '<button class="glass-btn" data-show-exit title="' + esc(t('show.exit')) + '"><svg><use href="#i-x"/></svg></button>' +
       '</div>';
@@ -13783,6 +13945,7 @@ const SHOWS = (() => {
   }
 
   function chgkOpen(game) {
+    Music.start('chgk');
     chgkStopClock();
     if (CHGK.spinTimer != null) { clearTimeout(CHGK.spinTimer); CHGK.spinTimer = null; }
     /* форматы взаимоисключающие: иначе экспорт и счётчики путают шоу */
@@ -13971,7 +14134,7 @@ const SHOWS = (() => {
       (q.cat ? '<div class="q-cat">' + esc(q.cat) + '</div>' : '') +
       (q.visual ? '<div class="q-media" style="max-width:min(560px,70vw)"><img alt="" src="' + visualDataUrl(q.visual, S.lang) + '"></div>' : '') +
       (q.photo && isUrl(q.photo) ? '<div class="q-media" style="max-width:min(560px,70vw)"><img alt="" src="' + esc(q.photo) + '"></div>' : '') +
-      '<div class="q-text">' + esc(q.q) + '</div>' +
+      '<div class="q-text" style="--q-scale:' + questionTextScale(q.q) + '">' + esc(q.q) + '</div>' +
       '<div class="q-rule"></div>' +
       chgkClockHtml(false) +
       '<div id="chgkAnswerSlot"></div>' +
@@ -14122,7 +14285,8 @@ const SHOWS = (() => {
     root.innerHTML = chgkHeader() + '<div class="chgk-stage chgk-question-stage"><div class="chgk-card">' +
       '<div class="sector-chip">' + esc(t('show.sector')) + ' ' + CHGK.sector.n + ' · ' + esc(t(b.kind === 'superblitz' ? 'show.superblitz' : 'show.blitz')) + '</div>' +
       '<div class="q-cat">' + esc(b.kind === 'superblitz' ? t('show.superblitz') : t('show.blitz')) + ' · ' + CHGK.clockSettings.blitz + 's' + '</div>' +
-      '<div class="q-text">' + esc(q.q) + '</div>' +
+      (q.photo && isUrl(q.photo) ? '<img class="show-question-photo" alt="" src="' + esc(q.photo) + '">' : '') +
+      '<div class="q-text" style="--q-scale:' + questionTextScale(q.q) + '">' + esc(q.q) + '</div>' +
       '<div class="q-cat" style="color:#f2c45a">' + esc(t('show.questionN')) + ' ' + (b.index + 1) + ' / 3</div>' +
       chgkClockHtml(true) +
       '<div id="chgkAnswerSlot"></div>' +
@@ -14269,7 +14433,7 @@ const SHOWS = (() => {
    *  • ответ с числом → неправильные варианты считаются от него же, в тех же единицах;
    *  • ответ-понятие → неправильные берём из понятий того же предмета. */
   function buildMillionQuestions(game, count) {
-    if (game.showFormat === 'million') return game.showItems.map((it) => ({ q: it.q, a: it.options[it.correct], full: it.options[it.correct], options: it.options.slice(), correct: it.correct, cat: '' }));
+    if (game.showFormat === 'million') return game.showItems.map((it) => ({ q: it.q, a: it.options[it.correct], full: it.options[it.correct], options: it.options.slice(), correct: it.correct, photo: it.photo || '', cat: '' }));
     const all = flattenQuestions(game);
     const norm = (x) => String(x || '').toLowerCase().replace(/[^a-zа-я0-9ёәғқңөұүһі]/gi, '');
 
@@ -14493,6 +14657,7 @@ const SHOWS = (() => {
   }
 
   function millionOpen(game) {
+    Music.start('million');
     CHGK.active = false;
     HUND.active = false;
     MI.active = true;
@@ -14541,7 +14706,8 @@ const SHOWS = (() => {
     root.innerHTML =
       '<div class="million-top"><div class="million-logo">' + esc(t('show.million')) + '</div></div>' +
       '<div class="million-main">' +
-        '<div class="million-q"><p>' + esc(q.q) + '</p></div>' +
+        '<div class="million-q" style="--question-scale:' + Math.max(.45,Math.min(1,Math.sqrt(110/Math.max(110,String(q.q).length)))) + '"><p>' + esc(q.q) + '</p></div>' +
+        (q.photo && isUrl(q.photo) ? '<img class="show-question-photo" alt="" src="' + esc(q.photo) + '">' : '') +
         (q.visual ? '<div class="q-media" style="max-width:min(420px,54vw);margin:0 auto 2px"><img alt="' + esc(t('show.scheme')) + '" src="' + visualDataUrl(q.visual, S.lang) + '"></div>' : '') +
         '<div class="million-answers" id="miAnswers">' +
           q.options.map((opt, i) => '<button class="million-ans' + (dead.includes(i) ? ' dim' : '') + '" data-mi-ans="' + i + '">' +
@@ -14804,6 +14970,8 @@ const SHOWS = (() => {
 
   /** Общие кнопки на сцене: выход и экспорт в PPTX. */
   function bindShowChrome() {
+    $$('#showScreen [data-show-music]').forEach((b) => b.addEventListener('click', () => Music.toggle(CHGK.active ? 'chgk' : HUND.active ? 'hundred' : 'million')));
+    $$('#showScreen [data-show-theme]').forEach((b) => b.addEventListener('click', toggleGameTheme));
     $$('#showScreen [data-show-exit]').forEach((b) => b.addEventListener('click', closeShow));
     $$('#showScreen [data-show-ppt]').forEach((b) => b.addEventListener('click', () => {
       /* выходим из любого показа: гость мог закрыть Миллионера и открыть ЧГК */
@@ -14817,7 +14985,7 @@ const SHOWS = (() => {
   /* Отдельная колода для шоу-форматов: титул, вопросы, ответы и возврат
      «к волчку». Гиперссылки ставим вторым проходом — так они не слетают. */
   async function showPptx(kind, game, opts) {
-    if (!opts) { openPptxExport(game); return; }
+    if (!opts) { openPptxExport(game,kind); return; }
     const PptxGenJS = pptxLib();
     if (!PptxGenJS) throw new Error('PPTX library unavailable');
     pptxApplyTheme(opts.theme || 'midnight');
@@ -14827,16 +14995,26 @@ const SHOWS = (() => {
     const image = async path => { const res=await fetch(path); if(!res.ok) throw new Error('Missing image: '+path); return readData(await res.blob()); };
     const paths = kind === 'million' ? ['assets/shows/million-stage.jpg'] : kind === 'hundred' ? ['assets/shows/hundred-backdrop.jpg'] : ['assets/shows/chgk-owl.jpg','assets/shows/chgk-wheel-animated.gif','assets/shows/chgk-box.jpg','assets/shows/chgk-question-banner.jpg'];
     const media = await Promise.all(paths.map(image));
+    const photos = new Map();
+    const collectPhoto = it => { if(!it) return; if(it.photo && isUrl(it.photo)) photos.set(it.photo,null); if(Array.isArray(it.blitz)) it.blitz.forEach(collectPhoto); };
+    if(opts.media!==false) { (game.showItems||[]).forEach(collectPhoto); (game.bigItems||[]).forEach(collectPhoto); (game.rounds||[]).forEach(r=>(r.categories||[]).forEach(c=>(c.questions||[]).forEach(collectPhoto))); }
+    for(const src of photos.keys()) {
+      const data=/^data:image\/(?:png|jpeg|gif);base64,/i.test(src) ? src : await image(src);
+      const dimensions=await new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve({w:img.naturalWidth,h:img.naturalHeight});img.onerror=()=>reject(new Error('Cannot decode image'));img.src=data;});
+      photos.set(src,{data,...dimensions});
+    }
+    const photo = (slide,it,x,y,w,h) => {const item=it && photos.get(it.photo);if(!item)return false;const boxW=w*sx,scale=Math.min(boxW/item.w,h/item.h),iw=item.w*scale,ih=item.h*scale;slide.addImage({data:item.data,x:x*sx+(boxW-iw)/2,y:y+(h-ih)/2,w:iw,h:ih});return true;};
+
     let audio = null;
     if (opts.audioFile) {
       if (!/\.mp3$/i.test(opts.audioFile.name) || opts.audioFile.size > 10 * 1024 * 1024) throw new Error('MP3 ≤ 10 MB');
       audio = await readData(opts.audioFile);
     }
-    const gold = pptxIsLight() ? 'F2C45A' : PPTX_COLORS.gold, white='FFFFFF', panel='07132C', P=pptx.ShapeType;
-    const rect=(s,x,y,w,h,color,transparency=0,line=null)=>s.addShape(P.rect,{x:x*sx,y,w:w*sx,h,fill:{color,transparency},line:line ? {color:line,width:1} : {color,transparency:100}});
-    const txt=(s,text,x,y,w,h,size=18,color=white,extra={})=>s.addText(String(text || ''),{x:x*sx,y,w:w*sx,h,fontFace:'Arial',fontSize:size,color,margin:.05,breakLine:false,fit:'shrink',...extra});
+    const light=pptxIsLight(), gold=light ? PPTX_COLORS.gold : PPTX_COLORS.gold, white=light ? PPTX_COLORS.ink : 'FFFFFF', panel=light ? 'FFFFFF' : '07132C', P=pptx.ShapeType;
+    const rect=(s,x,y,w,h,color,transparency=0,line=null)=>{if(light && ['07132C','060C20','050913','050505','050B17'].includes(color)) color=panel;s.addShape(P.rect,{x:x*sx,y,w:w*sx,h,fill:{color,transparency},line:line ? {color:line,width:1} : {color,transparency:100}})};
+    const txt=(s,text,x,y,w,h,size=18,color=white,extra={})=>s.addText(String(text || ''),{x:x*sx,y,w:w*sx,h,fontFace:'Arial',fontSize:pptxFitFont(text,w*sx,h,size),color,margin:.05,breakLine:false,fit:'shrink',...extra});
     const btn=(s,text,x,y,w,h,target) => {s.addShape(P.rect,{x:x*sx,y,w:w*sx,h,fill:{color:panel},line:{color:gold,width:1},hyperlink:{slide:target}});txt(s,text,x,y,w,h,12,gold,{bold:true,align:'center',valign:'mid',hyperlink:{slide:target}});};
-    const slide = (bg=media[0])=>{const s=pptx.addSlide();s.background={color:'050A18'};if(bg)s.addImage({data:bg,x:0,y:0,w:W,h:H});rect(s,0,0,13.333,H,'030711',35);return s;};
+    const slide = (bg=media[0])=>{const s=pptx.addSlide();s.background={color:'050A18'};if(bg)s.addImage({data:bg,x:0,y:0,w:W,h:H});rect(s,0,0,13.333,H,light?'F7FAFF':'030711',light?15:35);return s;};
     const header=(s,label)=>{rect(s,.35,.18,12.63,.55,'050913',0);txt(s,label,.55,.22,11.8,.42,13,gold,{bold:true,align:'center'});};
     const title=slide();header(title,nativeFormatName(kind));
     rect(title,1.2,1.5,10.93,3.9,'060C20',3,gold);
@@ -14851,56 +15029,67 @@ const SHOWS = (() => {
       questions.forEach((q,i)=>{
         const s=slide(); if (!first) first=pptx._slides.length; entries.push({slide:pptx._slides.length,answers:[]});
         header(s,t('show.million')+' · '+t('show.questionN')+' '+(i+1)+'/15 · '+fmt(LADDER[i]));
-        rect(s,.8,.94,11.75,1.45,'07132C',0,gold);txt(s,q.q,1.05,1.05,11.25,1.2,24,white,{bold:true,align:'center',valign:'mid'});
+        rect(s,.8,.94,11.75,1.45,'07132C',0,gold);const hasPhoto=photo(s,q,10.2,1.03,2.05,1.25);txt(s,q.q,1.05,1.05,hasPhoto?8.95:11.25,1.2,24,white,{bold:true,align:'center',valign:'mid'});
         q.options.forEach((opt,j)=>{const x=.9+(j%2)*5.9,y=2.75+Math.floor(j/2)*1.05;later(s,'ABCD'[j]+':  '+opt,x,y,5.6,.86,()=>entries[i].answers[j]);});
         txt(s,t('show.safeRules'),1,5.15,11.3,.75,10,white,{align:'center'});
         q.options.forEach((opt,j)=>{
           const a=slide(); entries[i].answers[j]=pptx._slides.length;
           header(a,t('show.questionN')+' '+(i+1)+' · '+(j===q.correct?t('show.correct'):t('show.incorrect')));
-          rect(a,.8,1.0,11.75,1.4,'07132C',0,gold);txt(a,q.q,1.05,1.1,11.25,1.2,22,white,{bold:true,align:'center',valign:'mid'});
-          q.options.forEach((o,k)=>{const x=.9+(k%2)*5.9,y=2.75+Math.floor(k/2)*1.05;rect(a,x,y,5.6,.86,k===q.correct?'126842':(k===j?'8C2638':panel),0,gold);txt(a,'ABCD'[k]+':  '+o,x+.14,y+.05,5.32,.76,16,white,{valign:'mid'});});
+          rect(a,.8,1.0,11.75,1.4,'07132C',0,gold);photo(a,q,10.2,1.08,2.05,1.2);txt(a,q.q,1.05,1.1,hasPhoto?8.95:11.25,1.2,22,white,{bold:true,align:'center',valign:'mid'});
+          q.options.forEach((o,k)=>{const x=.9+(k%2)*5.9,y=2.75+Math.floor(k/2)*1.05;rect(a,x,y,5.6,.86,k===q.correct?'126842':(k===j?'8C2638':panel),0,gold);txt(a,'ABCD'[k]+':  '+o,x+.14,y+.05,5.32,.76,16,(k===q.correct||k===j)?'FFFFFF':white,{valign:'mid'});});
           later(a,i===questions.length-1?t('show.finish'):t('show.nextQuestion'),9.5,6.55,3.0,.55,()=>i+1<entries.length?entries[i+1].slide:1);
           btn(a,t('show.exit'),.65,6.55,2.1,.55,1);
         });
       });
     } else if (kind==='chgk') {
-      const hub=slide(media[0]); first=pptx._slides.length; header(hub,t('show.chgk')); hub.addImage({data:media[1],x:.55*sx,y:1.05,w:5.0*sx,h:5.0});
-      txt(hub,t('show.spin')+' · '+t('show.sector'),5.9,1.05,6.8,.5,18,gold,{bold:true,align:'center'});
-      const sectors=game.showFormat==='chgk'?game.showItems:takeRandom(flattenQuestions(game),13).map(it=>({...it,kind:'normal'}));
-      const refs=[];
+      // PPTX has no runtime randomness without macros. Shuffle once per export and
+      // follow one clickable wheel per round, so questions cannot repeat.
+      const sectors=shuffle((game.showFormat==='chgk'?game.showItems:takeRandom(flattenQuestions(game),13).map(it=>({...it,kind:'normal'}))).slice());
+      const hubs=[], refs=[];
       sectors.forEach((it,i)=>{
-        const x=6.0+(i%4)*1.65,y=1.75+Math.floor(i/4)*1.02;
-        later(hub,String(i+1),x,y,1.35,.75,()=>refs[i]);
-        if (it.kind==='blackbox') { const box=slide(media[2]); refs[i]=pptx._slides.length;header(box,t('show.blackbox'));later(box,t('show.openBox'),9.5,6.55,3,.55,()=>refs[i+'_q']);btn(box,'← '+t('show.sector'),.65,6.55,2.5,.55,first); }
+        const hub=slide(media[0]); hubs[i]=pptx._slides.length; if(!first)first=hubs[i];
+        header(hub,t('show.chgk')+' · '+(i+1)+' / '+sectors.length);
+        hub.addImage({data:media[1],x:4.16*sx,y:1.0,w:5.0*sx,h:5.0});
+        txt(hub,t('show.spin'),2.2,6.15,8.9,.45,16,gold,{bold:true,align:'center'});
+        nav.push(()=>hub.addShape(P.rect,{x:4.16*sx,y:1.0,w:5.0*sx,h:5.0,fill:{color:'FFFFFF',transparency:100},line:{color:'FFFFFF',transparency:100},hyperlink:{slide:refs[i]}}));
+        if (it.kind==='blackbox') { const box=slide(media[2]);refs[i]=pptx._slides.length;header(box,t('show.blackbox'));later(box,t('show.openBox'),9.5,6.55,3,.55,()=>refs[i+'_q']);btn(box,'←',.65,6.55,2.5,.55,hubs[i]); }
         const parts=['blitz','superblitz'].includes(it.kind)?it.blitz:[it];
         parts.forEach((q,j)=>{
-          const s=slide(media[3]), current=pptx._slides.length; if(j===0) { if(it.kind==='blackbox')refs[i+'_q']=current; else refs[i]=current; }
-          header(s,t('show.sector')+' '+(i+1)+(parts.length>1?' · '+(j+1)+'/3':''));
-          rect(s,1.0,1.1,11.33,4.6,'050505',0,gold);txt(s,q.q,1.3,1.4,10.73,3.25,25,white,{bold:true,align:'center',valign:'mid'});
-          txt(s,(parts.length>1?chgkTimerConfig(game.chgkTimer).blitz:chgkTimerConfig(game.chgkTimer).standard)+' s · '+t('show.clockRules'),1.4,5.1,10.5,.55,11,gold,{align:'center'});
-          const a=slide(media[3]), ans=pptx._slides.length;header(a,t('show.answer'));rect(a,1,1.2,11.33,4.6,'050505',0,gold);
-          txt(a,q.a+(q.fact?'\n\n'+q.fact:''),1.3,1.5,10.73,3.8,23,white,{align:'center',valign:'mid'});
-          btn(s,t('show.showAnswer'),9.5,6.55,3,.55,ans);btn(s,'← '+t('show.sector'),.65,6.55,2.5,.55,first);
-          btn(a,'← '+t('show.sector'),.65,6.55,2.5,.55,first);
-          if(j<parts.length-1) later(a,t('show.nextQuestion'),9.5,6.55,3,.55,()=>ans+1);
+          const question=slide(media[3]), current=pptx._slides.length; if(j===0) {if(it.kind==='blackbox')refs[i+'_q']=current;else refs[i]=current;}
+          header(question,t('show.sector')+' '+(i+1)+(parts.length>1?' · '+(j+1)+'/3':''));
+          rect(question,1.0,1.1,11.33,4.6,'050505',0,gold);const hasPhoto=photo(question,q,8.65,1.65,3.25,2.9);txt(question,q.q,1.3,1.4,hasPhoto?7.0:10.73,3.25,25,white,{bold:true,align:'center',valign:'mid'});
+          txt(question,(parts.length>1?chgkTimerConfig(game.chgkTimer).blitz:chgkTimerConfig(game.chgkTimer).standard)+' s · '+t('show.clockRules'),1.4,5.1,10.5,.55,11,gold,{align:'center'});
+          const answer=slide(media[3]), ans=pptx._slides.length;header(answer,t('show.answer'));rect(answer,1,1.2,11.33,4.6,'050505',0,gold);
+          txt(answer,q.a+(q.fact?'\n\n'+q.fact:''),1.3,1.5,10.73,3.8,23,white,{align:'center',valign:'mid'});
+          btn(question,t('show.showAnswer'),9.5,6.55,3,.55,ans);btn(question,'←',.65,6.55,2.5,.55,hubs[i]);
+          if(j<parts.length-1) later(answer,t('show.nextQuestion'),9.5,6.55,3,.55,()=>ans+1);
+          else later(answer,t('show.next'),9.5,6.55,3,.55,()=>hubs[i+1] || 1);
         });
       });
     } else {
       const items=hundBuild(game), refs=[];
+      // 64 subsets per board retain revealed rows while opening any number.
       items.forEach((it,i)=>{
-        for(let step=0;step<=6;step++){
-          const s=slide(); if(!first)first=pptx._slides.length;if(!refs[i])refs[i]=pptx._slides.length;
-          header(s,t('show.hundred')+' · '+t('show.hundQuestion')+' '+(i+1)+'/'+items.length);
-          rect(s,.75,.85,11.83,.8,'07132C',0,gold);txt(s,it.q,.95,.93,11.43,.62,20,white,{bold:true,align:'center',valign:'mid'});
-          it.answers.forEach((answer,j)=>{const y=1.85+j*.67;rect(s,1.8,y,9.73,.57,'050B17',0,'A88546');txt(s,(j+1)+'.',1.95,y+.05,.6,.45,14,gold,{bold:true});txt(s,j<step?answer:'••••••',2.65,y+.05,7.15,.45,17,white,{bold:true});txt(s,j<step?String((it.points||HUND_POINTS)[j]):'—',10.0,y+.05,1.25,.45,17,gold,{bold:true,align:'right'});});
-          if(step<6)btn(s,t('show.showAnswer')+' '+(step+1),9.4,6.55,3.2,.55,pptx._slides.length+1);
-          if(step===6)later(s,i===items.length-1?t('show.big'):t('show.hundNext'),9.4,6.55,3.2,.55,()=>refs[i+1]||bigFirst||1);
-          btn(s,'←',.65,6.55,1.5,.55,step?pptx._slides.length-1:1);
+        refs[i]=pptx._slides.length+1;
+        for(let mask=0;mask<64;mask++){
+          const board=slide(); if(!first)first=pptx._slides.length;
+          header(board,t('show.hundred')+' · '+t('show.hundQuestion')+' '+(i+1)+'/'+items.length);
+          rect(board,.75,.85,11.83,.8,panel,0,gold);txt(board,it.q,.95,.93,11.43,.62,20,white,{bold:true,align:'center',valign:'mid'});
+          rect(board,.85,1.82,2.0,4.05,'079DC9');rect(board,10.48,1.82,2.0,4.05,'BE332E');photo(board,it,.9,2.6,1.9,1.8);
+          it.answers.forEach((answer,j)=>{
+            const y=1.85+j*.67, open=(mask & (1<<j))!==0;
+            rect(board,2.87,y,7.58,.57,open?'101010':'F4BED0',0,open?'888888':'873B50');
+            txt(board,open ? answer : String(j+1),3.02,y+.05,6.15,.45,17,open?'FFFFFF':'171321',{bold:true,align:open?'left':'center'});
+            if(open)txt(board,String((it.points||HUND_POINTS)[j]),9.15,y+.05,1.0,.45,17,'FFFFFF',{bold:true,align:'right'});
+            if(!open) nav.push(()=>board.addShape(P.rect,{x:2.87*sx,y,w:7.58*sx,h:.57,fill:{color:'FFFFFF',transparency:100},line:{color:'FFFFFF',transparency:100},hyperlink:{slide:refs[i]+(mask | (1<<j))}}));
+          });
+          later(board,i===items.length-1?(Array.isArray(game.bigItems)&&game.bigItems.length===5?t('show.big'):t('show.finish')):t('show.hundNext'),9.4,6.55,3.2,.55,()=>refs[i+1]||bigFirst||1);
+          btn(board,t('show.exit'),.65,6.55,1.5,.55,1);
         }
       });
       let bigFirst=0;
       if(Array.isArray(game.bigItems) && game.bigItems.length===5){
-        game.bigItems.forEach((it,i)=>{const s=slide();if(!bigFirst)bigFirst=pptx._slides.length;header(s,t('show.big')+' · '+(i+1)+'/5');rect(s,1,1.4,11.33,3.6,panel,0,gold);txt(s,it.q,1.3,1.7,10.73,2.2,25,white,{bold:true,align:'center',valign:'mid'});txt(s,'15 s / 20 s · '+t('show.surveySource'),1.3,5.25,10.73,.6,10,white,{align:'center'});const a=slide();header(a,t('show.answer'));rect(a,1,1,11.33,5.4,panel,0,gold);txt(a,it.q,1.3,1.2,10.73,.8,18,white,{bold:true,align:'center'});txt(a,it.answers.map(x=>x.text+'  —  '+x.points).join('\n'),2,2.1,9.3,3.8,17,white,{valign:'mid'});btn(s,t('show.showAnswer'),9.4,6.55,3.2,.55,pptx._slides.length);btn(a,i<4?t('show.nextQuestion'):t('show.finish'),9.4,6.55,3.2,.55,pptx._slides.length+1);btn(a,'←',.65,6.55,1.5,.55,first);});
+        game.bigItems.forEach((it,i)=>{const s=slide();if(!bigFirst)bigFirst=pptx._slides.length;header(s,t('show.big')+' · '+(i+1)+'/5');rect(s,1,1.4,11.33,3.6,panel,0,gold);const hasPhoto=photo(s,it,8.8,1.8,3,2.0);txt(s,it.q,1.3,1.7,hasPhoto?7.2:10.73,2.2,25,white,{bold:true,align:'center',valign:'mid'});txt(s,'15 s / 20 s · '+t('show.surveySource'),1.3,5.25,10.73,.6,10,white,{align:'center'});const a=slide();header(a,t('show.answer'));rect(a,1,1,11.33,5.4,panel,0,gold);txt(a,it.q,1.3,1.2,10.73,.8,18,white,{bold:true,align:'center'});txt(a,it.answers.map(x=>x.text+'  —  '+x.points).join('\n'),2,2.1,9.3,3.8,17,white,{valign:'mid'});btn(s,t('show.showAnswer'),9.4,6.55,3.2,.55,pptx._slides.length);btn(a,i<4?t('show.nextQuestion'):t('show.finish'),9.4,6.55,3.2,.55,pptx._slides.length+1);btn(a,'←',.65,6.55,1.5,.55,first);});
         const end=slide();header(end,t('show.big'));txt(end,t('show.bigTarget'),2,2.7,9.3,1,28,gold,{bold:true,align:'center'});btn(end,'←',.65,6.55,1.5,.55,1);
       }
     }
@@ -14974,13 +15163,14 @@ const SHOWS = (() => {
 
   /** Собрать раунд: 6 вопросов по 6 ответов. */
   function hundBuild(game) {
-    if (game.showFormat === 'hundred') return game.showItems.map((it) => ({ q: it.q, answers: it.answers.map((a) => a.text), points: it.answers.map((a) => a.points) }));
+    if (game.showFormat === 'hundred') return game.showItems.map((it) => ({ q: it.q, answers: it.answers.map((a) => a.text), points: it.answers.map((a) => a.points), photo: it.photo || '' }));
     const pool = shuffle(flattenQuestions(game)).filter((q) => q.a);
     const items = pool.slice(0, 6);
-    return items.map((it) => ({ q: it.q, a: it.a, cat: it.cat, answers: hundAnswers(it, pool) }));
+    return items.map((it) => ({ q: it.q, a: it.a, cat: it.cat, photo:it.photo || '', answers: hundAnswers(it, pool) }));
   }
 
   function hundOpen(game) {
+    Music.start('hundred');
     hundStopBigTimer();
     MI.active = false;
     CHGK.active = false;
@@ -15021,7 +15211,8 @@ const SHOWS = (() => {
         '<span class="hund-pool">' + esc(t('show.hundQuestion')) + ' <b>' + (HUND.idx + 1) + '</b> ' + esc(t('show.hundOf')) + ' ' + HUND.items.length + '</span>' +
       '</div>' +
       (HUND.game.desc ? '<div class="hund-demo-note">' + esc(tx(HUND.game.desc)) + '</div>' : '') +
-      '<div class="hund-q" id="hundQ">' + esc(it.q) + '</div>' +
+      '<div class="hund-q" id="hundQ" style="--q-scale:' + questionTextScale(it.q) + '">' + esc(it.q) + '</div>' +
+      (it.photo && isUrl(it.photo) ? '<img class="show-question-photo" alt="" src="' + esc(it.photo) + '">' : '') +
       '<div class="hund-template">' +
         '<div class="hund-template-side blue"><span class="hund-side-label">' + esc(t('show.hundRoundPoints')) + '</span><b id="hundRound">0</b>' +
           '<span class="hund-strikes" id="hundStrikes">' + [0, 1, 2].map(() => '<span class="hund-strike">✕</span>').join('') + '</span></div>' +
@@ -15185,7 +15376,7 @@ const SHOWS = (() => {
     const seconds = player ? 20 : 15;
     root.innerHTML = '<div class="hund-head"><span class="hund-badge">' + esc(t('show.big')) + ' · ' + esc(t('show.player')) + ' ' + (player+1) + '</span></div><p class="big-help">' + esc(t(big.cards ? 'show.bigAuto' : 'show.bigHelp')) + '</p>' +
       '<div class="big-clock"><b id="bigSeconds">' + seconds + '</b>s <button class="mi-btn" id="bigStart">' + esc(t('show.bigTime')) + '</button></div>' +
-      '<div class="big-grid">' + big.questions.map((q,i) => '<div class="big-row"><b>' + (i+1) + '. ' + esc(q) + '</b><label>' + esc(t('show.bigAnswer')) + '<input data-big-answer="' + i + '" maxlength="120"></label><label>' + esc(t('show.bigPoints')) + '<input data-big-points="' + i + '" type="number" min="0" max="100" step="1" value="0"></label></div>').join('') + '</div>' +
+      '<div class="big-grid">' + big.questions.map((q,i) => '<div class="big-row"><b>' + (i+1) + '. ' + esc(q) + (big.cards && big.cards[i].photo && isUrl(big.cards[i].photo) ? '<img class="show-question-photo" alt="" src="' + esc(big.cards[i].photo) + '">' : '') + '</b><label>' + esc(t('show.bigAnswer')) + '<input data-big-answer="' + i + '" maxlength="120"></label><label>' + esc(t('show.bigPoints')) + '<input data-big-points="' + i + '" type="number" min="0" max="100" step="1" value="0"></label></div>').join('') + '</div>' +
       '<div class="hund-actions"><button class="mi-btn gold" id="bigNext">' + esc(t(player ? 'show.bigResult' : 'show.bigNext')) + '</button></div>';
     if (big.cards) $$('[data-big-answer]', root).forEach(input => input.addEventListener('input', () => {
       const i=Number(input.dataset.bigAnswer), normalize=x=>String(x || '').trim().toLocaleLowerCase().replace(/ё/g,'е').replace(/\s+/g,' ');
