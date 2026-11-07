@@ -3,7 +3,7 @@ const fs = require('node:fs'), vm = require('node:vm'), assert = require('node:a
 const html = fs.readFileSync(require('node:path').join(__dirname, '../index.html'), 'utf8');
 function section(start, end) { const a=html.indexOf(start), b=html.indexOf(end,a); assert(a>=0 && b>a); return html.slice(a,b); }
 const source = [
-  section('function aiCompletionError(', 'const GEMINI_FALLBACKS ='),section('const HUMOR_LEVELS =', 'function extractJson('),section('function chgkTimerConfig(', '/* tx()'),section('function nativeValid(', 'function launchNativeGame('),section('function gameFromAiJson(', 'function renderAiPreview(')].join('\n');
+  section('function aiCompletionError(', 'const GEMINI_FALLBACKS ='),section('const HUMOR_LEVELS =', 'function extractJson('),section('function chgkTimerConfig(', '/* tx()'),section('function nativeValid(', 'function launchNativeGame('),section('function normalizeAiResponse(', 'function renderAiPreview(')].join('\n');
 const ctx=vm.createContext({S:{lang:'ru'},clamp:(n,a,b)=>Math.min(b,Math.max(a,n)),t:k=>k,uid:()=> 'id',NATIVE_DEFAULTS:{million:15,chgk:13,hundred:6}}); vm.runInContext(source,ctx);
 const cfg={format:'million',subject:'other',grade:7,quarter:1,topic:'Кино',sections:[],humor:2,media:false};
 const million=Array.from({length:15},(_,i)=>({q:'Q'+i,options:['a','b','c','d'],correct:1}));
