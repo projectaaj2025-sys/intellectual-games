@@ -7,7 +7,7 @@ class FakeSlide{constructor(){this.objects=[]} addShape(t,o){this.objects.push({
 class FakePptx{constructor(){this.ShapeType={rect:'rect'};this._slides=[];ctx.current=this}defineLayout(x){this.layoutDef=x}addSlide(){const s=new FakeSlide;this._slides.push(s);return s}async writeFile(o){this.name=o.fileName}}
 class MockImage{set src(v){this.naturalWidth=800;this.naturalHeight=450;this.onload()}}
 class Reader{readAsDataURL(x){this.result=x.data;this.onload()}}
-const ctx=vm.createContext({console,Image:MockImage,pptxFitFont:(_t,_w,_h,size)=>size,shuffle:x=>x.slice().reverse(),isUrl:s=>/^data:image\//.test(s),FileReader:Reader,fetch:async url=>({ok:true,blob:async()=>({data:url.endsWith('.gif')?'data:image/gif;base64,AAAA':'data:image/jpeg;base64,AAAA'})}),pptxLib:()=>FakePptx,pptxApplyTheme:()=>{},pptxIsLight:()=>false,PPTX_COLORS:{gold:'F2C45A',ink:'EAF1FF',panel:'122042',bg:'070C1A',bg2:'0C1730',tile:'16294F',line:'2A3E6B',cyan:'54E0FF',violet:'9A7BFF'},gameTitle:g=>g.title,nativeFormatName:k=>k,t:k=>k,tx:x=>x||'',LADDER:Array.from({length:15},(_,i)=>i+1),fmt:String,slug:x=>x,hundBuild:g=>g.showItems.map(it=>({q:it.q,answers:it.answers.map(a=>a.text),points:it.answers.map(a=>a.points)})),buildMillionQuestions:g=>g.showItems.map(it=>({...it,a:it.options[it.correct]})),chgkTimerConfig:()=>({standard:60,blitz:20}),takeRandom:x=>x,flattenQuestions:()=>[]});
+const ctx=vm.createContext({console,Image:MockImage,pptxFitFont:(_t,_w,_h,size)=>size,shuffle:x=>x.slice().reverse(),isUrl:s=>/^data:image\//.test(s),FileReader:Reader,fetch:async url=>({ok:true,blob:async()=>({data:url.endsWith('.gif')?'data:image/gif;base64,AAAA':'data:image/jpeg;base64,AAAA'})}),pptxLib:()=>FakePptx,pptxApplyTheme:()=>{},pptxIsLight:()=>false,VideoStore:{blob:async()=>({data:'data:video/mp4;base64,AAAA'}),toData:async b=>b.data},PPTX_COLORS:{gold:'F2C45A',ink:'EAF1FF',panel:'122042',bg:'070C1A',bg2:'0C1730',tile:'16294F',line:'2A3E6B',cyan:'54E0FF',violet:'9A7BFF'},gameTitle:g=>g.title,nativeFormatName:k=>k,t:k=>k,tx:x=>x||'',LADDER:Array.from({length:15},(_,i)=>i+1),fmt:String,slug:x=>x,hundBuild:g=>g.showItems.map(it=>({q:it.q,answers:it.answers.map(a=>a.text),points:it.answers.map(a=>a.points),video:it.video})),buildMillionQuestions:g=>g.showItems.map(it=>({...it,a:it.options[it.correct]})),chgkTimerConfig:()=>({standard:60,blitz:20}),takeRandom:x=>x,flattenQuestions:()=>[]});
 vm.runInContext(h.slice(start,end),ctx);
 const fitStart=h.indexOf('function pptxFitFont('),fitEnd=h.indexOf('async function buildPptx(',fitStart);assert(fitStart>=0&&fitEnd>fitStart);
 const fitCtx=vm.createContext({});vm.runInContext(h.slice(fitStart,fitEnd),fitCtx);
@@ -52,5 +52,15 @@ sectors[1]={kind:'blackbox',q:'Black box?',a:'Object'};sectors[2]={kind:'blitz',
     const done=slides[1+mask];for(let j=0;j<6;j++)assert(done.objects.some(o=>o.t==='A'+j));
   }
  }
- console.log('PPTX show slides, navigation targets, blitz, answers and animated GIF: OK');
+ // A video intro is embedded once before each 64-state board; opening a row preserves the mask.
+ const withVideo=items.slice(0,2).map((it,i)=>({...it,video:'video-'+i}));
+ await ctx.showPptx('hundred',{title:'H',showFormat:'hundred',showItems:withVideo},options);
+ const vslides=ctx.current._slides;assert.equal(vslides.length,131);
+ assert(vslides[1].objects.some(o=>o.t==='audio' && o.o.type==='video'));
+ assert(vslides[1].objects.some(o=>o.o.hyperlink?.slide===3));
+ assert(vslides[2].objects.some(o=>o.o.hyperlink?.slide===67));
+ assert(vslides[66].objects.some(o=>o.t==='audio' && o.o.type==='video'));
+ assert(vslides[66].objects.some(o=>o.o.hyperlink?.slide===68));
+ for(let mask=0;mask<64;mask++)for(let row=0;row<6;row++)if(!(mask&(1<<row)))assert(vslides[2+mask].objects.some(o=>o.o.hyperlink?.slide===3+(mask|(1<<row))));
+ console.log('PPTX show slides, navigation targets, blitz, answers, video intros and animated GIF: OK');
 })().catch(e=>{console.error(e);process.exit(1)});
