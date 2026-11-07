@@ -45,8 +45,8 @@ function sandbox(call){const context=vm.createContext({S:{lang:'ru'},clamp:(n,a,
    calls=[];ctx=sandbox(async(_cfg,prompt)=>{calls.push(prompt);const m=prompt.match(/вопросы или секторы с номера (\d+) по (\d+)/);assert(m,prompt);const start=+m[1],count=+m[2]-start+1;
      const items=Array.from({length:count},(_,i)=>kind==='million'?{question:'Q'+(start+i),options:['A','B','C','D'],correct:'B'}:kind==='chgk'?{question:'Q'+(start+i),answer:'A'}:{question:'Q'+(start+i),answers:[30,22,16,12,10,8].map((points,j)=>({text:'A'+j,points}))});
      return JSON.stringify({title:'Game',items});});
-   game=await ctx.generateAiGame({...cfg,format:kind},new AbortController().signal);assert.equal(game.showItems.length,total);assert.equal(calls.length,Math.ceil(total/3));
-   if(kind==='million')assert.equal(game.showItems[0].correct,1);if(kind==='chgk')assert.equal(game.showItems[0].kind,'normal');if(kind==='hundred')assert.match(game.desc,/ai.surveyWarning/);
+   game=await ctx.generateAiGame({...cfg,format:kind},new AbortController().signal);assert.equal(game.showItems.length,total);assert.equal(calls.length,Math.ceil((total+(kind==='hundred'?5:0))/3));
+   if(kind==='million')assert.equal(game.showItems[0].correct,1);if(kind==='chgk')assert.equal(game.showItems[0].kind,'normal');if(kind==='hundred'){assert.match(game.desc,/ai.surveyWarning/);assert.equal(game.bigItems.length,5);assert.notEqual(game.bigItems[0].q,game.showItems[0].q);}
  }
  // Native malformed chunks split, while quota errors and malformed single items stop.
  calls=[];ctx=sandbox(async(_cfg,prompt)=>{calls.push(prompt);const m=prompt.match(/вопросы или секторы с номера (\d+) по (\d+)/);const start=+m[1],count=+m[2]-start+1;return JSON.stringify({title:'Game',showItems:count>1?[]:[{q:'Q'+start,options:['A','B','C','D'],correct:'D'}]})});
