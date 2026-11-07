@@ -33,6 +33,7 @@
 :root{
   --font-ui:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
   --font-display:'Oswald','Inter',system-ui,'Segoe UI',Arial,sans-serif;
+  --ink:var(--text);
   --gold:#f2c45a;
   --gold-2:#ffe9a6;
   --gold-3:#b47c1c;
@@ -57,8 +58,8 @@
   --surface-2:rgba(20,34,70,.66);
   --surface-3:rgba(255,255,255,.045);
   --text:#edf3ff;
-  --muted:#95a7ce;
-  --faint:#6d80aa;
+  --muted:#c0cde4;
+  --faint:#a4b6d6;
   --line:rgba(126,163,255,.17);
   --line-strong:rgba(126,163,255,.3);
   --gold-soft:rgba(242,196,90,.14);
@@ -85,12 +86,12 @@
   --surface-2:rgba(255,255,255,.72);
   --surface-3:rgba(19,42,98,.045);
   --text:#0a1530;
-  --muted:#55678f;
-  --faint:#7d8cae;
+  --muted:#435579;
+  --faint:#53678e;
   --line:rgba(25,56,126,.14);
   --line-strong:rgba(25,56,126,.26);
-  --gold:#b8871d;
-  --gold-2:#8a6410;
+  --gold:#805900;
+  --gold-2:#6d4900;
   --gold-3:#e0b54b;
   --gold-soft:rgba(184,135,29,.13);
   --cyan:#047b9c;
@@ -1187,7 +1188,7 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
 
 /* карточка вопроса */
 .chgk-card{width:min(1100px,92%);max-height:100%;display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center;animation:chgkIn .45s var(--ease)}
-@keyframes chgkIn{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes chgkIn{from{transform:translateY(14px) scale(.985)}to{transform:none}}
 .chgk-card .sector-chip{font-family:var(--font-display);font-size:12px;letter-spacing:.3em;color:#f2c45a;
   border:1px solid rgba(242,196,90,.5);border-radius:3px;padding:6px 14px;text-transform:uppercase}
 .chgk-card .q-cat{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:rgba(246,236,210,.55)}
@@ -1443,6 +1444,30 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
 /* Каталог сгруппирован по классам, фильтры остаются над разделами. */
 #libGrid{display:block}.lib-group{margin:26px 0 34px}.lib-group-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:0 0 14px;padding-bottom:12px;border-bottom:1px solid var(--line)}.lib-group-head h2{font-family:var(--font-display);font-size:25px;margin:4px 0 0}.lib-group-kicker{font-size:9px;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:var(--gold)}.lib-group-count{color:var(--muted);font-size:11px;white-space:nowrap}.lib-group-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
 @media(max-width:600px){.lib-toolbar #libSearch{flex:1 0 100%;width:100%}.lib-toolbar #libFormat{flex:1 0 100%;width:100%}.ai-preview-head{flex-wrap:wrap}.ai-preview-head>span{flex:1 0 80%}}
+
+/* Доступные переходы к каждому шоу и его конструктору прямо с главной. */
+:root[data-theme="light"] .lang button.active{background:#f2c45a;color:#0b1326}
+.home-show-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.home-show{display:flex;flex-direction:column;gap:10px;min-width:0;padding:20px;border:1px solid var(--line-strong);border-radius:20px;background:var(--surface-solid);box-shadow:var(--shadow-sm)}
+.home-show-icon{font-weight:900;color:var(--gold);font-size:25px;line-height:1.1}.home-show h3{font-size:16px;line-height:1.3;margin:0}.home-show p{font-size:13px;line-height:1.5;color:var(--muted);margin:0 0 6px}.home-show-actions{margin-top:auto;display:flex;flex-wrap:wrap;gap:8px}.home-show-actions .btn{min-height:40px}
+@media(max-width:900px){.home-show-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:500px){.home-show-grid{grid-template-columns:1fr}.home-show{padding:17px}.home-show-actions .btn{flex:1}}
+/* Сцены шоу всегда тёмные: настройки светлой темы не должны перекрашивать текст в тёмный. */
+.show-screen{--ink:#f7f8ff;--text:#f7f8ff;--muted:#ccd7ec;--faint:#b9c6dd;--gold:#f5c950;--gold-2:#ffe5a2;--cyan:#78e8ff}
+:root[data-theme="light"] .show-screen .chgk-card .q-text,
+.show-screen .chgk-card .q-text{color:#fff;text-shadow:none}
+.show-screen .chgk-card .q-cat{color:#e8d8ac}
+.show-screen .chgk-clock .lbl,.show-screen .chgk-head small,.show-screen .chgk-wheel-clock span{color:#ded2b4}
+.show-screen .chgk-btn.ghost,.show-screen .mi-btn.ghost{color:#f4f2ec;border-color:#b6ab91}
+.show-screen .hund-row:not(.open) .hund-answer::after{color:#a9bbdf}
+.show-screen .hund-row:not(.open) .hund-score::after{color:#d4b669}
+/* Вопрос как чёрный экран в золотой рамке, табло остаётся отдельно снизу. */
+.chgk-question-stage .chgk-card{background:#070707;border:2px solid #9b823f;box-shadow:0 0 0 5px #15120c,0 20px 70px #000;padding:clamp(16px,2.5vh,28px) clamp(14px,3vw,40px);width:min(1000px,94%)}
+.chgk-question-stage .chgk-card .q-text{font-family:var(--font-ui);font-weight:600;font-size:clamp(19px,2.05vw,30px);line-height:1.42;max-height:37vh;overflow:auto;scrollbar-color:#e4bd62 #27221a}
+.chgk-wheel .sec{stroke:#d4aa47;stroke-width:2}.chgk-wheel .num{fill:#f7e9b4;font-size:16px;font-weight:800}.chgk-wheel .hub{fill:#121411;stroke:#e9c773;stroke-width:4}
+@media(max-height:700px){.chgk-wheel{width:min(39vh,350px)}.chgk-head{padding-top:8px}.chgk-question-stage .chgk-card .q-text{max-height:28vh}}
+@media(max-width:640px){.chgk-question-stage .chgk-card{width:100%;padding:14px}.chgk-question-stage .chgk-card .q-text{font-size:clamp(18px,5vw,25px);max-height:29vh}.chgk-wheel{width:min(48vh,82vw,320px)}}
+
 </style>
 </head>
 <body>
@@ -1581,6 +1606,16 @@ kbd{display:inline-block;padding:1px 6px;border-radius:5px;background:var(--surf
       </div>
     </div>
   </div>
+
+  <section class="section container home-shows" aria-labelledby="homeShowsTitle">
+    <div class="section-head"><div><div class="eyebrow" data-i18n="homeShows.eyebrow">выберите шоу</div><h2 class="h2" id="homeShowsTitle" data-i18n="homeShows.title">Играть или создать игру</h2><p class="section-sub" data-i18n="homeShows.sub">Откройте готовые наборы нужного формата или создайте свой.</p></div></div>
+    <div class="home-show-grid">
+      <article class="home-show"><span class="home-show-icon">✦</span><h3 data-i18n="formats.f1">Своя игра</h3><p data-i18n="formats.f1d">Игровое поле и финал</p><div class="home-show-actions"><button class="btn btn-gold btn-sm" data-format-catalog="svoya" data-i18n="homeShows.ready">Готовые игры</button><button class="btn btn-line btn-sm" data-format-create="svoya" data-i18n="homeShows.create">Создать</button></div></article>
+      <article class="home-show"><span class="home-show-icon">100 : 1</span><h3 data-i18n="formats.f2">100 к 1</h3><p data-i18n="formats.f2d">Ответы аудитории и табло</p><div class="home-show-actions"><button class="btn btn-gold btn-sm" data-format-catalog="hundred" data-i18n="homeShows.ready">Готовые игры</button><button class="btn btn-line btn-sm" data-format-create="hundred" data-i18n="homeShows.create">Создать</button></div></article>
+      <article class="home-show"><span class="home-show-icon">◇</span><h3 data-i18n="formats.f3">Кто хочет стать миллионером</h3><p data-i18n="formats.f3d">15 вопросов и подсказки</p><div class="home-show-actions"><button class="btn btn-gold btn-sm" data-format-catalog="million" data-i18n="homeShows.ready">Готовые игры</button><button class="btn btn-line btn-sm" data-format-create="million" data-i18n="homeShows.create">Создать</button></div></article>
+      <article class="home-show"><span class="home-show-icon">◉</span><h3 data-i18n="formats.f4">Что? Где? Когда?</h3><p data-i18n="formats.f4d">Волчок и минута на размышление</p><div class="home-show-actions"><button class="btn btn-gold btn-sm" data-format-catalog="chgk" data-i18n="homeShows.ready">Готовые игры</button><button class="btn btn-line btn-sm" data-format-create="chgk" data-i18n="homeShows.create">Создать</button></div></article>
+    </div>
+  </section>
 
   <section class="section container" id="presetsSection">
     <div class="section-head">
@@ -3120,6 +3155,9 @@ Object.assign(I18N.en, {'ai.badJsonHelp':'The model returned invalid JSON. Try a
 Object.assign(I18N.ru, {'ai.difficulty':'Сложность заданий','ai.easy':'Базовая','ai.medium':'Средняя','ai.hard':'Продвинутая','ai.media':'Создать до двух иллюстраций для «Своей игры»','ai.imageHint':'Дополнительные запросы могут оплачиваться отдельно. Декоративные картинки могут ошибаться — проверьте их перед игрой. Для других шоу картинки пока не создаются.','ai.imageProgress':'Создаём иллюстрацию','ai.imageFailed':'Иллюстрация не создана: сервис изображений недоступен или отклонил запрос. Игра будет доступна без неё.','ai.imageReview':'ИИ-иллюстрации декоративны. Проверьте их и при необходимости удалите в конструкторе.','builder.removeImage':'Удалить иллюстрацию','builder.image':'Иллюстрация','storage.full':'Не удалось сохранить библиотеку в браузере: возможно, закончилось место. Экспортируйте игру в JSON или удалите ненужные иллюстрации.'});
 Object.assign(I18N.kk, {'ai.difficulty':'Тапсырма күрделілігі','ai.easy':'Бастапқы','ai.medium':'Орташа','ai.hard':'Жоғары','ai.media':'«Өз ойыны» үшін екі суретке дейін жасау','ai.imageHint':'Қосымша сұраулар бөлек ақылы болуы мүмкін. Сәндік суреттер қате болуы мүмкін — ойын алдында тексеріңіз. Басқа шоуларға сурет әзірге жасалмайды.','ai.imageProgress':'Иллюстрация жасалуда','ai.imageFailed':'Иллюстрация жасалмады: сурет сервисі қолжетімсіз немесе сұрауды қабылдамады. Ойын суретсіз қолжетімді болады.','ai.imageReview':'ИИ суреттері сәндік. Тексеріп, қажет болса конструкторда өшіріңіз.','builder.removeImage':'Иллюстрацияны өшіру','builder.image':'Иллюстрация','storage.full':'Браузерде сақтау мүмкін болмады: орын жеткіліксіз болуы мүмкін. Ойынды JSON-ға экспорттаңыз немесе қажетсіз суреттерді өшіріңіз.'});
 Object.assign(I18N.en, {'ai.difficulty':'Question difficulty','ai.easy':'Basic','ai.medium':'Intermediate','ai.hard':'Advanced','ai.media':'Create up to two illustrations for Quiz board','ai.imageHint':'Extra image requests may incur charges. Decorative images can be inaccurate; review them before play. Images are not yet available for other shows.','ai.imageProgress':'Creating illustration','ai.imageFailed':'Image could not be created: the image service was unavailable or rejected the request. The game remains usable without it.','ai.imageReview':'AI images are decorative. Review and remove them in the builder if needed.','builder.removeImage':'Remove illustration','builder.image':'Illustration','storage.full':'Could not save the library in this browser; storage may be full. Export the game as JSON or remove unneeded illustrations.'});
+Object.assign(I18N.ru, {'homeShows.eyebrow':'Четыре формата','homeShows.title':'Играть или создать игру','homeShows.sub':'Откройте готовые наборы нужного формата или создайте свой.','homeShows.ready':'Готовые игры','homeShows.create':'Создать','homeShows.demo':'Демонстрация','presets.title':'Готовые игры <em>разных форматов</em>','presets.sub':'Учебные наборы и демонстрации шоу: откройте игру или измените её в конструкторе.'});
+Object.assign(I18N.kk, {'homeShows.eyebrow':'Төрт формат','homeShows.title':'Ойнау немесе ойын жасау','homeShows.sub':'Форматтың дайын жинақтарын ашыңыз немесе өз ойыныңызды жасаңыз.','homeShows.ready':'Дайын ойындар','homeShows.create':'Жасау','homeShows.demo':'Үлгі','presets.title':'Әртүрлі форматтағы <em>дайын ойындар</em>','presets.sub':'Оқу жинақтары мен шоу үлгілерін ашыңыз немесе конструкторда өңдеңіз.'});
+Object.assign(I18N.en, {'homeShows.eyebrow':'Four formats','homeShows.title':'Play or create a game','homeShows.sub':'Browse ready-made sets for a format or create your own.','homeShows.ready':'Ready games','homeShows.create':'Create','homeShows.demo':'Demo','presets.title':'Ready games <em>in different formats</em>','presets.sub':'Explore curriculum sets and show demonstrations, or edit them in the builder.'});
 function t(key) {
   const dict = I18N[S.lang] || I18N.ru;
   if (dict[key] != null) return dict[key];
@@ -10045,15 +10083,14 @@ function presetCard(g, index) {
     '<span class="preset-index">' + pad2(index + 1) + '</span>' +
     '<div class="preset-top">' +
       '<div class="preset-icon">' + esc(g.emoji || '★') + '</div>' +
-      '<div class="preset-meta"><span class="lbl">' + esc(gameSubjectLabel(g)) + '</span><span class="val">' + esc(g.grade) + ' ' + esc(t('grade')) + ' · ' + esc(g.quarter ? g.quarter + ' ' + t('quarterShort') : t('lib.wholeCourse')) + '</span></div>' +
+      '<div class="preset-meta"><span class="lbl">' + esc(g.showFormat ? nativeFormatName(g.showFormat) : gameSubjectLabel(g)) + '</span><span class="val">' + (g.showFormat && (g.tags || []).includes('demo') ? esc(t('homeShows.demo')) : esc(g.grade) + ' ' + esc(t('grade')) + ' · ' + esc(g.quarter ? g.quarter + ' ' + t('quarterShort') : t('lib.wholeCourse'))) + '</span></div>' +
     '</div>' +
     '<div class="preset-body">' +
       '<h3 class="preset-title">' + esc(gameTitle(g)) + '</h3>' +
       '<p class="preset-desc">' + esc(tx(g.desc)) + '</p>' +
       '<div class="preset-tags">' +
         '<span class="chip chip-gold">' + qs + ' ' + esc(t('presets.questions')) + '</span>' +
-        '<span class="chip">' + esc(t('presets.final')) + '</span>' +
-        '<span class="chip chip-cyan">5×5</span>' +
+        (g.showFormat ? '<span class="chip chip-cyan">' + esc(nativeFormatName(g.showFormat)) + '</span>' : '<span class="chip">' + esc(t('presets.final')) + '</span><span class="chip chip-cyan">5×5</span>') +
       '</div>' +
     '</div>' +
     '<div class="preset-actions">' +
@@ -10065,19 +10102,18 @@ function presetCard(g, index) {
 function renderPresets() {
   const grid = $('#presetGrid');
   if (!grid) return;
-  grid.innerHTML = allGames().slice(0, 6).map((g, i) => presetCard(g, i)).join('');
+  grid.innerHTML = BANK_GAMES.slice(0, 3).concat(SHOW_DEMOS).map((g, i) => presetCard(g, i)).join('');
 }
 function libGameCard(g) {
   const qs = gameQuestionCount(g);
   const custom = !g.builtin;
   return '<article class="lib-card" style="--cg:' + (g.accent || '#54e0ff') + '55">' +
-    '<div class="lib-cover"><b>' + esc(g.emoji || '★') + '</b><span class="cover-sub">' + esc(gameSubjectLabel(g)) + ' · ' + esc(g.grade) + ' ' + esc(t('grade')) + '</span></div>' +
+    '<div class="lib-cover"><b>' + esc(g.emoji || '★') + '</b><span class="cover-sub">' + esc(g.showFormat ? nativeFormatName(g.showFormat) : gameSubjectLabel(g)) + (g.showFormat && (g.tags || []).includes('demo') ? ' · ' + esc(t('homeShows.demo')) : ' · ' + esc(g.grade) + ' ' + esc(t('grade'))) + '</span></div>' +
     '<div class="lib-body">' +
       '<div class="lib-title">' + esc(gameTitle(g)) + '</div>' +
       '<div class="lib-meta">' +
         '<span class="chip chip-gold">' + esc(g.showFormat ? nativeFormatName(g.showFormat) : gameSubjectLabel(g)) + '</span>' +
-        '<span class="chip">' + esc(g.grade) + ' ' + esc(t('grade')) + '</span>' +
-        '<span class="chip">' + esc(g.quarter ? g.quarter + ' ' + t('quarterShort') : t('lib.wholeCourse')) + '</span>' +
+        (g.showFormat && (g.tags || []).includes('demo') ? '<span class="chip">' + esc(t('homeShows.demo')) + '</span>' : '<span class="chip">' + esc(g.grade) + ' ' + esc(t('grade')) + '</span><span class="chip">' + esc(g.quarter ? g.quarter + ' ' + t('quarterShort') : t('lib.wholeCourse')) + '</span>') +
         '<span class="chip chip-cyan">' + qs + ' ' + esc(t('presets.questions')) + '</span>' +
         (custom ? '<span class="chip chip-violet">' + esc(t('presets.custom')) + '</span>' : '') +
       '</div>' +
@@ -13705,12 +13741,17 @@ const SHOWS = (() => {
       parts += '<path class="sec" d="M' + x0.toFixed(1) + ' ' + y0.toFixed(1) + ' A' + r + ' ' + r + ' 0 0 1 ' + x1.toFixed(1) + ' ' + y1.toFixed(1) +
         ' L' + xi1.toFixed(1) + ' ' + yi1.toFixed(1) + ' A' + inner + ' ' + inner + ' 0 0 0 ' + xi0.toFixed(1) + ' ' + yi0.toFixed(1) + ' Z"' +
         ' fill="' + (used ? 'rgba(60,55,40,.35)' : i % 2 ? '#111' : '#1a1710') + '"/>';
-      parts += '<text class="num" x="' + nx.toFixed(1) + '" y="' + ny.toFixed(1) + '" opacity="' + (used ? .22 : 1) + '">' + num + '</text>';
+      const deg = (i + .5) * 360 / 13;
+      parts += '<g transform="rotate(' + deg.toFixed(2) + ' 220 220)" opacity="' + (used ? .28 : 1) + '">' +
+        '<rect x="201" y="27" width="38" height="32" rx="2" fill="#eee6cf" stroke="#d0a43f" stroke-width="1.5"/>' +
+        '<path d="M202 29l18 13 18-13M204 54h15" fill="none" stroke="#b57d28" stroke-width="1"/>' +
+        '<circle cx="232" cy="48" r="3" fill="none" stroke="#b24d39" stroke-width="1"/></g>';
+      parts += '<text class="num" x="' + nx.toFixed(1) + '" y="' + ny.toFixed(1) + '" opacity="' + (used ? .35 : 1) + '">' + num + '</text>';
     }
     return '<div class="chgk-pointer"></div>' +
       '<svg viewBox="0 0 440 440">' +
       '<g id="wheelRot">' + parts + '<circle class="rim" cx="220" cy="220" r="196"/>' +
-      '<circle class="hub" cx="220" cy="220" r="74"/><circle class="hub2" cx="220" cy="220" r="16"/></g>' +
+      '<circle class="hub" cx="220" cy="220" r="74"/></g><path d="M215 218L215 115 220 100 225 115 225 218Z" fill="#d62837" stroke="#f5b37a" stroke-width="1"/><circle cx="220" cy="220" r="23" fill="#363b34" stroke="#f1ce75" stroke-width="4"/><circle class="hub2" cx="220" cy="220" r="11"/>' +
       '</svg>';
   }
 
@@ -13767,10 +13808,15 @@ const SHOWS = (() => {
     CHGK.phase = 'box';
     const root = $('#chgkRoot');
     root.innerHTML = chgkHeader() + '<div class="chgk-stage"><div class="chgk-box">' +
-      '<svg class="box-icon" viewBox="0 0 200 160" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round">' +
-        '<path d="M30 62 62 40l38 14 38-14 32 22-34 26-36-14-36 14z" fill="rgba(242,196,90,.07)"/>' +
-        '<path d="M30 62v62l36 16 34-14v-60M170 62v62l-34 16-36-14"/>' +
-        '<path d="M100 76v-36M62 40l38 36 38-36"/>' +
+      '<svg class="box-icon" viewBox="0 0 220 180" role="img" aria-label="' + esc(t('show.blackbox')) + '">' +
+        '<defs><linearGradient id="boxFront" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#55565a"/><stop offset="1" stop-color="#151619"/></linearGradient><linearGradient id="boxSide" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#313338"/><stop offset="1" stop-color="#08090a"/></linearGradient></defs>' +
+        '<path d="M32 56 76 34 112 48 69 70Z" fill="#404146" stroke="#737477"/>' +
+        '<path d="M112 48 155 34 192 57 152 72Z" fill="#44454a" stroke="#77787c"/>' +
+        '<path d="M68 72 111 50 153 72 112 91Z" fill="#090a0b" stroke="#68696b"/>' +
+        '<path d="M68 72 112 91 112 154 69 133Z" fill="url(#boxFront)" stroke="#737477"/>' +
+        '<path d="M112 91 153 72 152 134 112 154Z" fill="url(#boxSide)" stroke="#68696b"/>' +
+        '<path d="M68 72 112 91 97 117 51 99Z" fill="#44454a" stroke="#77787c"/>' +
+        '<path d="M112 91 153 72 174 95 128 115Z" fill="#292b2f" stroke="#68696b"/>' +
       '</svg>' +
       '<h2>' + esc(t('show.blackbox')) + '</h2>' +
       '<p>' + esc(t('show.blackboxLead')) + '</p>' +
@@ -15118,6 +15164,11 @@ document.addEventListener('DOMContentLoaded', () => {
     $$('#libTabs button').forEach((b) => b.classList.toggle('active', b.dataset.tab === 'all'));
     setView('library');
   };
+  $$('[data-format-catalog]').forEach((el) => el.addEventListener('click', () => launch({dataset:{format:el.dataset.formatCatalog}})));
+  $$('[data-format-create]').forEach((el) => el.addEventListener('click', () => {
+    setView('builder');
+    selectBuilderFormat(el.dataset.formatCreate);
+  }));
   $$('[data-format]').forEach((el) => {
     el.addEventListener('click', () => launch(el));
     el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); launch(el); } });
